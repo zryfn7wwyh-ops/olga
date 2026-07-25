@@ -37,7 +37,7 @@ export function ServiceCard({ service, isOpen, onToggle }: ServiceCardProps) {
       <div
         id={`service-panel-${service.id}`}
         className="grid transition-[grid-template-rows] duration-300 ease-out"
-        style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
+        style={{ gridTemplateRows: isOpen ? "1fr" : "0fr", contain: "paint" }}
       >
         <div className="overflow-hidden">
           <div className="border-t border-line px-6 pb-6 pt-5 sm:px-7">

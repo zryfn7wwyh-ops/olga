@@ -22,11 +22,16 @@ export function Hero() {
         <div className="max-w-xl lg:flex-1">
           <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-bronze">
             <span className="h-px w-6 bg-bronze" aria-hidden="true" />
-            Адвокат Аксёнова Анита Георгиевна
+            Адвокат
           </span>
 
-          <h1 className="mt-5 text-4xl font-semibold leading-[1.12] text-ink sm:text-5xl lg:text-[3.25rem]">
-            Адвокатская защита в сложных гражданских, уголовных делах и бизнес-спорах
+          <h1 className="mt-5 font-semibold leading-[1.15] text-ink">
+            <span className="block text-2xl sm:text-3xl lg:text-[2.1rem]">
+              Аксёнова Анита Георгиевна
+            </span>
+            <span className="mt-2 block text-3xl leading-[1.15] sm:text-4xl lg:text-[2.75rem]">
+              Адвокатская защита в сложных гражданских, уголовных делах и бизнес-спорах
+            </span>
           </h1>
 
           <p className="mt-5 text-base leading-relaxed text-text-muted sm:text-lg">
@@ -71,7 +76,7 @@ export function Hero() {
                 fill
                 priority
                 sizes="(min-width: 1024px) 480px, 90vw"
-                className="object-cover"
+                className="object-cover object-top"
               />
             </div>
 

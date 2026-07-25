@@ -15,9 +15,6 @@ export function AchievementBadge({ className = "" }: AchievementBadgeProps) {
           адвокатов в России, которые в 2026 году добились в Верховном суде возврата
           недвижимости по делу, схожему с резонансным «делом Долиной».
         </p>
-        <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-bronze-soft">
-          Практика на уровне Верховного суда РФ
-        </p>
       </div>
     </div>
   );

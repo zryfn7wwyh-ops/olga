@@ -17,10 +17,7 @@ export function Services() {
   return (
     <section id="services" className="scroll-mt-24 bg-cream py-20 sm:py-28">
       <Container>
-        <SectionHeading
-          eyebrow="Услуги"
-          title="К Аните Георгиевне обращаются в следующих случаях"
-        />
+        <SectionHeading title="К Аните Георгиевне обращаются в следующих случаях" />
 
         <div className="mt-12 flex flex-col gap-4">
           {services.map((service) => (

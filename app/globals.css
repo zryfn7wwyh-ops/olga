@@ -53,6 +53,20 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Пропорционально увеличиваем весь rem-based текст на крупных экранах:
+   дизайн, рассчитанный под мобильный масштаб, иначе выглядит мелко на десктопе. */
+@media (min-width: 1024px) {
+  html {
+    font-size: 17.5px;
+  }
+}
+
+@media (min-width: 1440px) {
+  html {
+    font-size: 19px;
+  }
+}
+
 body {
   background: var(--color-paper);
   color: var(--color-text);

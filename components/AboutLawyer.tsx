@@ -9,9 +9,9 @@ export function AboutLawyer() {
   return (
     <section id="about" className="scroll-mt-24 bg-paper py-20 sm:py-28">
       <Container>
-        <SectionHeading eyebrow="Об адвокате" title="Ваш адвокат — Анита Георгиевна Аксёнова" />
+        <SectionHeading title="Ваш адвокат — Анита Георгиевна Аксёнова" />
 
-        <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,320px)_1fr] lg:gap-16">
+        <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-[320px_1fr] lg:gap-16">
           <div className="mx-auto w-full max-w-xs lg:mx-0 lg:max-w-none">
             <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl">
               <Image
@@ -19,7 +19,7 @@ export function AboutLawyer() {
                 alt="Аксёнова Анита Георгиевна — адвокат"
                 fill
                 sizes="(min-width: 1024px) 320px, 80vw"
-                className="object-cover"
+                className="object-cover object-top"
               />
             </div>
             <p className="mt-4 text-sm font-semibold text-ink">{contacts.fullName}</p>
@@ -28,7 +28,7 @@ export function AboutLawyer() {
             </p>
           </div>
 
-          <div>
+          <div className="min-w-0">
             <div className="space-y-4 text-base leading-relaxed text-text sm:text-[1.05rem]">
               <p>
                 Практикующий адвокат, член Адвокатской палаты Краснодарского края.

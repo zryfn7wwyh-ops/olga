@@ -12,11 +12,7 @@ export function UrgentSituations() {
     <section id="urgent" className="scroll-mt-24 bg-emerald py-20 text-paper sm:py-28">
       <Container>
         <div className="max-w-2xl">
-          <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-bronze-soft">
-            <span className="h-px w-6 bg-bronze-soft" aria-hidden="true" />
-            Срочные ситуации
-          </span>
-          <h2 className="mt-4 text-3xl font-semibold leading-tight sm:text-4xl">
+          <h2 className="text-3xl font-semibold leading-tight sm:text-4xl">
             Когда не стоит откладывать обращение
           </h2>
           <p className="mt-4 text-base leading-relaxed text-paper/80 sm:text-lg">

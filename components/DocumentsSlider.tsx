@@ -37,7 +37,7 @@ export function DocumentsSlider() {
   }
 
   return (
-    <div className="relative">
+    <div className="relative min-w-0">
       <div
         ref={trackRef}
         className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"

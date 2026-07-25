@@ -13,26 +13,23 @@ const toneByIndex = [
   "border-transparent bg-emerald text-paper hover:border-bronze",
 ];
 
-const spanByLayout: Record<string, string> = {
-  wide: "lg:col-span-2",
-  tall: "lg:row-span-2",
-  square: "",
-};
+// Явные спаны на 5 карточек: ряд 1 = 2+1+1 колонки, ряд 2 = 2+2 — без пустот и без row-span.
+const spanByIndex = ["lg:col-span-2", "lg:col-span-1", "lg:col-span-1", "lg:col-span-2", "lg:col-span-2"];
 
 export function Advantages() {
   return (
     <section id="advantages" className="scroll-mt-24 bg-paper py-20 sm:py-28">
       <Container>
-        <SectionHeading eyebrow="Преимущества" title="Почему обращаются к Аните Георгиевне" />
+        <SectionHeading title="Почему обращаются к Аните Георгиевне" />
 
-        <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[minmax(230px,auto)]">
+        <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {advantages.map((item, index) => {
             const tone = toneByIndex[index % toneByIndex.length];
             const isDark = index === 0 || index === 4;
             return (
               <article
                 key={item.id}
-                className={`${cardBase} ${tone} ${spanByLayout[item.layout]}`}
+                className={`${cardBase} ${tone} ${spanByIndex[index]}`}
               >
                 <span
                   className={`font-display text-2xl font-semibold transition-transform duration-300 group-hover:scale-105 ${

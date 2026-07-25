@@ -78,7 +78,7 @@ export function CaseCard({ item, isOpen, onToggle }: CaseCardProps) {
       <div
         id={`case-panel-${item.id}`}
         className="grid transition-[grid-template-rows] duration-300 ease-out"
-        style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
+        style={{ gridTemplateRows: isOpen ? "1fr" : "0fr", contain: "paint" }}
       >
         <div className="overflow-hidden">
           <div

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { contacts } from "@/data/contacts";
 import { trackGoal } from "@/lib/analytics";
 import { useCallModal } from "@/components/CallModalProvider";
@@ -23,7 +24,19 @@ export function Contacts() {
           tone="dark"
         />
 
-        <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-14">
+        <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-[260px_1fr_1fr] lg:gap-12">
+          <div className="mx-auto w-full max-w-xs lg:mx-0 lg:max-w-none">
+            <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl">
+              <Image
+                src="/images/lawyer/anita-aksyonova-profile.jpg"
+                alt="Аксёнова Анита Георгиевна — адвокат"
+                fill
+                sizes="(min-width: 1024px) 260px, 80vw"
+                className="object-cover object-top"
+              />
+            </div>
+          </div>
+
           <div>
             <h3 className="font-display text-2xl font-semibold text-paper">{contacts.fullName}</h3>
             <p className="mt-1 text-sm text-paper/70">

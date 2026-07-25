@@ -14,18 +14,32 @@ export function WorkProcess() {
       <Container>
         <SectionHeading eyebrow="Порядок работы" title="Как проходит работа" />
 
-        {/* Desktop: horizontal stepper */}
-        <div className="relative mt-14 hidden lg:grid lg:grid-cols-6 lg:gap-5">
-          <div className="pointer-events-none absolute inset-x-6 top-6 h-px bg-line" aria-hidden="true" />
-          {processSteps.map((step) => (
-            <div key={step.id} className="relative flex flex-col items-start pr-2">
-              <span className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border-2 border-bronze bg-cream font-display text-lg font-semibold text-ink">
-                {step.number}
-              </span>
-              <h3 className="mt-4 text-sm font-semibold leading-snug text-ink">{step.title}</h3>
-              <p className="mt-2 text-xs leading-relaxed text-text-muted">{step.text}</p>
-            </div>
-          ))}
+        {/* Desktop: two rows of three, with a connecting line per row */}
+        <div className="mt-14 hidden lg:block">
+          <div className="relative grid grid-cols-3 gap-x-10 gap-y-14">
+            <div className="pointer-events-none absolute inset-x-0 top-7 hidden h-px bg-line lg:block" aria-hidden="true" />
+            {processSteps.slice(0, 3).map((step) => (
+              <div key={step.id} className="relative flex flex-col items-start pr-4">
+                <span className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border-2 border-bronze bg-cream font-display text-xl font-semibold text-ink">
+                  {step.number}
+                </span>
+                <h3 className="mt-5 text-lg font-semibold leading-snug text-ink">{step.title}</h3>
+                <p className="mt-2.5 text-base leading-relaxed text-text-muted">{step.text}</p>
+              </div>
+            ))}
+          </div>
+          <div className="relative mt-14 grid grid-cols-3 gap-x-10 gap-y-14">
+            <div className="pointer-events-none absolute inset-x-0 top-7 hidden h-px bg-line lg:block" aria-hidden="true" />
+            {processSteps.slice(3, 6).map((step) => (
+              <div key={step.id} className="relative flex flex-col items-start pr-4">
+                <span className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border-2 border-bronze bg-cream font-display text-xl font-semibold text-ink">
+                  {step.number}
+                </span>
+                <h3 className="mt-5 text-lg font-semibold leading-snug text-ink">{step.title}</h3>
+                <p className="mt-2.5 text-base leading-relaxed text-text-muted">{step.text}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Mobile / tablet: vertical timeline */}
