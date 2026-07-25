@@ -27,7 +27,7 @@ export function YandexMap() {
   }, []);
 
   const mapSrc = `https://yandex.ru/map-widget/v1/?text=${encodeURIComponent(
-    contacts.address
+    `Адвокат ${contacts.fullName}, ${contacts.address}`
   )}&z=16&l=map`;
 
   return (

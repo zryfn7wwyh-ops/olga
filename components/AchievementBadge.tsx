@@ -7,7 +7,7 @@ export function AchievementBadge({ className = "", compact = false }: Achievemen
   if (compact) {
     return (
       <div
-        className={`inline-flex max-w-[19rem] items-center gap-3 rounded-xl border border-bronze/40 bg-ink px-4 py-3 text-paper shadow-lg sm:max-w-xs ${className}`}
+        className={`flex w-full items-center gap-3 rounded-xl border border-bronze/40 bg-ink px-4 py-3 text-paper shadow-lg ${className}`}
       >
         <span className="font-display text-2xl font-semibold leading-none text-bronze-soft shrink-0">
           1 из 4

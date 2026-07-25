@@ -49,16 +49,16 @@ export function AboutLawyer() {
             <div className="mt-7">
               <AboutCallButton />
             </div>
+          </div>
+        </div>
 
-            <div className="mt-14">
-              <h3 className="text-lg font-semibold text-ink">Документы и сертификаты</h3>
-              <p className="mt-1 text-sm text-text-muted">
-                Подтверждение квалификации: образование, повышение квалификации и практика.
-              </p>
-              <div className="mt-6">
-                <DocumentsSlider />
-              </div>
-            </div>
+        <div className="mt-16 sm:mt-20">
+          <h3 className="text-lg font-semibold text-ink sm:text-xl">Документы и сертификаты</h3>
+          <p className="mt-1 text-sm text-text-muted sm:text-base">
+            Подтверждение квалификации: образование, повышение квалификации и практика.
+          </p>
+          <div className="mt-6">
+            <DocumentsSlider />
           </div>
         </div>
       </Container>
