@@ -7,6 +7,11 @@ export type DocumentItem = {
   regNumber?: string;
   /** Путь к скану/фото документа. Пусто — используется плейсхолдер, ждём файл. */
   image: string | null;
+  /**
+   * Горизонтальная точка фокуса для превью-обрезки (object-position), 0–100.
+   * Нужна для разворотов документа: правая страница с текстом важнее пустого поля левой.
+   */
+  focalX?: number;
 };
 
 export const documents: DocumentItem[] = [
@@ -27,6 +32,7 @@ export const documents: DocumentItem[] = [
     category: "Диплом",
     regNumber: "№ 709, БВС 0579504",
     image: "/images/documents/diploma-law-1999.jpg",
+    focalX: 100,
   },
   {
     id: "diploma-master",
@@ -36,6 +42,7 @@ export const documents: DocumentItem[] = [
     category: "Диплом",
     regNumber: "№ 447",
     image: "/images/documents/diploma-master-2014.jpg",
+    focalX: 100,
   },
   {
     id: "diploma-mediation",
@@ -45,6 +52,7 @@ export const documents: DocumentItem[] = [
     category: "Диплом о переподготовке",
     regNumber: "№ 24834",
     image: "/images/documents/diploma-mediation.jpg",
+    focalX: 100,
   },
   {
     id: "certificate-fpa",
@@ -62,6 +70,7 @@ export const documents: DocumentItem[] = [
     category: "Удостоверение",
     regNumber: "№ 2977-420",
     image: "/images/documents/certificate-link-management.jpg",
+    focalX: 100,
   },
   {
     id: "certificate-itc",
@@ -80,6 +89,7 @@ export const documents: DocumentItem[] = [
     category: "Диплом о переподготовке",
     regNumber: "№ 14010",
     image: "/images/documents/diploma-aromatherapy.jpg",
+    focalX: 100,
   },
   {
     id: "certificate-fpa-2023-09-07",
@@ -112,6 +122,7 @@ export const documents: DocumentItem[] = [
     year: "2023",
     category: "Сертификат",
     image: "/images/documents/certificate-pravotech-2023-10-19.webp",
+    focalX: 0,
   },
   {
     id: "certificate-fpa-2023-10-25",

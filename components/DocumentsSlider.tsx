@@ -62,6 +62,7 @@ export function DocumentsSlider() {
                     alt={doc.title}
                     fill
                     sizes="260px"
+                    style={doc.focalX !== undefined ? { objectPosition: `${doc.focalX}% 50%` } : undefined}
                     className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
                   />
                   <span className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-ink/70 text-paper opacity-0 transition-opacity duration-200 group-hover:opacity-100">
