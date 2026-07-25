@@ -9,7 +9,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { PhoneLink } from "@/components/ui/PhoneLink";
 import { SocialIconLink } from "@/components/ui/SocialIconLink";
-import { MapPinIcon, MaxIcon, RouteIcon, TelegramIcon } from "@/components/ui/icons";
+import { MapPinIcon, MaxIcon, RouteIcon, StarIcon, TelegramIcon } from "@/components/ui/icons";
 import { YandexMap } from "@/components/YandexMap";
 
 export function Contacts() {
@@ -106,8 +106,9 @@ export function Contacts() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackGoal("yandex_reviews_click", { placement: "contacts" })}
-                variant="ghostLight"
+                variant="outlineLight"
                 size="lg"
+                icon={<StarIcon className="h-4 w-4" />}
               >
                 Отзывы на Яндексе
               </Button>

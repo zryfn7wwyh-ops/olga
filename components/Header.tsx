@@ -61,7 +61,7 @@ export function Header() {
           </span>
         </a>
 
-        <nav className="hidden items-center gap-5 lg:flex xl:gap-6" aria-label="Основная навигация">
+        <nav className="hidden items-center gap-3 2xl:gap-4 xl:flex" aria-label="Основная навигация">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
@@ -73,35 +73,19 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden shrink-0 items-center gap-3 lg:flex xl:gap-4">
+        <div className="hidden shrink-0 items-center gap-4 xl:flex">
           <PhoneLink
             placement="header"
             className="whitespace-nowrap text-sm font-semibold text-ink hover:text-bronze"
           >
             {contacts.phoneDisplay}
           </PhoneLink>
-          <div className="hidden items-center gap-2 xl:flex">
-            <SocialIconLink
-              href={contacts.maxUrl}
-              label="Написать в MAX"
-              icon={<MaxIcon className="h-4 w-4" />}
-              goal="max_click"
-              placement="header"
-            />
-            <SocialIconLink
-              href={contacts.telegramUrl}
-              label="Написать в Telegram"
-              icon={<TelegramIcon className="h-4 w-4" />}
-              goal="telegram_click"
-              placement="header"
-            />
-          </div>
           <Button onClick={() => openModal("header")} size="md" className="whitespace-nowrap">
             Позвонить
           </Button>
         </div>
 
-        <div className="flex items-center gap-2 lg:hidden">
+        <div className="flex items-center gap-2 xl:hidden">
           <PhoneLink
             placement="header"
             aria-label="Позвонить адвокату"
@@ -122,7 +106,7 @@ export function Header() {
       </Container>
 
       {isMenuOpen ? (
-        <div className="border-t border-line bg-paper lg:hidden">
+        <div className="border-t border-line bg-paper xl:hidden">
           <Container className="flex flex-col gap-1 py-4">
             {NAV_LINKS.map((link) => (
               <a

@@ -69,6 +69,7 @@ export function Hero() {
 
         <div className="relative lg:flex-1">
           <div className="relative mx-auto max-w-sm lg:max-w-none">
+            <AchievementBadge compact className="mb-4" />
             <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl bg-ink/5">
               <Image
                 src="/images/lawyer/anita-aksyonova-hero.jpg"
@@ -93,10 +94,6 @@ export function Hero() {
             </figure>
           </div>
         </div>
-      </Container>
-
-      <Container className="pb-14 sm:pb-16 lg:pb-20">
-        <AchievementBadge />
       </Container>
     </section>
   );
