@@ -4,6 +4,33 @@ import { urgentSituations } from "@/data/urgentSituations";
 import { useCallModal } from "@/components/CallModalProvider";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import {
+  AlertTriangleIcon,
+  BriefcaseIcon,
+  DocumentAlertIcon,
+  HandcuffsIcon,
+  HomeIcon,
+  HourglassIcon,
+  MessageBlockedIcon,
+  PenIcon,
+  QuestionBubbleIcon,
+  SearchIcon,
+  TargetIcon,
+} from "@/components/ui/icons";
+
+const iconBySituation = [
+  AlertTriangleIcon,
+  HandcuffsIcon,
+  QuestionBubbleIcon,
+  SearchIcon,
+  DocumentAlertIcon,
+  HourglassIcon,
+  PenIcon,
+  HomeIcon,
+  BriefcaseIcon,
+  TargetIcon,
+  MessageBlockedIcon,
+];
 
 export function UrgentSituations() {
   const { openModal } = useCallModal();
@@ -21,19 +48,22 @@ export function UrgentSituations() {
         </div>
 
         <ol className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {urgentSituations.map((situation, index) => (
-            <li
-              key={situation}
-              className="group flex items-start gap-4 rounded-xl border border-paper/15 bg-paper/5 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-bronze-soft hover:bg-paper/10"
-            >
-              <span className="font-display text-xl font-semibold text-bronze-soft transition-transform duration-300 group-hover:scale-110">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <span className="pt-0.5 text-sm leading-relaxed text-paper/95 sm:text-[0.95rem]">
-                {situation}
-              </span>
-            </li>
-          ))}
+          {urgentSituations.map((situation, index) => {
+            const Icon = iconBySituation[index];
+            return (
+              <li
+                key={situation}
+                className="group flex items-start gap-4 rounded-xl border border-paper/15 bg-paper/5 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-bronze-soft hover:bg-paper/10"
+              >
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-bronze-soft/40 text-bronze-soft transition-transform duration-300 group-hover:scale-110">
+                  <Icon className="h-5 w-5" />
+                </span>
+                <span className="pt-1.5 text-sm leading-relaxed text-paper/95 sm:text-[0.95rem]">
+                  {situation}
+                </span>
+              </li>
+            );
+          })}
         </ol>
 
         <div className="mt-12 flex justify-center">

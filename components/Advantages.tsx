@@ -1,6 +1,9 @@
 import { advantages } from "@/data/advantages";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { AwardIcon, ClockIcon, LockIcon, ShieldCheckIcon, UserIcon } from "@/components/ui/icons";
+
+const iconByIndex = [AwardIcon, ClockIcon, UserIcon, ShieldCheckIcon, LockIcon];
 
 const cardBase =
   "group relative flex flex-col justify-start overflow-hidden rounded-2xl border p-6 transition-all duration-300 hover:-translate-y-1 sm:p-7";
@@ -26,18 +29,28 @@ export function Advantages() {
           {advantages.map((item, index) => {
             const tone = toneByIndex[index % toneByIndex.length];
             const isDark = index === 0 || index === 4;
+            const Icon = iconByIndex[index];
             return (
               <article
                 key={item.id}
                 className={`${cardBase} ${tone} ${spanByIndex[index]}`}
               >
-                <span
-                  className={`font-display text-2xl font-semibold transition-transform duration-300 group-hover:scale-105 ${
-                    isDark ? "text-bronze-soft" : "text-bronze"
-                  }`}
-                >
-                  {item.number}
-                </span>
+                <div className="flex items-center gap-3">
+                  <span
+                    className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full border transition-transform duration-300 group-hover:scale-105 ${
+                      isDark ? "border-bronze-soft/50 text-bronze-soft" : "border-bronze/40 text-bronze"
+                    }`}
+                  >
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <span
+                    className={`font-display text-2xl font-semibold ${
+                      isDark ? "text-bronze-soft" : "text-bronze"
+                    }`}
+                  >
+                    {item.number}
+                  </span>
+                </div>
                 <div className="mt-4">
                   <h3 className="text-lg font-semibold leading-snug sm:text-xl">{item.title}</h3>
                   <p
