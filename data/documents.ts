@@ -17,7 +17,7 @@ export type DocumentItem = {
 export const documents: DocumentItem[] = [
   {
     id: "lawyer-id",
-    title: "Удостоверение адвоката",
+    title: "Удостоверение адвоката № 8037",
     organization: "Адвокатская палата Краснодарского края",
     year: "",
     category: "Удостоверение адвоката",
