@@ -84,12 +84,14 @@ export function Hero() {
               />
             </div>
 
-            <figure className="mt-5 rounded-2xl border border-line bg-paper p-5 sm:absolute sm:-left-8 sm:-bottom-8 sm:mt-0 sm:max-w-xs sm:shadow-xl">
-              <blockquote className="font-display text-[0.95rem] italic leading-relaxed text-ink">
-                «В каждом деле важно не только знать закон, но и видеть всю ситуацию целиком:
-                интересы доверителя, возможные риски и последствия каждого решения. Поэтому я
-                сначала изучаю обстоятельства, а затем предлагаю понятную и обоснованную стратегию
-                защиты».
+            <figure className="mt-5 rounded-2xl border border-line bg-paper p-5 shadow-sm sm:p-6">
+              <blockquote className="font-display text-[0.95rem] italic leading-relaxed text-ink sm:text-base">
+                «В каждом деле нужно владеть законодательством настолько, чтобы уметь им не только
+                защищаться, но и нападать. Для этого необходимо видеть всю ситуацию целиком: нюансы
+                проблемы и интересы доверителя, возможные риски и последствия каждого решения. Это
+                делает своевременный и глубокий аудит обстоятельств дела — самым важным этапом
+                работы. Стратегия защиты или взыскания должна быть умной и адаптивной, именно это
+                делает её сильной и даёт вам возможность победить».
               </blockquote>
               <figcaption className="mt-3 text-xs font-semibold uppercase tracking-[0.14em] text-bronze">
                 Анита Аксёнова
