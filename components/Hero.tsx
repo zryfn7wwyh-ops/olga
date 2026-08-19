@@ -71,9 +71,7 @@ export function Hero() {
 
         <div className="relative lg:flex-1">
           <div className="relative mx-auto max-w-sm lg:max-w-none">
-            <div className="mb-4 flex justify-end sm:mb-5">
-              <AchievementBadge />
-            </div>
+            <AchievementBadge className="mb-4 sm:mb-5" />
 
             <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl bg-ink/5">
               <Image
