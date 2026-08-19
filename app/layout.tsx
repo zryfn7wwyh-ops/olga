@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Golos_Text } from "next/font/google";
+import { Playfair_Display, Golos_Text, Cormorant } from "next/font/google";
 import { contacts } from "@/data/contacts";
 import { CallModalProvider } from "@/components/CallModalProvider";
 import "./globals.css";
@@ -16,6 +16,14 @@ const sansFont = Golos_Text({
   variable: "--font-sans",
   subsets: ["latin", "cyrillic"],
   weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+const signatureFont = Cormorant({
+  variable: "--font-signature",
+  subsets: ["latin", "cyrillic"],
+  weight: ["500", "600"],
+  style: ["italic"],
   display: "swap",
 });
 
@@ -85,7 +93,7 @@ export default function RootLayout({
   return (
     <html
       lang="ru"
-      className={`${displayFont.variable} ${sansFont.variable} h-full antialiased`}
+      className={`${displayFont.variable} ${sansFont.variable} ${signatureFont.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-paper text-text">
         <script
