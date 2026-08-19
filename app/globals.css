@@ -7,6 +7,7 @@
   --color-paper: #faf9f6;
   --color-bronze: #a7895b;
   --color-bronze-soft: #c2a67d;
+  --color-gold: #dab876;
   --color-text: #202124;
   --color-text-muted: #626262;
   --color-line: #d8d3c9;
@@ -19,6 +20,7 @@
   --color-paper: var(--color-paper);
   --color-bronze: var(--color-bronze);
   --color-bronze-soft: var(--color-bronze-soft);
+  --color-gold: var(--color-gold);
   --color-text: var(--color-text);
   --color-text-muted: var(--color-text-muted);
   --color-line: var(--color-line);

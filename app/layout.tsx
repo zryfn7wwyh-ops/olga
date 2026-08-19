@@ -8,6 +8,7 @@ const displayFont = Playfair_Display({
   variable: "--font-display",
   subsets: ["latin", "cyrillic"],
   weight: ["500", "600", "700"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 

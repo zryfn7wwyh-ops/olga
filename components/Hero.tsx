@@ -3,6 +3,7 @@ import { contacts } from "@/data/contacts";
 import { Container } from "@/components/ui/Container";
 import { PhoneLink } from "@/components/ui/PhoneLink";
 import { HeroCallButton } from "@/components/HeroCallButton";
+import { HeroRatingLink } from "@/components/HeroRatingLink";
 import { AchievementBadge } from "@/components/AchievementBadge";
 import { CheckIcon } from "@/components/ui/icons";
 
@@ -25,13 +26,12 @@ export function Hero() {
             Адвокат
           </span>
 
-          <h1 className="mt-5 font-semibold leading-[1.15] text-ink">
-            <span className="block text-2xl sm:text-3xl lg:text-[2.1rem]">
-              Аксёнова Анита Георгиевна
-            </span>
-            <span className="mt-2 block text-3xl leading-[1.15] sm:text-4xl lg:text-[2.75rem]">
-              Адвокатская защита в сложных гражданских, уголовных делах и бизнес-спорах
-            </span>
+          <span className="mt-4 inline-block rounded-lg bg-bronze/15 px-3.5 py-2 font-sans text-lg font-semibold tracking-tight text-ink sm:text-xl">
+            Аксёнова Анита Георгиевна
+          </span>
+
+          <h1 className="mt-4 font-display text-3xl font-semibold leading-[1.15] text-ink sm:text-4xl lg:text-[2.75rem]">
+            Адвокатская защита в сложных гражданских, уголовных делах и бизнес-спорах
           </h1>
 
           <p className="mt-5 text-base leading-relaxed text-text-muted sm:text-lg">
@@ -49,6 +49,8 @@ export function Hero() {
               </li>
             ))}
           </ul>
+
+          <HeroRatingLink />
 
           <div className="mt-9 rounded-2xl border border-line bg-paper/70 p-5 sm:p-6">
             <p className="text-sm leading-relaxed text-text sm:text-base">
