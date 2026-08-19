@@ -71,6 +71,10 @@ export function Hero() {
 
         <div className="relative lg:flex-1">
           <div className="relative mx-auto max-w-sm lg:max-w-none">
+            <div className="mb-4 flex justify-end sm:mb-5">
+              <AchievementBadge />
+            </div>
+
             <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl bg-ink/5">
               <Image
                 src="/images/lawyer/anita-aksyonova-hero.jpg"
@@ -81,8 +85,6 @@ export function Hero() {
                 className="object-cover object-top"
               />
             </div>
-
-            <AchievementBadge className="absolute -top-4 -right-3 sm:-top-5 sm:-right-5" />
 
             <figure className="mt-5 rounded-2xl border border-line bg-paper p-5 sm:absolute sm:-left-8 sm:-bottom-8 sm:mt-0 sm:max-w-xs sm:shadow-xl">
               <blockquote className="font-display text-[0.95rem] italic leading-relaxed text-ink">
