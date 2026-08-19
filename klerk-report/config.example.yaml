@@ -1,0 +1,33 @@
+# Скопируйте этот файл в config.yaml и заполните своими данными.
+# config.yaml добавлен в .gitignore не будет — при желании можно исключить,
+# если ссылки/запросы считаются чувствительными.
+
+settings:
+  user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+  timeout: 15
+  # true — если обычный запрос не находит просмотры (значит счётчик подгружается через JS)
+  # и требует playwright (см. requirements.txt)
+  render: false
+
+  # Селекторы можно переопределить глобально, если на всех страницах Клерка одна и та же вёрстка.
+  # Узнать точный селектор проще всего командой:
+  #   python -m klerk_report inspect <URL>
+  # views_selector: ".article-views"
+  # reading_selector: ".article-online"
+
+items:
+  - query: "регистрация ООО в 2026 году"
+    our_url: "https://www.klerk.ru/blogs/roskom24/659984/"
+    competitors:
+      - label: "Конкурент 1"
+        url: "https://www.klerk.ru/blogs/PUT_COMPETITOR_SLUG/PUT_ID/"
+        # views_selector: ".article-views"   # можно переопределить на уровне конкретной статьи
+        # reading_selector: ".article-online"
+
+  # - query: "второй ключевой запрос"
+  #   our_url: "https://www.klerk.ru/blogs/roskom24/XXXXXX/"
+  #   competitors:
+  #     - label: "Конкурент А"
+  #       url: "https://www.klerk.ru/blogs/..."
+  #     - label: "Конкурент Б"
+  #       url: "https://www.klerk.ru/blogs/..."

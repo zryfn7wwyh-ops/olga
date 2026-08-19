@@ -1,0 +1,4 @@
+klerk-report/.venv/
+klerk-report/**/__pycache__/
+klerk-report/config.yaml
+klerk-report/data/history.json
