@@ -21,10 +21,12 @@ export function Hero() {
     <section className="relative overflow-hidden bg-cream pt-24 sm:pt-28">
       <Container className="flex min-h-[82dvh] flex-col justify-center gap-12 pb-14 sm:min-h-[85dvh] lg:flex-row lg:items-center lg:gap-16 lg:pb-16">
         <div className="max-w-xl lg:flex-1">
-          <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-bronze">
-            <span className="h-px w-6 bg-bronze" aria-hidden="true" />
-            Адвокат
-          </span>
+          <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+            <HeroRatingLink />
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-bronze">
+              Адвокат
+            </span>
+          </div>
 
           <span className="mt-7 inline-block rounded-lg bg-bronze/15 px-4 py-2.5 font-signature text-2xl font-semibold italic tracking-wide text-ink sm:mt-8 sm:text-3xl">
             Аксёнова Анита Георгиевна
@@ -49,8 +51,6 @@ export function Hero() {
               </li>
             ))}
           </ul>
-
-          <HeroRatingLink />
 
           <div className="mt-9 rounded-2xl border border-line bg-paper/70 p-5 sm:p-6">
             <p className="text-sm leading-relaxed text-text sm:text-base">
