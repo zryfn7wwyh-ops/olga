@@ -60,21 +60,15 @@ const config: Config = {
           "0%, 100%": { transform: "translate(0, 0) scale(1)" },
           "50%": { transform: "translate(20px, -16px) scale(1.06)" },
         },
-        "bot-appear": {
-          "0%, 4%": { opacity: "0", transform: "translateY(-14px) scale(0.85)" },
-          "12%": { opacity: "1", transform: "translateY(0) scale(1)" },
-          "40%": { opacity: "1", transform: "translateY(0) scale(1)" },
-          "48%, 100%": { opacity: "0", transform: "translateY(-8px) scale(0.9)" },
+        "scan-once": {
+          "0%": { transform: "translateY(-8%)", opacity: "0" },
+          "10%": { opacity: "1" },
+          "85%": { transform: "translateY(1100%)", opacity: "1" },
+          "100%": { transform: "translateY(1100%)", opacity: "0" },
         },
-        "hero-sweep": {
-          "0%, 8%": { transform: "translateY(-8%)", opacity: "0" },
-          "14%": { opacity: "1" },
-          "46%": { transform: "translateY(700%)", opacity: "1" },
-          "54%, 100%": { transform: "translateY(700%)", opacity: "0" },
-        },
-        "bot-spin3d": {
-          "0%, 100%": { transform: "rotateY(-22deg) rotateX(6deg)" },
-          "50%": { transform: "rotateY(22deg) rotateX(-4deg)" },
+        "scan-grid-flash": {
+          "0%, 100%": { opacity: "0" },
+          "15%, 70%": { opacity: "0.5" },
         },
       },
       animation: {
@@ -85,9 +79,8 @@ const config: Config = {
         "float-toward": "float-toward 4s ease-in-out infinite",
         drift: "drift 12s ease-in-out infinite",
         "drift-slow": "drift 16s ease-in-out infinite reverse",
-        "bot-appear": "bot-appear 10s ease-in-out infinite",
-        "hero-sweep": "hero-sweep 10s ease-in-out infinite",
-        "bot-spin3d": "bot-spin3d 3.2s ease-in-out infinite",
+        "scan-once": "scan-once 3s ease-in-out forwards",
+        "scan-grid-flash": "scan-grid-flash 3s ease-in-out forwards",
       },
     },
   },

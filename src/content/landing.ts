@@ -51,6 +51,11 @@ export const landingContent = {
     ],
   },
 
+  digitalScan: {
+    markers: ["Сайт", "Форма", "Cookie", "Политика ПДн", "Реестр", "Данные"],
+    footprintLabel: "ЦИФРОВОЙ СЛЕД",
+  },
+
   whyNow: {
     sectionId: "why-now",
     title: "3 причины проверить организацию прямо сейчас",

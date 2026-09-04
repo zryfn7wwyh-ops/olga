@@ -4,7 +4,7 @@ import Link from "next/link";
 import { landingContent } from "@/content/landing";
 import { trackEvent } from "@/lib/analytics/events";
 import { DigitalFootprintVisual } from "@/components/ui/DigitalFootprintVisual";
-import { RobotScanner } from "@/components/ui/RobotScanner";
+import { DigitalScanExperience } from "@/components/digital-scan/DigitalScanExperience";
 
 export function HeroSection() {
   const { sectionId, title, description, ctaLabel, ctaNote } = landingContent.hero;
@@ -26,7 +26,7 @@ export function HeroSection() {
         />
       </div>
 
-      <RobotScanner />
+      <DigitalScanExperience />
 
       <div className="mx-auto grid max-w-container items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
         <div className="flex flex-col gap-6 animate-fade-in-up">
