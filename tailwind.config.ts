@@ -60,37 +60,17 @@ const config: Config = {
           "0%, 100%": { transform: "translate(0, 0) scale(1)" },
           "50%": { transform: "translate(20px, -16px) scale(1.06)" },
         },
-        "magnifier-travel": {
-          "0%, 4%": {
-            transform: "translate(-50%, -50%) translate(50vw, 36vh) scale(0.55) rotate(-16deg)",
-            opacity: "0",
-          },
-          "12%": {
-            transform: "translate(-50%, -50%) translate(50vw, 36vh) scale(0.55) rotate(-16deg)",
-            opacity: "1",
-          },
-          "36%": {
-            transform: "translate(-50%, -50%) translate(-22vw, -10vh) scale(1.2) rotate(3deg)",
-            opacity: "1",
-          },
-          "58%": {
-            transform: "translate(-50%, -50%) translate(-22vw, -10vh) scale(1.2) rotate(3deg)",
-            opacity: "1",
-          },
-          "88%": {
-            transform: "translate(-50%, -50%) translate(-60vw, -42vh) scale(0.55) rotate(20deg)",
-            opacity: "0",
-          },
-          "100%": {
-            transform: "translate(-50%, -50%) translate(-60vw, -42vh) scale(0.55) rotate(20deg)",
-            opacity: "0",
-          },
+        "bot-appear": {
+          "0%, 4%": { opacity: "0", transform: "translateY(-14px) scale(0.85)" },
+          "12%": { opacity: "1", transform: "translateY(0) scale(1)" },
+          "40%": { opacity: "1", transform: "translateY(0) scale(1)" },
+          "48%, 100%": { opacity: "0", transform: "translateY(-8px) scale(0.9)" },
         },
-        "magnifier-sweep": {
-          to: { transform: "rotate(360deg)" },
-        },
-        "magnifier-sweep-slow": {
-          to: { transform: "rotate(-360deg)" },
+        "hero-sweep": {
+          "0%, 8%": { transform: "translateY(-8%)", opacity: "0" },
+          "14%": { opacity: "1" },
+          "46%": { transform: "translateY(700%)", opacity: "1" },
+          "54%, 100%": { transform: "translateY(700%)", opacity: "0" },
         },
       },
       animation: {
@@ -101,9 +81,8 @@ const config: Config = {
         "float-toward": "float-toward 4s ease-in-out infinite",
         drift: "drift 12s ease-in-out infinite",
         "drift-slow": "drift 16s ease-in-out infinite reverse",
-        "magnifier-travel": "magnifier-travel 12s ease-in-out infinite",
-        "magnifier-sweep": "magnifier-sweep 2.2s linear infinite",
-        "magnifier-sweep-slow": "magnifier-sweep-slow 14s linear infinite",
+        "bot-appear": "bot-appear 10s ease-in-out infinite",
+        "hero-sweep": "hero-sweep 10s ease-in-out infinite",
       },
     },
   },

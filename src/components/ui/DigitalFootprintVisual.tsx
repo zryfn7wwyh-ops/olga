@@ -57,19 +57,6 @@ export function DigitalFootprintVisual() {
         className="absolute inset-0 h-full w-full"
         aria-hidden="true"
       >
-        {POSITIONS.map((pos, i) => (
-          <line
-            key={i}
-            x1="50"
-            y1="50"
-            x2={pos.x}
-            y2={pos.y}
-            stroke="var(--primary)"
-            strokeOpacity="0.25"
-            strokeWidth="0.6"
-            strokeDasharray="3 3"
-          />
-        ))}
         <circle cx="50" cy="50" r="42" fill="none" stroke="var(--border)" strokeWidth="0.4" />
       </svg>
 

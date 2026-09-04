@@ -19,6 +19,7 @@ export function WhyNowSection() {
               accent={card.accent}
               title={card.title}
               text={card.text}
+              highlight={card.highlight}
               tone={TONES[i]}
             />
           ))}

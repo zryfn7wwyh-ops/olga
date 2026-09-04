@@ -264,7 +264,12 @@ export function LeadForm({ onSuccess }: LeadFormProps) {
         </p>
       )}
 
-      <Button type="submit" isLoading={isSubmitting} disabled={isSubmitting} className="w-full">
+      <Button
+        type="submit"
+        isLoading={isSubmitting}
+        disabled={isSubmitting}
+        className="w-full uppercase tracking-wide"
+      >
         {isSubmitting ? content.submit.loading : content.submit.default}
       </Button>
     </form>
