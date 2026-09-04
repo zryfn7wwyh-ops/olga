@@ -1,9 +1,7 @@
-import { AlertTriangle, Radar, ShieldAlert } from "lucide-react";
 import { landingContent } from "@/content/landing";
 import { StatCard } from "@/components/ui/StatCard";
 
 const TONES = ["danger", "navy", "navy"] as const;
-const ICONS = [AlertTriangle, Radar, ShieldAlert] as const;
 
 export function WhyNowSection() {
   const { sectionId, title, cards } = landingContent.whyNow;
@@ -22,7 +20,6 @@ export function WhyNowSection() {
               title={card.title}
               text={card.text}
               tone={TONES[i]}
-              icon={ICONS[i]}
             />
           ))}
         </div>

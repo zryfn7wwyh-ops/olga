@@ -117,7 +117,7 @@ export function LeadForm({ onSuccess }: LeadFormProps) {
       noValidate
       onSubmit={handleSubmit(onSubmit)}
       onFocusCapture={handleFirstInteraction}
-      className="relative flex flex-col gap-5 rounded-card border border-border bg-surface p-5 shadow-card sm:p-8"
+      className="relative flex flex-col gap-5 rounded-card border border-border bg-surface p-5 shadow-card sm:p-8 lg:p-10"
     >
       {/* Honeypot: скрыто от людей, оставлено доступным ботам-краулерам */}
       <div className="absolute -left-[9999px] top-auto h-0 w-0 overflow-hidden" aria-hidden="true">
@@ -131,7 +131,7 @@ export function LeadForm({ onSuccess }: LeadFormProps) {
         />
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid items-start gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <Controller
           control={control}
           name="inn"
@@ -172,46 +172,59 @@ export function LeadForm({ onSuccess }: LeadFormProps) {
             />
           )}
         />
+
+        <Input
+          label={content.email.label}
+          placeholder={content.email.placeholder}
+          type="email"
+          autoComplete="email"
+          required
+          error={errors.email?.message}
+          className="sm:col-span-2 lg:col-span-1"
+          {...register("email")}
+        />
       </div>
 
-      <Input
-        label={content.email.label}
-        placeholder={content.email.placeholder}
-        type="email"
-        autoComplete="email"
-        required
-        error={errors.email?.message}
-        {...register("email")}
-      />
-
-      <Controller
-        control={control}
-        name="hasWebsite"
-        render={({ field }) => (
-          <div className="flex flex-col gap-5">
-            <SegmentedControl
-              legend={content.hasWebsite.question}
-              name={field.name}
-              options={content.hasWebsite.options as unknown as { value: string; label: string }[]}
-              value={field.value}
-              onChange={(value) => {
-                field.onChange(value);
-                trackEvent("has_website_selected", { value });
-              }}
-              error={errors.hasWebsite?.message}
-              required
-            />
-            {hasWebsite === "yes" && (
-              <Input
-                label={content.websiteUrl.label}
-                placeholder={content.websiteUrl.placeholder}
-                autoComplete="url"
-                {...register("websiteUrl")}
+      <div className="grid items-start gap-5 lg:grid-cols-2">
+        <Controller
+          control={control}
+          name="hasWebsite"
+          render={({ field }) => (
+            <div className="flex flex-col gap-5">
+              <SegmentedControl
+                legend={content.hasWebsite.question}
+                name={field.name}
+                options={content.hasWebsite.options as unknown as { value: string; label: string }[]}
+                value={field.value}
+                onChange={(value) => {
+                  field.onChange(value);
+                  trackEvent("has_website_selected", { value });
+                }}
+                error={errors.hasWebsite?.message}
+                required
               />
-            )}
-          </div>
-        )}
-      />
+              {hasWebsite === "yes" && (
+                <Input
+                  label={content.websiteUrl.label}
+                  placeholder={content.websiteUrl.placeholder}
+                  autoComplete="url"
+                  {...register("websiteUrl")}
+                />
+              )}
+            </div>
+          )}
+        />
+
+        <Select
+          label={content.legalForm.question}
+          options={content.legalForm.options as unknown as { value: string; label: string }[]}
+          required
+          error={errors.legalForm?.message}
+          {...register("legalForm", {
+            onChange: (e) => trackEvent("legal_form_selected", { value: e.target.value }),
+          })}
+        />
+      </div>
 
       <Controller
         control={control}
@@ -230,16 +243,6 @@ export function LeadForm({ onSuccess }: LeadFormProps) {
             required
           />
         )}
-      />
-
-      <Select
-        label={content.legalForm.question}
-        options={content.legalForm.options as unknown as { value: string; label: string }[]}
-        required
-        error={errors.legalForm?.message}
-        {...register("legalForm", {
-          onChange: (e) => trackEvent("legal_form_selected", { value: e.target.value }),
-        })}
       />
 
       <div className="flex flex-col gap-4 border-t border-border pt-5">

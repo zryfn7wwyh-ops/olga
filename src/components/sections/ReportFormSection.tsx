@@ -30,8 +30,8 @@ export function ReportFormSection() {
         <div className="bg-blob right-[-12%] bottom-[-12%] h-96 w-96 animate-drift-slow bg-primary/15" />
       </div>
 
-      <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-10 flex flex-col items-center gap-4 text-center">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto mb-10 flex max-w-2xl flex-col items-center gap-4 text-center">
           <h2 className="font-heading text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl">
             {title}
           </h2>
@@ -41,7 +41,7 @@ export function ReportFormSection() {
         {submitted ? (
           <div
             role="status"
-            className="flex flex-col items-center gap-4 rounded-card border border-border bg-surface p-8 text-center shadow-card sm:p-10"
+            className="mx-auto flex max-w-2xl flex-col items-center gap-4 rounded-card border border-border bg-surface p-8 text-center shadow-card sm:p-10"
           >
             <span className="flex h-14 w-14 items-center justify-center rounded-full bg-success/15 text-success">
               <CheckCircle2 className="h-8 w-8" aria-hidden="true" />

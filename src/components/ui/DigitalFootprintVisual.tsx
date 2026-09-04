@@ -57,6 +57,19 @@ export function DigitalFootprintVisual() {
         className="absolute inset-0 h-full w-full"
         aria-hidden="true"
       >
+        {POSITIONS.map((pos, i) => (
+          <line
+            key={i}
+            x1="50"
+            y1="50"
+            x2={pos.x}
+            y2={pos.y}
+            stroke="var(--primary)"
+            strokeOpacity="0.25"
+            strokeWidth="0.6"
+            strokeDasharray="3 3"
+          />
+        ))}
         <circle cx="50" cy="50" r="42" fill="none" stroke="var(--border)" strokeWidth="0.4" />
       </svg>
 
@@ -81,7 +94,7 @@ export function DigitalFootprintVisual() {
             >
               <Icon className="h-5 w-5 text-primary" aria-hidden="true" />
             </div>
-            <span className="w-20 text-center text-xs font-semibold leading-tight text-text-secondary">
+            <span className="w-20 text-center text-xs font-extrabold leading-tight text-navy sm:text-sm">
               {label}
             </span>
           </div>

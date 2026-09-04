@@ -60,21 +60,37 @@ const config: Config = {
           "0%, 100%": { transform: "translate(0, 0) scale(1)" },
           "50%": { transform: "translate(20px, -16px) scale(1.06)" },
         },
-        "magnifier-scan": {
-          "0%, 6%": {
-            transform: "translate(-50%, -50%) translate(40vw, 32vh) scale(0.5) rotate(-18deg)",
+        "magnifier-travel": {
+          "0%, 4%": {
+            transform: "translate(-50%, -50%) translate(50vw, 36vh) scale(0.55) rotate(-16deg)",
             opacity: "0",
           },
-          "20%": { opacity: "1" },
-          "50%": {
-            transform: "translate(-50%, -50%) translate(-2vw, -4vh) scale(1.15) rotate(6deg)",
+          "12%": {
+            transform: "translate(-50%, -50%) translate(50vw, 36vh) scale(0.55) rotate(-16deg)",
             opacity: "1",
           },
-          "80%": { opacity: "1" },
-          "94%, 100%": {
-            transform: "translate(-50%, -50%) translate(-44vw, -34vh) scale(0.5) rotate(22deg)",
+          "36%": {
+            transform: "translate(-50%, -50%) translate(-22vw, -10vh) scale(1.2) rotate(3deg)",
+            opacity: "1",
+          },
+          "58%": {
+            transform: "translate(-50%, -50%) translate(-22vw, -10vh) scale(1.2) rotate(3deg)",
+            opacity: "1",
+          },
+          "88%": {
+            transform: "translate(-50%, -50%) translate(-60vw, -42vh) scale(0.55) rotate(20deg)",
             opacity: "0",
           },
+          "100%": {
+            transform: "translate(-50%, -50%) translate(-60vw, -42vh) scale(0.55) rotate(20deg)",
+            opacity: "0",
+          },
+        },
+        "magnifier-sweep": {
+          to: { transform: "rotate(360deg)" },
+        },
+        "magnifier-sweep-slow": {
+          to: { transform: "rotate(-360deg)" },
         },
       },
       animation: {
@@ -85,7 +101,9 @@ const config: Config = {
         "float-toward": "float-toward 4s ease-in-out infinite",
         drift: "drift 12s ease-in-out infinite",
         "drift-slow": "drift 16s ease-in-out infinite reverse",
-        "magnifier-scan": "magnifier-scan 9s ease-in-out infinite",
+        "magnifier-travel": "magnifier-travel 12s ease-in-out infinite",
+        "magnifier-sweep": "magnifier-sweep 2.2s linear infinite",
+        "magnifier-sweep-slow": "magnifier-sweep-slow 14s linear infinite",
       },
     },
   },

@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { Search } from "lucide-react";
 import { landingContent } from "@/content/landing";
 import { trackEvent } from "@/lib/analytics/events";
 import { DigitalFootprintVisual } from "@/components/ui/DigitalFootprintVisual";
+import { ScanningMagnifier } from "@/components/ui/ScanningMagnifier";
 
 export function HeroSection() {
   const { sectionId, title, description, ctaLabel, ctaNote } = landingContent.hero;
@@ -14,15 +14,19 @@ export function HeroSection() {
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
         <div className="bg-blob left-[8%] top-[-16%] h-[460px] w-[460px] animate-drift bg-primary/20" />
         <div className="bg-blob right-[-8%] top-[10%] h-[380px] w-[380px] animate-drift-slow bg-navy/15" />
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: "radial-gradient(var(--primary) 1.5px, transparent 1.5px)",
+            backgroundSize: "28px 28px",
+            opacity: 0.07,
+            maskImage: "radial-gradient(ellipse 65% 55% at 65% 35%, black, transparent 75%)",
+            WebkitMaskImage: "radial-gradient(ellipse 65% 55% at 65% 35%, black, transparent 75%)",
+          }}
+        />
       </div>
 
-      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-        <div className="absolute left-1/2 top-1/2 animate-magnifier-scan">
-          <div className="glass flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-primary/30 via-white/40 to-transparent shadow-card sm:h-32 sm:w-32">
-            <Search className="h-12 w-12 text-primary sm:h-16 sm:w-16" strokeWidth={1.5} />
-          </div>
-        </div>
-      </div>
+      <ScanningMagnifier />
 
       <div className="mx-auto grid max-w-container items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
         <div className="flex flex-col gap-6 animate-fade-in-up">
@@ -44,7 +48,7 @@ export function HeroSection() {
             >
               {ctaLabel}
             </Link>
-            <p className="text-base font-medium text-text-secondary">{ctaNote}</p>
+            <p className="text-base font-medium italic text-text-secondary">{ctaNote}</p>
           </div>
         </div>
 
