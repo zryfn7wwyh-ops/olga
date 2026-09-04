@@ -1,14 +1,21 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import { Golos_Text, Unbounded } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import { landingContent } from "@/content/landing";
 import { YandexMetrika } from "@/lib/analytics/YandexMetrika";
 import "./globals.css";
 
-const manrope = Manrope({
+const golosText = Golos_Text({
   subsets: ["latin", "cyrillic"],
-  weight: ["400", "500", "600"],
-  variable: "--font-manrope",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-body",
+  display: "swap",
+});
+
+const unbounded = Unbounded({
+  subsets: ["latin", "cyrillic"],
+  weight: ["500", "600", "700"],
+  variable: "--font-heading",
   display: "swap",
 });
 
@@ -44,7 +51,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru" className={manrope.variable}>
+    <html lang="ru" className={`${golosText.variable} ${unbounded.variable}`}>
       <body className="font-sans antialiased">
         {children}
         <YandexMetrika />

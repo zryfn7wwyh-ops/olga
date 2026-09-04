@@ -32,7 +32,7 @@ export function Header() {
               strokeLinejoin="round"
             />
           </svg>
-          <span className="text-[15px] font-semibold text-navy">{siteConfig.siteName}</span>
+          <span className="font-heading text-[15px] font-semibold text-navy">{siteConfig.siteName}</span>
         </Link>
 
         <nav className="hidden items-center gap-6 lg:flex" aria-label="Основная навигация">

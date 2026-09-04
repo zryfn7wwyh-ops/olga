@@ -29,7 +29,7 @@ export function Footer() {
                   strokeLinejoin="round"
                 />
               </svg>
-              <span className="text-sm font-semibold text-navy">{siteConfig.siteName}</span>
+              <span className="font-heading text-sm font-semibold text-navy">{siteConfig.siteName}</span>
             </div>
             <p className="text-sm text-text-secondary">{legalEntity.name}</p>
             <p className="text-sm text-text-secondary">

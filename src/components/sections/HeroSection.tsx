@@ -9,10 +9,15 @@ export function HeroSection() {
   const { sectionId, title, description, ctaLabel, ctaNote } = landingContent.hero;
 
   return (
-    <section id={sectionId} className="py-16 sm:py-20 lg:py-28">
+    <section id={sectionId} className="relative isolate overflow-hidden py-16 sm:py-20 lg:py-28">
+      <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+        <div className="bg-blob left-[8%] top-[-16%] h-[460px] w-[460px] animate-drift bg-primary/20" />
+        <div className="bg-blob right-[-8%] top-[10%] h-[380px] w-[380px] animate-drift-slow bg-navy/15" />
+      </div>
+
       <div className="mx-auto grid max-w-container items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
         <div className="flex flex-col gap-6 animate-fade-in-up">
-          <h1 className="text-3xl font-semibold leading-tight tracking-tight text-navy sm:text-4xl lg:text-[44px]">
+          <h1 className="font-heading text-3xl font-semibold leading-tight tracking-tight text-navy sm:text-4xl lg:text-[46px]">
             {title}
           </h1>
           <div className="flex flex-col gap-4">

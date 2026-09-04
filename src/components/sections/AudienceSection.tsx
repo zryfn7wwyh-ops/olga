@@ -12,7 +12,7 @@ export function AudienceSection() {
     <section id={sectionId} className="py-16 sm:py-20 lg:py-24">
       <div className="mx-auto grid max-w-container gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
         <div className="flex flex-col gap-5">
-          <h2 className="text-2xl font-semibold leading-tight tracking-tight text-navy sm:text-3xl">
+          <h2 className="font-heading text-2xl font-semibold leading-tight tracking-tight text-navy sm:text-3xl">
             {left.title}
           </h2>
           <p className="text-base text-text-secondary">{left.intro}</p>
@@ -32,7 +32,7 @@ export function AudienceSection() {
         </div>
 
         <div className="flex flex-col gap-5">
-          <h2 className="text-2xl font-semibold leading-tight tracking-tight text-navy sm:text-3xl">
+          <h2 className="font-heading text-2xl font-semibold leading-tight tracking-tight text-navy sm:text-3xl">
             {right.title}
           </h2>
           <p className="text-base text-text-secondary">{right.intro}</p>
@@ -47,8 +47,10 @@ export function AudienceSection() {
             ))}
           </ul>
 
-          <div className="flex items-start gap-3 rounded-card border border-primary/20 bg-primary/5 p-5">
-            <FileCheck2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+          <div className="flex items-center gap-4 rounded-card border border-primary/20 bg-primary/5 p-5">
+            <span className="glass flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary/30 via-primary/10 to-transparent">
+              <FileCheck2 className="h-5 w-5 text-primary" aria-hidden="true" />
+            </span>
             <p className="text-[15px] font-medium text-navy">{right.highlight}</p>
           </div>
 
