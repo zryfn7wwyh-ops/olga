@@ -72,6 +72,10 @@ const config: Config = {
           "46%": { transform: "translateY(700%)", opacity: "1" },
           "54%, 100%": { transform: "translateY(700%)", opacity: "0" },
         },
+        "bot-spin3d": {
+          "0%, 100%": { transform: "rotateY(-22deg) rotateX(6deg)" },
+          "50%": { transform: "rotateY(22deg) rotateX(-4deg)" },
+        },
       },
       animation: {
         "pulse-soft": "pulse-soft 2.4s ease-in-out infinite",
@@ -83,6 +87,7 @@ const config: Config = {
         "drift-slow": "drift 16s ease-in-out infinite reverse",
         "bot-appear": "bot-appear 10s ease-in-out infinite",
         "hero-sweep": "hero-sweep 10s ease-in-out infinite",
+        "bot-spin3d": "bot-spin3d 3.2s ease-in-out infinite",
       },
     },
   },

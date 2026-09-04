@@ -57,7 +57,7 @@ export function DigitalFootprintVisual() {
         className="absolute inset-0 h-full w-full"
         aria-hidden="true"
       >
-        <circle cx="50" cy="50" r="42" fill="none" stroke="var(--border)" strokeWidth="0.4" />
+        <circle cx="50" cy="50" r="42" fill="none" stroke="var(--primary)" strokeOpacity="0.28" strokeWidth="0.6" strokeDasharray="1 4" strokeLinecap="round" />
       </svg>
 
       <div className="absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 animate-pulse-soft flex-col items-center justify-center rounded-full bg-navy text-center shadow-card sm:h-24 sm:w-24">
