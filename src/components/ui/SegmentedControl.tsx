@@ -38,9 +38,7 @@ export function SegmentedControl({
       <div
         role="radiogroup"
         aria-label={legend}
-        className={`grid gap-2 rounded-button border bg-surface p-1.5 ${
-          error ? "border-danger" : "border-border"
-        }`}
+        className="grid gap-3"
         style={{ gridTemplateColumns: `repeat(${options.length}, minmax(0, 1fr))` }}
       >
         {options.map((option) => {
@@ -50,10 +48,12 @@ export function SegmentedControl({
             <label
               key={option.value}
               htmlFor={optionId}
-              className={`focus-within:ring-2 focus-within:ring-primary flex h-11 cursor-pointer items-center justify-center rounded-[9px] text-[14px] font-medium transition-colors duration-150 ${
+              className={`focus-within:ring-2 focus-within:ring-primary flex h-11 cursor-pointer items-center justify-center rounded-button border text-[14px] font-medium transition-colors duration-150 ${
                 isSelected
-                  ? "bg-primary text-white"
-                  : "text-text-secondary hover:bg-background"
+                  ? "border-primary bg-primary text-white"
+                  : error
+                    ? "border-danger text-text-secondary hover:border-primary/40"
+                    : "border-border text-text-secondary hover:border-primary/40 hover:bg-primary/5"
               }`}
             >
               <input

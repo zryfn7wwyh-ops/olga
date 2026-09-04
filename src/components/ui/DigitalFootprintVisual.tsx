@@ -24,6 +24,7 @@ const ICONS: LucideIcon[] = [
   FileText,
 ];
 
+// Расположены по кругу как цифры на циферблате часов.
 const POSITIONS = [
   { x: 50, y: 8 },
   { x: 83, y: 22 },
@@ -56,40 +57,7 @@ export function DigitalFootprintVisual() {
         className="absolute inset-0 h-full w-full"
         aria-hidden="true"
       >
-        {POSITIONS.map((pos, i) => (
-          <line
-            key={i}
-            x1="50"
-            y1="50"
-            x2={pos.x}
-            y2={pos.y}
-            stroke="var(--primary)"
-            strokeOpacity="0.35"
-            strokeWidth="0.6"
-            strokeDasharray="3 3"
-            className="animate-dash-flow"
-            style={{ animationDelay: `${i * 0.12}s` }}
-          />
-        ))}
         <circle cx="50" cy="50" r="46" fill="none" stroke="var(--border)" strokeWidth="0.4" />
-      </svg>
-
-      <svg
-        viewBox="0 0 100 100"
-        className="absolute inset-0 h-full w-full animate-ring-spin"
-        aria-hidden="true"
-      >
-        <circle
-          cx="50"
-          cy="50"
-          r="27"
-          fill="none"
-          stroke="var(--primary)"
-          strokeOpacity="0.3"
-          strokeWidth="0.6"
-          strokeDasharray="1 5"
-          strokeLinecap="round"
-        />
       </svg>
 
       <div className="absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 animate-pulse-soft flex-col items-center justify-center rounded-full bg-navy text-center shadow-card sm:h-24 sm:w-24">
@@ -108,8 +76,8 @@ export function DigitalFootprintVisual() {
             style={{ left: `${pos.x}%`, top: `${pos.y}%`, animationDelay: `${0.3 + i * 0.08}s` }}
           >
             <div
-              className="glass flex h-11 w-11 animate-float items-center justify-center rounded-full bg-gradient-to-br from-primary/20 via-white/40 to-transparent sm:h-12 sm:w-12"
-              style={{ animationDelay: `${i * 0.35}s` }}
+              className="glass flex h-11 w-11 animate-float-toward items-center justify-center rounded-full bg-gradient-to-br from-primary/20 via-white/40 to-transparent sm:h-12 sm:w-12"
+              style={{ animationDelay: `${i * 0.4}s` }}
             >
               <Icon className="h-5 w-5 text-primary" aria-hidden="true" />
             </div>

@@ -52,15 +52,9 @@ const config: Config = {
           from: { opacity: "0", transform: "scale(0.6)" },
           to: { opacity: "1", transform: "scale(1)" },
         },
-        float: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-6px)" },
-        },
-        "ring-spin": {
-          to: { transform: "rotate(360deg)" },
-        },
-        "dash-flow": {
-          to: { strokeDashoffset: "-24" },
+        "float-toward": {
+          "0%, 100%": { transform: "translateY(0px) scale(1)" },
+          "50%": { transform: "translateY(-8px) scale(1.08)" },
         },
         drift: {
           "0%, 100%": { transform: "translate(0, 0) scale(1)" },
@@ -72,9 +66,7 @@ const config: Config = {
         "fade-in-up": "fade-in-up 0.5s ease-out forwards",
         "scan-line": "scan-line 3.2s ease-in-out infinite",
         "node-in": "node-in 0.5s cubic-bezier(0.34,1.56,0.64,1) both",
-        float: "float 4s ease-in-out infinite",
-        "ring-spin": "ring-spin 18s linear infinite",
-        "dash-flow": "dash-flow 1.6s linear infinite",
+        "float-toward": "float-toward 4s ease-in-out infinite",
         drift: "drift 12s ease-in-out infinite",
         "drift-slow": "drift 16s ease-in-out infinite reverse",
       },

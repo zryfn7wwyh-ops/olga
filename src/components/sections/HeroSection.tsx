@@ -20,7 +20,7 @@ export function HeroSection() {
           <h1 className="font-heading text-3xl font-semibold leading-tight tracking-tight text-navy sm:text-4xl lg:text-[46px]">
             {title}
           </h1>
-          <div className="flex flex-col gap-4">
+          <div className="glass flex flex-col gap-4 rounded-card p-5">
             {description.map((paragraph) => (
               <p key={paragraph} className="text-base leading-relaxed text-text-secondary sm:text-lg">
                 {paragraph}

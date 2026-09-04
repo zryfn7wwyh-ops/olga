@@ -42,7 +42,9 @@ export function StatCard({ accent, title, text, icon: Icon, tone = "navy" }: Sta
       >
         <Icon className={`h-6 w-6 ${iconClasses[tone]}`} aria-hidden="true" />
       </div>
-      <span className={`font-heading text-4xl font-semibold tracking-tight sm:text-5xl ${toneClasses[tone]}`}>
+      <span
+        className={`font-heading text-4xl font-semibold leading-none tracking-tight sm:text-2xl ${toneClasses[tone]}`}
+      >
         {accent}
       </span>
       <h3 className="text-lg font-semibold text-text-primary">{title}</h3>

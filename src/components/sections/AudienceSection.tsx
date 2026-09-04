@@ -20,7 +20,7 @@ export function AudienceSection() {
             {left.items.map((item) => (
               <li
                 key={item}
-                className="flex items-start gap-3 rounded-card border border-border bg-surface px-4 py-3 shadow-card"
+                className="flex cursor-default items-start gap-3 rounded-card border border-border bg-surface px-4 py-3 shadow-card transition-colors duration-150 hover:border-primary/30 hover:bg-primary/5"
               >
                 <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
                   <Check className="h-3.5 w-3.5" aria-hidden="true" />
