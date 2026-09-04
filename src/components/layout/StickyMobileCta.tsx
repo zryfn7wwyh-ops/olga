@@ -47,7 +47,7 @@ export function StickyMobileCta() {
         href="#report"
         tabIndex={visible ? 0 : -1}
         onClick={() => trackEvent("hero_cta_click")}
-        className="focus-ring flex h-[52px] w-full items-center justify-center rounded-button bg-primary text-[15px] font-semibold text-white transition-colors hover:bg-primary-hover"
+        className="focus-ring flex h-[52px] w-full items-center justify-center rounded-button bg-primary text-base font-bold text-white transition-colors hover:bg-primary-hover"
       >
         {landingContent.stickyMobileCta.label}
       </Link>

@@ -25,7 +25,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
 
     return (
       <div className="flex flex-col gap-1.5">
-        <label htmlFor={selectId} className="text-sm font-medium text-text-primary">
+        <label htmlFor={selectId} className="text-base font-bold text-text-primary">
           {label}
           {required && <span aria-hidden="true" className="text-danger"> *</span>}
         </label>
@@ -37,7 +37,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             aria-describedby={error ? errorId : undefined}
             aria-required={required || undefined}
             defaultValue=""
-            className={`focus-ring h-[52px] w-full appearance-none rounded-button border bg-surface px-4 pr-10 text-[15px] text-text-primary transition-colors duration-150 ${
+            className={`focus-ring h-[52px] w-full appearance-none rounded-button border bg-surface px-4 pr-10 text-base font-medium text-text-primary transition-colors duration-150 ${
               error ? "border-danger focus:border-danger" : "border-border focus:border-primary"
             } ${className}`}
             {...props}
@@ -57,7 +57,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           />
         </div>
         {error && (
-          <span id={errorId} role="alert" className="text-xs font-medium text-danger">
+          <span id={errorId} role="alert" className="text-sm font-semibold text-danger">
             {error}
           </span>
         )}

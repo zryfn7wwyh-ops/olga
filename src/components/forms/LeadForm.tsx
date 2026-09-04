@@ -256,7 +256,7 @@ export function LeadForm({ onSuccess }: LeadFormProps) {
       </div>
 
       {errors.root?.message && (
-        <p role="alert" className="text-sm font-medium text-danger">
+        <p role="alert" className="text-base font-semibold text-danger">
           {errors.root.message}
         </p>
       )}

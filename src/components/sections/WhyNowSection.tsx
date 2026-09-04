@@ -1,9 +1,9 @@
-import { ReceiptRussianRuble, ScanSearch, ServerCog } from "lucide-react";
+import { AlertTriangle, Radar, ShieldAlert } from "lucide-react";
 import { landingContent } from "@/content/landing";
 import { StatCard } from "@/components/ui/StatCard";
 
 const TONES = ["danger", "navy", "navy"] as const;
-const ICONS = [ReceiptRussianRuble, ScanSearch, ServerCog] as const;
+const ICONS = [AlertTriangle, Radar, ShieldAlert] as const;
 
 export function WhyNowSection() {
   const { sectionId, title, cards } = landingContent.whyNow;
@@ -11,7 +11,7 @@ export function WhyNowSection() {
   return (
     <section id={sectionId} className="bg-surface py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-        <h2 className="font-heading max-w-2xl text-2xl font-semibold leading-tight tracking-tight text-navy sm:text-3xl">
+        <h2 className="font-heading max-w-2xl text-3xl font-bold leading-tight tracking-tight text-navy sm:text-4xl">
           {title}
         </h2>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

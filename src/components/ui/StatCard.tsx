@@ -47,8 +47,8 @@ export function StatCard({ accent, title, text, icon: Icon, tone = "navy" }: Sta
       >
         {accent}
       </span>
-      <h3 className="text-lg font-semibold text-text-primary">{title}</h3>
-      <p className="text-[15px] leading-relaxed text-text-secondary">{text}</p>
+      <h3 className="text-xl font-bold text-text-primary">{title}</h3>
+      <p className="text-base font-medium leading-relaxed text-text-secondary">{text}</p>
     </div>
   );
 }

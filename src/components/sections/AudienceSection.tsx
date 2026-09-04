@@ -12,10 +12,10 @@ export function AudienceSection() {
     <section id={sectionId} className="py-16 sm:py-20 lg:py-24">
       <div className="mx-auto grid max-w-container gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
         <div className="flex flex-col gap-5">
-          <h2 className="font-heading text-2xl font-semibold leading-tight tracking-tight text-navy sm:text-3xl">
+          <h2 className="font-heading text-3xl font-bold leading-tight tracking-tight text-navy sm:text-4xl">
             {left.title}
           </h2>
-          <p className="text-base text-text-secondary">{left.intro}</p>
+          <p className="text-lg font-medium text-text-secondary">{left.intro}</p>
           <ul className="flex flex-col gap-2.5">
             {left.items.map((item) => (
               <li
@@ -25,24 +25,24 @@ export function AudienceSection() {
                 <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
                   <Check className="h-3.5 w-3.5" aria-hidden="true" />
                 </span>
-                <span className="text-[15px] text-text-primary">{item}</span>
+                <span className="text-base font-semibold text-text-primary">{item}</span>
               </li>
             ))}
           </ul>
         </div>
 
         <div className="flex flex-col gap-5">
-          <h2 className="font-heading text-2xl font-semibold leading-tight tracking-tight text-navy sm:text-3xl">
+          <h2 className="font-heading text-3xl font-bold leading-tight tracking-tight text-navy sm:text-4xl">
             {right.title}
           </h2>
-          <p className="text-base text-text-secondary">{right.intro}</p>
+          <p className="text-lg font-medium text-text-secondary">{right.intro}</p>
           <ul className="flex flex-col gap-2.5">
             {right.items.map((item) => (
               <li key={item} className="flex items-start gap-3">
                 <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
                   <Check className="h-3.5 w-3.5" aria-hidden="true" />
                 </span>
-                <span className="text-[15px] text-text-primary">{item}</span>
+                <span className="text-base font-semibold text-text-primary">{item}</span>
               </li>
             ))}
           </ul>
@@ -51,15 +51,15 @@ export function AudienceSection() {
             <span className="glass flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary/30 via-primary/10 to-transparent">
               <FileCheck2 className="h-5 w-5 text-primary" aria-hidden="true" />
             </span>
-            <p className="text-[15px] font-medium text-navy">{right.highlight}</p>
+            <p className="text-base font-bold text-navy">{right.highlight}</p>
           </div>
 
-          <p className="text-[15px] leading-relaxed text-text-secondary">{right.outro}</p>
+          <p className="text-base font-medium leading-relaxed text-text-secondary">{right.outro}</p>
 
           <Link
             href="#report"
             onClick={() => trackEvent("hero_cta_click")}
-            className="focus-ring inline-flex h-[52px] w-full items-center justify-center rounded-button bg-primary px-7 text-[15px] font-semibold text-white transition-colors hover:bg-primary-hover sm:w-fit"
+            className="focus-ring inline-flex h-[52px] w-full items-center justify-center rounded-button bg-primary px-7 text-base font-bold text-white transition-colors hover:bg-primary-hover sm:w-fit"
           >
             {right.ctaLabel}
           </Link>

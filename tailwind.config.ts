@@ -60,6 +60,22 @@ const config: Config = {
           "0%, 100%": { transform: "translate(0, 0) scale(1)" },
           "50%": { transform: "translate(20px, -16px) scale(1.06)" },
         },
+        "magnifier-scan": {
+          "0%, 6%": {
+            transform: "translate(-50%, -50%) translate(40vw, 32vh) scale(0.5) rotate(-18deg)",
+            opacity: "0",
+          },
+          "20%": { opacity: "1" },
+          "50%": {
+            transform: "translate(-50%, -50%) translate(-2vw, -4vh) scale(1.15) rotate(6deg)",
+            opacity: "1",
+          },
+          "80%": { opacity: "1" },
+          "94%, 100%": {
+            transform: "translate(-50%, -50%) translate(-44vw, -34vh) scale(0.5) rotate(22deg)",
+            opacity: "0",
+          },
+        },
       },
       animation: {
         "pulse-soft": "pulse-soft 2.4s ease-in-out infinite",
@@ -69,6 +85,7 @@ const config: Config = {
         "float-toward": "float-toward 4s ease-in-out infinite",
         drift: "drift 12s ease-in-out infinite",
         "drift-slow": "drift 16s ease-in-out infinite reverse",
+        "magnifier-scan": "magnifier-scan 9s ease-in-out infinite",
       },
     },
   },

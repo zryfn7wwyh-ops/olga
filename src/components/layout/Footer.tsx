@@ -29,13 +29,13 @@ export function Footer() {
                   strokeLinejoin="round"
                 />
               </svg>
-              <span className="font-heading text-sm font-semibold text-navy">{siteConfig.siteName}</span>
+              <span className="font-heading text-base font-bold text-navy">{siteConfig.siteName}</span>
             </div>
-            <p className="text-sm text-text-secondary">{legalEntity.name}</p>
-            <p className="text-sm text-text-secondary">
+            <p className="text-base font-medium text-text-secondary">{legalEntity.name}</p>
+            <p className="text-base font-medium text-text-secondary">
               ИНН {legalEntity.inn} · ОГРН {legalEntity.ogrn}
             </p>
-            <div className="flex flex-col gap-1 text-sm text-text-secondary sm:flex-row sm:gap-4">
+            <div className="flex flex-col gap-1 text-base font-medium text-text-secondary sm:flex-row sm:gap-4">
               <a href={legalEntity.phoneHref} className="focus-ring rounded-button hover:text-primary">
                 {legalEntity.phone}
               </a>
@@ -50,7 +50,7 @@ export function Footer() {
 
           <nav
             aria-label="Юридическая информация"
-            className="flex flex-col gap-2 text-sm text-text-secondary md:items-end"
+            className="flex flex-col gap-2 text-base font-medium text-text-secondary md:items-end"
           >
             <Link href={links.privacyPolicy} className="focus-ring rounded-button hover:text-primary">
               {linkLabels.privacyPolicy}
@@ -70,7 +70,7 @@ export function Footer() {
           </nav>
         </div>
 
-        <p className="mt-8 border-t border-border pt-6 text-xs text-text-secondary">
+        <p className="mt-8 border-t border-border pt-6 text-sm font-medium text-text-secondary">
           © {year} {legalEntity.name}. Все права защищены.
         </p>
       </div>

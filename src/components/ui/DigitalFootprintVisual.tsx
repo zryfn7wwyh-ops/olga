@@ -24,16 +24,16 @@ const ICONS: LucideIcon[] = [
   FileText,
 ];
 
-// Расположены по кругу как цифры на циферблате часов.
+// Расположены строго по кругу (радиус 42 от центра 50,50) — как цифры на циферблате часов.
 const POSITIONS = [
   { x: 50, y: 8 },
-  { x: 83, y: 22 },
+  { x: 79.7, y: 20.3 },
   { x: 92, y: 50 },
-  { x: 83, y: 78 },
+  { x: 79.7, y: 79.7 },
   { x: 50, y: 92 },
-  { x: 17, y: 78 },
+  { x: 20.3, y: 79.7 },
   { x: 8, y: 50 },
-  { x: 17, y: 22 },
+  { x: 20.3, y: 20.3 },
 ];
 
 export function DigitalFootprintVisual() {
@@ -57,11 +57,11 @@ export function DigitalFootprintVisual() {
         className="absolute inset-0 h-full w-full"
         aria-hidden="true"
       >
-        <circle cx="50" cy="50" r="46" fill="none" stroke="var(--border)" strokeWidth="0.4" />
+        <circle cx="50" cy="50" r="42" fill="none" stroke="var(--border)" strokeWidth="0.4" />
       </svg>
 
       <div className="absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 animate-pulse-soft flex-col items-center justify-center rounded-full bg-navy text-center shadow-card sm:h-24 sm:w-24">
-        <span className="px-2 text-[11px] font-semibold leading-tight text-white sm:text-xs">
+        <span className="px-2 text-xs font-bold leading-tight text-white sm:text-sm">
           {landingContent.heroVisual.centerLabel}
         </span>
       </div>
@@ -81,7 +81,7 @@ export function DigitalFootprintVisual() {
             >
               <Icon className="h-5 w-5 text-primary" aria-hidden="true" />
             </div>
-            <span className="w-20 text-center text-[11px] font-medium leading-tight text-text-secondary">
+            <span className="w-20 text-center text-xs font-semibold leading-tight text-text-secondary">
               {label}
             </span>
           </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircle2, FileCheck2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { landingContent } from "@/content/landing";
 import { LeadForm } from "@/components/forms/LeadForm";
 
@@ -32,15 +32,10 @@ export function ReportFormSection() {
 
       <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 flex flex-col items-center gap-4 text-center">
-          <div className="glass flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/40 via-white/20 to-transparent">
-            <FileCheck2 className="h-6 w-6 text-white" aria-hidden="true" />
-          </div>
-          <div>
-            <h2 className="font-heading text-2xl font-semibold leading-tight tracking-tight text-white sm:text-3xl">
-              {title}
-            </h2>
-            <p className="mt-3 text-base text-white/70">{text}</p>
-          </div>
+          <h2 className="font-heading text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl">
+            {title}
+          </h2>
+          <p className="text-lg font-medium text-white/70">{text}</p>
         </div>
 
         {submitted ? (
@@ -51,9 +46,9 @@ export function ReportFormSection() {
             <span className="flex h-14 w-14 items-center justify-center rounded-full bg-success/15 text-success">
               <CheckCircle2 className="h-8 w-8" aria-hidden="true" />
             </span>
-            <h3 className="font-heading text-xl font-semibold text-navy">{success.title}</h3>
-            <p className="text-[15px] leading-relaxed text-text-secondary">{success.text}</p>
-            <p className="text-[15px] leading-relaxed text-text-secondary">
+            <h3 className="font-heading text-2xl font-bold text-navy">{success.title}</h3>
+            <p className="text-lg font-medium leading-relaxed text-text-secondary">{success.text}</p>
+            <p className="text-lg font-medium leading-relaxed text-text-secondary">
               {success.additionalText}
             </p>
           </div>

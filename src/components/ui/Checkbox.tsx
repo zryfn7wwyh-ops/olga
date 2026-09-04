@@ -26,12 +26,12 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             } ${className}`}
             {...props}
           />
-          <label htmlFor={checkboxId} className="cursor-pointer text-sm leading-relaxed text-text-secondary">
+          <label htmlFor={checkboxId} className="cursor-pointer text-sm font-medium leading-relaxed text-text-secondary">
             {label}
           </label>
         </div>
         {error && (
-          <span id={errorId} role="alert" className="pl-8 text-xs font-medium text-danger">
+          <span id={errorId} role="alert" className="pl-8 text-sm font-semibold text-danger">
             {error}
           </span>
         )}

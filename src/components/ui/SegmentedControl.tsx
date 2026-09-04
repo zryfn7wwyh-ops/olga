@@ -31,7 +31,7 @@ export function SegmentedControl({
 
   return (
     <fieldset className="flex flex-col gap-1.5" aria-describedby={error ? errorId : undefined}>
-      <legend className="text-sm font-medium text-text-primary">
+      <legend className="text-base font-bold text-text-primary">
         {legend}
         {required && <span aria-hidden="true" className="text-danger"> *</span>}
       </legend>
@@ -48,7 +48,7 @@ export function SegmentedControl({
             <label
               key={option.value}
               htmlFor={optionId}
-              className={`focus-within:ring-2 focus-within:ring-primary flex h-11 cursor-pointer items-center justify-center rounded-button border text-[14px] font-medium transition-colors duration-150 ${
+              className={`focus-within:ring-2 focus-within:ring-primary flex h-11 cursor-pointer items-center justify-center rounded-button border text-base font-bold transition-colors duration-150 ${
                 isSelected
                   ? "border-primary bg-primary text-white"
                   : error
@@ -71,7 +71,7 @@ export function SegmentedControl({
         })}
       </div>
       {error && (
-        <span id={errorId} role="alert" className="text-xs font-medium text-danger">
+        <span id={errorId} role="alert" className="text-sm font-semibold text-danger">
           {error}
         </span>
       )}
