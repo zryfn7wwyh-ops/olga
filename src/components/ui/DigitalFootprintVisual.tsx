@@ -1,0 +1,100 @@
+"use client";
+
+import {
+  Cookie,
+  Database,
+  FileText,
+  FormInput,
+  Globe,
+  Layers,
+  ShieldCheck,
+  Users,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import { landingContent } from "@/content/landing";
+
+const ICONS: LucideIcon[] = [
+  Globe,
+  FormInput,
+  Cookie,
+  ShieldCheck,
+  Database,
+  Users,
+  Layers,
+  FileText,
+];
+
+const POSITIONS = [
+  { x: 50, y: 8 },
+  { x: 83, y: 22 },
+  { x: 92, y: 50 },
+  { x: 83, y: 78 },
+  { x: 50, y: 92 },
+  { x: 17, y: 78 },
+  { x: 8, y: 50 },
+  { x: 17, y: 22 },
+];
+
+export function DigitalFootprintVisual() {
+  const nodes = landingContent.heroVisual.nodes;
+
+  return (
+    <div
+      className="relative mx-auto aspect-square w-full max-w-[420px]"
+      role="img"
+      aria-label={`${landingContent.heroVisual.title}: ${nodes.join(", ")}`}
+    >
+      <div className="absolute inset-0 overflow-hidden rounded-full">
+        <div
+          className="absolute inset-x-0 h-1/3 animate-scan-line bg-gradient-to-b from-transparent via-primary/10 to-transparent"
+          aria-hidden="true"
+        />
+      </div>
+
+      <svg
+        viewBox="0 0 100 100"
+        className="absolute inset-0 h-full w-full"
+        aria-hidden="true"
+      >
+        {POSITIONS.map((pos, i) => (
+          <line
+            key={i}
+            x1="50"
+            y1="50"
+            x2={pos.x}
+            y2={pos.y}
+            stroke="var(--border)"
+            strokeWidth="0.5"
+            strokeDasharray="2 2"
+          />
+        ))}
+        <circle cx="50" cy="50" r="46" fill="none" stroke="var(--border)" strokeWidth="0.4" />
+      </svg>
+
+      <div className="absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 animate-pulse-soft flex-col items-center justify-center rounded-full bg-navy text-center shadow-card sm:h-24 sm:w-24">
+        <span className="px-2 text-[11px] font-semibold leading-tight text-white sm:text-xs">
+          {landingContent.heroVisual.centerLabel}
+        </span>
+      </div>
+
+      {POSITIONS.map((pos, i) => {
+        const Icon = ICONS[i];
+        const label = nodes[i];
+        return (
+          <div
+            key={label}
+            className="absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1.5"
+            style={{ left: `${pos.x}%`, top: `${pos.y}%` }}
+          >
+            <div className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-surface shadow-card sm:h-12 sm:w-12">
+              <Icon className="h-5 w-5 text-primary" aria-hidden="true" />
+            </div>
+            <span className="w-20 text-center text-[11px] font-medium leading-tight text-text-secondary">
+              {label}
+            </span>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
