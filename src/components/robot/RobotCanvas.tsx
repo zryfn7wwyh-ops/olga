@@ -30,13 +30,18 @@ export function RobotCanvas() {
       <Canvas
         gl={{ alpha: true, antialias: true }}
         dpr={[1, 1.5]}
-        camera={{ position: [0, 0, 7], fov: 28 }}
+        camera={{ position: [-1.9, 0.35, 6.6], fov: 28 }}
         style={{ pointerEvents: "none" }}
       >
-        <ambientLight intensity={0.7} />
-        <hemisphereLight args={["#dbe8ff", "#0a1730", 0.5]} />
-        <directionalLight position={[3, 4, 5]} intensity={1.2} color="#ffffff" />
-        <directionalLight position={[-3, -1, 2]} intensity={0.6} color="#4fd6ff" />
+        {/* мягкий заполняющий свет + условное env-освещение для отражений */}
+        <ambientLight intensity={0.55} />
+        <hemisphereLight args={["#dbe8ff", "#0a1730", 0.55]} />
+        {/* key light — сверху слева */}
+        <directionalLight position={[3, 4.2, 4.5]} intensity={1.35} color="#ffffff" />
+        {/* fill — деликатный, с противоположной стороны */}
+        <directionalLight position={[-2.6, 1.2, 3.2]} intensity={0.35} color="#eef3ff" />
+        {/* rim — холодный cyan сзади для контурного света */}
+        <directionalLight position={[-2.2, 1.6, -3.4]} intensity={0.9} color="#6fd8ff" />
         <RobotModel />
       </Canvas>
     </div>
