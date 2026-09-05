@@ -2,90 +2,169 @@
 
 import { Canvas } from "@react-three/fiber";
 
+const SHELL = { color: "#f0f3f7", metalness: 0.12, roughness: 0.32 } as const;
+const JOINT = { color: "#181b20", metalness: 0.35, roughness: 0.5 } as const;
+const EYE = {
+  color: "#062338",
+  emissive: "#39c9ff",
+  emissiveIntensity: 2.4,
+  toneMapped: false,
+} as const;
+
+interface ArmProps {
+  shoulderPos: [number, number, number];
+  upperArmRot: [number, number, number];
+  forearmRot: [number, number, number];
+  handRot: [number, number, number];
+  fingersOpen: boolean;
+}
+
+function Arm({ shoulderPos, upperArmRot, forearmRot, handRot, fingersOpen }: ArmProps) {
+  return (
+    <group position={shoulderPos}>
+      <mesh>
+        <sphereGeometry args={[0.27, 24, 24]} />
+        <meshStandardMaterial {...SHELL} />
+      </mesh>
+      <group rotation={upperArmRot}>
+        <mesh position={[0, -0.275, 0]}>
+          <cylinderGeometry args={[0.16, 0.14, 0.55, 20]} />
+          <meshStandardMaterial {...SHELL} />
+        </mesh>
+        <group position={[0, -0.55, 0]} rotation={forearmRot}>
+          <mesh>
+            <sphereGeometry args={[0.14, 20, 20]} />
+            <meshStandardMaterial {...JOINT} />
+          </mesh>
+          <mesh position={[0, -0.25, 0]}>
+            <cylinderGeometry args={[0.12, 0.09, 0.5, 20]} />
+            <meshStandardMaterial {...SHELL} />
+          </mesh>
+          <group position={[0, -0.5, 0]} rotation={handRot}>
+            <mesh>
+              <boxGeometry args={[0.22, 0.24, 0.11]} />
+              <meshStandardMaterial {...JOINT} />
+            </mesh>
+            {[-1.5, -0.5, 0.5, 1.5].map((i) => (
+              <mesh
+                key={i}
+                position={[i * 0.045, -0.17, 0.02]}
+                rotation={[fingersOpen ? 0.3 : 0.1, 0, i * (fingersOpen ? 0.16 : 0.04)]}
+              >
+                <cylinderGeometry args={[0.026, 0.02, 0.2, 10]} />
+                <meshStandardMaterial {...JOINT} />
+              </mesh>
+            ))}
+          </group>
+        </group>
+      </group>
+    </group>
+  );
+}
+
 function RobotModel() {
   return (
     <group>
       {/* голова */}
-      <mesh position={[0, 0.55, 0]}>
-        <boxGeometry args={[1.1, 0.7, 0.65]} />
-        <meshStandardMaterial color="#1b3a73" metalness={0.75} roughness={0.28} />
+      <group position={[0, 1.75, 0]}>
+        <mesh scale={[1, 1.12, 0.92]}>
+          <sphereGeometry args={[0.46, 32, 32]} />
+          <meshStandardMaterial {...SHELL} />
+        </mesh>
+        <mesh position={[0.16, 0.03, 0.35]}>
+          <sphereGeometry args={[0.17, 24, 24]} />
+          <meshStandardMaterial {...EYE} />
+        </mesh>
+        <mesh position={[0, -0.02, 0.42]}>
+          <torusGeometry args={[0.18, 0.025, 12, 24, Math.PI]} />
+          <meshStandardMaterial {...JOINT} />
+        </mesh>
+      </group>
+
+      {/* шея */}
+      <mesh position={[0, 1.42, 0]}>
+        <cylinderGeometry args={[0.14, 0.16, 0.25, 20]} />
+        <meshStandardMaterial {...JOINT} />
       </mesh>
-      {/* визор */}
-      <mesh position={[0, 0.68, 0.34]}>
-        <boxGeometry args={[0.9, 0.22, 0.05]} />
-        <meshStandardMaterial color="#dfeaff" emissive="#3a7bff" emissiveIntensity={0.4} metalness={0.2} roughness={0.4} />
-      </mesh>
-      {/* оптические сенсоры */}
-      <mesh position={[-0.24, 0.5, 0.36]}>
-        <sphereGeometry args={[0.09, 24, 24]} />
-        <meshStandardMaterial color="#0c3aa0" emissive="#246bfd" emissiveIntensity={0.6} />
-      </mesh>
-      <mesh position={[0.24, 0.5, 0.36]}>
-        <sphereGeometry args={[0.09, 24, 24]} />
-        <meshStandardMaterial color="#0c3aa0" emissive="#246bfd" emissiveIntensity={0.6} />
-      </mesh>
-      {/* антенна */}
-      <mesh position={[0, 1.02, 0]}>
-        <cylinderGeometry args={[0.02, 0.02, 0.3, 8]} />
-        <meshStandardMaterial color="#8fb4ff" metalness={0.6} roughness={0.3} />
-      </mesh>
-      <mesh position={[0, 1.2, 0]}>
-        <sphereGeometry args={[0.06, 16, 16]} />
-        <meshStandardMaterial color="#246bfd" emissive="#246bfd" emissiveIntensity={0.9} toneMapped={false} />
-      </mesh>
-      {/* корпус */}
-      <mesh position={[0, -0.35, 0]}>
-        <boxGeometry args={[1.35, 0.85, 0.7]} />
-        <meshStandardMaterial color="#12294f" metalness={0.7} roughness={0.32} />
-      </mesh>
-      {/* светящаяся панель */}
-      <mesh position={[0, -0.08, 0.36]}>
-        <boxGeometry args={[0.9, 0.1, 0.03]} />
-        <meshStandardMaterial color="#8fb4ff" emissive="#3ad0ff" emissiveIntensity={0.35} metalness={0.3} roughness={0.4} />
-      </mesh>
-      {/* оптический сканер — главный элемент на передней панели */}
-      <mesh position={[0, -0.35, 0.37]}>
-        <torusGeometry args={[0.16, 0.035, 16, 32]} />
-        <meshStandardMaterial color="#8fb4ff" metalness={0.7} roughness={0.25} />
-      </mesh>
-      <mesh position={[0, -0.35, 0.4]}>
-        <circleGeometry args={[0.13, 32]} />
-        <meshStandardMaterial color="#0a2a70" emissive="#3ad0ff" emissiveIntensity={0.5} toneMapped={false} />
-      </mesh>
-      {/* боковые панели / вентиляция */}
-      <mesh position={[-0.72, -0.3, 0]} rotation={[0, 0, 0.15]}>
-        <boxGeometry args={[0.12, 0.5, 0.5]} />
-        <meshStandardMaterial color="#0d2148" metalness={0.6} roughness={0.4} />
-      </mesh>
-      <mesh position={[0.72, -0.3, 0]} rotation={[0, 0, -0.15]}>
-        <boxGeometry args={[0.12, 0.5, 0.5]} />
-        <meshStandardMaterial color="#0d2148" metalness={0.6} roughness={0.4} />
+
+      {/* торс */}
+      <group position={[0, 0.75, 0]}>
+        <mesh>
+          <boxGeometry args={[0.95, 1.15, 0.55]} />
+          <meshStandardMaterial {...SHELL} />
+        </mesh>
+        <mesh position={[0, 0.18, 0.29]}>
+          <sphereGeometry args={[0.15, 24, 24]} />
+          <meshStandardMaterial {...EYE} emissiveIntensity={2.8} />
+        </mesh>
+        <mesh position={[0, 0.18, 0.29]}>
+          <torusGeometry args={[0.2, 0.02, 12, 32]} />
+          <meshStandardMaterial {...JOINT} />
+        </mesh>
+        <mesh position={[-0.28, -0.15, 0.29]}>
+          <boxGeometry args={[0.08, 0.08, 0.02]} />
+          <meshStandardMaterial {...EYE} emissiveIntensity={1.6} />
+        </mesh>
+        <mesh position={[-0.05, -0.32, 0.29]}>
+          <boxGeometry args={[0.08, 0.08, 0.02]} />
+          <meshStandardMaterial {...EYE} emissiveIntensity={1.6} />
+        </mesh>
+        <mesh position={[0, -0.45, 0.29]}>
+          <boxGeometry args={[0.7, 0.03, 0.02]} />
+          <meshStandardMaterial {...JOINT} />
+        </mesh>
+      </group>
+
+      {/* левая рука (в покое) */}
+      <Arm
+        shoulderPos={[-0.62, 1.18, 0]}
+        upperArmRot={[0, 0, 0.08]}
+        forearmRot={[0.15, 0, 0.1]}
+        handRot={[0.1, 0, 0]}
+        fingersOpen={false}
+      />
+
+      {/* правая рука (протянута вперед) */}
+      <Arm
+        shoulderPos={[0.62, 1.18, 0]}
+        upperArmRot={[-1.35, 0.1, -0.15]}
+        forearmRot={[0.35, 0, -0.1]}
+        handRot={[0.15, 0.15, 0]}
+        fingersOpen
+      />
+
+      {/* пояс / основание */}
+      <mesh position={[0, -0.02, 0]}>
+        <cylinderGeometry args={[0.42, 0.36, 0.3, 20]} />
+        <meshStandardMaterial {...JOINT} />
       </mesh>
     </group>
   );
 }
 
 /**
- * Этап 1: статичный робот (без анимации) в правом нижнем углу первого
- * экрана — компактный AI-сканер по описанию из ТЗ.
+ * Этап 1 (ревизия): статичный робот-андроид без анимации по референсам —
+ * белый пластиковый корпус, темные суставы, светящийся синий «глаз» и
+ * индикатор в груди, протянутая рука с пальцами. Крупный масштаб,
+ * закреплен в правом нижнем углу.
  */
 export function StaticRobotHero() {
   return (
     <div
-      className="pointer-events-none fixed bottom-4 right-4 z-20 h-24 w-24 sm:bottom-6 sm:right-6 sm:h-32 sm:w-32"
+      className="pointer-events-none fixed bottom-0 right-0 z-20 h-[210px] w-[180px] sm:-bottom-4 sm:-right-4 sm:h-[380px] sm:w-[330px] lg:-bottom-10 lg:-right-16 lg:h-[520px] lg:w-[440px]"
       aria-hidden="true"
     >
       <Canvas
         gl={{ alpha: true, antialias: true }}
         dpr={[1, 1.5]}
-        camera={{ position: [0, 0, 5], fov: 45 }}
+        camera={{ position: [0, 0.7, 5], fov: 34 }}
         style={{ pointerEvents: "none" }}
       >
         <ambientLight intensity={0.6} />
         <hemisphereLight args={["#dbe8ff", "#0a1730", 0.5]} />
-        <directionalLight position={[3, 4, 5]} intensity={1.2} color="#ffffff" />
-        <directionalLight position={[-3, -2, -2]} intensity={0.6} color="#3ad0ff" />
-        <group scale={0.85} rotation={[0.08, -0.35, 0]}>
+        <directionalLight position={[3, 4, 5]} intensity={1.3} color="#ffffff" />
+        <directionalLight position={[-3, -1, 2]} intensity={0.5} color="#3ad0ff" />
+        <group rotation={[0.02, -0.5, 0]} position={[0.05, 0, 0]}>
           <RobotModel />
         </group>
       </Canvas>
