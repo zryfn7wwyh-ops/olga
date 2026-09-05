@@ -2,124 +2,127 @@
 
 import { Canvas } from "@react-three/fiber";
 
-const SHELL = { color: "#f0f3f7", metalness: 0.12, roughness: 0.32 } as const;
-const SHELL_SHADE = { color: "#dee3ea", metalness: 0.14, roughness: 0.36 } as const;
-const JOINT = { color: "#181b20", metalness: 0.35, roughness: 0.5 } as const;
-const TRIM = { color: "#8b96a5", metalness: 0.5, roughness: 0.4 } as const;
-const EYE = {
-  color: "#062338",
-  emissive: "#39c9ff",
-  emissiveIntensity: 2.4,
+const SHELL = { color: "#f5f6f8", metalness: 0.25, roughness: 0.16 } as const;
+const SHELL_SHADE = { color: "#e2e5ea", metalness: 0.25, roughness: 0.2 } as const;
+const JOINT = { color: "#16181c", metalness: 0.6, roughness: 0.35 } as const;
+const AMBER = {
+  color: "#3a2410",
+  emissive: "#ff9d3d",
+  emissiveIntensity: 1.8,
+  toneMapped: false,
+} as const;
+const LENS = {
+  color: "#eaf6ff",
+  emissive: "#aee0ff",
+  emissiveIntensity: 3.2,
+  toneMapped: false,
+} as const;
+const CHEST_LIGHT = {
+  color: "#0a2a45",
+  emissive: "#3aa0ff",
+  emissiveIntensity: 2,
   toneMapped: false,
 } as const;
 
-interface FingerProps {
-  x: number;
-  spread: number;
-  curl: number;
-  length1?: number;
-  length2?: number;
-  radius?: number;
-}
-
-function Finger({ x, spread, curl, length1 = 0.13, length2 = 0.1, radius = 0.026 }: FingerProps) {
+function JointRing({
+  position,
+  radius,
+  tube = 0.03,
+  withAmber = true,
+}: {
+  position: [number, number, number];
+  radius: number;
+  tube?: number;
+  withAmber?: boolean;
+}) {
   return (
-    <group position={[x, -0.12, 0.02]} rotation={[0, 0, spread]}>
-      <group rotation={[curl, 0, 0]}>
-        <mesh position={[0, -length1 / 2, 0]}>
-          <cylinderGeometry args={[radius, radius * 0.85, length1, 10]} />
-          <meshStandardMaterial {...JOINT} />
+    <group position={position}>
+      <mesh rotation={[Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[radius, tube, 12, 28]} />
+        <meshStandardMaterial {...JOINT} />
+      </mesh>
+      <mesh>
+        <cylinderGeometry args={[radius - tube * 1.4, radius - tube * 1.4, tube * 1.6, 20]} />
+        <meshStandardMaterial {...JOINT} />
+      </mesh>
+      {withAmber && (
+        <mesh position={[0, 0, radius - tube]} rotation={[Math.PI / 2, 0, 0]}>
+          <circleGeometry args={[tube * 0.9, 12]} />
+          <meshStandardMaterial {...AMBER} />
         </mesh>
-        <group position={[0, -length1, 0]} rotation={[curl * 0.7, 0, 0]}>
-          <mesh>
-            <sphereGeometry args={[radius * 0.9, 10, 10]} />
-            <meshStandardMaterial {...JOINT} />
-          </mesh>
-          <mesh position={[0, -length2 / 2, 0]}>
-            <cylinderGeometry args={[radius * 0.85, radius * 0.6, length2, 10]} />
-            <meshStandardMaterial {...JOINT} />
-          </mesh>
-        </group>
-      </group>
+      )}
     </group>
   );
 }
 
-interface ArmProps {
-  shoulderPos: [number, number, number];
-  upperArmRot: [number, number, number];
-  forearmRot: [number, number, number];
-  handRot: [number, number, number];
-  fingersOpen: boolean;
+interface LimbProps {
+  rootPos: [number, number, number];
+  jointRadius: number;
+  upperArgs: [number, number, number];
+  upperRot: [number, number, number];
+  lowerArgs: [number, number, number];
+  lowerRot: [number, number, number];
+  midJointRadius: number;
+  endCapRadius: number;
+  endShape: "fist" | "ankle";
 }
 
-function Arm({ shoulderPos, upperArmRot, forearmRot, handRot, fingersOpen }: ArmProps) {
-  const spread = fingersOpen ? 0.22 : 0.04;
-  const curl = fingersOpen ? 0.15 : 0.55;
+function Limb({
+  rootPos,
+  jointRadius,
+  upperArgs,
+  upperRot,
+  lowerArgs,
+  lowerRot,
+  midJointRadius,
+  endCapRadius,
+  endShape,
+}: LimbProps) {
+  const upperLen = upperArgs[2];
+  const lowerLen = lowerArgs[2];
   return (
-    <group position={shoulderPos}>
+    <group position={rootPos}>
+      <JointRing position={[0, 0, 0]} radius={jointRadius} />
       <mesh>
-        <sphereGeometry args={[0.27, 24, 24]} />
+        <sphereGeometry args={[jointRadius * 0.85, 20, 20]} />
         <meshStandardMaterial {...SHELL} />
       </mesh>
-      {/* наплечник */}
-      <mesh position={[0, 0.06, 0.02]} rotation={[0.3, 0, 0]}>
-        <cylinderGeometry args={[0.24, 0.27, 0.14, 24]} />
-        <meshStandardMaterial {...SHELL_SHADE} />
-      </mesh>
-      <mesh position={[0, 0.1, 0.08]} rotation={[0.3, 0, 0]}>
-        <torusGeometry args={[0.235, 0.015, 10, 28]} />
-        <meshStandardMaterial {...TRIM} />
-      </mesh>
 
-      <group rotation={upperArmRot}>
-        <mesh position={[0, -0.275, 0]}>
-          <cylinderGeometry args={[0.16, 0.14, 0.55, 20]} />
+      <group rotation={upperRot}>
+        <mesh position={[0, -upperLen / 2, 0]}>
+          <cylinderGeometry args={upperArgs} />
           <meshStandardMaterial {...SHELL} />
         </mesh>
-        <mesh position={[0, -0.275, 0]} rotation={[Math.PI / 2, 0, 0]}>
-          <torusGeometry args={[0.15, 0.008, 8, 24]} />
-          <meshStandardMaterial {...TRIM} />
-        </mesh>
 
-        <group position={[0, -0.55, 0]} rotation={forearmRot}>
-          <mesh>
-            <sphereGeometry args={[0.14, 20, 20]} />
-            <meshStandardMaterial {...JOINT} />
-          </mesh>
-          <mesh position={[0, 0, 0.13]}>
-            <sphereGeometry args={[0.045, 12, 12]} />
-            <meshStandardMaterial {...TRIM} />
-          </mesh>
-          <mesh position={[0, -0.25, 0]}>
-            <cylinderGeometry args={[0.12, 0.09, 0.5, 20]} />
+        <group position={[0, -upperLen, 0]} rotation={lowerRot}>
+          <JointRing position={[0, 0, 0]} radius={midJointRadius} tube={0.022} />
+          <mesh position={[0, -lowerLen / 2, 0]}>
+            <cylinderGeometry args={lowerArgs} />
             <meshStandardMaterial {...SHELL} />
           </mesh>
 
-          <group position={[0, -0.5, 0]}>
-            {/* запястье */}
-            <mesh rotation={[Math.PI / 2, 0, 0]}>
-              <torusGeometry args={[0.09, 0.02, 10, 24]} />
-              <meshStandardMaterial {...JOINT} />
-            </mesh>
-            <group rotation={handRot}>
-              <mesh>
-                <boxGeometry args={[0.22, 0.24, 0.11]} />
+          <group position={[0, -lowerLen, 0]}>
+            {endShape === "fist" ? (
+              <>
+                <mesh rotation={[Math.PI / 2, 0, 0]}>
+                  <torusGeometry args={[endCapRadius * 0.7, 0.018, 10, 24]} />
+                  <meshStandardMaterial {...JOINT} />
+                </mesh>
+                <mesh position={[0, -endCapRadius * 0.7, 0]}>
+                  <sphereGeometry args={[endCapRadius, 16, 16]} />
+                  <meshStandardMaterial {...SHELL_SHADE} />
+                </mesh>
+                <mesh position={[0, -endCapRadius * 0.85, endCapRadius * 0.55]}>
+                  <boxGeometry args={[endCapRadius * 1.3, 0.015, 0.015]} />
+                  <meshStandardMaterial {...JOINT} />
+                </mesh>
+              </>
+            ) : (
+              <mesh position={[0, -endCapRadius * 0.5, endCapRadius * 0.3]}>
+                <boxGeometry args={[endCapRadius * 1.6, endCapRadius, endCapRadius * 2.2]} />
                 <meshStandardMaterial {...JOINT} />
               </mesh>
-              <mesh position={[0, 0.02, 0.056]}>
-                <boxGeometry args={[0.16, 0.16, 0.006]} />
-                <meshStandardMaterial {...TRIM} />
-              </mesh>
-              <Finger x={-0.075} spread={-spread} curl={curl} />
-              <Finger x={-0.025} spread={-spread * 0.3} curl={curl * 1.05} />
-              <Finger x={0.025} spread={spread * 0.3} curl={curl * 1.05} />
-              <Finger x={0.075} spread={spread} curl={curl} />
-              {/* большой палец */}
-              <group position={[-0.13, -0.05, 0.03]} rotation={[0, 0, fingersOpen ? 1.1 : 0.75]}>
-                <Finger x={0} spread={0} curl={curl * 0.6} length1={0.09} length2={0.07} radius={0.028} />
-              </group>
-            </group>
+            )}
           </group>
         </group>
       </group>
@@ -131,158 +134,175 @@ function RobotModel() {
   return (
     <group>
       {/* голова */}
-      <group position={[0, 1.75, 0]}>
-        <mesh scale={[1, 1.12, 0.92]}>
-          <sphereGeometry args={[0.46, 32, 32]} />
+      <group position={[0, 1.85, 0]}>
+        <mesh scale={[0.88, 1.15, 0.95]}>
+          <sphereGeometry args={[0.42, 32, 32]} />
           <meshStandardMaterial {...SHELL} />
         </mesh>
-        {/* шов на макушке */}
-        <mesh position={[0, 0.38, 0]}>
-          <boxGeometry args={[0.02, 0.02, 0.75]} />
-          <meshStandardMaterial {...TRIM} />
+        {[-0.16, 0.16].map((x) => (
+          <group key={x} position={[x, 0.02, 0.34]}>
+            <mesh rotation={[Math.PI / 2, 0, 0]}>
+              <torusGeometry args={[0.095, 0.01, 10, 24]} />
+              <meshStandardMaterial {...JOINT} />
+            </mesh>
+            <mesh position={[0, 0, 0.015]}>
+              <sphereGeometry args={[0.085, 20, 20]} />
+              <meshStandardMaterial {...LENS} />
+            </mesh>
+          </group>
+        ))}
+        {/* нос */}
+        <mesh position={[0, -0.1, 0.4]}>
+          <sphereGeometry args={[0.035, 12, 12]} />
+          <meshStandardMaterial {...SHELL_SHADE} />
         </mesh>
-        {/* глаз */}
-        <mesh position={[0.16, 0.03, 0.35]}>
-          <sphereGeometry args={[0.17, 24, 24]} />
-          <meshStandardMaterial {...EYE} />
-        </mesh>
-        <mesh position={[0.16, 0.03, 0.35]}>
-          <torusGeometry args={[0.19, 0.014, 10, 28]} />
-          <meshStandardMaterial {...TRIM} />
-        </mesh>
-        <mesh position={[0, -0.02, 0.42]}>
-          <torusGeometry args={[0.18, 0.025, 12, 24, Math.PI]} />
+        {/* рот */}
+        <mesh position={[0, -0.22, 0.38]}>
+          <boxGeometry args={[0.16, 0.012, 0.01]} />
           <meshStandardMaterial {...JOINT} />
         </mesh>
-        {/* челюсть */}
-        <mesh position={[0.05, -0.32, 0.18]} rotation={[0.3, 0, 0]}>
-          <boxGeometry args={[0.34, 0.14, 0.3]} />
-          <meshStandardMaterial {...JOINT} />
+        {/* линия лба */}
+        <mesh position={[0, 0.24, 0.36]}>
+          <boxGeometry args={[0.4, 0.01, 0.01]} />
+          <meshStandardMaterial {...SHELL_SHADE} />
         </mesh>
-        {/* боковой вент / «ухо» */}
-        <mesh position={[0, -0.05, -0.34]} rotation={[Math.PI / 2, 0, 0]}>
-          <cylinderGeometry args={[0.07, 0.07, 0.05, 16]} />
+        {/* боковой вент */}
+        <mesh position={[0, -0.05, -0.3]} rotation={[Math.PI / 2, 0, 0]}>
+          <cylinderGeometry args={[0.06, 0.06, 0.04, 16]} />
           <meshStandardMaterial {...JOINT} />
-        </mesh>
-        <mesh position={[0, -0.05, -0.37]}>
-          <torusGeometry args={[0.07, 0.012, 8, 20]} />
-          <meshStandardMaterial {...TRIM} />
         </mesh>
       </group>
 
-      {/* шея */}
-      <mesh position={[0, 1.42, 0]}>
-        <cylinderGeometry args={[0.14, 0.16, 0.25, 20]} />
-        <meshStandardMaterial {...JOINT} />
-      </mesh>
-      <mesh position={[0, 1.31, 0]} rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[0.19, 0.02, 10, 28]} />
-        <meshStandardMaterial {...TRIM} />
-      </mesh>
-
-      {/* торс: верхняя пластина груди */}
-      <group position={[0, 0.95, 0]}>
+      {/* открытая механическая шея */}
+      <group position={[0, 1.5, 0]}>
         <mesh>
-          <boxGeometry args={[0.92, 0.75, 0.55]} />
+          <cylinderGeometry args={[0.13, 0.15, 0.32, 20]} />
+          <meshStandardMaterial {...JOINT} />
+        </mesh>
+        <mesh position={[0, 0.08, 0]} rotation={[Math.PI / 2, 0, 0]}>
+          <torusGeometry args={[0.135, 0.012, 8, 24]} />
+          <meshStandardMaterial {...SHELL_SHADE} />
+        </mesh>
+        <mesh position={[0.09, -0.05, 0.09]}>
+          <sphereGeometry args={[0.018, 8, 8]} />
+          <meshStandardMaterial {...AMBER} />
+        </mesh>
+      </group>
+
+      {/* торс */}
+      <group position={[0, 0.98, 0]}>
+        <mesh>
+          <boxGeometry args={[0.98, 0.7, 0.56]} />
           <meshStandardMaterial {...SHELL} />
         </mesh>
-        <mesh position={[0, 0.02, 0.29]}>
-          <sphereGeometry args={[0.15, 24, 24]} />
-          <meshStandardMaterial {...EYE} emissiveIntensity={2.8} />
+        {/* световая полоса */}
+        <mesh position={[-0.05, 0.08, 0.29]}>
+          <boxGeometry args={[0.34, 0.09, 0.02]} />
+          <meshStandardMaterial {...CHEST_LIGHT} />
         </mesh>
-        <mesh position={[0, 0.02, 0.29]}>
-          <torusGeometry args={[0.2, 0.02, 12, 32]} />
-          <meshStandardMaterial {...TRIM} />
-        </mesh>
-        <mesh position={[0, 0.02, 0.29]} rotation={[0, 0, Math.PI / 4]}>
-          <torusGeometry args={[0.27, 0.012, 8, 32]} />
-          <meshStandardMaterial {...TRIM} />
-        </mesh>
+        {/* сенсоры на груди */}
+        {[[-0.35, -0.12], [0.3, -0.05]].map(([x, y]) => (
+          <group key={x} position={[x, y, 0.29]}>
+            <mesh rotation={[Math.PI / 2, 0, 0]}>
+              <torusGeometry args={[0.06, 0.012, 8, 20]} />
+              <meshStandardMaterial {...JOINT} />
+            </mesh>
+            <mesh position={[0, 0, 0.01]}>
+              <circleGeometry args={[0.035, 16]} />
+              <meshStandardMaterial {...JOINT} />
+            </mesh>
+          </group>
+        ))}
         {/* ключицы */}
-        <mesh position={[-0.3, 0.24, 0.24]} rotation={[0, 0, -0.25]}>
-          <boxGeometry args={[0.32, 0.06, 0.1]} />
-          <meshStandardMaterial {...SHELL_SHADE} />
-        </mesh>
-        <mesh position={[0.3, 0.24, 0.24]} rotation={[0, 0, 0.25]}>
-          <boxGeometry args={[0.32, 0.06, 0.1]} />
-          <meshStandardMaterial {...SHELL_SHADE} />
-        </mesh>
-        {/* боковые вентиляционные прорези */}
-        {[-0.42, -0.34].map((x) => (
-          <mesh key={x} position={[x, -0.1, 0.2]} rotation={[0, 0.5, 0]}>
-            <boxGeometry args={[0.02, 0.28, 0.09]} />
-            <meshStandardMaterial {...JOINT} />
+        {[-0.32, 0.32].map((x) => (
+          <mesh key={x} position={[x, 0.28, 0.22]} rotation={[0, 0, x < 0 ? -0.2 : 0.2]}>
+            <boxGeometry args={[0.34, 0.05, 0.1]} />
+            <meshStandardMaterial {...SHELL_SHADE} />
           </mesh>
         ))}
-        {[0.42, 0.34].map((x) => (
-          <mesh key={x} position={[x, -0.1, 0.2]} rotation={[0, -0.5, 0]}>
-            <boxGeometry args={[0.02, 0.28, 0.09]} />
-            <meshStandardMaterial {...JOINT} />
-          </mesh>
-        ))}
-      </group>
-
-      {/* торс: нижняя пластина (живот) */}
-      <group position={[0, 0.4, 0]}>
-        <mesh>
-          <boxGeometry args={[0.72, 0.45, 0.48]} />
+        {/* шов живота */}
+        <mesh position={[0, -0.28, 0.26]}>
+          <boxGeometry args={[0.6, 0.02, 0.02]} />
           <meshStandardMaterial {...SHELL_SHADE} />
-        </mesh>
-        <mesh position={[-0.2, 0.06, 0.25]}>
-          <boxGeometry args={[0.08, 0.08, 0.02]} />
-          <meshStandardMaterial {...EYE} emissiveIntensity={1.6} />
-        </mesh>
-        <mesh position={[0.03, -0.1, 0.25]}>
-          <boxGeometry args={[0.08, 0.08, 0.02]} />
-          <meshStandardMaterial {...EYE} emissiveIntensity={1.6} />
-        </mesh>
-        <mesh position={[0, -0.22, 0.25]}>
-          <boxGeometry args={[0.5, 0.025, 0.02]} />
-          <meshStandardMaterial {...TRIM} />
         </mesh>
       </group>
 
-      {/* левая рука (в покое) */}
-      <Arm
-        shoulderPos={[-0.62, 1.18, 0]}
-        upperArmRot={[0, 0, 0.08]}
-        forearmRot={[0.15, 0, 0.1]}
-        handRot={[0.1, 0, 0]}
-        fingersOpen={false}
+      {/* плечевые узлы (видимый механизм в вырезе корпуса) */}
+      {[-0.56, 0.56].map((x) => (
+        <JointRing key={x} position={[x, 1.28, 0.05]} radius={0.19} tube={0.03} />
+      ))}
+
+      {/* руки, опущены вдоль корпуса */}
+      <Limb
+        rootPos={[-0.56, 1.28, 0]}
+        jointRadius={0.19}
+        upperArgs={[0.15, 0.13, 0.5]}
+        upperRot={[0.12, 0, 0.06]}
+        lowerArgs={[0.11, 0.09, 0.46]}
+        lowerRot={[0.35, 0, 0.03]}
+        midJointRadius={0.115}
+        endCapRadius={0.1}
+        endShape="fist"
       />
-
-      {/* правая рука (протянута вперед) */}
-      <Arm
-        shoulderPos={[0.62, 1.18, 0]}
-        upperArmRot={[-0.95, 0.15, -0.2]}
-        forearmRot={[0.55, 0, -0.15]}
-        handRot={[0.15, 0.15, 0]}
-        fingersOpen
+      <Limb
+        rootPos={[0.56, 1.28, 0]}
+        jointRadius={0.19}
+        upperArgs={[0.15, 0.13, 0.5]}
+        upperRot={[0.12, 0, -0.06]}
+        lowerArgs={[0.11, 0.09, 0.46]}
+        lowerRot={[0.35, 0, -0.03]}
+        midJointRadius={0.115}
+        endCapRadius={0.1}
+        endShape="fist"
       />
 
       {/* пояс */}
-      <mesh position={[0, 0.15, 0]} rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[0.38, 0.045, 12, 32]} />
+      <mesh position={[0, 0.55, 0]} rotation={[Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[0.44, 0.05, 12, 32]} />
         <meshStandardMaterial {...JOINT} />
       </mesh>
-      {/* бедро / основание */}
-      <mesh position={[0, -0.02, 0]}>
-        <cylinderGeometry args={[0.4, 0.34, 0.3, 20]} />
-        <meshStandardMaterial {...JOINT} />
+      <mesh position={[0, 0.42, 0]}>
+        <cylinderGeometry args={[0.4, 0.42, 0.24, 20]} />
+        <meshStandardMaterial {...SHELL_SHADE} />
       </mesh>
-      <mesh position={[0, -0.17, 0]} rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[0.34, 0.015, 8, 28]} />
-        <meshStandardMaterial {...TRIM} />
-      </mesh>
+
+      {/* тазобедренные узлы */}
+      {[-0.26, 0.26].map((x) => (
+        <JointRing key={x} position={[x, 0.28, 0]} radius={0.15} tube={0.024} />
+      ))}
+
+      {/* ноги */}
+      <Limb
+        rootPos={[-0.26, 0.28, 0]}
+        jointRadius={0.15}
+        upperArgs={[0.16, 0.14, 0.62]}
+        upperRot={[0.02, 0, 0.02]}
+        lowerArgs={[0.12, 0.1, 0.58]}
+        lowerRot={[0.06, 0, 0]}
+        midJointRadius={0.13}
+        endCapRadius={0.12}
+        endShape="ankle"
+      />
+      <Limb
+        rootPos={[0.26, 0.28, 0]}
+        jointRadius={0.15}
+        upperArgs={[0.16, 0.14, 0.62]}
+        upperRot={[0.02, 0, -0.02]}
+        lowerArgs={[0.12, 0.1, 0.58]}
+        lowerRot={[0.06, 0, 0]}
+        midJointRadius={0.13}
+        endCapRadius={0.12}
+        endShape="ankle"
+      />
     </group>
   );
 }
 
 /**
- * Статичный робот-андроид (без анимации) по референсам: белый пластиковый
- * корпус с сегментированными пластинами, темные суставы, наплечники,
- * артикулированные пальцы с большим пальцем, светящийся синий «глаз» и
- * индикатор в груди. Крупный масштаб, закреплен в правом нижнем углу.
+ * Статичный робот-андроид (без анимации) по референсу: глянцевый белый
+ * корпус, открытые механические узлы на плечах/локтях/бедрах/коленях с
+ * янтарными индикаторами, гуманоидное лицо с двумя линзами-«глазами»,
+ * синяя световая полоса на груди, кулаки, полноростовая стоячая поза.
  */
 export function StaticRobotHero() {
   return (
@@ -300,7 +320,7 @@ export function StaticRobotHero() {
         <hemisphereLight args={["#dbe8ff", "#0a1730", 0.5]} />
         <directionalLight position={[3, 4, 5]} intensity={1.3} color="#ffffff" />
         <directionalLight position={[-3, -1, 2]} intensity={0.5} color="#3ad0ff" />
-        <group rotation={[0.02, -0.5, 0]} position={[0.05, -1.05, 0]}>
+        <group rotation={[0.02, -0.5, 0]} position={[0.05, -1.15, 0]}>
           <RobotModel />
         </group>
       </Canvas>
