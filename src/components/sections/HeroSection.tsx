@@ -1,10 +1,16 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { landingContent } from "@/content/landing";
 import { trackEvent } from "@/lib/analytics/events";
 import { DigitalFootprintVisual } from "@/components/ui/DigitalFootprintVisual";
-import { DigitalScanExperience } from "@/components/digital-scan/DigitalScanExperience";
+
+// Three.js не должен попадать в критический путь рендера Hero.
+const StaticRobotHero = dynamic(
+  () => import("@/components/digital-scan/StaticRobotHero").then((mod) => mod.StaticRobotHero),
+  { ssr: false }
+);
 
 export function HeroSection() {
   const { sectionId, title, description, ctaLabel, ctaNote } = landingContent.hero;
@@ -26,7 +32,7 @@ export function HeroSection() {
         />
       </div>
 
-      <DigitalScanExperience />
+      <StaticRobotHero />
 
       <div className="mx-auto grid max-w-container items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
         <div className="flex flex-col gap-6 animate-fade-in-up">
