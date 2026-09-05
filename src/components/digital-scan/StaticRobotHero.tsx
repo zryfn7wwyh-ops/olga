@@ -112,16 +112,26 @@ function Limb({
                   <sphereGeometry args={[endCapRadius, 16, 16]} />
                   <meshStandardMaterial {...SHELL_SHADE} />
                 </mesh>
+                <mesh position={[0, -endCapRadius * 0.6, endCapRadius * 0.75]}>
+                  <sphereGeometry args={[endCapRadius * 0.5, 12, 12]} />
+                  <meshStandardMaterial {...SHELL_SHADE} />
+                </mesh>
                 <mesh position={[0, -endCapRadius * 0.85, endCapRadius * 0.55]}>
                   <boxGeometry args={[endCapRadius * 1.3, 0.015, 0.015]} />
                   <meshStandardMaterial {...JOINT} />
                 </mesh>
               </>
             ) : (
-              <mesh position={[0, -endCapRadius * 0.5, endCapRadius * 0.3]}>
-                <boxGeometry args={[endCapRadius * 1.6, endCapRadius, endCapRadius * 2.2]} />
-                <meshStandardMaterial {...JOINT} />
-              </mesh>
+              <>
+                <mesh rotation={[Math.PI / 2, 0, 0]}>
+                  <torusGeometry args={[endCapRadius * 0.7, 0.015, 10, 24]} />
+                  <meshStandardMaterial {...JOINT} />
+                </mesh>
+                <mesh position={[0, -endCapRadius * 0.5, endCapRadius * 0.3]}>
+                  <boxGeometry args={[endCapRadius * 1.6, endCapRadius, endCapRadius * 2.2]} />
+                  <meshStandardMaterial {...JOINT} />
+                </mesh>
+              </>
             )}
           </group>
         </group>
@@ -139,37 +149,77 @@ function RobotModel() {
           <sphereGeometry args={[0.42, 32, 32]} />
           <meshStandardMaterial {...SHELL} />
         </mesh>
+
+        {/* надбровные дуги */}
         {[-0.16, 0.16].map((x) => (
-          <group key={x} position={[x, 0.02, 0.34]}>
-            <mesh rotation={[Math.PI / 2, 0, 0]}>
+          <mesh key={`brow-${x}`} position={[x, 0.15, 0.35]} rotation={[0.15, 0, x < 0 ? 0.1 : -0.1]}>
+            <boxGeometry args={[0.17, 0.03, 0.06]} />
+            <meshStandardMaterial {...SHELL_SHADE} />
+          </mesh>
+        ))}
+
+        {/* глазницы: затемненная впадина + линза + окантовка */}
+        {[-0.16, 0.16].map((x) => (
+          <group key={`eye-${x}`} position={[x, 0.01, 0.33]}>
+            <mesh scale={[1, 0.85, 0.5]}>
+              <sphereGeometry args={[0.13, 20, 20]} />
+              <meshStandardMaterial color="#cfd4db" metalness={0.15} roughness={0.55} />
+            </mesh>
+            <mesh position={[0, 0, 0.045]} rotation={[Math.PI / 2, 0, 0]}>
               <torusGeometry args={[0.095, 0.01, 10, 24]} />
               <meshStandardMaterial {...JOINT} />
             </mesh>
-            <mesh position={[0, 0, 0.015]}>
+            <mesh position={[0, 0, 0.06]}>
               <sphereGeometry args={[0.085, 20, 20]} />
               <meshStandardMaterial {...LENS} />
             </mesh>
           </group>
         ))}
+
         {/* нос */}
-        <mesh position={[0, -0.1, 0.4]}>
-          <sphereGeometry args={[0.035, 12, 12]} />
+        <mesh position={[0, -0.08, 0.4]} scale={[0.75, 1, 0.9]}>
+          <sphereGeometry args={[0.05, 14, 14]} />
           <meshStandardMaterial {...SHELL_SHADE} />
         </mesh>
+
         {/* рот */}
-        <mesh position={[0, -0.22, 0.38]}>
-          <boxGeometry args={[0.16, 0.012, 0.01]} />
+        <mesh position={[0, -0.22, 0.385]}>
+          <boxGeometry args={[0.15, 0.012, 0.01]} />
           <meshStandardMaterial {...JOINT} />
         </mesh>
-        {/* линия лба */}
-        <mesh position={[0, 0.24, 0.36]}>
-          <boxGeometry args={[0.4, 0.01, 0.01]} />
+
+        {/* подбородок */}
+        <mesh position={[0, -0.31, 0.34]} scale={[1, 0.55, 0.7]}>
+          <sphereGeometry args={[0.15, 16, 16]} />
           <meshStandardMaterial {...SHELL_SHADE} />
         </mesh>
+
+        {/* виски */}
+        {[-0.38, 0.38].map((x) => (
+          <mesh key={`temple-${x}`} position={[x, 0, 0.1]} rotation={[0, x < 0 ? 0.3 : -0.3, 0]}>
+            <boxGeometry args={[0.02, 0.22, 0.18]} />
+            <meshStandardMaterial {...SHELL_SHADE} />
+          </mesh>
+        ))}
+
+        {/* шов на макушке и линия лба */}
+        <mesh position={[0, 0.38, 0]}>
+          <boxGeometry args={[0.02, 0.02, 0.75]} />
+          <meshStandardMaterial {...SHELL_SHADE} />
+        </mesh>
+        <mesh position={[0, 0.3, 0.36]}>
+          <boxGeometry args={[0.42, 0.01, 0.01]} />
+          <meshStandardMaterial {...SHELL_SHADE} />
+        </mesh>
+
         {/* боковой вент */}
         <mesh position={[0, -0.05, -0.3]} rotation={[Math.PI / 2, 0, 0]}>
           <cylinderGeometry args={[0.06, 0.06, 0.04, 16]} />
           <meshStandardMaterial {...JOINT} />
+        </mesh>
+        <mesh position={[0, -0.05, -0.33]} rotation={[Math.PI / 2, 0, 0]}>
+          <torusGeometry args={[0.06, 0.008, 8, 20]} />
+          <meshStandardMaterial {...SHELL_SHADE} />
         </mesh>
       </group>
 
