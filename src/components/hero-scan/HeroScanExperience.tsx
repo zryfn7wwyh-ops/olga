@@ -7,19 +7,9 @@ import { DigitalGrid } from "./DigitalGrid";
 import { ScanLine } from "./ScanLine";
 import { ScanOverlay } from "./ScanOverlay";
 import { ScanMarkers } from "./ScanMarkers";
-import { DataPoint } from "./DataPoint";
 import { ScanParticles } from "./ScanParticles";
 import { ScanMagnifier, MAGNIFIER_SIZE_DESKTOP, MAGNIFIER_SIZE_MOBILE } from "./ScanMagnifier";
 import { WireframeOverlay } from "./WireframeOverlay";
-
-const DATA_POINTS = [
-  { key: "site", label: "SITE", xPercent: 8, yPercent: 8 },
-  { key: "form", label: "FORM", xPercent: 92, yPercent: 14 },
-  { key: "cookie", label: "COOKIE", xPercent: 12, yPercent: 46 },
-  { key: "policy", label: "POLICY", xPercent: 88, yPercent: 50 },
-  { key: "data", label: "DATA", xPercent: 14, yPercent: 86 },
-  { key: "registry", label: "REGISTRY", xPercent: 86, yPercent: 88 },
-] as const;
 
 type Tier = "high" | "medium" | "low";
 
@@ -76,9 +66,6 @@ export function HeroScanExperience({ sectionId }: { sectionId: string }) {
   const ctaMarkerRef = useRef<HTMLDivElement>(null);
   const visualMarkerRef = useRef<HTMLDivElement>(null);
 
-  const dataPointRefs = useRef<Record<string, HTMLDivElement | null>>({});
-  const connectorSvgRef = useRef<SVGSVGElement>(null);
-
   const markerRects = useRef<Record<string, Rect>>({});
 
   useEffect(() => {
@@ -93,13 +80,6 @@ export function HeroScanExperience({ sectionId }: { sectionId: string }) {
 
     const section = document.getElementById(sectionId);
     if (!section) return;
-
-    DATA_POINTS.forEach((dp) => {
-      const el = dataPointRefs.current[dp.key];
-      if (!el) return;
-      el.style.left = `${dp.xPercent}%`;
-      el.style.top = `${dp.yPercent}%`;
-    });
 
     const clearDynamicEls = () => {
       dynamicEls.forEach((el) => el.remove());
@@ -148,13 +128,11 @@ export function HeroScanExperience({ sectionId }: { sectionId: string }) {
           subtitleMarkerRef.current,
           ctaMarkerRef.current,
           visualMarkerRef.current,
-          connectorSvgRef.current,
           magnifierRef.current,
           wireframeRef.current,
           magnifierRef.current?.querySelector('[data-scan-el="magnifier-content"]'),
           magnifierRef.current?.querySelector('[data-scan-el="magnifier-sweep"]'),
           magnifierRef.current?.querySelector('[data-scan-el="magnifier-label"]'),
-          ...Object.values(dataPointRefs.current),
         ].filter(Boolean),
         { clearProps: "all" }
       );
@@ -212,8 +190,6 @@ export function HeroScanExperience({ sectionId }: { sectionId: string }) {
       const showMagnifier = tier !== "low";
       const showWireframe = showMagnifier;
       const showParticles = tier === "high" && !isMobile;
-      const showMap = tier !== "low";
-      const showConnectors = showMap && !isMobile;
       const showTintNoise = tier !== "low";
 
       const sectionRect = section.getBoundingClientRect();
@@ -453,80 +429,25 @@ export function HeroScanExperience({ sectionId }: { sectionId: string }) {
 
       const sweepEnd = sweepStart + SWEEP;
 
-      // Этап 5 — короткая цифровая карта, поддерживающий момент, а не отдельный акцент
-      if (showMap) {
-        const mapStart = sweepEnd + 0.1;
-        DATA_POINTS.forEach((dp, i) => {
-          const el = dataPointRefs.current[dp.key];
-          if (!el) return;
-          tl.to(el, { opacity: 1, duration: 0.25 }, mapStart + i * 0.06);
-        });
-        if (showConnectors && connectorSvgRef.current) {
-          tl.to(connectorSvgRef.current, { opacity: 1, duration: 0.3 }, mapStart);
-        }
-        // короткое повторное появление bounding box'ов — "разобрано на сущности"
-        targets.forEach(([ref]) => {
-          if (!ref.current) return;
-          tl.to(ref.current, { opacity: 0.5, duration: 0.2 }, mapStart + 0.1).to(
-            ref.current,
-            { opacity: 0, duration: 0.25 },
-            mapStart + 0.4
-          );
-        });
+      // ───────────── Этап 5 — финальный статус и возврат ─────────────
+      const finalAt = sweepEnd + 0.3;
+      if (labelRef.current) labelRef.current.textContent = "Цифровой след сформирован";
+      tl.to(labelRef.current, { opacity: 1, duration: 0.2 }, finalAt).to(labelRef.current, { opacity: 0, duration: 0.25 }, finalAt + 0.8);
 
-        const pulseAt = mapStart + 0.55;
-        DATA_POINTS.forEach((dp) => {
-          const el = dataPointRefs.current[dp.key];
-          if (!el) return;
-          tl.to(el, { scale: 1.22, duration: 0.15 }, pulseAt).to(el, { scale: 1, duration: 0.2 }, pulseAt + 0.15);
-        });
-        if (showConnectors && connectorSvgRef.current) {
-          tl.to(connectorSvgRef.current, { opacity: 0.9, duration: 0.15 }, pulseAt).to(
-            connectorSvgRef.current,
-            { opacity: 0.35, duration: 0.2 },
-            pulseAt + 0.15
-          );
-        }
-
-        // ───────────── Этап 6 — финальный статус и возврат (11.6 – 12.6s) ─────────────
-        const finalAt = pulseAt + 0.45;
-        if (labelRef.current) labelRef.current.textContent = "Цифровой след сформирован";
-        tl.to(labelRef.current, { opacity: 1, duration: 0.2 }, finalAt).to(labelRef.current, { opacity: 0, duration: 0.25 }, finalAt + 0.8);
-
-        const returnStart = finalAt + 0.9;
-        DATA_POINTS.forEach((dp, i) => {
-          const el = dataPointRefs.current[dp.key];
-          if (!el) return;
-          tl.to(el, { opacity: 0, duration: 0.25 }, returnStart + i * 0.04);
-        });
-        if (showConnectors && connectorSvgRef.current) {
-          tl.to(connectorSvgRef.current, { opacity: 0, duration: 0.3 }, returnStart);
-        }
-        [gridV, gridH, gridDots, gridTicks].forEach((layer) => {
-          if (!layer) return;
-          tl.to(layer, { opacity: 0, duration: 0.3 }, returnStart + 0.15);
-        });
-        tl.to(statusRef.current, { opacity: 0, duration: 0.3 }, returnStart + 0.15);
-        if (showTintNoise) {
-          tl.to([tintRef.current, noiseRef.current], { opacity: 0, duration: 0.35 }, returnStart + 0.25);
-        }
-        tl.to(
-          section,
-          { duration: 0.35, onStart: () => { section.style.filter = "saturate(1) contrast(1)"; } },
-          returnStart + 0.3
-        );
-      } else {
-        [gridV, gridH, gridDots, gridTicks].forEach((layer) => {
-          if (!layer) return;
-          tl.to(layer, { opacity: 0, duration: 0.4 }, sweepEnd + 0.3);
-        });
-        tl.to(statusRef.current, { opacity: 0, duration: 0.3 }, sweepEnd + 0.3);
-        tl.to(
-          section,
-          { duration: 0.4, onStart: () => { section.style.filter = "saturate(1) contrast(1)"; } },
-          sweepEnd + 0.5
-        );
+      const returnStart = finalAt + 0.9;
+      [gridV, gridH, gridDots, gridTicks].forEach((layer) => {
+        if (!layer) return;
+        tl.to(layer, { opacity: 0, duration: 0.3 }, returnStart);
+      });
+      tl.to(statusRef.current, { opacity: 0, duration: 0.3 }, returnStart);
+      if (showTintNoise) {
+        tl.to([tintRef.current, noiseRef.current], { opacity: 0, duration: 0.35 }, returnStart + 0.1);
       }
+      tl.to(
+        section,
+        { duration: 0.35, onStart: () => { section.style.filter = "saturate(1) contrast(1)"; } },
+        returnStart + 0.15
+      );
     };
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -574,43 +495,6 @@ export function HeroScanExperience({ sectionId }: { sectionId: string }) {
     <div ref={overlayRootRef} aria-hidden="true" className="pointer-events-none absolute inset-0 z-20 overflow-hidden">
       <ScanOverlay tintRef={tintRef} noiseRef={noiseRef} labelRef={labelRef} statusRef={statusRef} />
       <DigitalGrid ref={gridRef} />
-
-      <svg
-        ref={connectorSvgRef}
-        data-scan-el="connectors"
-        className="absolute inset-0 h-full w-full opacity-0"
-        viewBox="0 0 100 100"
-        preserveAspectRatio="none"
-      >
-        {DATA_POINTS.map((dp, i) => {
-          const next = DATA_POINTS[(i + 1) % DATA_POINTS.length];
-          return (
-            <line
-              key={dp.key}
-              x1={dp.xPercent}
-              y1={dp.yPercent}
-              x2={next.xPercent}
-              y2={next.yPercent}
-              stroke="#00C2FF"
-              strokeOpacity={0.45}
-              strokeWidth={1}
-              vectorEffect="non-scaling-stroke"
-            />
-          );
-        })}
-      </svg>
-
-      {DATA_POINTS.map((dp) => (
-        <DataPoint
-          key={dp.key}
-          ref={(el) => {
-            dataPointRefs.current[dp.key] = el;
-          }}
-          label={dp.label}
-          xPercent={dp.xPercent}
-          yPercent={dp.yPercent}
-        />
-      ))}
 
       <ScanMarkers ref={h1MarkerRef} rect={markerRects.current.h1 ?? { x: 0, y: 0, width: 0, height: 0 }} label="TEXT BLOCK" />
       <ScanMarkers ref={subtitleMarkerRef} rect={markerRects.current.subtitle ?? { x: 0, y: 0, width: 0, height: 0 }} />
