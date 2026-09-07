@@ -323,10 +323,10 @@ export function HeroScanExperience({ sectionId }: { sectionId: string }) {
             tl.to(sweep, { x: "220%", duration: 0.6, ease: "power1.inOut" }, 5.0);
           }
           if (showWireframe && wireframeRef.current) {
-            tl.to(wireframeRef.current, { opacity: 1, duration: 0.3 }, 4.95).to(
+            tl.to(wireframeRef.current, { opacity: 0.8, duration: 0.25 }, 4.95).to(
               wireframeRef.current,
-              { opacity: 0, duration: 0.3 },
-              6.05
+              { opacity: 0, duration: 0.25 },
+              5.55
             );
           }
           flashMarker(tl, visualMarkerRef, 4.95, 0.85);
@@ -357,6 +357,14 @@ export function HeroScanExperience({ sectionId }: { sectionId: string }) {
         const at = sweepStart + fraction * SWEEP;
         const hold = key === "h1" ? 0.7 : key === "subtitle" ? 0.6 : 0.55;
         flashMarker(tl, ref, at, hold);
+        // визуальный блок при проходе линии коротко мигает wireframe'ом (без лупы)
+        if (key === "visual" && showWireframe && wireframeRef.current) {
+          tl.to(wireframeRef.current, { opacity: 0.6, duration: 0.2 }, at).to(
+            wireframeRef.current,
+            { opacity: 0, duration: 0.25 },
+            at + 0.45
+          );
+        }
       });
 
       // baseline guides по строкам H1 — синхронно с реакцией заголовка
@@ -445,7 +453,7 @@ export function HeroScanExperience({ sectionId }: { sectionId: string }) {
 
       const sweepEnd = sweepStart + SWEEP;
 
-      // ───────────── Этап 5 — цифровая карта (10.3 – 11.6s) ─────────────
+      // Этап 5 — короткая цифровая карта, поддерживающий момент, а не отдельный акцент
       if (showMap) {
         const mapStart = sweepEnd + 0.1;
         DATA_POINTS.forEach((dp, i) => {
@@ -461,12 +469,12 @@ export function HeroScanExperience({ sectionId }: { sectionId: string }) {
           if (!ref.current) return;
           tl.to(ref.current, { opacity: 0.5, duration: 0.2 }, mapStart + 0.1).to(
             ref.current,
-            { opacity: 0, duration: 0.3 },
-            mapStart + 0.6
+            { opacity: 0, duration: 0.25 },
+            mapStart + 0.4
           );
         });
 
-        const pulseAt = mapStart + 0.75;
+        const pulseAt = mapStart + 0.55;
         DATA_POINTS.forEach((dp) => {
           const el = dataPointRefs.current[dp.key];
           if (!el) return;
