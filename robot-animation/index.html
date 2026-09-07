@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Idle Unit Hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --bg:#0a0c11;
+    --bg-elevated:#12151c;
+    --panel-border:rgba(255,255,255,.09);
+    --text-primary:#e9edf3;
+    --text-muted:#8b93a3;
+    --accent-cyan:#5fd8ff;
+    --accent-amber:#ffb057;
+    --metal-light:#eef1f5;
+    --metal-mid:#c7ccd3;
+    --metal-dark:#1b1e24;
+    --mono:'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+    --display:'Space Grotesk', ui-sans-serif, sans-serif;
+    --sans:'Inter', ui-sans-serif, sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;}
+  body{
+    background:var(--bg);
+    color:var(--text-primary);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .robot-hero{
+    position:relative;
+    overflow:hidden;
+    background:
+      radial-gradient(340px 220px at 82% 18%, rgba(255,176,87,.14), transparent 70%),
+      radial-gradient(220px 160px at 14% 70%, rgba(95,216,255,.10), transparent 70%),
+      linear-gradient(180deg, #0a0c11 0%, #11141c 55%, #171b25 100%);
+  }
+
+  .bokeh{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(6px);
+    opacity:.55;
+    background:var(--accent-amber);
+    animation:drift 14s ease-in-out infinite;
+  }
+  .bokeh.b2{background:var(--accent-cyan); opacity:.35; animation-duration:18s; animation-delay:-4s;}
+  .bokeh.b3{background:var(--accent-amber); opacity:.4; animation-duration:11s; animation-delay:-7s;}
+  .bokeh.b4{background:var(--accent-cyan); opacity:.28; animation-duration:16s; animation-delay:-2s;}
+
+  @keyframes drift{
+    0%,100%{ transform:translate(0,0); }
+    50%{ transform:translate(14px,-18px); }
+  }
+
+  .scanlines{
+    position:absolute; inset:0;
+    background:repeating-linear-gradient(180deg, rgba(255,255,255,.025) 0px, rgba(255,255,255,.025) 1px, transparent 1px, transparent 3px);
+    mix-blend-mode:overlay;
+    pointer-events:none;
+  }
+
+  .hero{
+    position:relative;
+    max-width:1180px;
+    margin:0 auto;
+    padding:6.5rem 2.5rem 5rem;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:3rem;
+    align-items:center;
+  }
+
+  .copy{ max-width:36rem; }
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:.72rem;
+    letter-spacing:.14em;
+    color:var(--accent-cyan);
+    display:flex;
+    align-items:center;
+    gap:.55rem;
+    margin:0 0 1.3rem;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px; height:7px;
+    border-radius:50%;
+    background:var(--accent-cyan);
+    box-shadow:0 0 8px 1px var(--accent-cyan);
+    animation:pip 2.2s ease-in-out infinite;
+  }
+  @keyframes pip{ 0%,100%{opacity:1;} 50%{opacity:.35;} }
+
+  h1{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:clamp(2.1rem, 3.2vw + 1rem, 3.1rem);
+    line-height:1.08;
+    letter-spacing:-.01em;
+    margin:0 0 1.1rem;
+    text-wrap:balance;
+  }
+  h1 span{ color:var(--accent-cyan); }
+
+  .lede{
+    font-size:1.02rem;
+    line-height:1.65;
+    color:var(--text-muted);
+    margin:0 0 2rem;
+    max-width:32rem;
+  }
+
+  .actions{ display:flex; gap:.9rem; flex-wrap:wrap; }
+
+  .btn{
+    font-family:var(--sans);
+    font-weight:600;
+    font-size:.92rem;
+    padding:.85rem 1.4rem;
+    border-radius:9px;
+    border:1px solid transparent;
+    cursor:pointer;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+  }
+  .btn-primary{
+    background:var(--accent-cyan);
+    color:#04141c;
+  }
+  .btn-primary:hover{ background:#7fe1ff; }
+  .btn-ghost{
+    background:transparent;
+    border-color:var(--panel-border);
+    color:var(--text-primary);
+  }
+  .btn-ghost:hover{ border-color:rgba(255,255,255,.22); }
+
+  .stat-row{
+    display:flex;
+    gap:1.6rem;
+    margin-top:2.6rem;
+    padding-top:1.6rem;
+    border-top:1px solid var(--panel-border);
+    font-family:var(--mono);
+  }
+  .stat-row div{ display:flex; flex-direction:column; gap:.3rem; }
+  .stat-row .n{ font-size:1.15rem; color:var(--text-primary); font-variant-numeric:tabular-nums; }
+  .stat-row .l{ font-size:.68rem; letter-spacing:.08em; color:var(--text-muted); }
+
+  .stage{
+    position:relative;
+    display:flex;
+    justify-content:center;
+  }
+
+  .robot-svg{ width:min(100%, 320px); height:auto; overflow:visible; }
+
+  #shadow{ animation:shadowPulse 4.4s ease-in-out infinite; transform-box:fill-box; transform-origin:center; }
+  #robotRig{ animation:floatY 4.4s ease-in-out infinite; }
+  .body-sway{ animation:sway 4.4s ease-in-out infinite; transform-box:view-box; transform-origin:150px 300px; }
+  .head-look{ animation:headLook 7.5s ease-in-out infinite; transform-box:view-box; transform-origin:150px 150px; }
+  .eye{ animation:blink 5s ease-in-out infinite; transform-box:fill-box; transform-origin:center; }
+  .eye-r{ animation-delay:.06s; }
+  .arm-left{ animation:armSwingL 4.4s ease-in-out infinite; transform-box:view-box; transform-origin:88px 185px; }
+  .arm-right{ animation:armSwingR 4.4s ease-in-out infinite; transform-box:view-box; transform-origin:212px 185px; }
+  .chest-core{ animation:pulse 2.6s ease-in-out infinite; transform-box:fill-box; transform-origin:center; }
+  .crown-light{ animation:pulse 2.6s ease-in-out infinite; animation-delay:.4s; transform-box:fill-box; transform-origin:center; }
+  .ear-light-l{ animation:blinkDim 3.2s steps(1) infinite; }
+  .ear-light-r{ animation:blinkDim 3.2s steps(1) infinite; animation-delay:1.6s; }
+  .hand-light-l{ animation:blinkDim 2.4s steps(1) infinite; animation-delay:.3s; }
+  .hand-light-r{ animation:blinkDim 2.4s steps(1) infinite; animation-delay:1.1s; }
+
+  @keyframes floatY{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-11px); } }
+  @keyframes shadowPulse{ 0%,100%{ transform:scaleX(1); opacity:.38; } 50%{ transform:scaleX(.84); opacity:.22; } }
+  @keyframes sway{ 0%,100%{ transform:rotate(-1.1deg); } 50%{ transform:rotate(1.1deg); } }
+  @keyframes headLook{
+    0%, 18%{ transform:rotate(0deg); }
+    32%, 46%{ transform:rotate(-7deg); }
+    62%, 76%{ transform:rotate(6deg); }
+    92%, 100%{ transform:rotate(0deg); }
+  }
+  @keyframes blink{ 0%, 92%, 100%{ transform:scaleY(1); } 95%{ transform:scaleY(.12); } }
+  @keyframes armSwingL{ 0%,100%{ transform:rotate(-4deg); } 50%{ transform:rotate(3deg); } }
+  @keyframes armSwingR{ 0%,100%{ transform:rotate(4deg); } 50%{ transform:rotate(-3deg); } }
+  @keyframes pulse{ 0%,100%{ opacity:.5; } 50%{ opacity:1; } }
+  @keyframes blinkDim{ 0%, 40%{ opacity:.25; } 45%, 55%{ opacity:1; } 60%,100%{ opacity:.25; } }
+
+  .tag{
+    position:absolute;
+    font-family:var(--mono);
+    font-size:.66rem;
+    letter-spacing:.05em;
+    color:var(--text-muted);
+    background:rgba(18,21,28,.72);
+    border:1px solid var(--panel-border);
+    padding:.32rem .55rem;
+    border-radius:5px;
+    backdrop-filter:blur(3px);
+    white-space:nowrap;
+  }
+  .tag b{ color:var(--accent-cyan); font-weight:500; }
+  .tag-1{ top:8%; left:-2%; }
+  .tag-2{ top:46%; right:-6%; }
+  .tag-3{ bottom:10%; left:2%; }
+
+  @media (max-width: 860px){
+    .hero{ grid-template-columns:1fr; padding:4rem 1.5rem 3rem; }
+    .stage{ order:-1; }
+    .tag{ display:none; }
+  }
+
+  .panel-section{
+    position:relative;
+    background:var(--bg-elevated);
+    border-top:1px solid var(--panel-border);
+  }
+  .panel{
+    max-width:1180px;
+    margin:0 auto;
+    padding:3.4rem 2.5rem 4.2rem;
+  }
+  .panel h2{
+    font-family:var(--display);
+    font-size:1.3rem;
+    font-weight:600;
+    margin:0 0 .5rem;
+  }
+  .panel p.sub{
+    color:var(--text-muted);
+    font-size:.92rem;
+    margin:0 0 1.6rem;
+    max-width:38rem;
+    line-height:1.6;
+  }
+  pre.code{
+    font-family:var(--mono);
+    font-size:.82rem;
+    line-height:1.7;
+    color:#c9e8f5;
+    background:#0d1016;
+    border:1px solid var(--panel-border);
+    border-radius:10px;
+    padding:1.2rem 1.4rem;
+    overflow-x:auto;
+    max-width:52rem;
+  }
+  pre.code .c1{ color:var(--text-muted); }
+  pre.code .c2{ color:var(--accent-amber); }
+
+  @media (prefers-reduced-motion: reduce){
+    #shadow, #robotRig, .body-sway, .head-look, .eye, .arm-left, .arm-right,
+    .chest-core, .crown-light, .ear-light-l, .ear-light-r, .hand-light-l, .hand-light-r, .bokeh, .eyebrow::before{
+      animation-play-state:paused;
+    }
+  }
+</style>
+</head>
+<body>
+
+<section class="robot-hero">
+  <div class="bokeh b1" style="width:70px;height:70px;top:14%;left:8%;"></div>
+  <div class="bokeh b2" style="width:110px;height:110px;top:8%;left:62%;"></div>
+  <div class="bokeh b3" style="width:46px;height:46px;top:60%;left:22%;"></div>
+  <div class="bokeh b4" style="width:90px;height:90px;top:64%;left:78%;"></div>
+  <div class="scanlines"></div>
+
+  <div class="hero">
+    <div class="copy">
+      <p class="eyebrow">ЮНИТ&nbsp;07 &middot; РЕЖИМ ОЖИДАНИЯ</p>
+      <h1>Робот-герой, который <span>дышит</span>, пока никто не кликает.</h1>
+      <p class="lede">Анимация на чистом CSS и SVG: плавное покачивание, взгляд по сторонам, моргание оптики, пульс ядра в груди. Без видео и canvas — около 6&nbsp;КБ разметки. Вставляется в любой hero-блок сайта.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#embed">Скопировать код</a>
+        <a class="btn btn-ghost" href="#embed">Как это устроено</a>
+      </div>
+      <div class="stat-row">
+        <div><span class="n">0</span><span class="l">ЗАВИСИМОСТЕЙ</span></div>
+        <div><span class="n">~6КБ</span><span class="l">РАЗМЕТКА + CSS</span></div>
+        <div><span class="n">60fps</span><span class="l">GPU-ТРАНСФОРМЫ</span></div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <span class="tag tag-1">ОПТИКА <b>АКТИВНА</b></span>
+      <span class="tag tag-2">ЯДРО <b>НОРМА</b></span>
+      <span class="tag tag-3">ЗАРЯД <b>98%</b></span>
+
+      <svg class="robot-svg" viewBox="0 0 300 440" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="metalLight" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#f5f7fa"/>
+            <stop offset="1" stop-color="#c7ccd3"/>
+          </linearGradient>
+          <linearGradient id="metalDark" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#262a33"/>
+            <stop offset="1" stop-color="#15171d"/>
+          </linearGradient>
+          <filter id="glow" x="-120%" y="-120%" width="340%" height="340%">
+            <feGaussianBlur stdDeviation="3.2" result="b"/>
+            <feMerge>
+              <feMergeNode in="b"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+          <filter id="softBlur" x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur stdDeviation="5"/>
+          </filter>
+        </defs>
+
+        <ellipse id="shadow" cx="150" cy="428" rx="82" ry="11" fill="#000" filter="url(#softBlur)"/>
+
+        <g id="robotRig">
+          <g class="body-sway">
+
+            <circle cx="125" cy="300" r="15" fill="url(#metalDark)"/>
+            <circle cx="175" cy="300" r="15" fill="url(#metalDark)"/>
+            <rect x="112" y="298" width="26" height="58" rx="13" fill="url(#metalLight)"/>
+            <rect x="162" y="298" width="26" height="58" rx="13" fill="url(#metalLight)"/>
+            <circle cx="125" cy="356" r="13" fill="url(#metalDark)"/>
+            <circle cx="175" cy="356" r="13" fill="url(#metalDark)"/>
+            <rect x="112" y="354" width="26" height="52" rx="13" fill="url(#metalLight)"/>
+            <rect x="162" y="354" width="26" height="52" rx="13" fill="url(#metalLight)"/>
+            <rect x="103" y="404" width="42" height="17" rx="8" fill="url(#metalDark)"/>
+            <rect x="155" y="404" width="42" height="17" rx="8" fill="url(#metalDark)"/>
+
+            <rect x="95" y="164" width="110" height="130" rx="36" fill="url(#metalLight)"/>
+            <rect x="106" y="174" width="88" height="52" rx="18" fill="#dde2e8"/>
+            <rect x="101" y="228" width="98" height="54" rx="22" fill="#d3d8de"/>
+            <circle class="chest-core" cx="150" cy="201" r="10" fill="#5fd8ff" filter="url(#glow)"/>
+            <circle cx="150" cy="201" r="13" fill="none" stroke="#1b1e24" stroke-width="3"/>
+
+            <circle cx="88" cy="184" r="19" fill="url(#metalDark)"/>
+            <circle cx="212" cy="184" r="19" fill="url(#metalDark)"/>
+
+            <g class="arm-left">
+              <rect x="72" y="182" width="32" height="60" rx="16" fill="url(#metalLight)"/>
+              <circle cx="88" cy="244" r="12" fill="url(#metalDark)"/>
+              <rect x="74" y="242" width="28" height="52" rx="14" fill="url(#metalLight)"/>
+              <rect x="70" y="292" width="36" height="21" rx="10" fill="url(#metalDark)"/>
+              <circle class="hand-light-l" cx="88" cy="302" r="3.4" fill="#ffb057" filter="url(#glow)"/>
+            </g>
+
+            <g class="arm-right">
+              <rect x="196" y="182" width="32" height="60" rx="16" fill="url(#metalLight)"/>
+              <circle cx="212" cy="244" r="12" fill="url(#metalDark)"/>
+              <rect x="198" y="242" width="28" height="52" rx="14" fill="url(#metalLight)"/>
+              <rect x="194" y="292" width="36" height="21" rx="10" fill="url(#metalDark)"/>
+              <circle class="hand-light-r" cx="212" cy="302" r="3.4" fill="#ffb057" filter="url(#glow)"/>
+            </g>
+
+            <rect x="138" y="138" width="24" height="28" rx="8" fill="url(#metalDark)"/>
+
+            <g class="head-look">
+              <rect x="148" y="42" width="4" height="11" fill="#1b1e24"/>
+              <circle class="crown-light" cx="150" cy="40" r="4.5" fill="#5fd8ff" filter="url(#glow)"/>
+
+              <ellipse cx="150" cy="95" rx="51" ry="55" fill="url(#metalLight)"/>
+              <rect x="113" y="123" width="74" height="26" rx="13" fill="#dde2e8"/>
+
+              <circle cx="90" cy="100" r="18" fill="url(#metalDark)"/>
+              <circle class="ear-light-l" cx="90" cy="100" r="5" fill="#ffb057" filter="url(#glow)"/>
+              <circle cx="210" cy="100" r="18" fill="url(#metalDark)"/>
+              <circle class="ear-light-r" cx="210" cy="100" r="5" fill="#ffb057" filter="url(#glow)"/>
+
+              <g class="eye eye-l">
+                <circle cx="125" cy="92" r="12" fill="#1b1e24"/>
+                <circle cx="125" cy="92" r="6.5" fill="#5fd8ff" filter="url(#glow)"/>
+              </g>
+              <g class="eye eye-r">
+                <circle cx="175" cy="92" r="12" fill="#1b1e24"/>
+                <circle cx="175" cy="92" r="6.5" fill="#5fd8ff" filter="url(#glow)"/>
+              </g>
+
+              <rect x="137" y="117" width="26" height="4" rx="2" fill="#1b1e24"/>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="panel-section" id="embed">
+  <div class="panel">
+    <h2>Как встроить</h2>
+    <p class="sub">Скопируйте блок <code>&lt;section class="robot-hero"&gt;</code> целиком вместе со стилями из <code>&lt;style&gt;</code> выше — всё инлайновое, без сборки и внешних скриптов, поэтому вставляется в любую страницу. Чтобы перекрасить, поменяйте CSS-переменные в начале файла (<code>--accent-cyan</code>, <code>--accent-amber</code> и т.д.).</p>
+    <pre class="code"><span class="c1">&lt;!-- robot-animation/index.html --&gt;</span>
+<span class="c2">&lt;section</span> class="robot-hero"<span class="c2">&gt;</span>
+  ... svg + разметка, без зависимостей ...
+<span class="c2">&lt;/section&gt;</span></pre>
+  </div>
+</div>
+
+</body>
+</html>
