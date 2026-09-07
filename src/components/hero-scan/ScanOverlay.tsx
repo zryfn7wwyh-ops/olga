@@ -6,14 +6,16 @@ interface ScanOverlayProps {
   tintRef: RefObject<HTMLDivElement>;
   noiseRef: RefObject<HTMLDivElement>;
   labelRef: RefObject<HTMLDivElement>;
+  statusRef: RefObject<HTMLDivElement>;
 }
 
 /**
- * Слой активации: холодный тонкий tint, технический grain и короткая
- * центральная подпись «ЦИФРОВОЙ СЛЕД». Все прозрачности анимируются
- * снаружи через GSAP на переданных ref.
+ * Слой активации: холодный тонкий tint, технический grain, короткая
+ * центральная подпись «ЦИФРОВОЙ СЛЕД» и маленький статус в углу
+ * («SCAN MODE»), который держится почти всю сцену. Все прозрачности
+ * анимируются снаружи через GSAP на переданных ref.
  */
-export function ScanOverlay({ tintRef, noiseRef, labelRef }: ScanOverlayProps) {
+export function ScanOverlay({ tintRef, noiseRef, labelRef, statusRef }: ScanOverlayProps) {
   return (
     <>
       <div
@@ -41,6 +43,13 @@ export function ScanOverlay({ tintRef, noiseRef, labelRef }: ScanOverlayProps) {
         className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-lg border border-[#00C2FF]/40 bg-[#102A43]/75 px-4 py-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-white opacity-0 backdrop-blur-sm"
       >
         Цифровой след
+      </div>
+      <div
+        ref={statusRef}
+        aria-hidden="true"
+        className="pointer-events-none absolute right-3 top-3 whitespace-nowrap rounded border border-[#00C2FF]/35 bg-[#102A43]/70 px-2 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#7DE3FF] opacity-0 backdrop-blur-sm"
+      >
+        Scan mode
       </div>
     </>
   );

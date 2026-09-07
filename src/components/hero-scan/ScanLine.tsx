@@ -17,6 +17,16 @@ export const ScanLine = forwardRef<HTMLDivElement>(function ScanLine(_props, ref
       style={{ willChange: "transform, opacity" }}
     >
       <div className="relative -translate-y-1/2">
+        {/* мягкая широкая волна позади линии — "цифровой след" */}
+        <div
+          data-scan-el="line-wave"
+          className="absolute inset-x-0 -translate-y-1/2"
+          style={{
+            height: 130,
+            background: "linear-gradient(to bottom, transparent, rgba(0,194,255,0.08), rgba(0,194,255,0.03), transparent)",
+            filter: "blur(6px)",
+          }}
+        />
         {/* glow */}
         <div
           className="absolute inset-x-0 -translate-y-1/2"
@@ -42,6 +52,15 @@ export const ScanLine = forwardRef<HTMLDivElement>(function ScanLine(_props, ref
             height: 2,
             background: "linear-gradient(90deg, transparent, #7DE3FF 15%, #ffffff 50%, #7DE3FF 85%, transparent)",
             boxShadow: "0 0 10px 2px rgba(0,194,255,0.85)",
+          }}
+        />
+        {/* короткий trail снизу */}
+        <div
+          className="absolute inset-x-0 -translate-y-1/2"
+          style={{
+            top: 3,
+            height: 22,
+            background: "linear-gradient(to bottom, rgba(125,227,255,0.22), transparent)",
           }}
         />
       </div>
