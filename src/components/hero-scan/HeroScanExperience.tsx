@@ -10,8 +10,6 @@ import { ScanMarkers } from "./ScanMarkers";
 import { DataPoint } from "./DataPoint";
 import { ScanParticles } from "./ScanParticles";
 
-const SESSION_KEY = "heroScanPlayed";
-
 const DATA_POINTS = [
   { key: "site", label: "SITE", xPercent: 8, yPercent: 8 },
   { key: "form", label: "FORM", xPercent: 92, yPercent: 14 },
@@ -129,21 +127,12 @@ export function HeroScanExperience({ sectionId }: { sectionId: string }) {
       if (!gridRef.current) return;
       timeline = gsap.timeline({
         onComplete: () => {
-          markPlayed();
           cleanupInlineState();
         },
       });
       timeline
         .to(gridRef.current, { opacity: 0.12, duration: 0.15 })
         .to(gridRef.current, { opacity: 0, duration: 0.15 }, "+=0.3");
-    };
-
-    const markPlayed = () => {
-      try {
-        sessionStorage.setItem(SESSION_KEY, "true");
-      } catch {
-        // sessionStorage может быть недоступен (приватный режим) — не критично
-      }
     };
 
     const flashMarker = (
@@ -197,7 +186,6 @@ export function HeroScanExperience({ sectionId }: { sectionId: string }) {
         defaults: { ease: "power1.inOut" },
         timeScale,
         onComplete: () => {
-          markPlayed();
           cleanupInlineState();
         },
       });
@@ -328,14 +316,6 @@ export function HeroScanExperience({ sectionId }: { sectionId: string }) {
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    let played = false;
-    try {
-      played = sessionStorage.getItem(SESSION_KEY) === "true";
-    } catch {
-      played = false;
-    }
-    if (played) return;
-
     const timer = window.setTimeout(() => {
       if (cancelled) return;
 
@@ -343,7 +323,6 @@ export function HeroScanExperience({ sectionId }: { sectionId: string }) {
       const rect = section.getBoundingClientRect();
       const visibleRatio = Math.max(0, Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0)) / rect.height;
       if (visibleRatio < 0.3) {
-        markPlayed();
         return;
       }
 
@@ -357,7 +336,6 @@ export function HeroScanExperience({ sectionId }: { sectionId: string }) {
         ([entry]) => {
           if (entry.intersectionRatio < 0.3) {
             abort();
-            markPlayed();
             observer?.disconnect();
           }
         },
