@@ -1,10 +1,18 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { landingContent } from "@/content/landing";
 import { trackEvent } from "@/lib/analytics/events";
 import { DigitalFootprintVisual } from "@/components/ui/DigitalFootprintVisual";
 import { StaticRobot } from "@/components/robot/StaticRobot";
+
+// GSAP не должен попадать в критический путь рендера Hero — подгружаем
+// сцену сканирования лениво и только на клиенте.
+const HeroScanExperience = dynamic(
+  () => import("@/components/hero-scan/HeroScanExperience").then((mod) => mod.HeroScanExperience),
+  { ssr: false }
+);
 
 export function HeroSection() {
   const { sectionId, title, description, ctaLabel, ctaNote } = landingContent.hero;
@@ -30,10 +38,13 @@ export function HeroSection() {
 
       <div className="mx-auto grid max-w-container items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
         <div className="flex flex-col gap-6 animate-fade-in-up">
-          <h1 className="font-heading text-3xl font-semibold leading-tight tracking-tight text-navy sm:text-4xl lg:text-[46px]">
+          <h1
+            data-hero-scan="h1"
+            className="font-heading text-3xl font-semibold leading-tight tracking-tight text-navy sm:text-4xl lg:text-[46px]"
+          >
             {title}
           </h1>
-          <div className="glass flex flex-col gap-4 rounded-card p-5">
+          <div data-hero-scan="subtitle" className="glass flex flex-col gap-4 rounded-card p-5">
             {description.map((paragraph) => (
               <p key={paragraph} className="text-lg font-medium leading-relaxed text-text-secondary sm:text-xl">
                 {paragraph}
@@ -43,6 +54,7 @@ export function HeroSection() {
           <div className="flex flex-col gap-3">
             <Link
               href="#report"
+              data-hero-scan="cta"
               onClick={() => trackEvent("hero_cta_click")}
               className="focus-ring inline-flex h-[52px] w-full items-center justify-center rounded-button bg-primary px-7 text-base font-bold text-white transition-colors hover:bg-primary-hover sm:w-fit"
             >
@@ -52,10 +64,12 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="flex justify-center lg:justify-end">
+        <div data-hero-scan="visual" className="flex justify-center lg:justify-end">
           <DigitalFootprintVisual />
         </div>
       </div>
+
+      <HeroScanExperience sectionId={sectionId} />
     </section>
   );
 }
