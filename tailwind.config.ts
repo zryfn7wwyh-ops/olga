@@ -48,9 +48,13 @@ const config: Config = {
           "90%": { opacity: "1" },
           "100%": { transform: "translateY(100%)", opacity: "0" },
         },
+        // Анимирует масштаб через CSS-переменные Tailwind (--tw-scale-*), а не
+        // напрямую transform: scale(...) — иначе на элементах, у которых уже есть
+        // статичный -translate-x/y-1/2 для центрирования, анимация после завершения
+        // (fill-mode "both") полностью перезаписывала бы transform и сбрасывала центрирование.
         "node-in": {
-          from: { opacity: "0", transform: "scale(0.6)" },
-          to: { opacity: "1", transform: "scale(1)" },
+          from: { opacity: "0", "--tw-scale-x": "0.6", "--tw-scale-y": "0.6" },
+          to: { opacity: "1", "--tw-scale-x": "1", "--tw-scale-y": "1" },
         },
         "float-toward": {
           "0%, 100%": { transform: "translateY(0px) scale(1)" },

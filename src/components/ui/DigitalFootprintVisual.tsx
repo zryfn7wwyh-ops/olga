@@ -72,18 +72,19 @@ export function DigitalFootprintVisual() {
         const Icon = ICONS[i];
         const label = nodes[i];
         return (
+          // Обёртка по размеру строго равна кружку-иконке (подпись вынесена в absolute
+          // и не участвует в расчёте её box) — иначе -translate-y-1/2 центрировал бы
+          // кружок+подпись целиком, и кружки с длинной (многострочной) подписью
+          // съезжали бы с окружности сильнее, чем с короткой.
           <div
             key={label}
-            className="absolute flex -translate-x-1/2 -translate-y-1/2 animate-node-in flex-col items-center gap-1.5"
+            className="absolute -translate-x-1/2 -translate-y-1/2 animate-node-in"
             style={{ left: `${pos.x}%`, top: `${pos.y}%`, animationDelay: `${0.3 + i * 0.08}s` }}
           >
-            <div
-              className="glass flex h-11 w-11 animate-float-toward items-center justify-center rounded-full bg-gradient-to-br from-primary/20 via-white/40 to-transparent sm:h-12 sm:w-12"
-              style={{ animationDelay: `${i * 0.4}s` }}
-            >
+            <div className="glass flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 via-white/40 to-transparent sm:h-12 sm:w-12">
               <Icon className="h-5 w-5 text-primary" aria-hidden="true" />
             </div>
-            <span className="w-20 text-center text-xs font-extrabold leading-tight text-navy sm:text-sm">
+            <span className="absolute left-1/2 top-full mt-1.5 w-20 -translate-x-1/2 text-center text-xs font-extrabold leading-tight text-navy sm:text-sm">
               {label}
             </span>
           </div>
