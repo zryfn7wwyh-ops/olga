@@ -186,7 +186,7 @@ export function HeroScanExperience({ sectionId }: { sectionId: string }) {
 
     const runFullScene = (tier: Tier) => {
       const isMobile = window.innerWidth < 768;
-      const timeScale = isMobile ? 0.85 : 1;
+      const timeScale = isMobile ? 0.68 : 0.8;
       const showMagnifier = tier !== "low";
       const showWireframe = showMagnifier;
       const showParticles = tier === "high" && !isMobile;
@@ -316,7 +316,7 @@ export function HeroScanExperience({ sectionId }: { sectionId: string }) {
 
       // ───────────── Этап 4 — основной проход scan-line (6.3 – 10.3s) ─────────────
       const sweepStart = 6.3;
-      const SWEEP = 4.0;
+      const SWEEP = 5.5;
       tl.fromTo(
         scanLineRef.current,
         { y: -20, opacity: 0 },
