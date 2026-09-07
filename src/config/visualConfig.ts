@@ -3,5 +3,5 @@
  * Позволяет быстро отключить статичного робота без правок компонентов.
  */
 export const visualConfig = {
-  showRobot: true,
+  showRobot: false,
 };
