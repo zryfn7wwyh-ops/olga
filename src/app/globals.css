@@ -95,3 +95,79 @@ body {
   filter: blur(64px);
   pointer-events: none;
 }
+
+/* ---------- Logo mark animation (brand-preview) ---------- */
+/* Per-instance timing (duration/delay/direction) comes from inline style;
+   these classes only own the keyframe binding so prefers-reduced-motion
+   (handled globally above) silences every one of them the same way. */
+@keyframes logo-orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes logo-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.12);
+  }
+}
+@keyframes logo-twinkle {
+  0%,
+  100% {
+    opacity: var(--base-opacity, 1);
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+@keyframes logo-facet-shimmer {
+  0%,
+  100% {
+    opacity: var(--base-opacity, 1);
+  }
+  50% {
+    opacity: min(1, calc(var(--base-opacity, 1) + 0.35));
+  }
+}
+@keyframes logo-glow-breathe {
+  0%,
+  100% {
+    opacity: var(--base-opacity, 0.2);
+  }
+  50% {
+    opacity: calc(var(--base-opacity, 0.2) * 1.8);
+  }
+}
+
+.logo-anim-spin,
+.logo-anim-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.logo-anim-spin {
+  animation-name: logo-orbit-spin;
+}
+.logo-anim-pulse {
+  animation-name: logo-pulse;
+  animation-timing-function: ease-in-out;
+}
+.logo-anim-twinkle {
+  animation-name: logo-twinkle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+.logo-anim-shimmer {
+  animation-name: logo-facet-shimmer;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+.logo-anim-glow {
+  animation-name: logo-glow-breathe;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}

@@ -334,14 +334,29 @@ function ConceptI({ c, simplified, coreFill }: ConceptProps) {
             opacity={0.5}
             strokeDasharray="20 52"
             strokeLinecap="round"
-            transform="rotate(-30 16 16)"
+            className="logo-anim-spin"
+            style={{ animationDuration: "9s", animationDelay: "-1.5s" }}
           />
         </g>
         <g id="Node01">
-          <circle cx={16} cy={16} r={3.4} fill={coreFill} />
+          <circle
+            cx={16}
+            cy={16}
+            r={3.4}
+            fill={coreFill}
+            className="logo-anim-pulse"
+            style={{ animationDuration: "2.6s" }}
+          />
         </g>
         <g id="Node02">
-          <circle cx={27} cy={9} r={2.4} fill={c.accent} />
+          <circle
+            cx={27}
+            cy={9}
+            r={2.4}
+            fill={c.accent}
+            className="logo-anim-twinkle"
+            style={{ ["--base-opacity" as string]: 1, animationDuration: "2.2s" }}
+          />
         </g>
       </>
     );
@@ -357,7 +372,8 @@ function ConceptI({ c, simplified, coreFill }: ConceptProps) {
           strokeWidth={1}
           opacity={0.4}
           strokeDasharray="24 58"
-          transform="rotate(-35 16 16)"
+          className="logo-anim-spin"
+          style={{ animationDuration: "11s", animationDelay: "-1s" }}
         />
         <circle
           cx={16}
@@ -367,7 +383,8 @@ function ConceptI({ c, simplified, coreFill }: ConceptProps) {
           strokeWidth={1.1}
           opacity={0.48}
           strokeDasharray="25 35"
-          transform="rotate(95 16 16)"
+          className="logo-anim-spin"
+          style={{ animationDuration: "15s", animationDirection: "reverse", animationDelay: "-4s" }}
         />
         <circle
           cx={16}
@@ -377,22 +394,58 @@ function ConceptI({ c, simplified, coreFill }: ConceptProps) {
           strokeWidth={1.2}
           opacity={0.55}
           strokeDasharray="20 20"
-          transform="rotate(205 16 16)"
+          className="logo-anim-spin"
+          style={{ animationDuration: "7.5s", animationDelay: "-2.5s" }}
         />
       </g>
       <g id="Node01">
-        <circle cx={16} cy={16} r={4.2} fill={c.glow} opacity={0.16} />
-        <circle cx={16} cy={16} r={2.7} fill={coreFill} />
+        <circle
+          cx={16}
+          cy={16}
+          r={4.2}
+          fill={c.glow}
+          className="logo-anim-glow"
+          style={{ ["--base-opacity" as string]: 0.16, animationDuration: "2.6s" }}
+        />
+        <circle
+          cx={16}
+          cy={16}
+          r={2.7}
+          fill={coreFill}
+          className="logo-anim-pulse"
+          style={{ animationDuration: "2.6s" }}
+        />
       </g>
       <g id="Node02">
-        <circle cx={27.3} cy={9.4} r={3.2} fill={c.glow} opacity={0.2} />
+        <circle
+          cx={27.3}
+          cy={9.4}
+          r={3.2}
+          fill={c.glow}
+          className="logo-anim-glow"
+          style={{ ["--base-opacity" as string]: 0.2, animationDuration: "3s", animationDelay: "-0.6s" }}
+        />
         <circle cx={27.3} cy={9.4} r={1.7} fill={c.accent} />
       </g>
       <g id="Node03">
-        <circle cx={5.6} cy={22.6} r={1.4} fill={c.geometry} opacity={0.85} />
+        <circle
+          cx={5.6}
+          cy={22.6}
+          r={1.4}
+          fill={c.geometry}
+          className="logo-anim-twinkle"
+          style={{ ["--base-opacity" as string]: 0.85, animationDuration: "3.4s", animationDelay: "-1.2s" }}
+        />
       </g>
       <g id="Node04">
-        <circle cx={21.6} cy={26} r={1.1} fill={c.geometry} opacity={0.6} />
+        <circle
+          cx={21.6}
+          cy={26}
+          r={1.1}
+          fill={c.geometry}
+          className="logo-anim-twinkle"
+          style={{ ["--base-opacity" as string]: 0.6, animationDuration: "2.8s", animationDelay: "-2s" }}
+        />
       </g>
     </>
   );
@@ -416,7 +469,14 @@ function ConceptJ({ c, simplified, coreFill }: ConceptProps) {
           <polygon points="16,6 24.5,11 24.5,21 16,26 7.5,21 7.5,11" fill={coreFill} />
         </g>
         <g id="Node01">
-          <circle cx={27} cy={9} r={2.3} fill={c.accent} />
+          <circle
+            cx={27}
+            cy={9}
+            r={2.3}
+            fill={c.accent}
+            className="logo-anim-pulse"
+            style={{ animationDuration: "2.4s" }}
+          />
         </g>
       </>
     );
@@ -425,7 +485,14 @@ function ConceptJ({ c, simplified, coreFill }: ConceptProps) {
     <>
       <g id="CoreShape">
         {facets.map((f, i) => (
-          <polygon key={i} points={f.p} fill={c.geometry} opacity={f.o} />
+          <polygon
+            key={i}
+            points={f.p}
+            fill={c.geometry}
+            opacity={f.o}
+            className="logo-anim-shimmer"
+            style={{ ["--base-opacity" as string]: f.o, animationDuration: "3.2s", animationDelay: `${i * -0.5}s` }}
+          />
         ))}
         <polygon
           points="16,7 23.79,11.5 23.79,20.5 16,25 8.21,20.5 8.21,11.5"
@@ -441,14 +508,42 @@ function ConceptJ({ c, simplified, coreFill }: ConceptProps) {
         <path d="M8.21 20.5L4.7 22.6" opacity={0.5} />
       </g>
       <g id="Node01">
-        <circle cx={16} cy={2.4} r={1.5} fill={c.geometry} />
+        <circle
+          cx={16}
+          cy={2.4}
+          r={1.5}
+          fill={c.geometry}
+          className="logo-anim-twinkle"
+          style={{ ["--base-opacity" as string]: 1, animationDuration: "2.4s" }}
+        />
       </g>
       <g id="Node02">
-        <circle cx={28.6} cy={23.4} r={3.1} fill={c.glow} opacity={0.2} />
-        <circle cx={28.6} cy={23.4} r={1.7} fill={c.accent} />
+        <circle
+          cx={28.6}
+          cy={23.4}
+          r={3.1}
+          fill={c.glow}
+          className="logo-anim-glow"
+          style={{ ["--base-opacity" as string]: 0.2, animationDuration: "2.8s" }}
+        />
+        <circle
+          cx={28.6}
+          cy={23.4}
+          r={1.7}
+          fill={c.accent}
+          className="logo-anim-pulse"
+          style={{ animationDuration: "2.8s" }}
+        />
       </g>
       <g id="Node03">
-        <circle cx={3.4} cy={23.4} r={1.2} fill={c.geometry} opacity={0.7} />
+        <circle
+          cx={3.4}
+          cy={23.4}
+          r={1.2}
+          fill={c.geometry}
+          className="logo-anim-twinkle"
+          style={{ ["--base-opacity" as string]: 0.7, animationDuration: "3.6s", animationDelay: "-1.5s" }}
+        />
       </g>
     </>
   );
@@ -465,14 +560,35 @@ function ConceptK({ c, simplified, coreFill }: ConceptProps) {
           <path d="M14 18L25 8" opacity={0.9} />
         </g>
         <g id="Node01">
-          <circle cx={6} cy={9} r={1.8} fill={c.geometry} opacity={0.7} />
+          <circle
+            cx={6}
+            cy={9}
+            r={1.8}
+            fill={c.geometry}
+            className="logo-anim-twinkle"
+            style={{ ["--base-opacity" as string]: 0.7, animationDuration: "2.6s" }}
+          />
         </g>
         <g id="Node02">
-          <circle cx={14} cy={18} r={3.4} fill={coreFill} />
+          <circle
+            cx={14}
+            cy={18}
+            r={3.4}
+            fill={coreFill}
+            className="logo-anim-pulse"
+            style={{ animationDuration: "2.4s" }}
+          />
         </g>
         <g id="Node03">
           <circle cx={25} cy={8} r={3.6} fill={c.glow} opacity={0.22} />
-          <circle cx={25} cy={8} r={2} fill={c.accent} />
+          <circle
+            cx={25}
+            cy={8}
+            r={2}
+            fill={c.accent}
+            className="logo-anim-pulse"
+            style={{ animationDuration: "2.1s", animationDelay: "-0.6s" }}
+          />
         </g>
       </>
     );
@@ -489,27 +605,90 @@ function ConceptK({ c, simplified, coreFill }: ConceptProps) {
         <path d="M21 6.5L26.3 14.5" stroke={c.geometry} strokeWidth={0.7} opacity={0.22} />
       </g>
       <g id="Node01">
-        <circle cx={6.5} cy={8.5} r={1.3} fill={c.geometry} opacity={0.7} />
+        <circle
+          cx={6.5}
+          cy={8.5}
+          r={1.3}
+          fill={c.geometry}
+          className="logo-anim-twinkle"
+          style={{ ["--base-opacity" as string]: 0.7, animationDuration: "3.2s" }}
+        />
       </g>
       <g id="Node02">
-        <circle cx={21} cy={6.5} r={1.6} fill={c.geometry} opacity={0.85} />
+        <circle
+          cx={21}
+          cy={6.5}
+          r={1.6}
+          fill={c.geometry}
+          className="logo-anim-twinkle"
+          style={{ ["--base-opacity" as string]: 0.85, animationDuration: "2.8s", animationDelay: "-0.5s" }}
+        />
       </g>
       <g id="Node03">
-        <circle cx={23.5} cy={24} r={1.2} fill={c.geometry} opacity={0.6} />
+        <circle
+          cx={23.5}
+          cy={24}
+          r={1.2}
+          fill={c.geometry}
+          className="logo-anim-twinkle"
+          style={{ ["--base-opacity" as string]: 0.6, animationDuration: "3.6s", animationDelay: "-1.1s" }}
+        />
       </g>
       <g id="Node04">
-        <circle cx={7.5} cy={24.5} r={1.4} fill={c.geometry} opacity={0.75} />
+        <circle
+          cx={7.5}
+          cy={24.5}
+          r={1.4}
+          fill={c.geometry}
+          className="logo-anim-twinkle"
+          style={{ ["--base-opacity" as string]: 0.75, animationDuration: "3s", animationDelay: "-1.8s" }}
+        />
       </g>
       <g id="Node05">
-        <circle cx={4.3} cy={16.5} r={0.9} fill={c.geometry} opacity={0.4} />
+        <circle
+          cx={4.3}
+          cy={16.5}
+          r={0.9}
+          fill={c.geometry}
+          className="logo-anim-twinkle"
+          style={{ ["--base-opacity" as string]: 0.4, animationDuration: "4s", animationDelay: "-2.4s" }}
+        />
       </g>
       <g id="Node06">
-        <circle cx={14} cy={18} r={4.6} fill={c.glow} opacity={0.14} />
-        <circle cx={14} cy={18} r={3.1} fill={coreFill} />
+        <circle
+          cx={14}
+          cy={18}
+          r={4.6}
+          fill={c.glow}
+          className="logo-anim-glow"
+          style={{ ["--base-opacity" as string]: 0.14, animationDuration: "2.4s" }}
+        />
+        <circle
+          cx={14}
+          cy={18}
+          r={3.1}
+          fill={coreFill}
+          className="logo-anim-pulse"
+          style={{ animationDuration: "2.4s" }}
+        />
       </g>
       <g id="Node07">
-        <circle cx={26.3} cy={14.5} r={4} fill={c.glow} opacity={0.22} />
-        <circle cx={26.3} cy={14.5} r={2.1} fill={c.accent} />
+        <circle
+          cx={26.3}
+          cy={14.5}
+          r={4}
+          fill={c.glow}
+          className="logo-anim-glow"
+          style={{ ["--base-opacity" as string]: 0.22, animationDuration: "2s" }}
+        />
+        <circle
+          cx={26.3}
+          cy={14.5}
+          r={2.1}
+          fill={c.accent}
+          className="logo-anim-pulse"
+          style={{ animationDuration: "2s", animationDelay: "-0.4s" }}
+        />
       </g>
     </>
   );
