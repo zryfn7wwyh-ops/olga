@@ -1,31 +1,41 @@
+import { useId } from "react";
+
 /**
- * Три самостоятельных концепции знака по ТЗ «Логотип цифрового следа»:
- * A — Scan Trace (приоритетная), B — Digital Trace, C — Scan Point.
- * Геометрия каждой сгруппирована как ScanCorners/TraceLine/NodeNN — так,
- * чтобы в будущем элементы можно было анимировать независимо
- * (scanner corners → trace-line → nodes → короткий pulse).
+ * Восемь самостоятельных концепций знака «цифровой след»:
+ * Раунд 1 (по исходному ТЗ, лаконичные): A — Scan Trace, B — Digital Trace, C — Scan Point.
+ * Раунд 2 (после фидбэка «слишком примитивно», плотнее и заметнее цифровизация):
+ * D — Pixel Dissolve, E — Circuit Trace, F — Data Density, G — Data Stack, H — Grid Resolve.
+ * Геометрия сгруппирована по смысловым узлам (ScanCorners/TraceLine/CoreShape/Layers/
+ * GridField/NodeNN), чтобы элементы можно было анимировать независимо.
  */
 
-export type LogoConcept = "a" | "b" | "c";
+export type LogoConcept = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h";
 export type LogoTheme = "light" | "dark" | "mono-black" | "mono-white" | "mono-blue";
 
 interface ColorSet {
   geometry: string;
   accent: string;
   glow: string;
+  gradient?: boolean;
 }
 
 const THEMES: Record<LogoTheme, ColorSet> = {
-  light: { geometry: "#246BFD", accent: "#00C2FF", glow: "#00C2FF" },
+  light: { geometry: "#246BFD", accent: "#00C2FF", glow: "#00C2FF", gradient: true },
   dark: { geometry: "#FFFFFF", accent: "#00C2FF", glow: "#00C2FF" },
   "mono-black": { geometry: "#101828", accent: "#101828", glow: "#101828" },
   "mono-white": { geometry: "#FFFFFF", accent: "#FFFFFF", glow: "#FFFFFF" },
   "mono-blue": { geometry: "#246BFD", accent: "#246BFD", glow: "#246BFD" },
 };
 
-function ConceptA({ c, simplified }: { c: ColorSet; simplified?: boolean }) {
+interface ConceptProps {
+  c: ColorSet;
+  simplified?: boolean;
+  /** Заливка «основной» сплошной формы — градиент на light-теме, иначе сплошной цвет. */
+  coreFill: string;
+}
+
+function ConceptA({ c, simplified }: ConceptProps) {
   if (simplified) {
-    // Favicon-адаптация: только рамка сканера и «сбежавшая» точка.
     return (
       <>
         <g id="ScanCorners" stroke={c.geometry} strokeWidth={2.6} strokeLinecap="round">
@@ -67,9 +77,8 @@ function ConceptA({ c, simplified }: { c: ColorSet; simplified?: boolean }) {
   );
 }
 
-function ConceptB({ c, simplified }: { c: ColorSet; simplified?: boolean }) {
+function ConceptB({ c, simplified }: ConceptProps) {
   if (simplified) {
-    // Favicon-адаптация: два узла и один уверенный сегмент траектории.
     return (
       <>
         <g id="TraceLine">
@@ -109,7 +118,7 @@ function ConceptB({ c, simplified }: { c: ColorSet; simplified?: boolean }) {
   );
 }
 
-function ConceptC({ c }: { c: ColorSet; simplified?: boolean }) {
+function ConceptC({ c }: ConceptProps) {
   return (
     <>
       <g id="ScanCorners" stroke={c.geometry} strokeWidth={2.2} strokeLinecap="round">
@@ -127,7 +136,194 @@ function ConceptC({ c }: { c: ColorSet; simplified?: boolean }) {
   );
 }
 
-const CONCEPTS: Record<LogoConcept, typeof ConceptA> = { a: ConceptA, b: ConceptB, c: ConceptC };
+function ConceptD({ c, simplified, coreFill }: ConceptProps) {
+  // Pixel Dissolve — сплошная форма «распадается» на пиксели: сама метафора оцифровки.
+  if (simplified) {
+    return (
+      <>
+        <g id="CoreShape">
+          <rect x={5.5} y={5.5} width={13} height={13} rx={3} fill={coreFill} />
+        </g>
+        <g id="PixelTrail">
+          <rect x={21.5} y={9.5} width={4.6} height={4.6} rx={1.1} fill={c.accent} />
+          <rect x={26} y={17.5} width={3.2} height={3.2} rx={0.8} fill={c.accent} opacity={0.6} />
+        </g>
+      </>
+    );
+  }
+  return (
+    <>
+      <g id="CoreShape">
+        <rect x={6} y={6} width={14} height={14} rx={3.5} fill={coreFill} />
+      </g>
+      <g id="PixelTrail">
+        <rect x={21.3} y={9.3} width={3.8} height={3.8} rx={1} fill={c.accent} opacity={0.9} />
+        <rect x={24.6} y={14.4} width={2.6} height={2.6} rx={0.8} fill={c.accent} opacity={0.62} />
+        <rect x={20.2} y={19} width={2.1} height={2.1} rx={0.6} fill={c.geometry} opacity={0.35} />
+        <rect x={26.6} y={19.6} width={1.6} height={1.6} rx={0.5} fill={c.accent} opacity={0.4} />
+        <rect x={17.4} y={21.6} width={1.5} height={1.5} rx={0.4} fill={c.geometry} opacity={0.22} />
+      </g>
+    </>
+  );
+}
+
+function ConceptE({ c, simplified }: ConceptProps) {
+  // Circuit Trace — трасса печатной платы: прямые углы, площадки на изгибах.
+  if (simplified) {
+    return (
+      <>
+        <g id="TraceLine" stroke={c.geometry} strokeWidth={2.6} strokeLinecap="square">
+          <path d="M7 25V12H25" fill="none" />
+        </g>
+        <g id="Node01">
+          <rect x={4.8} y={22.8} width={4.4} height={4.4} rx={1} fill={c.geometry} />
+        </g>
+        <g id="Node02">
+          <circle cx={25} cy={12} r={4.6} fill={c.glow} opacity={0.22} />
+          <circle cx={25} cy={12} r={2.6} fill={c.accent} />
+        </g>
+      </>
+    );
+  }
+  return (
+    <>
+      <g id="TraceLine" stroke={c.geometry} strokeWidth={1.6} strokeLinecap="square">
+        <path d="M7 24V13H24" fill="none" />
+      </g>
+      <g id="Node01">
+        <rect x={5.3} y={22.3} width={3.4} height={3.4} rx={0.8} fill={c.geometry} />
+      </g>
+      <g id="Node02">
+        <rect x={5.3} y={11.3} width={3.4} height={3.4} rx={0.8} fill={c.geometry} opacity={0.65} />
+      </g>
+      <g id="Node03">
+        <circle cx={24} cy={13} r={3.8} fill={c.glow} opacity={0.18} />
+        <circle cx={24} cy={13} r={2.1} fill={c.accent} />
+      </g>
+    </>
+  );
+}
+
+const DATA_DOTS = [
+  { x: 7, y: 8, r: 0.7 },
+  { x: 10.2, y: 6.8, r: 0.55 },
+  { x: 9, y: 11.2, r: 0.8 },
+  { x: 13, y: 9.6, r: 0.85 },
+  { x: 12, y: 13.6, r: 0.95 },
+  { x: 16.2, y: 12.6, r: 1.05 },
+  { x: 15, y: 16.8, r: 1.2 },
+  { x: 19.2, y: 16, r: 1.35 },
+  { x: 18, y: 19.8, r: 1.5 },
+];
+
+function ConceptF({ c, simplified }: ConceptProps) {
+  // Data Density — рассеянные точки данных уплотняются в яркое ядро сигнала.
+  if (simplified) {
+    return (
+      <>
+        <g id="DataField">
+          <circle cx={9} cy={9} r={1} fill={c.geometry} opacity={0.3} />
+          <circle cx={13.5} cy={13} r={1.4} fill={c.geometry} opacity={0.55} />
+        </g>
+        <g id="Node01">
+          <circle cx={22.5} cy={22.5} r={5.6} fill={c.glow} opacity={0.24} />
+          <circle cx={22.5} cy={22.5} r={3.3} fill={c.accent} />
+        </g>
+      </>
+    );
+  }
+  return (
+    <>
+      <g id="DataField">
+        {DATA_DOTS.map((d, i) => (
+          <circle key={i} cx={d.x} cy={d.y} r={d.r} fill={c.geometry} opacity={0.22 + i * 0.055} />
+        ))}
+      </g>
+      <g id="Node01">
+        <circle cx={23} cy={23} r={4.8} fill={c.glow} opacity={0.2} />
+        <circle cx={23} cy={23} r={2.8} fill={c.accent} />
+      </g>
+    </>
+  );
+}
+
+function ConceptG({ c, simplified, coreFill }: ConceptProps) {
+  // Data Stack — слои данных: непрозрачность убывает сверху вниз, импульс на верхнем слое.
+  if (simplified) {
+    return (
+      <>
+        <g id="Layers">
+          <rect x={6} y={11} width={18} height={6.5} rx={2} fill={coreFill} />
+          <rect x={6} y={19.5} width={18} height={6.5} rx={2} fill={c.geometry} opacity={0.32} />
+        </g>
+        <g id="Node01">
+          <circle cx={24} cy={11} r={3.8} fill={c.glow} opacity={0.26} />
+          <circle cx={24} cy={11} r={2.2} fill={c.accent} />
+        </g>
+      </>
+    );
+  }
+  return (
+    <>
+      <g id="Layers">
+        <rect x={7} y={8} width={18} height={5} rx={2} fill={coreFill} />
+        <rect x={7} y={14.5} width={18} height={5} rx={2} fill={c.geometry} opacity={0.55} />
+        <rect x={7} y={21} width={18} height={5} rx={2} fill={c.geometry} opacity={0.26} />
+      </g>
+      <g id="Node01">
+        <circle cx={25} cy={8} r={3.4} fill={c.glow} opacity={0.2} />
+        <circle cx={25} cy={8} r={1.9} fill={c.accent} />
+      </g>
+    </>
+  );
+}
+
+function ConceptH({ c, simplified, coreFill }: ConceptProps) {
+  // Grid Resolve — сканер «нашёл» несколько ячеек сигнала среди ровной сетки.
+  if (simplified) {
+    return (
+      <g id="Nodes">
+        <rect x={7} y={7} width={6} height={6} rx={1.4} fill={c.geometry} opacity={0.5} />
+        <rect x={19} y={19} width={6.5} height={6.5} rx={1.5} fill={coreFill} />
+      </g>
+    );
+  }
+  return (
+    <>
+      <g id="GridField">
+        <circle cx={8.5} cy={8.5} r={0.9} fill={c.geometry} opacity={0.18} />
+        <circle cx={14} cy={8.5} r={0.9} fill={c.geometry} opacity={0.18} />
+        <circle cx={25} cy={8.5} r={0.9} fill={c.geometry} opacity={0.18} />
+        <circle cx={8.5} cy={14} r={0.9} fill={c.geometry} opacity={0.18} />
+        <circle cx={19.5} cy={14} r={0.9} fill={c.geometry} opacity={0.18} />
+        <circle cx={25} cy={14} r={0.9} fill={c.geometry} opacity={0.18} />
+        <circle cx={8.5} cy={19.5} r={0.9} fill={c.geometry} opacity={0.18} />
+        <circle cx={14} cy={19.5} r={0.9} fill={c.geometry} opacity={0.18} />
+        <circle cx={19.5} cy={19.5} r={0.9} fill={c.geometry} opacity={0.18} />
+        <circle cx={14} cy={25} r={0.9} fill={c.geometry} opacity={0.18} />
+        <circle cx={19.5} cy={25} r={0.9} fill={c.geometry} opacity={0.18} />
+        <circle cx={25} cy={25} r={0.9} fill={c.geometry} opacity={0.18} />
+        <circle cx={25} cy={19.5} r={0.9} fill={c.geometry} opacity={0.18} />
+      </g>
+      <g id="Nodes">
+        <rect x={12} y={12} width={4} height={4} rx={1} fill={c.geometry} opacity={0.75} />
+        <rect x={23} y={17.5} width={4} height={4} rx={1} fill={coreFill} />
+        <rect x={6} y={23} width={4} height={4} rx={1} fill={c.geometry} opacity={0.5} />
+      </g>
+    </>
+  );
+}
+
+const CONCEPTS: Record<LogoConcept, (p: ConceptProps) => JSX.Element> = {
+  a: ConceptA,
+  b: ConceptB,
+  c: ConceptC,
+  d: ConceptD,
+  e: ConceptE,
+  f: ConceptF,
+  g: ConceptG,
+  h: ConceptH,
+};
 
 interface LogoMarkProps {
   concept: LogoConcept;
@@ -141,9 +337,20 @@ interface LogoMarkProps {
 export function LogoMark({ concept, theme = "light", size = 32, simplified, className }: LogoMarkProps) {
   const colors = THEMES[theme];
   const Concept = CONCEPTS[concept];
+  const rawId = useId();
+  const gradId = `lg-${rawId.replace(/[^a-zA-Z0-9]/g, "")}`;
+  const coreFill = colors.gradient ? `url(#${gradId})` : colors.geometry;
   return (
     <svg width={size} height={size} viewBox="0 0 32 32" fill="none" className={className} aria-hidden="true">
-      <Concept c={colors} simplified={simplified} />
+      {colors.gradient && (
+        <defs>
+          <linearGradient id={gradId} x1={4} y1={4} x2={28} y2={28} gradientUnits="userSpaceOnUse">
+            <stop offset={0} stopColor="#246BFD" />
+            <stop offset={1} stopColor="#00C2FF" />
+          </linearGradient>
+        </defs>
+      )}
+      <Concept c={colors} simplified={simplified} coreFill={coreFill} />
     </svg>
   );
 }
@@ -152,4 +359,9 @@ export const LOGO_CONCEPT_LABELS: Record<LogoConcept, string> = {
   a: "Scan Trace",
   b: "Digital Trace",
   c: "Scan Point",
+  d: "Pixel Dissolve",
+  e: "Circuit Trace",
+  f: "Data Density",
+  g: "Data Stack",
+  h: "Grid Resolve",
 };
