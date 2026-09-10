@@ -1,15 +1,18 @@
 import { useId } from "react";
 
 /**
- * Восемь самостоятельных концепций знака «цифровой след»:
+ * Одиннадцать самостоятельных концепций знака «цифровой след»:
  * Раунд 1 (по исходному ТЗ, лаконичные): A — Scan Trace, B — Digital Trace, C — Scan Point.
- * Раунд 2 (после фидбэка «слишком примитивно», плотнее и заметнее цифровизация):
+ * Раунд 2 (фидбэк «слишком примитивно», плотнее и заметнее цифровизация):
  * D — Pixel Dissolve, E — Circuit Trace, F — Data Density, G — Data Stack, H — Grid Resolve.
+ * Раунд 3 (фидбэк «нужен сложный, высокотехнологичный продукт» — многослойная,
+ * инженерная сложность, а не просто больше точек): I — Orbit System, J — Faceted Core,
+ * K — Dense Network.
  * Геометрия сгруппирована по смысловым узлам (ScanCorners/TraceLine/CoreShape/Layers/
- * GridField/NodeNN), чтобы элементы можно было анимировать независимо.
+ * GridField/Rings/NodeNN), чтобы элементы можно было анимировать независимо.
  */
 
-export type LogoConcept = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h";
+export type LogoConcept = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k";
 export type LogoTheme = "light" | "dark" | "mono-black" | "mono-white" | "mono-blue";
 
 interface ColorSet {
@@ -314,6 +317,204 @@ function ConceptH({ c, simplified, coreFill }: ConceptProps) {
   );
 }
 
+function ConceptI({ c, simplified, coreFill }: ConceptProps) {
+  // Orbit System — ядро окружено тремя кольцами сканирования на разных фазах
+  // вращения, на кольцах — узлы. Читается как сложная многоуровневая система.
+  if (simplified) {
+    return (
+      <>
+        <g id="Rings">
+          <circle
+            cx={16}
+            cy={16}
+            r={11.5}
+            fill="none"
+            stroke={c.geometry}
+            strokeWidth={1.8}
+            opacity={0.5}
+            strokeDasharray="20 52"
+            strokeLinecap="round"
+            transform="rotate(-30 16 16)"
+          />
+        </g>
+        <g id="Node01">
+          <circle cx={16} cy={16} r={3.4} fill={coreFill} />
+        </g>
+        <g id="Node02">
+          <circle cx={27} cy={9} r={2.4} fill={c.accent} />
+        </g>
+      </>
+    );
+  }
+  return (
+    <>
+      <g id="Rings" fill="none" strokeLinecap="round">
+        <circle
+          cx={16}
+          cy={16}
+          r={13}
+          stroke={c.geometry}
+          strokeWidth={1}
+          opacity={0.4}
+          strokeDasharray="24 58"
+          transform="rotate(-35 16 16)"
+        />
+        <circle
+          cx={16}
+          cy={16}
+          r={9.6}
+          stroke={c.geometry}
+          strokeWidth={1.1}
+          opacity={0.48}
+          strokeDasharray="25 35"
+          transform="rotate(95 16 16)"
+        />
+        <circle
+          cx={16}
+          cy={16}
+          r={6.3}
+          stroke={c.geometry}
+          strokeWidth={1.2}
+          opacity={0.55}
+          strokeDasharray="20 20"
+          transform="rotate(205 16 16)"
+        />
+      </g>
+      <g id="Node01">
+        <circle cx={16} cy={16} r={4.2} fill={c.glow} opacity={0.16} />
+        <circle cx={16} cy={16} r={2.7} fill={coreFill} />
+      </g>
+      <g id="Node02">
+        <circle cx={27.3} cy={9.4} r={3.2} fill={c.glow} opacity={0.2} />
+        <circle cx={27.3} cy={9.4} r={1.7} fill={c.accent} />
+      </g>
+      <g id="Node03">
+        <circle cx={5.6} cy={22.6} r={1.4} fill={c.geometry} opacity={0.85} />
+      </g>
+      <g id="Node04">
+        <circle cx={21.6} cy={26} r={1.1} fill={c.geometry} opacity={0.6} />
+      </g>
+    </>
+  );
+}
+
+function ConceptJ({ c, simplified, coreFill }: ConceptProps) {
+  // Faceted Core — гранёное шестиугольное ядро (6 граней разной яркости) с
+  // траекториями данных, расходящимися от вершин. Инженерная, «огранённая» сложность.
+  const facets = [
+    { p: "16,16 16,7 23.79,11.5", o: 0.95 },
+    { p: "16,16 23.79,11.5 23.79,20.5", o: 0.55 },
+    { p: "16,16 23.79,20.5 16,25", o: 0.8 },
+    { p: "16,16 16,25 8.21,20.5", o: 0.4 },
+    { p: "16,16 8.21,20.5 8.21,11.5", o: 0.65 },
+    { p: "16,16 8.21,11.5 16,7", o: 0.28 },
+  ];
+  if (simplified) {
+    return (
+      <>
+        <g id="CoreShape">
+          <polygon points="16,6 24.5,11 24.5,21 16,26 7.5,21 7.5,11" fill={coreFill} />
+        </g>
+        <g id="Node01">
+          <circle cx={27} cy={9} r={2.3} fill={c.accent} />
+        </g>
+      </>
+    );
+  }
+  return (
+    <>
+      <g id="CoreShape">
+        {facets.map((f, i) => (
+          <polygon key={i} points={f.p} fill={c.geometry} opacity={f.o} />
+        ))}
+        <polygon
+          points="16,7 23.79,11.5 23.79,20.5 16,25 8.21,20.5 8.21,11.5"
+          fill="none"
+          stroke={coreFill}
+          strokeWidth={0.6}
+          opacity={0.9}
+        />
+      </g>
+      <g id="TraceLine" stroke={c.geometry} strokeWidth={1.1} strokeLinecap="round">
+        <path d="M16 7V3.2" />
+        <path d="M23.79 20.5L27.3 22.6" opacity={0.7} />
+        <path d="M8.21 20.5L4.7 22.6" opacity={0.5} />
+      </g>
+      <g id="Node01">
+        <circle cx={16} cy={2.4} r={1.5} fill={c.geometry} />
+      </g>
+      <g id="Node02">
+        <circle cx={28.6} cy={23.4} r={3.1} fill={c.glow} opacity={0.2} />
+        <circle cx={28.6} cy={23.4} r={1.7} fill={c.accent} />
+      </g>
+      <g id="Node03">
+        <circle cx={3.4} cy={23.4} r={1.2} fill={c.geometry} opacity={0.7} />
+      </g>
+    </>
+  );
+}
+
+function ConceptK({ c, simplified, coreFill }: ConceptProps) {
+  // Dense Network — узел-хаб и шесть спутников с трассами разного веса плюс
+  // одна вторичная связь между спутниками: карта цифрового следа, а не одна линия.
+  if (simplified) {
+    return (
+      <>
+        <g id="TraceLine" stroke={c.geometry} strokeWidth={1.6}>
+          <path d="M14 18L6 9" opacity={0.6} />
+          <path d="M14 18L25 8" opacity={0.9} />
+        </g>
+        <g id="Node01">
+          <circle cx={6} cy={9} r={1.8} fill={c.geometry} opacity={0.7} />
+        </g>
+        <g id="Node02">
+          <circle cx={14} cy={18} r={3.4} fill={coreFill} />
+        </g>
+        <g id="Node03">
+          <circle cx={25} cy={8} r={3.6} fill={c.glow} opacity={0.22} />
+          <circle cx={25} cy={8} r={2} fill={c.accent} />
+        </g>
+      </>
+    );
+  }
+  return (
+    <>
+      <g id="TraceLine" strokeLinecap="round">
+        <path d="M14 18L6.5 8.5" stroke={c.geometry} strokeWidth={1} opacity={0.4} />
+        <path d="M14 18L21 6.5" stroke={c.geometry} strokeWidth={1.1} opacity={0.55} />
+        <path d="M14 18L26.3 14.5" stroke={c.geometry} strokeWidth={1.3} opacity={0.75} />
+        <path d="M14 18L23.5 24" stroke={c.geometry} strokeWidth={1} opacity={0.4} />
+        <path d="M14 18L7.5 24.5" stroke={c.geometry} strokeWidth={1} opacity={0.5} />
+        <path d="M14 18L4.3 16.5" stroke={c.geometry} strokeWidth={0.9} opacity={0.32} strokeDasharray="0.5 2" />
+        <path d="M21 6.5L26.3 14.5" stroke={c.geometry} strokeWidth={0.7} opacity={0.22} />
+      </g>
+      <g id="Node01">
+        <circle cx={6.5} cy={8.5} r={1.3} fill={c.geometry} opacity={0.7} />
+      </g>
+      <g id="Node02">
+        <circle cx={21} cy={6.5} r={1.6} fill={c.geometry} opacity={0.85} />
+      </g>
+      <g id="Node03">
+        <circle cx={23.5} cy={24} r={1.2} fill={c.geometry} opacity={0.6} />
+      </g>
+      <g id="Node04">
+        <circle cx={7.5} cy={24.5} r={1.4} fill={c.geometry} opacity={0.75} />
+      </g>
+      <g id="Node05">
+        <circle cx={4.3} cy={16.5} r={0.9} fill={c.geometry} opacity={0.4} />
+      </g>
+      <g id="Node06">
+        <circle cx={14} cy={18} r={4.6} fill={c.glow} opacity={0.14} />
+        <circle cx={14} cy={18} r={3.1} fill={coreFill} />
+      </g>
+      <g id="Node07">
+        <circle cx={26.3} cy={14.5} r={4} fill={c.glow} opacity={0.22} />
+        <circle cx={26.3} cy={14.5} r={2.1} fill={c.accent} />
+      </g>
+    </>
+  );
+}
+
 const CONCEPTS: Record<LogoConcept, (p: ConceptProps) => JSX.Element> = {
   a: ConceptA,
   b: ConceptB,
@@ -323,6 +524,9 @@ const CONCEPTS: Record<LogoConcept, (p: ConceptProps) => JSX.Element> = {
   f: ConceptF,
   g: ConceptG,
   h: ConceptH,
+  i: ConceptI,
+  j: ConceptJ,
+  k: ConceptK,
 };
 
 interface LogoMarkProps {
@@ -364,4 +568,7 @@ export const LOGO_CONCEPT_LABELS: Record<LogoConcept, string> = {
   f: "Data Density",
   g: "Data Stack",
   h: "Grid Resolve",
+  i: "Orbit System",
+  j: "Faceted Core",
+  k: "Dense Network",
 };
