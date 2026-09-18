@@ -19,6 +19,9 @@ SEO-ТЗ
 Регион:
 [регион]
 
+Объём:
+20 000 знаков (стандарт Content Factory; больше — только если того требует профиль площадки)
+
 Тип задачи:
 CREATE NEW / UPDATE EXISTING / REBUILD EXISTING
 
