@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Категорирование объектов КИИ — прототип</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F5F7}
+a{color:#B83A0E}a:hover{color:#8A2A08}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px;box-sizing:border-box}
+.row{display:flex;flex-wrap:wrap;gap:24px}
+.col{flex:1 1 300px;min-width:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;border-radius:10px;font-weight:700;font-size:16px;text-decoration:none;box-sizing:border-box;border:2px solid transparent;cursor:pointer;font-family:inherit}
+.btn-main{background:#C2410C;color:#fff}.btn-main:hover{background:#9A3412;color:#fff}
+.btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}.btn-ghost:hover{color:#fff;border-color:#fff}
+.btn-dark{background:#0F1B2D;color:#fff}.btn-dark:hover{background:#1E2F48;color:#fff}
+.field{display:flex;flex-direction:column;gap:6px;flex:1 1 220px;min-width:0}
+.field label{font-size:13px;font-weight:600;color:#3B4659}
+.field input{height:52px;border:1px solid #C9CFD9;border-radius:10px;padding:0 16px;font:inherit;font-size:16px;background:#fff;color:#0F1B2D}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.45;color:#3B4659}
+.check input{width:20px;height:20px;margin:0;flex:none;accent-color:#C2410C}
+.faq{background:#fff;border:1px solid #E1E5EB;border-radius:14px;padding:0 24px}
+.faq summary{cursor:pointer;list-style:none;padding:22px 0;font-weight:700;font-size:18px;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq[open] summary{color:#C2410C}
+.tag{font-family:'IBM Plex Mono',monospace;font-size:13px;padding:4px 8px;border-radius:6px;background:#EEF1F5;color:#0F1B2D}
+@media (max-width:720px){
+.h1{font-size:38px !important}
+.h2{font-size:28px !important}
+.sec{padding-top:56px !important;padding-bottom:56px !important}
+.nav{display:none !important}
+}
+</style>
+<div style="font-family:'Manrope',system-ui,sans-serif;color:#0F1B2D;background:#F4F5F7;font-size:16px;line-height:1.55">
+
+<!-- Шапка -->
+<header style="background:#0F1B2D;border-bottom:1px solid rgba(255,255,255,.08)">
+<div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:72px;flex-wrap:wrap">
+<a href="#" style="color:#fff;text-decoration:none;font-weight:800;font-size:22px;letter-spacing:.02em">CASE<span style="color:#F08A5D">.</span></a>
+<nav class="nav" style="display:flex;gap:28px;font-size:15px">
+<a href="#" style="color:#C7D0DD;text-decoration:none">Услуги</a>
+<a href="#" style="color:#C7D0DD;text-decoration:none">Обучение</a>
+<a href="#" style="color:#C7D0DD;text-decoration:none">Статьи</a>
+<a href="#" style="color:#C7D0DD;text-decoration:none">О компании</a>
+<a href="#" style="color:#C7D0DD;text-decoration:none">Контакты</a>
+</nav>
+<a href="tel:+70000000000" style="color:#fff;text-decoration:none;font-weight:700">[+7 ТЕЛЕФОН]</a>
+</div>
+</header>
+
+<!-- 1. Hero -->
+<section class="sec" style="background:#0F1B2D;color:#fff;padding:72px 0 88px">
+<div class="wrap">
+<div style="font-size:14px;color:#9AA7B8;margin-bottom:20px">Главная / Услуги / Категорирование КИИ</div>
+<h1 class="h1" style="margin:0 0 16px;font-size:60px;line-height:1.08;font-weight:800;max-width:820px">Категорирование объектов КИИ</h1>
+<p style="margin:0 0 48px;font-size:19px;color:#C7D0DD;max-width:640px">Под ключ: от анализа инфраструктуры до внесения объектов в реестр ФСТЭК по 187-ФЗ</p>
+<div class="row" style="margin-bottom:48px">
+<div class="col" style="background:#17263D;border-radius:16px;padding:28px">
+<div style="font-size:32px;font-weight:800;color:#F08A5D;margin-bottom:8px">500 000 ₽</div>
+<div style="font-weight:700;font-size:18px;margin-bottom:10px">Штрафы для юрлиц выросли до 500 000 ₽</div>
+<div style="font-size:15px;color:#B4C0CF">С 2026 года в КоАП действует отдельная норма ответственности за нарушение правил эксплуатации объектов КИИ — помимо уголовной ответственности по ст. 274.1 УК.</div>
+</div>
+<div class="col" style="background:#17263D;border-radius:16px;padding:28px">
+<div style="font-size:32px;font-weight:800;color:#F08A5D;margin-bottom:8px">98%</div>
+<div style="font-weight:700;font-size:18px;margin-bottom:10px">98% нарушений — расхождение с реестром ФСТЭК</div>
+<div style="font-size:15px;color:#B4C0CF">Почти все нарушения, которые выявляет регулятор, связаны с тем, что фактический состав значимых объектов не совпадает со сведениями в реестре. Следим, чтобы ваши данные были актуальны с первого раза.</div>
+</div>
+<div class="col" style="background:#17263D;border-radius:16px;padding:28px">
+<div style="font-size:32px;font-weight:800;color:#F08A5D;margin-bottom:8px">% от оборота</div>
+<div style="font-weight:700;font-size:18px;margin-bottom:10px">Готовятся новые оборотные штрафы</div>
+<div style="font-size:15px;color:#B4C0CF">За срыв сроков перехода значимых объектов КИИ на российское ПО и за отсутствие категорирования — пройти процедуру сейчас дешевле, чем разбираться с санкциями позже.</div>
+</div>
+</div>
+<div style="display:flex;gap:16px;flex-wrap:wrap">
+<a href="#form" class="btn btn-main">Бесплатная консультация</a>
+<a href="#price" class="btn btn-ghost">Узнать стоимость</a>
+</div>
+</div>
+</section>
+
+<!-- 3. Для кого -->
+<section class="sec" style="padding:96px 0">
+<div class="wrap">
+<h2 class="h2" style="margin:0 0 8px;font-size:40px;line-height:1.15;font-weight:800">Для кого это актуально</h2>
+<p style="margin:0 0 40px;font-size:18px;color:#56627A">Кому необходимо категорирование КИИ?</p>
+<div class="row" style="gap:16px">
+<div style="flex:1 1 210px;min-width:0;background:#fff;border:1px solid #E1E5EB;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px;justify-content:space-between"><div style="font-weight:700">Банки и финтех-компании</div><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag">64</span><span class="tag">65</span><span class="tag">66</span></div></div>
+<div style="flex:1 1 210px;min-width:0;background:#fff;border:1px solid #E1E5EB;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px;justify-content:space-between"><div style="font-weight:700">Энергетика и топливная промышленность</div><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag">05</span><span class="tag">06</span><span class="tag">19</span><span class="tag">35</span></div></div>
+<div style="flex:1 1 210px;min-width:0;background:#fff;border:1px solid #E1E5EB;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px;justify-content:space-between"><div style="font-weight:700">Транспортные компании (метро, аэропорты, ж/д)</div><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag">49</span><span class="tag">50</span><span class="tag">51</span><span class="tag">52</span><span class="tag">53</span></div></div>
+<div style="flex:1 1 210px;min-width:0;background:#fff;border:1px solid #E1E5EB;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px;justify-content:space-between"><div style="font-weight:700">Медицинские учреждения и фармацевтика</div><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag">86</span></div></div>
+<div style="flex:1 1 210px;min-width:0;background:#fff;border:1px solid #E1E5EB;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px;justify-content:space-between"><div style="font-weight:700">IT и телеком</div><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag">61</span></div></div>
+<div style="flex:1 1 210px;min-width:0;background:#fff;border:1px solid #E1E5EB;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px;justify-content:space-between"><div style="font-weight:700">Государственные подрядчики</div><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag">84.12</span></div></div>
+<div style="flex:1 1 210px;min-width:0;background:#fff;border:1px solid #E1E5EB;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px;justify-content:space-between"><div style="font-weight:700">Атомная энергетика</div><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag">35.11</span><span class="tag">35.12</span><span class="tag">35.13</span></div></div>
+<div style="flex:1 1 210px;min-width:0;background:#fff;border:1px solid #E1E5EB;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px;justify-content:space-between"><div style="font-weight:700">Оборонная промышленность</div><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag">26.51</span><span class="tag">30</span></div></div>
+<div style="flex:1 1 210px;min-width:0;background:#fff;border:1px solid #E1E5EB;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px;justify-content:space-between"><div style="font-weight:700">Космическая отрасль</div><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag">30.3</span><span class="tag">30.4</span><span class="tag">25.4</span></div></div>
+<div style="flex:1 1 210px;min-width:0;background:#fff;border:1px solid #E1E5EB;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px;justify-content:space-between"><div style="font-weight:700">Наука</div><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag">72</span></div></div>
+</div>
+<p style="margin:24px 0 0;font-size:14px;color:#56627A;max-width:860px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#0F1B2D;margin-right:6px">ОКВЭД</span>Совпадение кода ОКВЭД не означает автоматическую обязанность проводить категорирование — точная принадлежность к субъектам КИИ определяется только на этапе самой процедуры, по фактически используемым информационным системам.</p>
+</div>
+</section>
+
+<!-- 4. Зачем услуга бизнесу -->
+<section class="sec" style="padding:96px 0;background:#fff">
+<div class="wrap">
+<h2 class="h2" style="margin:0 0 40px;font-size:40px;line-height:1.15;font-weight:800">Зачем наша услуга бизнесу</h2>
+<div class="row">
+<div class="col" style="border-top:3px solid #0F1B2D;padding-top:24px">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C2410C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+<h3 style="margin:16px 0 10px;font-size:21px;line-height:1.3">Условие для участия в тендерах и госконтрактах</h3>
+<p style="margin:0;color:#3B4659">Для многих закупок и партнёрских отношений акт категорирования является обязательным требованием. Готовый пакет документов открывает доступ к сделкам, которые иначе были бы недоступны.</p>
+</div>
+<div class="col" style="border-top:3px solid #0F1B2D;padding-top:24px">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C2410C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+<h3 style="margin:16px 0 10px;font-size:21px;line-height:1.3">Дедлайн 2028 года уже на горизонте</h3>
+<p style="margin:0;color:#3B4659">Готовится требование о переводе значимых объектов КИИ на российское ПО к 1 января 2028 года, а штрафы за срыв сроков уже разрабатываются. 2026 год — время подготовить план, а не ждать, пока нормы вступят в силу.</p>
+</div>
+<div class="col" style="border-top:3px solid #0F1B2D;padding-top:24px">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C2410C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6l8-3z"></path><path d="M9 12l2 2 4-4"></path></svg>
+<h3 style="margin:16px 0 10px;font-size:21px;line-height:1.3">Проверки — это не теория, а практика</h3>
+<p style="margin:0;color:#3B4659">В 2025 году ФСТЭК проверила более 700 значимых объектов, выявила свыше 1200 нарушений и составила 603 протокола об административных правонарушениях. Масштабы контроля растут из года в год — лучше подготовиться до визита регулятора, чем после.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 5. Что грозит -->
+<section class="sec" style="padding:96px 0">
+<div class="wrap">
+<h2 class="h2" style="margin:0 0 8px;font-size:40px;line-height:1.15;font-weight:800">Что грозит без категорирования</h2>
+<p style="margin:0 0 40px;font-size:18px;color:#56627A;max-width:760px">Контроль ужесточается: в 2026 году штрафы за нарушения по КИИ стали строже, а проверки — чаще.</p>
+<div class="row" style="gap:16px">
+<div style="flex:1 1 460px;min-width:0;background:#fff;border:1px solid #E1E5EB;border-radius:16px;padding:28px;display:flex;gap:20px">
+<div style="flex:none;width:48px;height:48px;border-radius:12px;background:#FCE9DF;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B83A0E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"></rect><circle cx="12" cy="12" r="2.5"></circle></svg></div>
+<div><h3 style="margin:0 0 8px;font-size:20px">Административные штрафы</h3><p style="margin:0;color:#3B4659">До 500 000 ₽ для юридических лиц — с 2026 года в КоАП действует отдельная норма об ответственности за нарушение правил эксплуатации объектов КИИ.</p></div>
+</div>
+<div style="flex:1 1 460px;min-width:0;background:#fff;border:1px solid #E1E5EB;border-radius:16px;padding:28px;display:flex;gap:20px">
+<div style="flex:none;width:48px;height:48px;border-radius:12px;background:#FCE9DF;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B83A0E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"></path><path d="M5 7h14"></path><path d="M5 7l-3 7a3 3 0 0 0 6 0z"></path><path d="M19 7l-3 7a3 3 0 0 0 6 0z"></path></svg></div>
+<div><h3 style="margin:0 0 8px;font-size:20px">Уголовная ответственность</h3><p style="margin:0;color:#3B4659">Статья 274.1 УК РФ распространяется на неправомерный доступ к данным в составе КИИ — уничтожение, блокировку, модификацию или копирование информации.</p></div>
+</div>
+<div style="flex:1 1 460px;min-width:0;background:#fff;border:1px solid #E1E5EB;border-radius:16px;padding:28px;display:flex;gap:20px">
+<div style="flex:none;width:48px;height:48px;border-radius:12px;background:#FCE9DF;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B83A0E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.5-4.5"></path></svg></div>
+<div><h3 style="margin:0 0 8px;font-size:20px">Внеплановые проверки</h3><p style="margin:0;color:#3B4659">ФСТЭК и прокуратура регулярно запрашивают сведения об объектах КИИ. Отсутствие категорирования или расхождение с данными в реестре — частая причина проверки.</p></div>
+</div>
+<div style="flex:1 1 460px;min-width:0;background:#fff;border:1px solid #E1E5EB;border-radius:16px;padding:28px;display:flex;gap:20px">
+<div style="flex:none;width:48px;height:48px;border-radius:12px;background:#FCE9DF;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B83A0E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M8 20h8"></path><path d="M12 16v4"></path><path d="M9 8l6 4"></path><path d="M15 8l-6 4"></path></svg></div>
+<div><h3 style="margin:0 0 8px;font-size:20px">Санкции за срыв перехода на российское ПО</h3><p style="margin:0;color:#3B4659">Готовятся оборотные штрафы для компаний, которые вовремя не перевели значимые объекты КИИ на отечественное ПО, — так же, как и для тех, кто вовсе не провёл категорирование.</p></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 6. Степпер -->
+<section class="sec" style="padding:96px 0;background:#fff">
+<div class="wrap">
+<h2 class="h2" style="margin:0 0 48px;font-size:40px;line-height:1.15;font-weight:800">Как проходит категорирование</h2>
+<ol class="row" style="list-style:none;margin:0;padding:0;gap:20px">
+<li style="flex:1 1 200px;min-width:0;display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;align-items:center;gap:12px"><span style="flex:none;width:52px;height:52px;border-radius:50%;background:#0F1B2D;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center">01</span><span style="flex:1;height:2px;background:#D5DBE4"></span></div>
+<h3 style="margin:0;font-size:18px;line-height:1.3">Первичная консультация</h3>
+<p style="margin:0;font-size:15px;color:#3B4659">Определяем, подпадает ли ваша организация под действие 187-ФЗ, разбираем структуру ИТ-систем и особенности инфраструктуры.</p>
+</li>
+<li style="flex:1 1 200px;min-width:0;display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;align-items:center;gap:12px"><span style="flex:none;width:52px;height:52px;border-radius:50%;background:#0F1B2D;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center">02</span><span style="flex:1;height:2px;background:#D5DBE4"></span></div>
+<h3 style="margin:0;font-size:18px;line-height:1.3">Выявление объектов КИИ</h3>
+<p style="margin:0;font-size:15px;color:#3B4659">Анализируем информационные системы и сетевую архитектуру, составляем перечень объектов КИИ.</p>
+</li>
+<li style="flex:1 1 200px;min-width:0;display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;align-items:center;gap:12px"><span style="flex:none;width:52px;height:52px;border-radius:50%;background:#0F1B2D;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center">03</span><span style="flex:1;height:2px;background:#D5DBE4"></span></div>
+<h3 style="margin:0;font-size:18px;line-height:1.3">Оценка значимости</h3>
+<p style="margin:0;font-size:15px;color:#3B4659">Определяем критические процессы и потенциальные угрозы, присваиваем каждому объекту категорию значимости по критериям ПП №127 (или фиксируем, что объект не является значимым).</p>
+</li>
+<li style="flex:1 1 200px;min-width:0;display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;align-items:center;gap:12px"><span style="flex:none;width:52px;height:52px;border-radius:50%;background:#0F1B2D;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center">04</span><span style="flex:1;height:2px;background:#D5DBE4"></span></div>
+<h3 style="margin:0;font-size:18px;line-height:1.3">Подготовка документов</h3>
+<p style="margin:0;font-size:15px;color:#3B4659">Формируем полный пакет: перечень объектов, акты категорирования, внутренние приказы, сведения для ФСТЭК.</p>
+</li>
+<li style="flex:1 1 200px;min-width:0;display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;align-items:center;gap:12px"><span style="flex:none;width:52px;height:52px;border-radius:50%;background:#C2410C;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center">05</span><span style="flex:1;height:2px;background:transparent"></span></div>
+<h3 style="margin:0;font-size:18px;line-height:1.3">Уведомление ФСТЭК и сопровождение</h3>
+<p style="margin:0;font-size:15px;color:#3B4659">Подаём сведения в установленном порядке, отвечаем на уточняющие запросы регулятора, сопровождаем компанию до внесения объектов в реестр.</p>
+</li>
+</ol>
+<p style="margin:40px 0 0;padding-top:20px;border-top:1px solid #E1E5EB;font-size:14px;color:#56627A">Весь процесс — до 12 месяцев с момента составления перечня объектов. Повторный анализ на соответствие проводится не чаще раза в 3 года.</p>
+</div>
+</section>
+
+<!-- 7. Открытая форма -->
+<section id="form" class="sec" style="padding:96px 0">
+<div class="wrap">
+<div style="background:#0F1B2D;color:#fff;border-radius:24px;padding:56px;display:flex;flex-wrap:wrap;gap:40px">
+<div style="flex:1 1 360px;min-width:0">
+<h2 class="h2" style="margin:0 0 16px;font-size:36px;line-height:1.2;font-weight:800">Узнайте, готова ли ваша компания к требованиям в отношении КИИ</h2>
+<p style="margin:0;font-size:17px;color:#C7D0DD">По данным ФСТЭК, лишь 35% проверенных объектов соответствуют базовому уровню безопасности. Оставьте контакты — бесплатно укажем на риски в вашей ситуации.</p>
+</div>
+<form style="flex:1 1 440px;min-width:0;background:#fff;color:#0F1B2D;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:16px">
+<div class="row" style="gap:16px">
+<div class="field"><label for="f1-name">Имя</label><input id="f1-name" type="text" placeholder="Иван"></div>
+<div class="field"><label for="f1-mail">Почта</label><input id="f1-mail" type="email" placeholder="name@company.ru"></div>
+</div>
+<div class="field"><label for="f1-phone">Телефон</label><input id="f1-phone" type="tel" placeholder="+7 (___) ___-__-__"></div>
+<label class="check"><input type="checkbox"><span>[Текущая формулировка согласия на обработку персональных данных по 152-ФЗ — без изменений]</span></label>
+<label class="check"><input type="checkbox"><span>[Текущая формулировка согласия на получение рекламы по 38-ФЗ — без изменений]</span></label>
+<button type="button" class="btn btn-main" style="text-transform:uppercase;letter-spacing:.04em;width:100%">Получить экспресс-проверку</button>
+</form>
+</div>
+</div>
+</section>
+
+<!-- 8. Что входит в услугу -->
+<section id="price" class="sec" style="padding:96px 0;background:#fff">
+<div class="wrap">
+<h2 class="h2" style="margin:0 0 40px;font-size:40px;line-height:1.15;font-weight:800">Что входит в услугу</h2>
+<div class="row">
+<div class="col" style="background:#F4F5F7;border-radius:16px;padding:32px">
+<h3 style="margin:0 0 20px;font-size:22px">Мы предлагаем</h3>
+<ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px">
+<li style="display:flex;gap:12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F1B2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Анализ ИТ-инфраструктуры и определение объектов КИИ</li>
+<li style="display:flex;gap:12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F1B2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Оценку критериев значимости по ПП №127</li>
+<li style="display:flex;gap:12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F1B2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Подготовку пакета организационно-распорядительной документации (ОРД)</li>
+<li style="display:flex;gap:12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F1B2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Уведомление ФСТЭК и сопровождение при запросах регулятора</li>
+</ul>
+</div>
+<div class="col" style="background:#F4F5F7;border-radius:16px;padding:32px">
+<h3 style="margin:0 0 20px;font-size:22px">Вы получаете</h3>
+<ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px">
+<li style="display:flex;gap:12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F1B2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6"></path></svg><span><b>Пакет для ОКИИ</b> — если объекты не относятся к значимым, оформляем официальное обоснование</span></li>
+<li style="display:flex;gap:12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F1B2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6"></path></svg><span><b>Пакет для ЗОКИИ</b> — акты категорирования, если присвоена категория (1-я, 2-я или 3-я)</span></li>
+<li style="display:flex;gap:12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F1B2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6"></path></svg><span><b>Уведомление ФСТЭК России</b> с результатами категорирования</span></li>
+<li style="display:flex;gap:12px;background:#FCE9DF;border-radius:10px;padding:12px;margin:0 -12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B83A0E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><rect x="3" y="8" width="18" height="13" rx="1"></rect><path d="M12 8v13"></path><path d="M3 12h18"></path><path d="M12 8c-2-4-6-4-6-1s6 1 6 1c0 0 6 2 6-1s-4-3-6 1"></path></svg><span><b style="color:#9A3412">Бесплатно:</b> готовый ответ в прокуратуру или ФСТЭК, если запрос уже поступил</span></li>
+</ul>
+</div>
+</div>
+<div style="margin-top:24px;border:2px solid #0F1B2D;border-radius:16px;padding:24px 32px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px">
+<div style="display:flex;flex-wrap:wrap;gap:32px;align-items:baseline">
+<div><div style="font-size:13px;color:#56627A;font-weight:600">Стоимость</div><div style="font-size:30px;font-weight:800">от [ЦЕНА] ₽</div></div>
+<div><div style="font-size:13px;color:#56627A;font-weight:600">Сроки</div><div style="font-size:30px;font-weight:800">от [X] недель</div></div>
+<div style="font-size:14px;color:#56627A;max-width:360px">Зависит от количества и сложности объектов КИИ, точный расчёт после консультации.</div>
+</div>
+<a href="#form-final" class="btn btn-dark">Узнать точную стоимость</a>
+</div>
+</div>
+</section>
+
+<!-- 9. Экспертиза -->
+<section class="sec" style="padding:96px 0">
+<div class="wrap">
+<div class="row" style="gap:48px;align-items:flex-start">
+<div style="flex:1 1 560px;min-width:0">
+<h2 class="h2" style="margin:0 0 24px;font-size:36px;line-height:1.2;font-weight:800">Категорирование объектов КИИ — обязательное требование ФЗ №187-ФЗ</h2>
+<p style="margin:0 0 24px;color:#3B4659">Критическая информационная инфраструктура (КИИ) — это информационные системы, сети и ресурсы, от которых зависит работа жизненно важных отраслей: энергетики, транспорта, связи, финансов, здравоохранения, науки, ТЭК и др. Сбой в работе таких объектов может привести к серьёзным последствиям для государства, бизнеса и населения.</p>
+<h3 style="margin:0 0 12px;font-size:18px">Законодательная база</h3>
+<ul style="margin:0 0 24px;padding-left:20px;color:#3B4659;display:flex;flex-direction:column;gap:8px">
+<li>Федеральный закон от 26.07.2017 г. № 187-ФЗ «О безопасности критической информационной инфраструктуры Российской Федерации»</li>
+<li>Постановление Правительства РФ от 8 февраля 2018 г. № 127</li>
+<li>Федеральный закон «О персональных данных» от 27.07.2006 № 152-ФЗ</li>
+<li>И прочие законодательные документы</li>
+</ul>
+<p style="margin:0;font-weight:600">Мы проведём категорирование «под ключ» — от анализа до создания уведомления во ФСТЭК. Работаем с любыми отраслями, включая арендуемые объекты.</p>
+</div>
+<figure style="flex:0 1 340px;min-width:260px;margin:0;background:#fff;border:1px solid #E1E5EB;border-radius:20px;overflow:hidden">
+<div style="height:340px;background:#DDE2E9;display:flex;align-items:center;justify-content:center;color:#56627A;font-size:14px">[Фото — Евгения Кудина]</div>
+<figcaption style="padding:24px">
+<div style="font-weight:800;font-size:20px;margin-bottom:8px">Евгения Кудина</div>
+<div style="font-size:14px;color:#3B4659;margin-bottom:6px">Архитектор защищённых систем работы с персональными данными</div>
+<div style="font-size:14px;color:#56627A">Эксперт по внедрению мер информационной безопасности в деятельность коммерческих организаций</div>
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+
+<!-- 11. Преимущества -->
+<section class="sec" style="padding:96px 0;background:#fff">
+<div class="wrap">
+<h2 class="h2" style="margin:0 0 40px;font-size:40px;line-height:1.15;font-weight:800">Наши преимущества</h2>
+<div class="row" style="gap:16px">
+<div style="flex:1 1 260px;min-width:0;padding:24px;border-radius:14px;background:#F4F5F7;font-weight:600">Наши эксперты — регулярно публикуются в ведущих бизнес-изданиях</div>
+<div style="flex:1 1 260px;min-width:0;padding:24px;border-radius:14px;background:#F4F5F7;font-weight:600">Гарантируем полное соответствие 152-ФЗ и Приказа ФСТЭК № 21</div>
+<div style="flex:1 1 260px;min-width:0;padding:24px;border-radius:14px;background:#F4F5F7;font-weight:600">Наши партнёры — передовые компании-производители средств защиты</div>
+<div style="flex:1 1 260px;min-width:0;padding:24px;border-radius:14px;background:#F4F5F7"><div style="font-size:32px;font-weight:800;color:#C2410C">20+</div><div style="font-weight:600">IT-юристов в штате</div></div>
+<div style="flex:1 1 260px;min-width:0;padding:24px;border-radius:14px;background:#F4F5F7"><div style="font-size:32px;font-weight:800;color:#C2410C">100+</div><div style="font-weight:600">услуг по защите бизнеса</div></div>
+<div style="flex:1 1 260px;min-width:0;padding:24px;border-radius:14px;background:#F4F5F7;font-weight:600">Комплексный подход: объединяем IT, право и безопасность</div>
+<div style="flex:1 1 260px;min-width:0;padding:24px;border-radius:14px;background:#F4F5F7"><div style="font-size:32px;font-weight:800;color:#C2410C">50+</div><div style="font-weight:600">публикаций</div></div>
+<div style="flex:1 1 260px;min-width:0;padding:24px;border-radius:14px;background:#F4F5F7;font-weight:600">Работа с проектами любого масштаба</div>
+<div style="flex:1 1 260px;min-width:0;padding:24px;border-radius:14px;background:#F4F5F7;font-weight:600">Проводим курсы</div>
+</div>
+</div>
+</section>
+
+<!-- 12. Логотипы клиентов -->
+<section class="sec" style="padding:72px 0">
+<div class="wrap">
+<h2 class="h2" style="margin:0 0 32px;font-size:28px;font-weight:800">Нам доверяют</h2>
+<div class="row" style="gap:12px">
+<div style="flex:1 1 160px;height:88px;border-radius:12px;background:#fff;border:1px solid #E1E5EB;display:flex;align-items:center;justify-content:center;font-weight:700;color:#56627A">Bwin</div>
+<div style="flex:1 1 160px;height:88px;border-radius:12px;background:#fff;border:1px solid #E1E5EB;display:flex;align-items:center;justify-content:center;font-weight:700;color:#56627A">М.Видео</div>
+<div style="flex:1 1 160px;height:88px;border-radius:12px;background:#fff;border:1px solid #E1E5EB;display:flex;align-items:center;justify-content:center;font-weight:700;color:#56627A">LUKOIL</div>
+<div style="flex:1 1 160px;height:88px;border-radius:12px;background:#fff;border:1px solid #E1E5EB;display:flex;align-items:center;justify-content:center;font-weight:700;color:#56627A">Газпром</div>
+<div style="flex:1 1 160px;height:88px;border-radius:12px;background:#fff;border:1px solid #E1E5EB;display:flex;align-items:center;justify-content:center;font-weight:700;color:#56627A">Сколково</div>
+<div style="flex:1 1 160px;height:88px;border-radius:12px;background:#fff;border:1px solid #E1E5EB;display:flex;align-items:center;justify-content:center;font-weight:700;color:#56627A">Dior</div>
+<div style="flex:1 1 160px;height:88px;border-radius:12px;border:1px dashed #9AA7B8;display:flex;align-items:center;justify-content:center;font-size:13px;color:#56627A;text-align:center;padding:8px">[Банк — клиент]</div>
+<div style="flex:1 1 160px;height:88px;border-radius:12px;border:1px dashed #9AA7B8;display:flex;align-items:center;justify-content:center;font-size:13px;color:#56627A;text-align:center;padding:8px">[Энергетика — клиент]</div>
+<div style="flex:1 1 160px;height:88px;border-radius:12px;border:1px dashed #9AA7B8;display:flex;align-items:center;justify-content:center;font-size:13px;color:#56627A;text-align:center;padding:8px">[Транспорт — клиент]</div>
+</div>
+</div>
+</section>
+
+<!-- 13. FAQ -->
+<section class="sec" style="padding:96px 0;background:#fff">
+<div class="wrap" style="max-width:920px">
+<h2 class="h2" style="margin:0 0 40px;font-size:40px;line-height:1.15;font-weight:800">Вопрос-ответ</h2>
+<div style="display:flex;flex-direction:column;gap:12px">
+<details class="faq" open=""><summary>Что такое КИИ?<span aria-hidden="true">+</span></summary><p style="margin:0 0 22px;color:#3B4659">КИИ (Критическая Информационная Инфраструктура) — это объекты, системы и сети, выход из строя или нарушение работы которых может привести к значительным негативным последствиям для безопасности, экономики, здоровья населения или экологии.</p></details>
+<details class="faq"><summary>Кто категорирует объекты КИИ?<span aria-hidden="true">+</span></summary><p style="margin:0 0 22px;color:#3B4659">[Текущий ответ с сайта — без изменений]</p></details>
+<details class="faq"><summary>Какая ответственность за несоблюдение требований безопасности критической информационной инфраструктуры?<span aria-hidden="true">+</span></summary><p style="margin:0 0 22px;color:#3B4659">[Текущий ответ с сайта — без изменений]</p></details>
+<details class="faq"><summary>[Четвёртый вопрос — уточнить у клиента]<span aria-hidden="true">+</span></summary><p style="margin:0 0 22px;color:#3B4659">[Текущий ответ с сайта — без изменений]</p></details>
+<details class="faq"><summary>Что будет, если не провести категорирование вовремя?<span aria-hidden="true">+</span></summary><p style="margin:0 0 22px;color:#3B4659">Штрафы от 100 000 до 500 000 ₽ в зависимости от характера нарушения, риск уголовной ответственности по ст. 274.1 УК при инцидентах с данными КИИ, а также повышенный риск внеплановой проверки со стороны ФСТЭК и прокуратуры.</p></details>
+<details class="faq"><summary>Нужно ли переводить объекты КИИ на российское программное обеспечение?<span aria-hidden="true">+</span></summary><p style="margin:0 0 22px;color:#3B4659">Да, для значимых объектов КИИ (ЗОКИИ) законодательная база уже принята. Сейчас утверждаются отраслевые перечни и сроки перехода, за нарушение которых планируются отдельные штрафы.</p></details>
+<details class="faq"><summary>У моей компании подходящий код ОКВЭД — точно ли нужно категорирование?<span aria-hidden="true">+</span></summary><p style="margin:0 0 22px;color:#3B4659">Не обязательно. Код ОКВЭД — ориентир, но обязанность возникает, только если организация фактически использует АСУ, ИС или ИТКС, подпадающие под определение объекта КИИ. Точный ответ даст только анализ на этапе категорирования.</p></details>
+</div>
+</div>
+</section>
+
+<!-- 14. Вам может быть интересно -->
+<section class="sec" style="padding:96px 0">
+<div class="wrap">
+<h2 class="h2" style="margin:0 0 32px;font-size:32px;font-weight:800">Вам может быть интересно</h2>
+<div class="row">
+<a href="#" class="col" style="background:#fff;border:1px solid #E1E5EB;border-radius:16px;padding:28px;text-decoration:none;color:#0F1B2D;display:flex;justify-content:space-between;gap:20px">
+<div><div style="font-weight:800;font-size:20px;margin-bottom:8px">Разработка модели угроз</div><div style="color:#3B4659;font-size:15px">Определение и документирование перечня актуальных угроз и нарушителей</div></div>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+</a>
+<a href="#" class="col" style="background:#fff;border:1px solid #E1E5EB;border-radius:16px;padding:28px;text-decoration:none;color:#0F1B2D;display:flex;justify-content:space-between;gap:20px">
+<div><div style="font-weight:800;font-size:20px;margin-bottom:8px">Криптографические средства защиты информации</div><div style="color:#3B4659;font-size:15px">Сертифицированные средства защиты подтверждают подлинность и неизменность электронных документов</div></div>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+</a>
+</div>
+</div>
+</section>
+
+<!-- 15. Статьи -->
+<section class="sec" style="padding:96px 0;background:#fff">
+<div class="wrap">
+<div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:16px;margin-bottom:32px">
+<h2 class="h2" style="margin:0;font-size:32px;font-weight:800">Наши статьи</h2>
+<a href="#" style="font-weight:700;text-decoration:none">Все статьи →</a>
+</div>
+<div class="row" style="gap:20px">
+<a href="#" style="flex:1 1 300px;min-width:0;text-decoration:none;color:#0F1B2D;border-radius:16px;overflow:hidden;background:#F4F5F7;border:2px solid #C2410C">
+<div style="height:180px;background:#DDE2E9;display:flex;align-items:center;justify-content:center;color:#56627A;font-size:13px">[Обложка]</div>
+<div style="padding:20px"><div style="font-size:12px;font-weight:700;color:#9A3412;margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em">Рекомендуем добавить</div><div style="font-weight:700;font-size:18px">[Статья про категорирование КИИ]</div></div>
+</a>
+<a href="#" style="flex:1 1 300px;min-width:0;text-decoration:none;color:#0F1B2D;border-radius:16px;overflow:hidden;background:#F4F5F7">
+<div style="height:180px;background:#DDE2E9;display:flex;align-items:center;justify-content:center;color:#56627A;font-size:13px">[Обложка]</div>
+<div style="padding:20px"><div style="font-weight:700;font-size:18px">Защита персональных данных в банке</div></div>
+</a>
+<a href="#" style="flex:1 1 300px;min-width:0;text-decoration:none;color:#0F1B2D;border-radius:16px;overflow:hidden;background:#F4F5F7">
+<div style="height:180px;background:#DDE2E9;display:flex;align-items:center;justify-content:center;color:#56627A;font-size:13px">[Обложка]</div>
+<div style="padding:20px"><div style="font-weight:700;font-size:18px">Оборотные штрафы за утечку персональных данных</div></div>
+</a>
+</div>
+</div>
+</section>
+
+<!-- 16. Финальная форма -->
+<section id="form-final" class="sec" style="padding:96px 0">
+<div class="wrap" style="max-width:920px">
+<h2 class="h2" style="margin:0 0 32px;font-size:40px;line-height:1.15;font-weight:800;text-align:center">Обсудите ваши задачи с нашим экспертом</h2>
+<form style="background:#fff;border:1px solid #E1E5EB;border-radius:20px;padding:40px;display:flex;flex-direction:column;gap:18px">
+<div class="row" style="gap:16px">
+<div class="field"><label for="f2-phone">Телефон</label><input id="f2-phone" type="tel" placeholder="+7 (___) ___-__-__"></div>
+<div class="field"><label for="f2-mail">Почта</label><input id="f2-mail" type="email" placeholder="name@company.ru"></div>
+<div class="field"><label for="f2-company">Компания</label><input id="f2-company" type="text" placeholder="ООО «Компания»"></div>
+</div>
+<label class="check"><input type="checkbox"><span>[Текущая формулировка согласия по 152-ФЗ — без изменений]</span></label>
+<label class="check"><input type="checkbox"><span>[Текущая формулировка согласия по 38-ФЗ — без изменений]</span></label>
+<button type="button" class="btn btn-main" style="align-self:flex-start">Получить консультацию</button>
+</form>
+</div>
+</section>
+
+<!-- 17. Футер -->
+<footer style="background:#0F1B2D;color:#B4C0CF;padding:56px 0 32px;font-size:14px">
+<div class="wrap">
+<div class="row" style="gap:40px;margin-bottom:40px">
+<div class="col"><div style="color:#fff;font-weight:800;font-size:22px;margin-bottom:12px">CASE<span style="color:#F08A5D">.</span></div><div>[Юридическое наименование, ИНН, ОГРН]</div></div>
+<div class="col"><div style="color:#fff;font-weight:700;margin-bottom:12px">Контакты</div><div>[+7 ТЕЛЕФОН]</div><div>[E-MAIL]</div><div>[АДРЕС]</div></div>
+<div class="col"><div style="color:#fff;font-weight:700;margin-bottom:12px">Информация</div><div style="display:flex;flex-direction:column;gap:6px"><a href="#" style="color:#B4C0CF">Политика конфиденциальности</a><a href="#" style="color:#B4C0CF">Карта сайта</a></div></div>
+</div>
+<div style="border-top:1px solid rgba(255,255,255,.12);padding-top:24px">© CASE, [ГОД]</div>
+</div>
+</footer>
+
+</div>
+</body>
+</html>
