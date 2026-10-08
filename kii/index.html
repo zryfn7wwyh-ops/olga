@@ -2,399 +2,493 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<title>Категорирование объектов КИИ — прототип</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
+<title>Категорирование КИИ — прототип</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&amp;family=Montserrat:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <style>
-body{margin:0;background:#F4F5F7}
-a{color:#B83A0E}a:hover{color:#8A2A08}
-.wrap{max-width:1200px;margin:0 auto;padding:0 24px;box-sizing:border-box}
-.row{display:flex;flex-wrap:wrap;gap:24px}
-.col{flex:1 1 300px;min-width:0}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;border-radius:10px;font-weight:700;font-size:16px;text-decoration:none;box-sizing:border-box;border:2px solid transparent;cursor:pointer;font-family:inherit}
-.btn-main{background:#C2410C;color:#fff}.btn-main:hover{background:#9A3412;color:#fff}
-.btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}.btn-ghost:hover{color:#fff;border-color:#fff}
-.btn-dark{background:#0F1B2D;color:#fff}.btn-dark:hover{background:#1E2F48;color:#fff}
-.field{display:flex;flex-direction:column;gap:6px;flex:1 1 220px;min-width:0}
-.field label{font-size:13px;font-weight:600;color:#3B4659}
-.field input{height:52px;border:1px solid #C9CFD9;border-radius:10px;padding:0 16px;font:inherit;font-size:16px;background:#fff;color:#0F1B2D}
-.check{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.45;color:#3B4659}
-.check input{width:20px;height:20px;margin:0;flex:none;accent-color:#C2410C}
-.faq{background:#fff;border:1px solid #E1E5EB;border-radius:14px;padding:0 24px}
-.faq summary{cursor:pointer;list-style:none;padding:22px 0;font-weight:700;font-size:18px;display:flex;justify-content:space-between;gap:16px}
+:root{
+  --blue:#3D63FF; --blue-dark:#2C4FE0; --blue-soft:#EAF0FF;
+  --black:#000; --ink:#2B2B2B; --text:#5E6370; --muted:#8A8F99;
+  --bg:#F5F6F8; --card:#fff; --line:#ECEEF2;
+  --display:'Russo One','Montserrat',sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Montserrat',system-ui,sans-serif;font-size:17px;line-height:1.6}
+a{color:var(--blue)}a:hover{color:var(--blue-dark)}
+h1,h2,h3{font-weight:400;margin:0;overflow-wrap:break-word;hyphens:auto}
+.wrap{max-width:1280px;margin:0 auto;padding:0 24px}
+.sec{padding:96px 0}
+.h2{font-family:var(--display);font-size:52px;line-height:1.1;text-align:center;color:var(--ink);letter-spacing:.01em}
+.sub{margin:14px 0 0;text-align:center;color:var(--blue);font-size:20px}
+.row{display:flex;flex-wrap:wrap;gap:20px}
+.card{background:var(--card);border-radius:40px;padding:40px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:60px;padding:0 36px;border-radius:16px;font:600 15px/1 'Montserrat',sans-serif;text-transform:uppercase;letter-spacing:.04em;text-decoration:none;border:0;cursor:pointer}
+.btn-blue{background:var(--blue);color:#fff}.btn-blue:hover{background:var(--blue-dark);color:#fff}
+.btn-light{background:#F0F0F0;color:#1A1A1A}.btn-light:hover{background:#fff;color:#000}
+.btn-outline{background:transparent;color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.7)}.btn-outline:hover{color:#fff;box-shadow:inset 0 0 0 1.5px #fff}
+.num{font-family:var(--display);color:var(--blue);line-height:1}
+
+/* header + hero */
+.hero{background:var(--black);color:#fff;border-radius:0 0 64px 64px;overflow:hidden;position:relative}
+.top{display:flex;align-items:center;gap:24px;flex-wrap:wrap;padding:40px 0}
+.burger{width:50px;height:50px;border-radius:12px;background:#2A2A2A;border:0;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.logo{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none}
+.logo b{font-family:var(--display);font-size:30px;line-height:.8;display:block}
+.logo span{font-family:var(--display);font-size:20px;line-height:.9;display:block}
+.contacts{margin-left:auto;display:flex;gap:24px;align-items:center;flex-wrap:wrap;font-size:16px}
+.contacts a{color:#fff;text-decoration:none;display:inline-flex;gap:10px;align-items:center}
+.search{background:#2A2A2A;color:#fff;border:0;border-radius:22px;height:44px;padding:0 16px;font:500 16px 'Montserrat',sans-serif;display:inline-flex;gap:10px;align-items:center;cursor:pointer}
+.crumbs{display:inline-flex;align-items:center;gap:10px;border:1.5px solid #fff;border-radius:14px;padding:4px 16px;font-size:14px;margin-top:40px}
+.hero-grid{display:flex;flex-wrap:wrap;gap:40px;align-items:center;padding:96px 0 88px}
+.hero-text{flex:1 1 620px;min-width:0;position:relative;z-index:1}
+.hero h1{font-family:var(--display);font-size:68px;line-height:1.1}
+.hero h1 em{font-style:normal;color:var(--blue)}
+.bul{list-style:none;margin:48px 0 48px 52px;padding:0;display:flex;flex-direction:column;gap:22px;max-width:680px}
+.bul li{position:relative}
+.bul li::before{content:"";position:absolute;left:-26px;top:9px;width:10px;height:10px;border-radius:50%;background:var(--blue)}
+.bul b{display:block;font-weight:500;font-size:20px}
+.bul .big{font-family:var(--display);color:var(--blue);font-size:22px;margin-right:6px}
+.bul span{color:#D5D8DE}
+.hero-art{flex:1 1 380px;min-width:0;display:flex;justify-content:center;position:relative}
+.hero-art::before{content:"";position:absolute;inset:-20%;background:radial-gradient(closest-side,rgba(40,70,255,.45),transparent);filter:blur(10px)}
+
+/* industries */
+.ind{flex:1 1 360px;min-width:0;background:#fff;border:1.5px solid var(--line);border-radius:32px;padding:28px 28px 24px 36px;display:flex;justify-content:space-between;gap:16px;min-height:160px}
+.ind h3{font-weight:600;font-size:22px;line-height:1.3;font-family:'Montserrat',sans-serif}
+.okved{margin-top:14px;display:flex;gap:6px;flex-wrap:wrap}
+.okved span{font-size:13px;font-weight:600;color:var(--blue);background:var(--blue-soft);border-radius:8px;padding:3px 9px}
+.okved span:first-child{background:transparent;color:var(--muted);padding-left:0}
+.ill{flex:none;width:120px;height:110px;border-radius:24px;background:linear-gradient(160deg,#F1F3F7,#E3E8F2);display:flex;align-items:center;justify-content:center}
+
+/* why */
+.why{flex:1 1 340px;min-width:0;border-radius:40px;padding:44px;background:#fff;min-height:360px;display:flex;flex-direction:column;gap:24px}
+.why h3{font-family:'Montserrat',sans-serif;font-weight:600;font-size:24px;line-height:1.3}
+.why p{margin:0;color:var(--text);font-size:16px}
+.why.blue{background:var(--blue);color:#fff}.why.blue p{color:#E6EBFF}
+
+/* risks */
+.risk{flex:1 1 500px;min-width:0;background:#fff;border-radius:40px;padding:40px;display:flex;gap:24px}
+.risk .ico{flex:none;width:56px;height:56px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center}
+.risk h3{font-family:'Montserrat',sans-serif;font-weight:600;font-size:22px;margin-bottom:10px}
+.risk p{margin:0;color:var(--text);font-size:16px}
+
+/* steps */
+.steps{list-style:none;margin:56px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:20px}
+.step{flex:1 1 220px;min-width:0;background:#fff;border-radius:32px;padding:32px 28px;display:flex;flex-direction:column;gap:16px}
+.step .num{font-size:56px}
+.step h3{font-family:'Montserrat',sans-serif;font-weight:600;font-size:19px;line-height:1.3}
+.step p{margin:0;color:var(--text);font-size:15px}
+.note{margin:28px 0 0;text-align:center;color:var(--muted);font-size:14px}
+
+/* forms */
+.form-blue{background:var(--blue);color:#fff;border-radius:40px;padding:64px 76px}
+.kicker{font-weight:700;font-size:15px;text-transform:uppercase;letter-spacing:.03em}
+.form-blue h2{font-family:var(--display);font-size:52px;line-height:1.15;margin:24px 0 16px;max-width:820px}
+.form-blue .lead{margin:0 0 36px;font-size:18px;color:#E6EBFF;max-width:820px}
+.fields{display:flex;flex-wrap:wrap;gap:14px}
+.f{flex:1 1 280px;min-width:0}
+.f input{width:100%;height:78px;border:0;border-radius:18px;padding:0 32px;font:400 22px 'Montserrat',sans-serif;background:#5F80FF;color:#fff}
+.f input::placeholder{color:#fff}
+.f.full{flex-basis:100%}
+.req{margin:36px 0 14px;font-size:17px}
+.chk{display:flex;gap:16px;align-items:flex-start;font-size:17px;line-height:1.55;margin-bottom:10px;text-align:justify}
+.chk input{width:16px;height:16px;margin:6px 0 0;flex:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.form-white{background:#fff;border-radius:40px;padding:56px}
+.form-white .f input{background:var(--bg);color:var(--ink)}
+.form-white .f input::placeholder{color:var(--muted)}
+.form-white .chk{color:var(--text);font-size:15px}
+
+/* offer */
+.offer{flex:1 1 480px;min-width:0;background:#fff;border-radius:40px;padding:56px 44px;position:relative}
+.offer h2{font-family:var(--display);font-size:56px;line-height:1.1;margin-bottom:48px}
+.offer ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:36px}
+.offer li{display:flex;gap:40px;align-items:center;font-weight:600;font-size:22px;line-height:1.4}
+.offer li .num{font-size:52px;width:64px;flex:none}
+.offer li.gift{background:var(--blue-soft);border-radius:24px;padding:18px 20px;margin:0 -20px}
+.spark{position:absolute;top:24px;right:28px;width:84px;height:84px}
+.offer h2{padding-right:80px}
+.price{margin-top:20px;background:var(--black);color:#fff;border-radius:40px;padding:40px 56px;display:flex;flex-wrap:wrap;align-items:center;gap:32px}
+.price .v{font-family:var(--display);font-size:40px;line-height:1.1}
+.price .l{font-size:14px;color:#A9AEB8;margin-bottom:6px}
+
+/* expert */
+.exp-photo{flex:0 1 460px;min-width:280px;background:#fff;border-radius:40px;padding:24px 24px 32px}
+.exp-photo img{width:100%;display:block;border-radius:26px;aspect-ratio:432/584;object-fit:cover}
+.exp-photo h3{font-family:'Montserrat',sans-serif;font-weight:700;font-size:28px;margin:24px 12px 8px}
+.exp-photo p{margin:0 12px 6px;color:var(--text);font-size:16px}
+.exp-text{flex:1 1 560px;min-width:0;background:#fff;border-radius:40px;padding:48px 36px;color:var(--text);font-size:18px;line-height:1.7}
+.exp-text h2{font-family:var(--display);color:var(--ink);font-size:34px;line-height:1.2;margin-bottom:24px}
+.exp-text ul{padding:0;list-style:none}.exp-text li::before{content:"— "}
+
+/* advantages, logos */
+.adv{flex:1 1 280px;min-width:0;background:#fff;border-radius:32px;padding:32px;font-weight:600;font-size:18px;line-height:1.4;min-height:150px;display:flex;flex-direction:column;justify-content:flex-end}
+.adv .num{font-size:44px;margin-bottom:8px}
+.logo-c{flex:1 1 180px;height:110px;border-radius:28px;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;color:#9AA0AB;font-size:18px}
+.logo-c.add{background:transparent;border:1.5px dashed #B9BEC8;font-size:14px;font-weight:500;text-align:center;padding:8px}
+
+/* faq */
+.faq{background:#fff;border-radius:28px;padding:0 36px}
+.faq summary{cursor:pointer;list-style:none;padding:28px 0;font-weight:600;font-size:20px;display:flex;justify-content:space-between;gap:20px;align-items:center}
 .faq summary::-webkit-details-marker{display:none}
-.faq[open] summary{color:#C2410C}
-.tag{font-family:'IBM Plex Mono',monospace;font-size:13px;padding:4px 8px;border-radius:6px;background:#EEF1F5;color:#0F1B2D}
-@media (max-width:720px){
-.h1{font-size:38px !important}
-.h2{font-size:28px !important}
-.sec{padding-top:56px !important;padding-bottom:56px !important}
-.nav{display:none !important}
+.faq summary i{flex:none;width:44px;height:44px;border-radius:50%;background:var(--blue-soft);color:var(--blue);display:flex;align-items:center;justify-content:center;font-style:normal;font-size:24px;transition:transform .2s}
+.faq[open] summary i{transform:rotate(45deg);background:var(--blue);color:#fff}
+.faq p{margin:0 0 28px;color:var(--text)}
+
+/* links, articles */
+.xlink{flex:1 1 480px;min-width:0;background:#fff;border-radius:40px;padding:40px;text-decoration:none;color:var(--ink);display:flex;justify-content:space-between;gap:24px}
+.xlink h3{font-family:'Montserrat',sans-serif;font-weight:700;font-size:24px;margin-bottom:10px}
+.xlink p{margin:0;color:var(--text);font-size:16px}
+.arr{flex:none;width:56px;height:56px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center}
+.art{flex:1 1 320px;min-width:0;background:#fff;border-radius:32px;overflow:hidden;text-decoration:none;color:var(--ink)}
+.art .cov{height:200px;background:linear-gradient(135deg,#0B0F2A,#1E3AD8);display:flex;align-items:center;justify-content:center;color:#B9C6FF;font-size:13px}
+.art .t{padding:24px;font-weight:600;font-size:19px;line-height:1.35}
+.art.rec{box-shadow:inset 0 0 0 2px var(--blue)}
+
+footer{background:var(--black);color:#A9AEB8;border-radius:64px 64px 0 0;padding:64px 0 40px;font-size:15px;margin-top:96px}
+footer a{color:#fff;text-decoration:none}
+
+@media (max-width:760px){
+  .sec{padding:64px 0}
+  .h2{font-size:32px}
+  .hero h1{font-size:32px}
+  .hero-grid{padding:56px 0}
+  .contacts{display:none}
+  .search{margin-left:auto}
+  .bul{margin-left:26px}
+  .card,.why,.risk,.offer,.exp-text,.xlink{border-radius:28px;padding:28px}
+  .form-blue,.form-white{padding:36px 22px;border-radius:28px}
+  .form-blue h2{font-size:32px}
+  .f input{height:62px;font-size:18px;padding:0 20px}
+  .chk{font-size:14px;text-align:left}
+  .offer h2{font-size:36px}
+  .offer li{gap:20px;font-size:18px}
+  .offer li .num{font-size:40px;width:44px}
+  .price{padding:28px;border-radius:28px}
+  .hero{border-radius:0 0 36px 36px}
+  footer{border-radius:36px 36px 0 0}
+  .ind{padding:24px;border-radius:24px}
+  .ill{width:72px;height:72px;border-radius:18px}
+  .ill svg{width:36px;height:36px}
+  .spark{display:none}
+  .hero-art{overflow:hidden}
+  .hero-art svg{width:280px}
+  .xlink h3{font-size:20px}
+  .xlink{gap:12px}
+  .arr{width:44px;height:44px}
+  .faq{padding:0 20px}
+  .faq summary{font-size:17px}
+  .offer li{gap:12px}
+  .top{gap:12px}
+  .exp-photo{min-width:0}
 }
 </style>
-<div style="font-family:'Manrope',system-ui,sans-serif;color:#0F1B2D;background:#F4F5F7;font-size:16px;line-height:1.55">
-
-<!-- Шапка -->
-<header style="background:#0F1B2D;border-bottom:1px solid rgba(255,255,255,.08)">
-<div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:72px;flex-wrap:wrap">
-<a href="#" style="color:#fff;text-decoration:none;font-weight:800;font-size:22px;letter-spacing:.02em">CASE<span style="color:#F08A5D">.</span></a>
-<nav class="nav" style="display:flex;gap:28px;font-size:15px">
-<a href="#" style="color:#C7D0DD;text-decoration:none">Услуги</a>
-<a href="#" style="color:#C7D0DD;text-decoration:none">Обучение</a>
-<a href="#" style="color:#C7D0DD;text-decoration:none">Статьи</a>
-<a href="#" style="color:#C7D0DD;text-decoration:none">О компании</a>
-<a href="#" style="color:#C7D0DD;text-decoration:none">Контакты</a>
-</nav>
-<a href="tel:+70000000000" style="color:#fff;text-decoration:none;font-weight:700">[+7 ТЕЛЕФОН]</a>
-</div>
-</header>
+</head>
+<body>
 
 <!-- 1. Hero -->
-<section class="sec" style="background:#0F1B2D;color:#fff;padding:72px 0 88px">
-<div class="wrap">
-<div style="font-size:14px;color:#9AA7B8;margin-bottom:20px">Главная / Услуги / Категорирование КИИ</div>
-<h1 class="h1" style="margin:0 0 16px;font-size:60px;line-height:1.08;font-weight:800;max-width:820px">Категорирование объектов КИИ</h1>
-<p style="margin:0 0 48px;font-size:19px;color:#C7D0DD;max-width:640px">Под ключ: от анализа инфраструктуры до внесения объектов в реестр ФСТЭК по 187-ФЗ</p>
-<div class="row" style="margin-bottom:48px">
-<div class="col" style="background:#17263D;border-radius:16px;padding:28px">
-<div style="font-size:32px;font-weight:800;color:#F08A5D;margin-bottom:8px">500 000 ₽</div>
-<div style="font-weight:700;font-size:18px;margin-bottom:10px">Штрафы для юрлиц выросли до 500 000 ₽</div>
-<div style="font-size:15px;color:#B4C0CF">С 2026 года в КоАП действует отдельная норма ответственности за нарушение правил эксплуатации объектов КИИ — помимо уголовной ответственности по ст. 274.1 УК.</div>
-</div>
-<div class="col" style="background:#17263D;border-radius:16px;padding:28px">
-<div style="font-size:32px;font-weight:800;color:#F08A5D;margin-bottom:8px">98%</div>
-<div style="font-weight:700;font-size:18px;margin-bottom:10px">98% нарушений — расхождение с реестром ФСТЭК</div>
-<div style="font-size:15px;color:#B4C0CF">Почти все нарушения, которые выявляет регулятор, связаны с тем, что фактический состав значимых объектов не совпадает со сведениями в реестре. Следим, чтобы ваши данные были актуальны с первого раза.</div>
-</div>
-<div class="col" style="background:#17263D;border-radius:16px;padding:28px">
-<div style="font-size:32px;font-weight:800;color:#F08A5D;margin-bottom:8px">% от оборота</div>
-<div style="font-weight:700;font-size:18px;margin-bottom:10px">Готовятся новые оборотные штрафы</div>
-<div style="font-size:15px;color:#B4C0CF">За срыв сроков перехода значимых объектов КИИ на российское ПО и за отсутствие категорирования — пройти процедуру сейчас дешевле, чем разбираться с санкциями позже.</div>
-</div>
-</div>
-<div style="display:flex;gap:16px;flex-wrap:wrap">
-<a href="#form" class="btn btn-main">Бесплатная консультация</a>
-<a href="#price" class="btn btn-ghost">Узнать стоимость</a>
-</div>
-</div>
+<section class="hero">
+  <div class="wrap">
+    <div class="top">
+      <button class="burger" type="button" aria-label="Меню"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <a href="#" class="logo" aria-label="Кейс групп — на главную">
+        <svg width="54" height="54" viewBox="0 0 54 54" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><path d="M27 5l19 11v22L27 49 8 38V16z"/><path d="M14 19l13-7 13 7M14 25l13-7 13 7M14 31l13-7 7 4M20 37l7-4 13 7M27 43l-7-4"/></svg>
+        <div><b>Кейс</b><span>групп</span></div>
+      </a>
+      <div class="contacts">
+        <a href="mailto:info@case-group.ru"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zm2 .5V7l7 5 7-5v-.5z"/></svg>info@case-group.ru</a>
+        <a href="tel:+79311783643"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"/></svg>+7 (931) 178-36-43</a>
+        <a href="tel:+78003331531"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"/></svg>+7 (800) 333-15-31</a>
+      </div>
+      <button class="search" type="button">Поиск <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button>
+    </div>
+    <nav class="crumbs" aria-label="Хлебные крошки"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 3l9 8h-3v9H6v-9H3z"/></svg><span aria-hidden="true">›</span>КИИ</nav>
+
+    <div class="hero-grid">
+      <div class="hero-text">
+        <h1>Категорирование<br>объектов <em>КИИ</em></h1>
+        <ul class="bul">
+          <li><b><span class="big">500 000 ₽</span> — штрафы для юрлиц выросли</b><span>С 2026 года в КоАП действует отдельная норма ответственности за нарушение правил эксплуатации объектов КИИ — помимо уголовной ответственности по ст. 274.1 УК.</span></li>
+          <li><b><span class="big">98%</span> нарушений — расхождение с реестром ФСТЭК</b><span>Почти все нарушения, которые выявляет регулятор, связаны с тем, что фактический состав значимых объектов не совпадает со сведениями в реестре. Следим, чтобы ваши данные были актуальны с первого раза.</span></li>
+          <li><b>Готовятся новые оборотные штрафы</b><span>За срыв сроков перехода значимых объектов КИИ на российское ПО и за отсутствие категорирования — пройти процедуру сейчас дешевле, чем разбираться с санкциями позже.</span></li>
+        </ul>
+        <div style="display:flex;gap:16px;flex-wrap:wrap">
+          <a href="#form" class="btn btn-blue">Бесплатная консультация</a>
+          <a href="#price" class="btn btn-outline">Узнать стоимость</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <!-- Заглушка: на сайте — 3D-куб с неоновым лабиринтом -->
+        <svg width="420" height="460" viewBox="0 0 420 460" style="position:relative;max-width:100%;height:auto">
+          <defs><filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+          <path d="M210 30l170 98v196l-170 98-170-98V128z" fill="#0A1240"/>
+          <path d="M210 30l170 98-170 98-170-98z" fill="#1A2A7A"/>
+          <path d="M210 226v196l170-98V128z" fill="#101C5C"/>
+          <g fill="none" stroke="#2FA8FF" stroke-width="9" stroke-linejoin="round" filter="url(#glow)">
+            <path d="M110 128l100-58 100 58M150 128l60-35 60 35-60 35M90 140l120 70 70-40"/>
+            <path d="M232 250l120-70v50l-80 46v50l80-46v50l-120 70"/>
+            <path d="M188 250L68 180v50l80 46v40l-80-46v50l120 70"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- 3. Для кого -->
-<section class="sec" style="padding:96px 0">
-<div class="wrap">
-<h2 class="h2" style="margin:0 0 8px;font-size:40px;line-height:1.15;font-weight:800">Для кого это актуально</h2>
-<p style="margin:0 0 40px;font-size:18px;color:#56627A">Кому необходимо категорирование КИИ?</p>
-<div class="row" style="gap:16px">
-<div style="flex:1 1 210px;min-width:0;background:#fff;border:1px solid #E1E5EB;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px;justify-content:space-between"><div style="font-weight:700">Банки и финтех-компании</div><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag">64</span><span class="tag">65</span><span class="tag">66</span></div></div>
-<div style="flex:1 1 210px;min-width:0;background:#fff;border:1px solid #E1E5EB;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px;justify-content:space-between"><div style="font-weight:700">Энергетика и топливная промышленность</div><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag">05</span><span class="tag">06</span><span class="tag">19</span><span class="tag">35</span></div></div>
-<div style="flex:1 1 210px;min-width:0;background:#fff;border:1px solid #E1E5EB;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px;justify-content:space-between"><div style="font-weight:700">Транспортные компании (метро, аэропорты, ж/д)</div><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag">49</span><span class="tag">50</span><span class="tag">51</span><span class="tag">52</span><span class="tag">53</span></div></div>
-<div style="flex:1 1 210px;min-width:0;background:#fff;border:1px solid #E1E5EB;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px;justify-content:space-between"><div style="font-weight:700">Медицинские учреждения и фармацевтика</div><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag">86</span></div></div>
-<div style="flex:1 1 210px;min-width:0;background:#fff;border:1px solid #E1E5EB;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px;justify-content:space-between"><div style="font-weight:700">IT и телеком</div><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag">61</span></div></div>
-<div style="flex:1 1 210px;min-width:0;background:#fff;border:1px solid #E1E5EB;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px;justify-content:space-between"><div style="font-weight:700">Государственные подрядчики</div><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag">84.12</span></div></div>
-<div style="flex:1 1 210px;min-width:0;background:#fff;border:1px solid #E1E5EB;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px;justify-content:space-between"><div style="font-weight:700">Атомная энергетика</div><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag">35.11</span><span class="tag">35.12</span><span class="tag">35.13</span></div></div>
-<div style="flex:1 1 210px;min-width:0;background:#fff;border:1px solid #E1E5EB;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px;justify-content:space-between"><div style="font-weight:700">Оборонная промышленность</div><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag">26.51</span><span class="tag">30</span></div></div>
-<div style="flex:1 1 210px;min-width:0;background:#fff;border:1px solid #E1E5EB;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px;justify-content:space-between"><div style="font-weight:700">Космическая отрасль</div><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag">30.3</span><span class="tag">30.4</span><span class="tag">25.4</span></div></div>
-<div style="flex:1 1 210px;min-width:0;background:#fff;border:1px solid #E1E5EB;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px;justify-content:space-between"><div style="font-weight:700">Наука</div><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag">72</span></div></div>
-</div>
-<p style="margin:24px 0 0;font-size:14px;color:#56627A;max-width:860px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#0F1B2D;margin-right:6px">ОКВЭД</span>Совпадение кода ОКВЭД не означает автоматическую обязанность проводить категорирование — точная принадлежность к субъектам КИИ определяется только на этапе самой процедуры, по фактически используемым информационным системам.</p>
-</div>
+<section class="sec">
+  <div class="wrap">
+    <h2 class="h2">Для кого это актуально</h2>
+    <p class="sub">Кому необходимо категорирование КИИ?</p>
+    <div class="row" style="margin-top:56px;gap:14px">
+      <div class="ind"><div><h3>Банки и<br>финтех-компании</h3><div class="okved"><span>ОКВЭД</span><span>64</span><span>65</span><span>66</span></div></div><div class="ill"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#3D63FF" stroke-width="1.6"><path d="M3 9l9-5 9 5M5 9v9M19 9v9M9 9v9M15 9v9M3 20h18"/></svg></div></div>
+      <div class="ind"><div><h3>Энергетика и топливная промышленность</h3><div class="okved"><span>ОКВЭД</span><span>05</span><span>06</span><span>19</span><span>35</span></div></div><div class="ill"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#3D63FF" stroke-width="1.6"><path d="M12 12v10M12 12l-7 3M12 12l7 3M12 12V3"/><circle cx="12" cy="12" r="1.5"/></svg></div></div>
+      <div class="ind"><div><h3>Транспортные компании (метро, аэропорты, ж/д)</h3><div class="okved"><span>ОКВЭД</span><span>49</span><span>50</span><span>51</span><span>52</span><span>53</span></div></div><div class="ill"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#3D63FF" stroke-width="1.6"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M8 21l2-4M16 21l-2-4"/></svg></div></div>
+      <div class="ind"><div><h3>Медицинские учреждения и фармацевтика</h3><div class="okved"><span>ОКВЭД</span><span>86</span></div></div><div class="ill"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#3D63FF" stroke-width="1.6"><rect x="3" y="8" width="18" height="8" rx="4" transform="rotate(-45 12 12)"/><path d="M9 9l6 6"/></svg></div></div>
+      <div class="ind"><div><h3>IT и телеком</h3><div class="okved"><span>ОКВЭД</span><span>61</span></div></div><div class="ill"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#3D63FF" stroke-width="1.6"><rect x="3" y="14" width="18" height="6" rx="2"/><path d="M8 14V9M16 14V9M9 6a5 5 0 0 1 6 0"/></svg></div></div>
+      <div class="ind"><div><h3>Государственные подрядчики</h3><div class="okved"><span>ОКВЭД</span><span>84.12</span></div></div><div class="ill"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#3D63FF" stroke-width="1.6"><path d="M4 14h16v4H4zM8 14l2-4h4l2 4M12 10V4"/></svg></div></div>
+      <div class="ind"><div><h3>Атомная энергетика</h3><div class="okved"><span>ОКВЭД</span><span>35.11</span><span>35.12</span><span>35.13</span></div></div><div class="ill"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#3D63FF" stroke-width="1.6"><circle cx="12" cy="12" r="2"/><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(-60 12 12)"/></svg></div></div>
+      <div class="ind"><div><h3>Оборонная промышленность</h3><div class="okved"><span>ОКВЭД</span><span>26.51</span><span>30</span></div></div><div class="ill"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#3D63FF" stroke-width="1.6"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/></svg></div></div>
+      <div class="ind"><div><h3>Космическая отрасль</h3><div class="okved"><span>ОКВЭД</span><span>30.3</span><span>30.4</span><span>25.4</span></div></div><div class="ill"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#3D63FF" stroke-width="1.6"><path d="M12 2c3 3 4 7 4 11l-4 4-4-4c0-4 1-8 4-11zM8 13l-3 3v3l3-2M16 13l3 3v3l-3-2"/><circle cx="12" cy="9" r="1.5"/></svg></div></div>
+      <div class="ind"><div><h3>Наука</h3><div class="okved"><span>ОКВЭД</span><span>72</span></div></div><div class="ill"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#3D63FF" stroke-width="1.6"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/></svg></div></div>
+    </div>
+    <p class="note" style="max-width:900px;margin:28px auto 0">Совпадение кода ОКВЭД не означает автоматическую обязанность проводить категорирование — точная принадлежность к субъектам КИИ определяется только на этапе самой процедуры, по фактически используемым информационным системам.</p>
+  </div>
 </section>
 
-<!-- 4. Зачем услуга бизнесу -->
-<section class="sec" style="padding:96px 0;background:#fff">
-<div class="wrap">
-<h2 class="h2" style="margin:0 0 40px;font-size:40px;line-height:1.15;font-weight:800">Зачем наша услуга бизнесу</h2>
-<div class="row">
-<div class="col" style="border-top:3px solid #0F1B2D;padding-top:24px">
-<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C2410C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-<h3 style="margin:16px 0 10px;font-size:21px;line-height:1.3">Условие для участия в тендерах и госконтрактах</h3>
-<p style="margin:0;color:#3B4659">Для многих закупок и партнёрских отношений акт категорирования является обязательным требованием. Готовый пакет документов открывает доступ к сделкам, которые иначе были бы недоступны.</p>
-</div>
-<div class="col" style="border-top:3px solid #0F1B2D;padding-top:24px">
-<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C2410C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
-<h3 style="margin:16px 0 10px;font-size:21px;line-height:1.3">Дедлайн 2028 года уже на горизонте</h3>
-<p style="margin:0;color:#3B4659">Готовится требование о переводе значимых объектов КИИ на российское ПО к 1 января 2028 года, а штрафы за срыв сроков уже разрабатываются. 2026 год — время подготовить план, а не ждать, пока нормы вступят в силу.</p>
-</div>
-<div class="col" style="border-top:3px solid #0F1B2D;padding-top:24px">
-<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C2410C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6l8-3z"></path><path d="M9 12l2 2 4-4"></path></svg>
-<h3 style="margin:16px 0 10px;font-size:21px;line-height:1.3">Проверки — это не теория, а практика</h3>
-<p style="margin:0;color:#3B4659">В 2025 году ФСТЭК проверила более 700 значимых объектов, выявила свыше 1200 нарушений и составила 603 протокола об административных правонарушениях. Масштабы контроля растут из года в год — лучше подготовиться до визита регулятора, чем после.</p>
-</div>
-</div>
-</div>
+<!-- 4. Зачем услуга -->
+<section class="sec" style="padding-top:24px">
+  <div class="wrap">
+    <h2 class="h2">Зачем наша услуга бизнесу</h2>
+    <div class="row" style="margin-top:72px;gap:24px">
+      <div class="why blue">
+        <svg width="54" height="54" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H4zm0 3h16v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm3 4v1.5h4V14z"/></svg>
+        <h3>Условие для участия в тендерах и госконтрактах</h3>
+        <p>Для многих закупок и партнёрских отношений акт категорирования является обязательным требованием. Готовый пакет документов открывает доступ к сделкам, которые иначе были бы недоступны.</p>
+      </div>
+      <div class="why">
+        <svg width="54" height="54" viewBox="0 0 24 24" fill="#3D63FF" aria-hidden="true"><path d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20zm-1 5v6l5 3 1-1.6-4-2.4V7z"/></svg>
+        <h3>Дедлайн 2028 года уже на горизонте</h3>
+        <p>Готовится требование о переводе значимых объектов КИИ на российское ПО к 1 января 2028 года, а штрафы за срыв сроков уже разрабатываются. 2026 год — время подготовить план, а не ждать, пока нормы вступят в силу.</p>
+      </div>
+      <div class="why">
+        <svg width="54" height="54" viewBox="0 0 24 24" fill="#3D63FF" aria-hidden="true"><path d="M12 2l9 3.5V12c0 5-3.8 9.3-9 10-5.2-.7-9-5-9-10V5.5zm-1.2 13.4l6-6-1.4-1.4-4.6 4.6-2.2-2.2L7.2 11.8z"/></svg>
+        <h3>Проверки — это не теория, а практика</h3>
+        <p>В 2025 году ФСТЭК проверила более 700 значимых объектов, выявила свыше 1200 нарушений и составила 603 протокола об административных правонарушениях. Масштабы контроля растут из года в год — лучше подготовиться до визита регулятора, чем после.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- 5. Что грозит -->
-<section class="sec" style="padding:96px 0">
-<div class="wrap">
-<h2 class="h2" style="margin:0 0 8px;font-size:40px;line-height:1.15;font-weight:800">Что грозит без категорирования</h2>
-<p style="margin:0 0 40px;font-size:18px;color:#56627A;max-width:760px">Контроль ужесточается: в 2026 году штрафы за нарушения по КИИ стали строже, а проверки — чаще.</p>
-<div class="row" style="gap:16px">
-<div style="flex:1 1 460px;min-width:0;background:#fff;border:1px solid #E1E5EB;border-radius:16px;padding:28px;display:flex;gap:20px">
-<div style="flex:none;width:48px;height:48px;border-radius:12px;background:#FCE9DF;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B83A0E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"></rect><circle cx="12" cy="12" r="2.5"></circle></svg></div>
-<div><h3 style="margin:0 0 8px;font-size:20px">Административные штрафы</h3><p style="margin:0;color:#3B4659">До 500 000 ₽ для юридических лиц — с 2026 года в КоАП действует отдельная норма об ответственности за нарушение правил эксплуатации объектов КИИ.</p></div>
-</div>
-<div style="flex:1 1 460px;min-width:0;background:#fff;border:1px solid #E1E5EB;border-radius:16px;padding:28px;display:flex;gap:20px">
-<div style="flex:none;width:48px;height:48px;border-radius:12px;background:#FCE9DF;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B83A0E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"></path><path d="M5 7h14"></path><path d="M5 7l-3 7a3 3 0 0 0 6 0z"></path><path d="M19 7l-3 7a3 3 0 0 0 6 0z"></path></svg></div>
-<div><h3 style="margin:0 0 8px;font-size:20px">Уголовная ответственность</h3><p style="margin:0;color:#3B4659">Статья 274.1 УК РФ распространяется на неправомерный доступ к данным в составе КИИ — уничтожение, блокировку, модификацию или копирование информации.</p></div>
-</div>
-<div style="flex:1 1 460px;min-width:0;background:#fff;border:1px solid #E1E5EB;border-radius:16px;padding:28px;display:flex;gap:20px">
-<div style="flex:none;width:48px;height:48px;border-radius:12px;background:#FCE9DF;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B83A0E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.5-4.5"></path></svg></div>
-<div><h3 style="margin:0 0 8px;font-size:20px">Внеплановые проверки</h3><p style="margin:0;color:#3B4659">ФСТЭК и прокуратура регулярно запрашивают сведения об объектах КИИ. Отсутствие категорирования или расхождение с данными в реестре — частая причина проверки.</p></div>
-</div>
-<div style="flex:1 1 460px;min-width:0;background:#fff;border:1px solid #E1E5EB;border-radius:16px;padding:28px;display:flex;gap:20px">
-<div style="flex:none;width:48px;height:48px;border-radius:12px;background:#FCE9DF;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B83A0E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M8 20h8"></path><path d="M12 16v4"></path><path d="M9 8l6 4"></path><path d="M15 8l-6 4"></path></svg></div>
-<div><h3 style="margin:0 0 8px;font-size:20px">Санкции за срыв перехода на российское ПО</h3><p style="margin:0;color:#3B4659">Готовятся оборотные штрафы для компаний, которые вовремя не перевели значимые объекты КИИ на отечественное ПО, — так же, как и для тех, кто вовсе не провёл категорирование.</p></div>
-</div>
-</div>
-</div>
+<section class="sec" style="padding-top:24px">
+  <div class="wrap">
+    <h2 class="h2">Что грозит без категорирования</h2>
+    <p class="sub">Контроль ужесточается: в 2026 году штрафы за нарушения по КИИ стали строже, а проверки — чаще.</p>
+    <div class="row" style="margin-top:56px">
+      <div class="risk"><div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/></svg></div><div><h3>Административные штрафы</h3><p>До 500 000 ₽ для юридических лиц — с 2026 года в КоАП действует отдельная норма об ответственности за нарушение правил эксплуатации объектов КИИ.</p></div></div>
+      <div class="risk"><div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 3v18M5 7h14M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z"/></svg></div><div><h3>Уголовная ответственность</h3><p>Статья 274.1 УК РФ распространяется на неправомерный доступ к данным в составе КИИ — уничтожение, блокировку, модификацию или копирование информации.</p></div></div>
+      <div class="risk"><div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.5-4.5"/></svg></div><div><h3>Внеплановые проверки</h3><p>ФСТЭК и прокуратура регулярно запрашивают сведения об объектах КИИ. Отсутствие категорирования или расхождение с данными в реестре — частая причина проверки.</p></div></div>
+      <div class="risk"><div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4M9 8l6 4M15 8l-6 4"/></svg></div><div><h3>Санкции за срыв перехода на российское ПО</h3><p>Готовятся оборотные штрафы для компаний, которые вовремя не перевели значимые объекты КИИ на отечественное ПО, — так же, как и для тех, кто вовсе не провёл категорирование.</p></div></div>
+    </div>
+  </div>
 </section>
 
 <!-- 6. Степпер -->
-<section class="sec" style="padding:96px 0;background:#fff">
-<div class="wrap">
-<h2 class="h2" style="margin:0 0 48px;font-size:40px;line-height:1.15;font-weight:800">Как проходит категорирование</h2>
-<ol class="row" style="list-style:none;margin:0;padding:0;gap:20px">
-<li style="flex:1 1 200px;min-width:0;display:flex;flex-direction:column;gap:14px">
-<div style="display:flex;align-items:center;gap:12px"><span style="flex:none;width:52px;height:52px;border-radius:50%;background:#0F1B2D;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center">01</span><span style="flex:1;height:2px;background:#D5DBE4"></span></div>
-<h3 style="margin:0;font-size:18px;line-height:1.3">Первичная консультация</h3>
-<p style="margin:0;font-size:15px;color:#3B4659">Определяем, подпадает ли ваша организация под действие 187-ФЗ, разбираем структуру ИТ-систем и особенности инфраструктуры.</p>
-</li>
-<li style="flex:1 1 200px;min-width:0;display:flex;flex-direction:column;gap:14px">
-<div style="display:flex;align-items:center;gap:12px"><span style="flex:none;width:52px;height:52px;border-radius:50%;background:#0F1B2D;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center">02</span><span style="flex:1;height:2px;background:#D5DBE4"></span></div>
-<h3 style="margin:0;font-size:18px;line-height:1.3">Выявление объектов КИИ</h3>
-<p style="margin:0;font-size:15px;color:#3B4659">Анализируем информационные системы и сетевую архитектуру, составляем перечень объектов КИИ.</p>
-</li>
-<li style="flex:1 1 200px;min-width:0;display:flex;flex-direction:column;gap:14px">
-<div style="display:flex;align-items:center;gap:12px"><span style="flex:none;width:52px;height:52px;border-radius:50%;background:#0F1B2D;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center">03</span><span style="flex:1;height:2px;background:#D5DBE4"></span></div>
-<h3 style="margin:0;font-size:18px;line-height:1.3">Оценка значимости</h3>
-<p style="margin:0;font-size:15px;color:#3B4659">Определяем критические процессы и потенциальные угрозы, присваиваем каждому объекту категорию значимости по критериям ПП №127 (или фиксируем, что объект не является значимым).</p>
-</li>
-<li style="flex:1 1 200px;min-width:0;display:flex;flex-direction:column;gap:14px">
-<div style="display:flex;align-items:center;gap:12px"><span style="flex:none;width:52px;height:52px;border-radius:50%;background:#0F1B2D;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center">04</span><span style="flex:1;height:2px;background:#D5DBE4"></span></div>
-<h3 style="margin:0;font-size:18px;line-height:1.3">Подготовка документов</h3>
-<p style="margin:0;font-size:15px;color:#3B4659">Формируем полный пакет: перечень объектов, акты категорирования, внутренние приказы, сведения для ФСТЭК.</p>
-</li>
-<li style="flex:1 1 200px;min-width:0;display:flex;flex-direction:column;gap:14px">
-<div style="display:flex;align-items:center;gap:12px"><span style="flex:none;width:52px;height:52px;border-radius:50%;background:#C2410C;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center">05</span><span style="flex:1;height:2px;background:transparent"></span></div>
-<h3 style="margin:0;font-size:18px;line-height:1.3">Уведомление ФСТЭК и сопровождение</h3>
-<p style="margin:0;font-size:15px;color:#3B4659">Подаём сведения в установленном порядке, отвечаем на уточняющие запросы регулятора, сопровождаем компанию до внесения объектов в реестр.</p>
-</li>
-</ol>
-<p style="margin:40px 0 0;padding-top:20px;border-top:1px solid #E1E5EB;font-size:14px;color:#56627A">Весь процесс — до 12 месяцев с момента составления перечня объектов. Повторный анализ на соответствие проводится не чаще раза в 3 года.</p>
-</div>
+<section class="sec" style="padding-top:24px">
+  <div class="wrap">
+    <h2 class="h2">Как проходит категорирование</h2>
+    <ol class="steps">
+      <li class="step"><span class="num">01</span><h3>Первичная консультация</h3><p>Определяем, подпадает ли ваша организация под действие 187-ФЗ, разбираем структуру ИТ-систем и особенности инфраструктуры.</p></li>
+      <li class="step"><span class="num">02</span><h3>Выявление объектов КИИ</h3><p>Анализируем информационные системы и сетевую архитектуру, составляем перечень объектов КИИ.</p></li>
+      <li class="step"><span class="num">03</span><h3>Оценка значимости</h3><p>Определяем критические процессы и потенциальные угрозы, присваиваем каждому объекту категорию значимости по критериям ПП №127 (или фиксируем, что объект не является значимым).</p></li>
+      <li class="step"><span class="num">04</span><h3>Подготовка документов</h3><p>Формируем полный пакет: перечень объектов, акты категорирования, внутренние приказы, сведения для ФСТЭК.</p></li>
+      <li class="step" style="background:var(--blue);color:#fff"><span class="num" style="color:#fff">05</span><h3>Уведомление ФСТЭК и сопровождение</h3><p style="color:#E6EBFF">Подаём сведения в установленном порядке, отвечаем на уточняющие запросы регулятора, сопровождаем компанию до внесения объектов в реестр.</p></li>
+    </ol>
+    <p class="note">Весь процесс — до 12 месяцев с момента составления перечня объектов. Повторный анализ на соответствие проводится не чаще раза в 3 года.</p>
+  </div>
 </section>
 
 <!-- 7. Открытая форма -->
-<section id="form" class="sec" style="padding:96px 0">
-<div class="wrap">
-<div style="background:#0F1B2D;color:#fff;border-radius:24px;padding:56px;display:flex;flex-wrap:wrap;gap:40px">
-<div style="flex:1 1 360px;min-width:0">
-<h2 class="h2" style="margin:0 0 16px;font-size:36px;line-height:1.2;font-weight:800">Узнайте, готова ли ваша компания к требованиям в отношении КИИ</h2>
-<p style="margin:0;font-size:17px;color:#C7D0DD">По данным ФСТЭК, лишь 35% проверенных объектов соответствуют базовому уровню безопасности. Оставьте контакты — бесплатно укажем на риски в вашей ситуации.</p>
-</div>
-<form style="flex:1 1 440px;min-width:0;background:#fff;color:#0F1B2D;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:16px">
-<div class="row" style="gap:16px">
-<div class="field"><label for="f1-name">Имя</label><input id="f1-name" type="text" placeholder="Иван"></div>
-<div class="field"><label for="f1-mail">Почта</label><input id="f1-mail" type="email" placeholder="name@company.ru"></div>
-</div>
-<div class="field"><label for="f1-phone">Телефон</label><input id="f1-phone" type="tel" placeholder="+7 (___) ___-__-__"></div>
-<label class="check"><input type="checkbox"><span>[Текущая формулировка согласия на обработку персональных данных по 152-ФЗ — без изменений]</span></label>
-<label class="check"><input type="checkbox"><span>[Текущая формулировка согласия на получение рекламы по 38-ФЗ — без изменений]</span></label>
-<button type="button" class="btn btn-main" style="text-transform:uppercase;letter-spacing:.04em;width:100%">Получить экспресс-проверку</button>
-</form>
-</div>
-</div>
+<section id="form" class="sec" style="padding-top:24px">
+  <div class="wrap">
+    <form class="form-blue" onsubmit="return false">
+      <div class="kicker">Экспресс-проверка</div>
+      <h2>Узнайте, готова ли ваша компания к требованиям в отношении КИИ</h2>
+      <p class="lead">По данным ФСТЭК, лишь 35% проверенных объектов соответствуют базовому уровню безопасности. Оставьте контакты — бесплатно укажем на риски в вашей ситуации.</p>
+      <div class="fields">
+        <div class="f"><label class="sr" for="n1">Имя</label><input id="n1" placeholder="Имя"></div>
+        <div class="f"><label class="sr" for="e1">Почта</label><input id="e1" type="email" placeholder="Почта"></div>
+        <div class="f full"><label class="sr" for="p1">Телефон</label><input id="p1" type="tel" placeholder="Телефон"></div>
+      </div>
+      <p class="req">Обязательно отметьте поля ниже*</p>
+      <label class="chk"><input type="checkbox"><span>Нажимая кнопку "Получить экспресс-проверку", я соглашаюсь на обработку моих персональных данных в соотв. с ФЗ от 27.07.2006 №152-ФЗ на условиях и для целей, определенных Согласием на обработку персональных данных. *</span></label>
+      <label class="chk"><input type="checkbox"><span>Нажимая кнопку "Получить экспресс-проверку" я соглашаюсь получение рассылки в соотв. с ФЗ от 13.03.2006 №38-ФЗ на условиях и для целей, определенных Политикой конфиденциальности и Согласием на осуществление рекламной рассылки. *</span></label>
+      <button class="btn btn-light" type="submit" style="width:100%;margin-top:24px;min-height:76px;font-weight:500;font-size:19px">Получить экспресс-проверку</button>
+    </form>
+  </div>
 </section>
 
 <!-- 8. Что входит в услугу -->
-<section id="price" class="sec" style="padding:96px 0;background:#fff">
-<div class="wrap">
-<h2 class="h2" style="margin:0 0 40px;font-size:40px;line-height:1.15;font-weight:800">Что входит в услугу</h2>
-<div class="row">
-<div class="col" style="background:#F4F5F7;border-radius:16px;padding:32px">
-<h3 style="margin:0 0 20px;font-size:22px">Мы предлагаем</h3>
-<ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px">
-<li style="display:flex;gap:12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F1B2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Анализ ИТ-инфраструктуры и определение объектов КИИ</li>
-<li style="display:flex;gap:12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F1B2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Оценку критериев значимости по ПП №127</li>
-<li style="display:flex;gap:12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F1B2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Подготовку пакета организационно-распорядительной документации (ОРД)</li>
-<li style="display:flex;gap:12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F1B2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Уведомление ФСТЭК и сопровождение при запросах регулятора</li>
-</ul>
-</div>
-<div class="col" style="background:#F4F5F7;border-radius:16px;padding:32px">
-<h3 style="margin:0 0 20px;font-size:22px">Вы получаете</h3>
-<ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px">
-<li style="display:flex;gap:12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F1B2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6"></path></svg><span><b>Пакет для ОКИИ</b> — если объекты не относятся к значимым, оформляем официальное обоснование</span></li>
-<li style="display:flex;gap:12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F1B2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6"></path></svg><span><b>Пакет для ЗОКИИ</b> — акты категорирования, если присвоена категория (1-я, 2-я или 3-я)</span></li>
-<li style="display:flex;gap:12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F1B2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6"></path></svg><span><b>Уведомление ФСТЭК России</b> с результатами категорирования</span></li>
-<li style="display:flex;gap:12px;background:#FCE9DF;border-radius:10px;padding:12px;margin:0 -12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B83A0E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><rect x="3" y="8" width="18" height="13" rx="1"></rect><path d="M12 8v13"></path><path d="M3 12h18"></path><path d="M12 8c-2-4-6-4-6-1s6 1 6 1c0 0 6 2 6-1s-4-3-6 1"></path></svg><span><b style="color:#9A3412">Бесплатно:</b> готовый ответ в прокуратуру или ФСТЭК, если запрос уже поступил</span></li>
-</ul>
-</div>
-</div>
-<div style="margin-top:24px;border:2px solid #0F1B2D;border-radius:16px;padding:24px 32px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px">
-<div style="display:flex;flex-wrap:wrap;gap:32px;align-items:baseline">
-<div><div style="font-size:13px;color:#56627A;font-weight:600">Стоимость</div><div style="font-size:30px;font-weight:800">от [ЦЕНА] ₽</div></div>
-<div><div style="font-size:13px;color:#56627A;font-weight:600">Сроки</div><div style="font-size:30px;font-weight:800">от [X] недель</div></div>
-<div style="font-size:14px;color:#56627A;max-width:360px">Зависит от количества и сложности объектов КИИ, точный расчёт после консультации.</div>
-</div>
-<a href="#form-final" class="btn btn-dark">Узнать точную стоимость</a>
-</div>
-</div>
+<section id="price" class="sec" style="padding-top:24px">
+  <div class="wrap">
+    <div class="row">
+      <div class="offer">
+        <svg class="spark" width="110" height="110" viewBox="0 0 110 110" fill="none" stroke="#D3D6DC" stroke-width="2.5" aria-hidden="true"><rect x="40" y="10" width="22" height="100" rx="11" transform="rotate(-40 51 60)"/><path d="M80 8l4 10 10 4-10 4-4 10-4-10-10-4 10-4zM96 38l2 6 6 2-6 2-2 6-2-6-6-2 6-2zM22 70l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/></svg>
+        <h2>Мы предлагаем:</h2>
+        <ol>
+          <li><span class="num">1.</span>Анализ ИТ-инфраструктуры и определение объектов КИИ</li>
+          <li><span class="num">2.</span>Оценку критериев значимости по ПП №127</li>
+          <li><span class="num">3.</span>Подготовку пакета организационно-распорядительной документации (ОРД)</li>
+          <li><span class="num">4.</span>Уведомление ФСТЭК и сопровождение при запросах регулятора</li>
+        </ol>
+      </div>
+      <div class="offer">
+        <svg class="spark" width="110" height="110" viewBox="0 0 110 110" fill="none" stroke="#D3D6DC" stroke-width="2.5" aria-hidden="true"><path d="M40 10l8 22 22 8-22 8-8 22-8-22-22-8 22-8zM82 56l5 13 13 5-13 5-5 13-5-13-13-5 13-5zM30 80l3 8 8 3-8 3-3 8-3-8-8-3 8-3z"/></svg>
+        <h2>Вы получаете:</h2>
+        <ol>
+          <li><span class="num">1.</span><span>Пакет для ОКИИ — если объекты не относятся к значимым, оформляем официальное обоснование</span></li>
+          <li><span class="num">2.</span><span>Пакет для ЗОКИИ — акты категорирования, если присвоена категория (1-я, 2-я или 3-я)</span></li>
+          <li><span class="num">3.</span><span>Уведомление ФСТЭК России с результатами категорирования</span></li>
+          <li class="gift"><span class="num">+</span><span><span style="color:var(--blue)">Бесплатно:</span> готовый ответ в прокуратуру или ФСТЭК, если запрос уже поступил</span></li>
+        </ol>
+      </div>
+    </div>
+    <div class="price">
+      <div><div class="l">Стоимость</div><div class="v">от [ЦЕНА] ₽</div></div>
+      <div><div class="l">Сроки</div><div class="v">от [X] недель</div></div>
+      <div style="flex:1 1 260px;color:#A9AEB8;font-size:15px">Зависит от количества и сложности объектов КИИ, точный расчёт после консультации.</div>
+      <a href="#form-final" class="btn btn-blue">Узнать точную стоимость</a>
+    </div>
+  </div>
 </section>
 
 <!-- 9. Экспертиза -->
-<section class="sec" style="padding:96px 0">
-<div class="wrap">
-<div class="row" style="gap:48px;align-items:flex-start">
-<div style="flex:1 1 560px;min-width:0">
-<h2 class="h2" style="margin:0 0 24px;font-size:36px;line-height:1.2;font-weight:800">Категорирование объектов КИИ — обязательное требование ФЗ №187-ФЗ</h2>
-<p style="margin:0 0 24px;color:#3B4659">Критическая информационная инфраструктура (КИИ) — это информационные системы, сети и ресурсы, от которых зависит работа жизненно важных отраслей: энергетики, транспорта, связи, финансов, здравоохранения, науки, ТЭК и др. Сбой в работе таких объектов может привести к серьёзным последствиям для государства, бизнеса и населения.</p>
-<h3 style="margin:0 0 12px;font-size:18px">Законодательная база</h3>
-<ul style="margin:0 0 24px;padding-left:20px;color:#3B4659;display:flex;flex-direction:column;gap:8px">
-<li>Федеральный закон от 26.07.2017 г. № 187-ФЗ «О безопасности критической информационной инфраструктуры Российской Федерации»</li>
-<li>Постановление Правительства РФ от 8 февраля 2018 г. № 127</li>
-<li>Федеральный закон «О персональных данных» от 27.07.2006 № 152-ФЗ</li>
-<li>И прочие законодательные документы</li>
-</ul>
-<p style="margin:0;font-weight:600">Мы проведём категорирование «под ключ» — от анализа до создания уведомления во ФСТЭК. Работаем с любыми отраслями, включая арендуемые объекты.</p>
-</div>
-<figure style="flex:0 1 340px;min-width:260px;margin:0;background:#fff;border:1px solid #E1E5EB;border-radius:20px;overflow:hidden">
-<div style="height:340px;background:#DDE2E9;display:flex;align-items:center;justify-content:center;color:#56627A;font-size:14px">[Фото — Евгения Кудина]</div>
-<figcaption style="padding:24px">
-<div style="font-weight:800;font-size:20px;margin-bottom:8px">Евгения Кудина</div>
-<div style="font-size:14px;color:#3B4659;margin-bottom:6px">Архитектор защищённых систем работы с персональными данными</div>
-<div style="font-size:14px;color:#56627A">Эксперт по внедрению мер информационной безопасности в деятельность коммерческих организаций</div>
-</figcaption>
-</figure>
-</div>
-</div>
+<section class="sec" style="padding-top:24px">
+  <div class="wrap">
+    <div class="row" style="align-items:stretch">
+      <div class="exp-photo">
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/wAARCAJIAbADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCL9oD9oG/vtSuvCfhO8a1sLdmhvL2F8PcuOGRWHRByCRyxB6Ac/PWO3J570D680ewqiRe9KKTFLigQfhSgUClpgGKUCl70CgApe1FKBQAmM0oGPwoA5p1ABzS4oHWloASlFGKcBxQAlAHNO20YoATFOAoxxxSgZoATFL7UUtABRiilA4oATmlooFABRzmnUlACEetApRRjFAC9aMY70neloAQmmmn4zSYoAYRmjHrT9tN2mgBhzRilIxRigBCKSnYpOtADT7Uhp2MUh5oAbikIp/TtSHmgBp6U2nYpCKAGn0ptPIppFABSEc0uKQ0AN7dKbgYpxpKBixyyQyLLHI6SIQyurEFSOQQe2K+pv2ePj7eeIbqPwh4rufOvmB+w38hw0+Bny5D3bA4bvjB5xn5YI4p9pdz2F3BeWsrQ3FvIssMi8FHU5DD6EUrAiPrS0gpRzmgQUvNFOAFMBMUoopQM0AKKXFAHWnY5oAbwKUU7AoAwe1ACUoFBOD0pwFACAU7FGKdQA3FOAoxSgUAIBSgYFLj2pcUAIBRS4NLigBuKMU4igj0oAQUCjGOtLigAA4pe9AFLzmgA7UgGKd7UYzQAmM0YFLjFGOaAEHtRg07HXFFACUUdqPxoAQnGTSdfand6aVzzQA0im1IRSYoAYaQin7eaQjtQAyginEUmOKAGkUhp9JigBppp5p5FNIoAZikxT8UhoAZSEU40lIBhFNp5puBTAQ0007FIRQACnCjpwKUCgApQKKUAUAHbNOHpRilAoAWjvQBSigA/Gnbe9AFOAoAaBTgKPU0o/WgApcZo5pcUAFLxQKXBoAUCk6U5RxRigBB0pcUoFGKAEx6UUuOaMYoAbSgcZpcUAcUAJjpSgUtGOaADFJThQR7UAJjNJTgKMCgAxxSUp5oxQA3tSnpRjrRQAlH4UtJnHXmgAJ/CkOO1O6ijFADDmmnrUhFNIyaAGmkNOIpMUANo/ClxikIoAZtJpOgp5FIRxxQAymmpDTSKAGEU0+tPPNNPBoAbikNOpDQA2mmn000AID3p1IKWgBRzThSDinCgBQKWkFOxQACnCkAzSigBwFKKQdqdQAnUUtApcUAKBRjmlHvSjigA/GlHTNFKBQAAUu2jHpTqAExmgrjpTscUmKAG4zS0oFBFADaXtmlxxmlGBQA0jFGO9KRRigBAKXPrRilwaBidqD2p3XikIoEJij1BpcccCjH50AJikxTqTFADelKBS0UAJ9KQ9afTaAEPSkxxSnrSGgBtIRT6TGaAG4pGp1NIoAQ0hFOPSmmgBp9qbjjmpDTTxxQBHimkVIw7UwjFAxoxSHFOIptAhDimmn4FNxmgBlOFJjmlHSgBR1p4pop1ADhThTRTgKAFFKOaSlA9KAHClx3pBS0AFOoxS0ALilpBS4zQAqjmnUAUuBigBAKUClAweKXrQAdulBpQKQg0AAoINKBz0pT6UAM6GgkDrTZ5UgjLyHAFYtxqUs7FYsInr3qWxpXNiW5hiGXkUe2ar/bzI2IYmYep6VjZWM5Y7j781Zt7wbuWwf0qeZmigjRLzE/M6j2U1EbtVbHmsG9xTJ3Mu0KFOe68GrP9mfZLfz5j8jDjJ5zRcrlRLFcAxbnIGO9N/tC2ZtocZrFlk3gqGbFVWQ/eXOaOYnkOqRlflTmnCufsrxgdrMa2ILncAGIPvTUiXC2pYIpMYp/akOMZPFWQNxgfjSU7HFIRigApPpS0nJNACdaMc0vakoAbjFBp3QUhoAaelNJx1FOOelJgUANNIafTSOaAGkUmKcaQ0AMIppHFPprUDIz1pCKcaQ0CGmm0800igBuOTSjmg9aBQAopwpAKcOtACj1pwpBTgKAFH604cU3pThQAoox1NA5NOAwaAAU7r2pB15pwzQADmnUgFOAoAUdKUdKBS0AIOtOoxzSjmgAxRjvS9KMUAGOaZNIkKNI5woFSdPb3rB1O9+1S+Wp+RT+ZqW7FRVyvdXL3suWyEHQUnlELjoBUscewZIyafHDJdyrGi5PoO9TeyuzWMW3ZFEICSSM+nNWILG4nxsifHrivU/CfwpN5HHPeJjPIBFeiQfD6xgtPKEYZh3IxXNLEx6HZDByteR4Xonhq7muogYi2WA24rQ8a6a1tMLdFVREozk969WPhaazL+VCgPXcAc/hWFq3g43sBcDc5BDE9an26uafVdNDw90feVHKjtmnoo6EfKf0rY8RaDLp0z5XGODgVijMajPI9TXQpJq6OOUHF2YrwBCGH8+lWEkKrk+uDTYv3keAp4p+zarbuRTQjTsrrzR5ZPzdverOMVgwMY5gAfda24pRKgfv3q4sxnDqOpKUikwaszEP0ooooAQUvag49KMcUAJSAZpaT6UANOQaTFPYUwjvQAhGKTmlpDQAh5pppx6U080ANNNp5ppGKAGHp0pvan000ANNNNPIptACdKBR7U4CgAxTvekHNOFABTxTQM04UAKKUCgU7FAAKcOtIKcKQAKXFGKUUwFGacOaaBTunegBe9KOaO3vSigAGadSCndaAAcUCl4+lIM856UgKOrXXkQbAfnfgfSsi3iGPMfoOnvUl3J9rvWb+EHA+lKwzhc9O1ZSldnRBWQEkKSoyxOAK9Z+FfgJLpEvrpA3ORmvP9B0ptS1COFVyAwGa+mvCemLYafDAqgBVweK5sRPSyO7Cwt7zNe1sY4I1CKBjjpVj7MCfuirEUZ2DIqQL6da5LM7UypJZrImMDJ71QuPD8j5KCNsnowrdWM1chQYyatRvuJzseM/EDwSbvTpJRbBJEB6DrXgV7ZG1JiK8gkHPavtrULOO5heMruDjBr5p+J3hGXRtbuHSImCYBgewP+Qa2pvldmYV4Kcbrc8rt3KS7CT6VZlXYh5z2qK4iEV02c4zkGtCe0P2aOcjCnOfrXVexwJXKaLutvMAyyH9K0rNgcEdHH61n2TeS5Dchxg/jWjp6BTJAT9w8fSknZg43VizR2pxBBIpK3ORqzsNxzSU40nSmIT60ntml7c0UAIRnmm/SnimmgBD6GmmnUhAx70ANIxSUpFIRQAh5puKd1ppoAaaQjinGkxQAwimkU9qZg0ANNJTj60080ALjigCnUgFAAOtPxTQM06gAA6U4DnmjHQ0uaAFFLQBxSgegoAUDHWlo607FACCnA96BTsc9KAAUtAAJpcUAAFOxSCnUgDFLyBxScnoKcKAD3qtqM/k2zY+83yqKtACsjV3LzBB91ePxqZuyKjG7KcChUdz2HHvT4uu4jgZY5NK+EjVP7oyaRSogJcffOMVgu50pXO4+GOraXps5udSDbS3ysFyBX0T4b1vSNUhQ2d3FIT/AA5wfyrx3wZqejzeHksk0dbqVch9kO5vzHNW4rX7LeifSpJLKXGPs86FQfoeKykle7O6le1j3tIxtGKXy6xvCurm90yJJwBOgAbB61tSTJCmSOPWs7I1TY5IcnjmrC25Vc4IrzHVfG+urfy29hE6hSQpVMj603Tdf+Id1JiSaJIm4G+MZzWkYxFK56c0eK4X4maDFq2kSsE/eIhH1FTKPHEcBnZ452/uKikfzzTU19NXR7K7ha1vVUkxOOJPdazqKyuh01dnyfqsDW+pSQv1jbP1FavltLozA8lSJB9KTxzCI/F11EnA5xWkLTyoEiI5ltwK25tEc3J7zOaS33b+23kVoQwn93Pjqu0/hTBGAJRk5C/yq9agP5kII+ZN4HvitfMyQkwACMOhFQGpgwe224OUPOahOT1rWLOSqrSEpDweRTvakqzISkpSKTmgAPHSk4oNJ9BQAU3FOpDQAhH1ptKTSE0ANPWkNOI5pDQAw9KQ040lADTTDT8U1hQA0jmmmnHrSGgBeaKOtO+lACDinACilHFAC45pRQKUCgBRTgaQClAoAdS96SnAUAKBzSgcUYpRj0oAMYpQKKBxQAvXmlFAFGKQC9yMUo+lJTqAEZtqE+gzWG5E11uOSFG4ita9fbAeetZkWBbvL3clR9BWNVm1JFaRt24f3m7elJes0cUSAc43f4VLFHlkyPvHArq9C8JN4hYlRy3yqKy5rHVGm5bEvg/wlqVz4fvNafULy3RABDDbOF8wn1bsOKs+HdT1S5ETTXH2kM8ibd+54iuPvj0OeDXqnhT4df2VoRspZJFEgw4DHDD3HSpIvBmm+Hop3gQlplKsBxkHqKtyi0aRpzi9yf4fXVw+orC6lQf4SeRXouro8cGFB3EVyfgnS/Ile9VdueEHWuunZ5shjntXIkdWpwc8iyea01z5SrnIzg1zM3inw3Y3Oz/hJJYZvUHeoP8AKun8caHDdXSSKZUTYFeKPjzPxrhPihoul3VjpNv4d02NJo2HmQbdu4jk7u5zW9OknuTVquK91Hf6R4zuY7dbhJ4tQszgedbnJX/eWte6ktNaEc+B5sfzJIPvCvEdJ8G+INMmXUdImNteTTFzpyEtGIz0BJ7/AFr2aC1uoNNEl1Ztb3DJgp2Boq0+XYqjU5lrufM3xAynjG6k7B8fUk10mtQNb3tjCB0gBzisPx/ZlfFBZwfmmXJx7iuk1uXOr2xYE4hKYPqKlbIzkrSkjmNQha3u5d4wuOB9aisiVEEy9Vdoz7dx+lavii0ZZIZzuUTRYH1rL02QfvYccth1H0/+tW0XeBzNWnYtzw7Lh1X7sg3CqZrWZBN5DDoPlJ9eazJ08uRlPY1dOVzDERt7xH0FNp3HpSEVsco0k+lLQelIeaAG9TSY96cB2pCMUAJTSacfSkI4oAYaKUjPSm89qAEoNHPekJoAQg+tJSmkoASm9acaaeKAGHk0mKcaQ9KAFApQuDS9KWgAApcUCloAOlPHNIozTgOKAFFLj8qUCigBQM/SlApOacBzQADrThSUtAC+tLik4A6Uo5oAX6UYpe4ozQAd6XtRR9aAM/VpSqJGOp5qhBLlVTjCr+f+c1LrUpF4AP4Y81lQzYYHPA5rCepvBmmJFRjJkAD5RXuHwY07OnC7kQEsTtzXz9dXGU2joMCvp/4UokehWkYGPkB/MVz1VZI9LCWdzvMfux0wK5/WZGlkS2jGC5xzWvrGoJY25YDLY4Hqa5S01hV1WCW9kRS8mFQkD/JrBy6HRy9ju9KtPsVpGg6hauqAR79ailvrYRqEOM87ieMVHI8kfzoQy4z9fpVrRFcrexavrOCdV3IDx3qmNFs5jmW3VzjAJHQU+HUUu38phtkXt61owJnAHBrSNTsZyg1oxLPSrS1AMUCDHbFGqqtxCysOg4q6iiNTuNZeoXWcgY4pzn7pNOD5j5t+KmlCHWoZl5/0hAfbkVn6xcA6zGcjAkYAH61v/Fy5RbzHH/HzH/OuD1i5B1SJxJkCVyail7yKxFoyOr8bRZ0LS5QvLEjI7YOa43TD5eowuwB5HHt1rqta1OPU9DsbeF1ym9iO+a5SNtlzAygZLA49R0rakvdscdT47m8ibIzCgyyuefx4rP1SMi5YkFc881paXH9ojgkHUkox/wBpTj/D86d4ntDbCB+DuyM/rUUpWnYMRC9O5z9FB44NHbrmu48wafSgLxk0e9GOlACEYNIeOlOxmkIoAZnmg0uOaD6UAMI4pMcdacRTWFADOtIRTjQaAGkUhFO7UhoGMNJinHpSc0CGUh96caaaAHAetKKO9KPegAwKeAKQCnCgBcZpwFIOKcPagBRSgetHWlHNABxSiiloAMUoz7UD3oGaAFpQKSlzikAoFGKKXFMAxS9qMAn3oNAHOeIHIu3HTCCssNheO5FafiTi6Pug/nWUMBBn0rJo0i7BM2U49a+jPhNq2dDs97EHyxzXzk4zGB7Zr3T4a8+G7FlPOztXLinaCO/CStJnq964vIcj8zXOzeEmvrqGYglkbcvsfWk1LxJHo0cQlR8EYztyKtaX43s3O4q20Djbyc+/tXNGDnqelThKfwmzF4TN/bmz1U+dbMCNu4g/nV7w94Nm8PR/ZINSlmst2Y0ncu6D0Den1qK38Z2cwyJCCOoIroLTVLacL5dzFKSMkK3P4itVF9S5RqR3RKdLRD5i/fH606C5K5DZBFTNcgjHT8Ko3Z2MGz1qZPl1RnFt6SLt1qAMYA61z9/dEKxLZ+nakuJ5WbaprN1CORreTnBKmsp1GzVWjseB/E+/e61BZM4Uzce+DXH3lwxcHvlj+ddT8TnSLUbaEAZQE1xEl2XJVgOBiuukvdPOxM/eZ0mg3JmVUdlyuB+dMvIzBLkf8spCp/mKxtGvWguSDwDzXSahAJ4mkT/ltDvGf7yHNaX5dDNe9G6NjwyPMF0uSTHNFOFH9xzsf/x4LXQePLBRo1vdLjduXOe2cj+lc54NfdcqRjc0Tw578jev/jwrtPEyDUPCEUyOrKY1JGOnOf61kl+8uaVP4VjzGT5n3Y4PJpn5VLuxA0eB1zmoga70eSIeRg0tLgUn0pkiYoPNL70nagBp4600jFOJpBxQAmDTSKceKQ/WgBmKaRTxzTTQMaRxSdqdTSKAEPFNPPFOxSGgQ0imkU/mmn8aAHUuKTqKcM0AA608dKaBThxQA4Uo600dacOtADhxS0gpaAFHpTsfypvNPB9aAE6UvtQKMUAA6UuM80dBS0AL160DNHWgUAOxzzRjPWiigDnfE6Hz4jjqhrFkGEHtXS+IofMhikxnaSDXPSoSKhmi2IgxZRgdK9l+D2ordaI9tn95bSYI9j0rx2HLxhFUHmun+H/iA+GPEKG4bbb3GEk9B6GsK0OaNjehU5ZXPetXhN3aMgXOPmAI6+1WNF0vR9XsX823t0ljwrrna/1Aq/pccN/GuGBBAwR3q3P4LiuyJEcxSDo6nBripVHDc9uhV5HoUz4L0+GbMd9JFlhg+ZnH4U2+8Prbj91rhDk/KR1/SrsPgSZmxLf3DD03VsWHhGy047/KaWT+9IcmulV1bRHTPEruUvD+iapHGs11rE0wB4QoMEe5roJPnUBqcqMoxgAe1QSy5OPSuWo3J3OTmu7jkiXBrM1l47azllPQCrctz5anJArzn4meJWh0S4itn52ne4PC+31qYxu7Eyla7PDfHerrqniS4dDlIhtFc55giALfMzHP0pslwHZnYkliTk96qSOZGJr0oQsrHkVKl3c0XDQ/vk7HNdpoF0l7pZBbL27hseiNwf5iuFtpgyeS56jitjw1qKaXqUa3IP2Z8xy467D3/DrU1YXRpRqWfkdh4ezZ639mGcICoYd9p3A/lXVNfxPYajargbwxA7f3hWJeWX9nSQaiXyhlETMnT1yPYjmk1JP7O1GSPbtEsRdOf4WHFRBX1OqbVrHOZ4+tJ1pWGGIpOnauxHjic4zS0lLTEGOKQ80ozSZFADWHFNJp5xTSOeKAEzmmn6UuKDQA003HenY70nSgBppKcQKaR7UgGnrSGnY5pDTAZSU4ikIoAXHFKD7UClBoAUcilFIKX8aAFHpTh7Ug9KUYoAcKUdKQCnDk0AGM8mnDmkFLQAoIxSikFOFABilFJ3zS5oADxShaKKAFxQcmjpS+9AEF7CJrdl645rlrqPY20jnmuvYZUj2NczqyYZeMZ6ms5GkNjOsRhwp6lsVPdx70Vu+MZ96htf8Aj5QD+8TVvIaJTjrUvctLQ9b+DXjxZol0e/lxcQ/6osf9Yo7fWvf7K5ikiBDDkV8NRyTWlz50MjRSRncrqcEGvXfhx8V9cvJv7PuhFKVUbZDxn61z1aVtUdmHxK+Bn0tBNGDng0+SePpkV54nijVolX/iWeaD/Eky/wBaLjV/El0MW9lBCT/FLL0/ACsebSx3e6ztLm+jjzluKwr3xFawkqJFZ+yjkn8BWJD4b1vUmzqGonB/ggUgfma6bQPB1pp7CTaZJP778n86zYKVjOS01DVvmkVra39P4mFedfGeFNM8MPFCNu9vxPqTXu1xFHFEVXAwK8K/aEvYLXSoLUkG4uWO1O4QYy1VBe8kZ1JLlbZ86gFkoGF+tWmiAGPSqzLg/wA69Q8UIwS2elXIZfOG18Bl71BbgMQKnMGyRgc4xmpauXHQ73wnri6nZ/2JdEF2Ty0J7gfdI91J59VPtWhr80lwLAspE0KC3l57ivPbNtlxC6yNFk5Dg8pjoa6yS7lF9Et8oLlVBeM/K5xw34j+VZ6RdjrjK8SFx859c0AkcU+Uh5WZehqPvW62PPe4tJR60UxB35pKcee1IKAE6U09acRzSUAMIpOtONJ3oAaeRSEE04000AIabTj9aaetACY560004+lDUAMxTTT+1NoAUZpaQUtADhRigcU7tQAA0ueelAGTTsUAA9aUUnTmnDNACilFIaUUALS9qBiloAOtFKPejJoABTh70gpaAF5GaUUgpfrQAcZrm9ZJMhXoAa6TjrXO6yMyj3NRM0p7mZagrcMwz8isf0qxG37iMY5xTVXy4Z37soUe2aVMLEoI525rM0Gzwghn/wBgH8a6b4ZwE6oZB0WVFJ+qtXO3RH2eMn5RtGa634ZqZLfUZVGCk0JHtyaiq3yMVBfvT6D0/TWeKMlz07ity00/ZzuJqhos0klghKHKjtW1bucfdI+tcbPUiW7e3RMcE1bV1jXAHeq0LFse9Udd8R2fhvT5r29IRY8kZPXipWpb03K3jbxdp/g3RpdS1B+FH7uIH5pG7ACvkPxV4mv/ABbrM2q6g+ZJDhIx92Neyitf4hePr7x7q7XMzMlrHkQQ54A9a5NyGbOOK9ChR5dWebXrc2iGYz3wPU1FPGCPl6VIQW68DtSHqAa6DnIIW2uBjFa6RoZFLDh0Kg++P/1VmSR/edeg61o6dKtxCI2OGR8g1LKiRKjRsCAD5UmCPUZ/wrpElR4RET88eNpz2Bz+lU9N077ReTQMv+sB2k+vX+WatatYmw1BIwSBIAwHv3rKW50QukybORkUZzQARwetFbLY4nuA4o5pMc0ppiAijFAPOaM8UAJ60hHHvS0hxQA1qTjrSnmkoAbQRSnFIelADSKaRT+opvUUANIpDTiMUmMCgBvNNNO7U0igBRS80lL2oAcP0pRmk7U5eTQAo4NLxQBx70ooAUUCj86UA5oAWlFHPpR0oAUUvej8aMc0ALS80gFLQADoaXrR7UdKAFBoNFAoARjhTxWDqZEl1gdBx9K2Z5woODlscCsqUKHLtzgfmaymzWmupTuIgEQDrncR+FRABlZug4Ap8jNI20csxxTXGHRB0U/maSRoyDUJNwdQflTaBXR/DzxJYaGt7HfyNGszRlSFz0NcteN8rdizVDAMqfrVSgmrMzUnF3R9Gp8dvCulwlYTdXL4+6keAT9TWXdftKkAix8Pkj1ml/wrwzFSL0yalYePU0eImz2Sf9pnVxCRBoljHJ/eaQnFcR4p+J+veN4xFqLRRRA52xAjNcax3tgVaVQihRTVKC6EutN6XHFsDpTSM+1B+8MUdjmtTMQnaMdaaiF29h1pep9vWiUbUIHU0AOWeNSVVQy5/M05BAzl0YxO3BU9KrrHgccU/bkYpBex0WmXP2dYppGBZeVIOTuXnB9iM1v+IpIdRtrK6j5McgI45Kn1rgFaRCCrEe1a1jrdxb2/2aVA8ROQx6rUShrdG8a2lmbT4Mhx0zTahhu4pR97n3qb6Vdjme4UUGjgjigBtFKaTrTEFIeaWj8aAGEUhpxFNIoAQ4FJz3pTwKTtQAhznikNLSUANNIetO6U09KAGkU0040080AKKcKT2pRxQAtOTikxSgc0AOGDTgeab/OlAJoAUAmnD3NIB6U4DHagA7Uvej8KAKADHPendqSl7UAL04o70deKUcUAAoz2petLjNACetVb27EMZI4OKlup1tozIxHFYF7efaBw3uSaiUrFxjckiuzkk5J65qO8m2oEH325J9Koify8BQSewpyAzMS5OM81mbLsWrNS2ZGIHGM+lRk/O0h6KOlPaQrDhcBegFVppfl2556mrihSZUnUyOoHYc/WnxQlBinp0JI5PNPL+1a2MRu2myHAwKGc4psYMjbz90dKGxD7dMnc1WQo7U3GCCOhp5PBNBQzuaDjv0pBQeRkkYpACfMcjgCmZDPk84pzkrHlcAVHEuenNAh/U1IFHelRQoPFO6U0A3aBTwpbC5AX1PSmnrTgN33hx6UDLwltTFsj8wsO/Y0+2u5IeGViPXNVIPve1X44Vc+tMVi9FP5o5UqffvUg4qO2UAFWHFPSOVMhzuX+Fvb3pNdhNWF/CjHGc0vXmkOOlIQ3GKTvTjTe1AA3rTT7UppDQAhppp3XrScUAJTTxTjzSEUAN5pO9O7UhoAZ1ppFO60h44oABTh1pMcUo9uaAFApaQU4CgBcHvThTcc05RQA4UuOaKO/tQAvWlFIPal+lAC5opKUdKAFzx0pRSYo70AONKKbkZpJXKROwPQHmkMxPEE5MiQKeOprLMckoAjXIHXNLcSmd8Zz3LVdjNvFbDfvb2XjP41kzWJnx2zEnHQfec9BVqGMSjC8RL1J71DLcNcttwFjH8K8Cia4yoji6dzSSuXohLm4Ab5ei1AoLnn1zSbN7Y7DvUyrgVtFGMncMAUh4HWnGq8z/wAK9TVXEBBmcIv4mrBUDCjoKW3iEUZJ6mlAy2aAHjgc00nacHqelSAA8UyZQwoGMDjJxk47CnpGSQz4J6gUxMZAAxTriUQx+9AEU8nmyCJR9anjQRjFRWsW1d7cs1SlueaBD8UoAPFM35NKWwCfQUALjL47DrTsU2PgfWn5oQDkOCKuQS7e9UqVZCpphc2bdmlbaK01xFtLcqeG+lZ2hjznkAxuVSwq15pdGVvQmmiglTy3K9s8e4pnbihJRLEh6kDBoqGQxPwpp608jNNIzQIaeecUh6UvuKSgBtJTiKbigBD6UAYoo560AIaacUueTSd6AGmkzilNNJycUAO6UtIKcKAFAp3ekB9uKXvQADinjtTeO9OFAChc0tIBTqAD6UuMUg4707uO4oABQKM80uKAClzikooAdnmquoXMdvbMXzluAKtZrN1tFNvudsKvT3NJ7DW5gwx/aJdoHB79MUt2whHltJuA/hzSeWv2cuHYHpiqqIJJOnC1mlc1vYlRCwyeB6USsEUADBbipc4zmqqkyyl+w4FapEORPGMDFPJwKYOBSO+0ZJqhCSSbRSW0W99zdKYil25q9GoRcVIA2MU0DvSty1Ix4wKYDkzSvwhNKq4FNfJIA6UAMCbRu6VXb/SLgZ+4tSXku1Nq/eNOtkKJgjJPJpDJug4qNxUmM9KZIKYhm7FOJ+6M9aaBS5/efQUAS59KcKYvQ08U0AtLwKODSEGgC3pt6bO6SRex5HqK270bIJJ05RxkY965foa2rC7e40m5tAA0gUtHnuRzihDItIlMskwJ4XAFaVY/h0ENNn2rY7VLJA0hpaQj6UCGk80hpcUYyKAGEUhpxppODSAQ008U+mYpgJ1pDxTucU2gBp60004k5pDQA4DFOHNJ60ooAUUtIOKdQAYzTulIKUUALTh0pBSgjIoAWlGM9abTqAD6UozSUo+maAF/nS9KTtQKAFrJ14iR7e2zgMdzewrWxmue12UrdOR1ChamWw1ozMu3AbyozkDjNLCnlpjuetRRJuk+hqdzjNCVinqRTsTwO9LGmxQBSIuSXb8KcST90YFWIJHCAdzUByTluvpUhG33NLCm98npQBNBHtG49al6cUDijqfakAmMcmkPLClJpF+8KAJM4prttUsacenPaq8jGQ8UXAijUzT7m6Crg4qOKMLUjHA4pgJ3pJO1CjJzQ4NAEYoXl2OfagcGkT196AJM81IDkc1EOtSLyKAHrUiL5ny1GpqWHhhTAidCpIqbT7hra6RweQc1PJCJFPrVH7pz6GgDetrIWl1M8YzBNh4z6D0/CrBpumSm6sTEASYssAPQ9akOMdetS9xMbQQKXpQaBDMUh9KXpSHmgBCOKaadTcc0AJx6801qcc009PWgBppDSnikPWgBpppHvTuaac0ASClWminDpQA4UopADS9TSAUe9OHvTRSgUwHClHpSClpALjpS0nPalA6ZpgApQaTNKBmgBcUtIDQaAF965zxKy/bEUdQmWro87RknAAyTXGXUxurqSU/xNx9O1SMIhtXJ6mmOxZ9tPkYKn9KbEDgtjrTQxwQd6GPp0pelMc4qgGtljgVZjQIMVDCvO41YpAGeKTPFGaXNMAoHBpM0jNgYHU0AEj7vlFKiYojTb16mnE0AAwKTOaSlBxQA7ofagjilHPag0AQnufampwop8n3WNNQdKAHinjrxTcCnL0oAUGpEbBB9KjpQe1MDUgwwBHes+7iMc7L071aspdp21LrFvgRzjoRzTGP0G5MFyhzxnB+las6+XKy9jyK5i1l8mVWz3rpWlEyI454qWSxvakJpaQ0hCUhpccUfWgBtNPpTqaRzQA2mmn4xTT6UANOaafWn4ppoAYaQ04jmkI70AKOtOBpvenD1oAdmlHHNJ70o5FACilpoPtTxzQAopaBxQOaQC4PrTh15popwFMA6c4pRzR9BQKADFHtQRS0AUtan8jTZSDy+EH41y0QG7noBW54mkxFbx/3iW/L/APWaxYxhTSKRG7b5AO1TDCjFVz/r6l5poBxIqPl3ApGJHenQjqaAJlAUYp2aaTRQMdmlpoNLuoEJwMk0IDyxpv8ArHx/CKlJyMCgYhakODS4pMc80xC9qKKQ0AOBp24d6iLUm6gAmYBaXNQzt8o+tSq2cUASLTxTVI4FKBzQApFHSlHNJimBJG+w5rdhUahpzJ/EnIrnx2rV0S8WC5Cv91qaBGXcxmF8EVr6VceZFsJ5Han65YDb56D5TWXpsvkXAyevFJoGdBj2pDzSk8cZ5pMcVJImaTqMGnY6/WkoAbQaX60nWgBpFNPSn/Sm4pAN7U008imkDrTAYaaemKfjNIaAAUo5GabTgaAHClxSA04ZoAKctNFOBoAdg0tIDigHFADvWlGaQdMil60ALilX8qTtS4oAXrSdaKKAMLxLzLajttb+YrKj4WtnxIn7u2k9GKH9DWMvT0oKRXGGnPNTZ4qiWKyFvep95xn1oTAc5qaMBV96rgnIqccCgB+aM0zPFKDQMdmkYngL1PH0pAeaWPklqBD1G0AelOzSDpQaYxcmlJ4ptLmgBKQ0uaQsKAGkU00rSConkpCGTv0qWM8CqTyFjzVpGwBxRcCyjZqUHNVPM2tViN1bGKaYEq9acRxTR1px5pgNOetKrbSD3FBx0pKAOo0u6jvrf7PKQd3GT2rE1GwksLkgjAzkGobS5NvIMEgV09xGmsabvUjzox+YpjKsLF4UPqKdUdpkQgHtxUrVBI0j3pDmnY9BSY7UCExnGaT6UoGaQ8GgBDSNS5pDzxQA0+/FIfpTqQ0gGU0089aa3FADKcOtMz7U4fWmA8U4GminCgBRThzSCnAUALS0gpcYoAcBS/TpTRS44xQAtL3pBS9aAFpOpoxS0AUtah87TZRjJTDj8P8AJrmVOR9RmuydPMRk6hlK/pXGhdjEd1ODQNFBxhyD60+I5U+1Pu48HeB061DG4UkHvQUTKORU2eKhUgkYNSZoEOozRnNNHWgYSPjC+tSpzVYNvlPoOKnj6UATCigdKO9MBKCe1BpKABj2pppaOKBDNmaYycVMaaeRSAz5AQ1TQtlcelNuF5zTIm2tj1oGWWPFEchQ9eKOopoGTigRoxtuXIpxJqvA2FANTE1QCk0hbAxTM+lJ1oGPDVr6FqXkTBXPyk4NYvSnI5Q7gaEwOvmjCOdvCsciozxUdjdi7swSfnTj8KkqXuSJSHHrTsU00CGmjrSmkoATFJgCnfzpp5pANo/CijFMBO1MIzTjxSHmkBEOtOAHNNFLTAeKeKYKcKAHinimCnA0AO6UUClx7UAAp1J+hpfegBRxSikFL0oATmlo70ooABxgj61yepJ5N/OgGPmyB9a6zHWud8RRbL1JOzoPzFA0Zcqh0NZxGDjvWmvIqlcptkz60ihLf7xqwKgt/vGp+lMQ7NMdtik/lTqhuDyqDmgY6EYXPrzViPpUKjAxU68CgB46UUlHemAp6U00403GaLgNzQTxS45pCM0AGaKUDigjFAivKMg1UIxV1u4qrIMNUsESq+VFKp5qGNsZX1qUdcUwLqdBUq4J5qvGeBUmSDxTAm20mwZ6UiyetSpIAeQDTAiKA9CDTCNprQiW3mO1htJ7imXVg8HzAbkx97tRYY7SbryJwpPDHmt8/nXKITGwNdLaTefCrd8UmSyXPFIRSnik7UhDTSU6k+tACGmng07FMPNAATSZzR7YoOPpQAlNOaUnimmgCIU4UwU8UAPB4p45NRg0+gBwp1MB7U8UAOBxTgc1GKcOKAHDrTqbTsZoAWlpBS0AFKKSgdPpQAkkiQoZJGCoOrGuW1jUlv7oCLPlxjAJ7nvUesak97O/zEQoxVVHT6ms5WO8HtUtjRbU81Ddpldw7VIpp7ruQj1qiilb/wARqfvUMAwWHvUwoELwASarx/vJC3pT53wuO5oiTaPc0ATIOalFMUcU7tQMdR0puaWmIWlFNBpRQAuKQjFLS4oAbikI4px4ooArOOarSdauSDFVJeCKlgRk4OanjIPNVzU8fyqBTGWUapV5qqrelTRyc4oQiYLxml5pUOaeAKoBgdlrQsdS8r93Mu+NuCDVMpmmlKANC905SvnW53R9cjt9al0mQxsYm78iqdjfSWb5+8h6qehFbAt4pNl3b/cPUD+E+9PoDJyc0lBPpR+NQSJQaCaTNACnpTGzTjTT0oAQU3NONN6CgBO9Nb1p3SmGgCJacKaKcKAHD3p9MFOAFADxSjOM02lBFAD6XNNFOFADweM04HBplKvNAD880tNHHal6c0AOFTWul3Oru1rakIzKcuRwgPermg6Dd+IbzyLdDsT5pZMcRr616z4R8K2NsgWO3+XOGL/ebHc1lVm4rY6KNBz1ZwvhP4U6NbOJbtTeuOAJThPrirvjj4Y6Ze6NNNp9ulvcwKWXYOGAr1+TTbSC3UeSiADgKuK5jWryK38xNy4KHPP4Vzxbvqz0Pq8eXY+T4yQzRvw6nBqdTkVsr4L17X9cvBpWmTzR+c37wrtQDP8AePFdRF8DvE5RS81gjkfcLPkf+O4rp50up57ozvZI80YbJyP7wzT69Ri/Z/125IM2oWkJHojt/QVoQfs8SHi61/aP+mdqT/M0vaxH9Xqdjxf/AFsuewqdOua9lu/2dYI4SbTXpvNx/wAtrb5T+R4rz3xH4C1bwrITdPbSxZ+/Ex5/AimqkWyZUpR6GCOlL6c1MQn9ygqnXZWpmQ8DvSFhU5ji/u4/GkMMfPDfnQIh3cUoYU/7Oh6FqT7LgZDn8qQChh3pe1J5DA/fH5VIkag/MxJ9qYEZIoqZljxwv41FKmwbgeKAIZPaqk4q5jf0yfpUE0LkdMn2pNAVKn2nqOlM8iXP+rb8qkXJXG7BHbvSGKOKN2DQIS3rj1oEIB5bFMRLHOR1qwtwMCqJWIf8tCfoKettI6bonDD37UXYGisgbvUi7cjdyKzPKuUGcD86UXckRw6kH0NO4G0kCSDirmnu1lIQSTG3DA1h22pBX4P51uK4ubZmTGcZp3Av8HvxSGmwnMSN6innFSSN6U2ncU2gAJ4pKU000ABNNPSlpDQAh6Uw8inHNNP40AQg/lThjFMH6U4GgY8GnDB5poNOHSgQ7NOz6YpgIxThSAcKeKYpzSg0wHinZ4po560ooAd1ruPh54Y0XXoppdTdiytgIXKj9K4cCum8Ew31xczrbSBI0Xc2fWsqrajdHThOV1UprQ9B0e10vwHrwtopYvsmoD927sTtcfwNk9DXa3Nib6RLiyZrRGOSInDAnHTmvAvG+rzy232S7iYOhysgPQ+oqt4T+M+ueHkEF5m/t14Usf3g/Hv+NZRnJxsz2JunBcqPoYaG0rn7Re3Emeg3YHSpP+Ee0uA+Y0KuRzmQ5x+JrznQfi9qPiOTytP0e5kfbnaSOPcnsK7bTrXUNQ2y6rIAW5MMZ+VT6E96wemgktNC/HMtxJttYFKLx5hHyr9BVxbFBzIxc/WnoscCBVTpSmQHgHBNSzNpjWVF4SP8TUIhYyZk5z6cCrYX5QM05Pn6gYpWCw1bcMAoiXHavK/2hrNYPCCThI1YyhTgc165HKEAIBJBryH9pm7YeFbWIfdebNaU1qiKvwM+egPlHHancU1TlF9wKWvRPJD6Ucc0vbNNPHrQIdxR3pBS0wFoNJmjNIAxS0Aign8qYEewIcjoaaMBySCR2qbt9aiYbG9QaQEiygnjd+dRXNvHcDONr/3vWnjAHfmlUfL1NMCnDmMtFIMHsT3oztPzqCPXvVoEZ+YA/WhkGSeMGkBE0MUi7l496rh5Ld8Dnv8AWriII346HtUc0JYYztPUGiwAJkuoyvRvQ1AZmj/dzpvXscc0JsdtknyOOjCnvI0REdwu9OzCgAVYG5Vhj0PWrthfLbyhA2UPB/Gs97RXXdEcj27VXG+JuaQHdxACNR1wOKd2qho1z9pslJ6odpq9QSIaDQeeaKAGmkpScU0n6c0AJmkJ5opDQAhP502ikoAiFOU5pmKcOKkY+l5xTQacDTAUcGnimZ5pwNIQ8UoxTQc04cVQDx1pwOaZmlBoAmhikuJY4IV3yyNtRfUmvdvCfg+Hw7oojk+a4kXfKx9fSuJ+EXhcahdyazPEXS2OIh23dya7rxR4pi0y3a3C77qT5URecmuSrPmfKj1MDQS9+R5Z8RzD9pnQYATp7Vxfg/wHrXjDUtlhCY7UH95cuMIo9vU16tonw0k1/UX1LxBIxRmDC3U9f94165pmk2mm2aQW0McEKD5UQYFT7SysjrqwU3dmD4U8H2nhDS1tLRd7NgyTMPmc+tbkckYfYHBYVz/inxzpmhzxafHJ59/OwjhtYvmdyfb0rYs7draFGuPmuJAC+OgPpWUky4NbI0VdgmSwPPWmmVWIIH5VC08EQPmPnHYUyK93HEMWV9W4qUEot7l8MDgqaXHHLgd81Vy5cMGx6gUOVABdw3PQU3ZGJO1wqsMZb6V47+0tfBvDVhBtALT5z36V6wboKuFXPsK8B/aInlM2nxuTzk4z0qqUryMaz9xnlkJBiQ+1Ozwar2jboAM9OKl56V6R5Y8PzQ2KZSq1AC5IOKM96TrSUAP3c0E0z3pQ9FwF3EHmlL4ppPekNADvMpch+D0qOk3YoAerbG2t07GpRjpUG4SDaT9KQSFTtbr2pgSuvemq+DgjinB8jFNbmkA/5TSNz71GDg04GmBBcQbxuHDCmQzK48qXr61aPNVp4A3zLwaTAngj8iUMp+QnBFLqFoFOV5U8g1TjkK8HOa0on8+2dD95RkUgLnhkYgmHbcP5VsVR0eDyLMMRzId1Xe2aCRM0hPvSmmnigAJppoznikPtQAE00mg570hNACHFN96Wm5oAjpRTacOmKkocOtLmmj607tQAuc04U0Gl70ASDinA5qMe9OHWqJHg807O0Zz2pgrV8NaW2sa3a2YGVZ9z/wC6OT+HT86T2uVGPNJI9d8FGTw54JhiVGNxOpk2D7xLcgVa0DwjPLdnWtXKyXR/1UfaIH+tbem20UJDSj52GA5GAB6CqPiPxXB4asnJ3TSL91RXnyvzWPdS5YKJdmuItN3NNlEXLZPSvL/HnxzEcEmm+HyJrtzsMyjKpnsPU1xHiPxLr3jO9W2BlcSyfu7aNiA3tgde3WvUfhx8HrHRbiLXNeEM+orgw20Y/dwehP8Aeb36VSSjqzKVRzdojPg/8OLvT8+KvEW+TVbkbolmPzQof4j6E+navRtSdmjKQuIyO+Kt6hdwWVs89wyqqjJ3cAfWvNk8Rar471n+yvDsZisEP+k37jPHov1otzalRkqbsddZi8Dgv5Tx5+9jk1rtlU/eskY7DuagNsmm2ywrIWKqACxzk+tY1xqd6ZggFvJ/tsTx+FZtG177mnNcS3Hy2r+Xg8s3Sp0mm2qPkYd2ximW9mogV5ZCWYcKvA/KsvWNTi0mBpZ32Rr1J4FK99EYzNa41CG0iZvlDY6182/G7X4dX1m3jhbcIVOTnvV7x18YHu3ks9IYFeQ0vb8K8pnuJbqVpJnZ3bkkmumjSd7s4K1VfCixZPncv41bzWfaNsmGe4xWhXWjkA9Kbup1NYZpjHA5oNQlihqQMGFADqbnmlPNN5oAeDR1pgNOzQIDSbeOaXNIRmgCBsoxIqQMsw2tw3Y051yKrMpU5FAEvzxnBpyyg9abFOG+V+MVIUUjn8xQAhYGnK1MMOehqMiSM8jIoAnLY5pQwbvTUYOvSmPGVOVoAWWLcQw4NXNJiLzAY4JwapxvIzAbck9q6PTrM20W98b2/SkJlsAKNo6DgUH9KQn3o7UCENNNO5NNzQAhppNOb0ppoATNN+opTTT9aAA+1MJp2aYeaAGCnDrTaUVJQ4UvFNz2xSjigBwpw60zpTs8UAPpVJFMBpwNADzXffC99P0uWfUtQ3kyKY4tgzj3P415+Ku22qXVrB5MEuwZyD3X6Gi7voaUZxhO8j2F/F0WsarBYRTPGXDMoxjAA6n+lct48uYLS0ZlLkvwC5yxrI+HgN54qjeZywWJyxY9uK7iLwrb+Jdciv7tdun2jfIp6SN6n2rlqyaqXZ7FCp7WLn0K/wAPPCo07Q49ZuLVYruRT5RbqFPOfau0TVRAhllbYiD7pwBirmq6nZWVgzSlEt4lHXgACvGdQ1fVfiHrY0TQV8mzdv30qjonck9hWNr6kxlyRsja1CfVvi5rP9jaTNJb6LaOGu7vp5hB+6P1r1LTrHTvCmmxWGnwqkcY5bu3uTXPaNBZeEdO/sy1VYkjJLk8GQ4615/8SfiNcSwvouj7hM42yTD+Ef41UW5Miy+Lqa3jT4iT6hqX9ieGwbm8Y7Xm6pF/ia6HQPDI0DThd391NdX8gyzyPwPYDtXDfCyK002zM8gUTk/NI/X6nNZvxK+K1xJLLpelTqx5V5x2+nvVOPM7ImVTlV5M6rxN8U10LcTeWjuvCxqCzCvHPFvjnXvGHmS3M0i2aEAxpwBnOM/ka5aZ3lkLyOzsxyWY5JpC7FdoJ2nqB0P+c1vCionDUrymMpPel5zShc1qYj/usre9aAbIz61nt90CriNlB9KaESjk0EYp1oLaVn+03XkBUYqQu4swHA/Gq/mDdgEkepGKoCUgHrTBlDQJAetKXBoAcDRUe4UofHQUAKaORSbye1JuNIB+aXPtUeSO9JuIpgS5zxUbjI4phlx3pplJpAMeM9hzRHPJEefmFO+YmgJQBPDciU7QDk9sVMVYcMjD8Kn0KENfx+wJrpiAecD8qLiucklnNKw8qJyT6Cr8OhXDkGZljX8zW8ScYFJ06cfSgRStdLt7Q7lBd/VqtGnEU0igBppKXoaQ5oAOpptLmkOKAE96Q0Zo60AMIpp4p7CmEYoAaabmlJNIeetAEYpwNJRUlDqUGmUqmgB1OB/Cmg0uaAHA5pwpgNKKAH5pwNM3U4GgDs/hjpzahrF0clUSDazegJ6fXivZJDDYW8cDp5SiP5M9wK8l+FGu6do93qEd/KsbTxr5W5sKSM/rWhr3iiTxXqEej6Q7SzTZTcp+6vfHvUzoqSuelh6sY0rXKHijULzx1rA0PS5P9EiOJJF6O3pXf+F9LsfA2kmMIqSld00x6t7fSszQtFsPC1nG7qReqAQAeB6k+3vXLeMvHMOqCa1tQSuNgcHg+prnlQlFqJpK1JNyeozxz44n1u4ax0rci7tokX7zH2rlLEtprSi8KpdI+XWccketZWo6lJpMUdxCR5wbCf1rnr/UdQ1FhPfTvI0gypPcA1t7KNjkWIVnzbnQeKPGL38n2fTwtvEPlZ4zjca5Ukk5JyTyfrSUVoopbHNKbk9SOQcZpqrnn2qRxlcUuPkNOwiONd2c04LiliHWpAKYhgWlyR0NOxjtSlD6UAMQsmQpxmld2dyzHLE5Jp2w+lG1uu00AN+btR89PHXkH8qcGWgZGEc9zR5Tjual3AdMU7eKYivsk9aXZJVgEGlyppWGVQkncmneU3c1ZwKMd6YECRArmneX7VJHgDGO9OAAoER7AKCoHNLJIFqEyc0Abfh5QZ5Gx0Wt3pWJ4Z+ZZ3+grb6ikITHNBORS/SkNAhDTGpxptADSPSkJpTSEUANNJ2zS96Q0AN9aTNLnmk96AFzTGANKTRnNAEbCmmpCKjPWgCPNGc0nFA4qSh1LTetFADh3pRTR7UuaAHinAk9aZSqaAHindKZmlHWgB/pnnBzzU9tczWc8c9vK8UsZBR1OCCKr5p26mBqXviHVdTMgub12EgwwXjP5VQ9qjB5pwp76scpOWrILzTYL8xmUtiPOFXvWJrjD7cyIMLEoUAduK6MEcknpzzXJXUnn3Msp/iYn9aCUQ0tFBoGBFDfdNLxTW4WgAiHBqQDNNj+7TgaAHFO1Ax9MdjTvSkVucEUAMMbZ+U/rTtrAD7w+hp5A9KMY70DAZx1P40nPqv4inD60pz7UxDccchaCB/cU/SnYPtR+VAxAAR9z9aRgo6ofwNP/AUbvYUCGhQRwrce9A+9jBAFO3Gk75zQAJxn6015ABycGlB+9j1ppiLnI6UAQOcmm5qWSIr2qEjFIDpvC64tJW9XFbFZ3h5VXTEPcuc1o0EhnHSmk0p4ptAAQKYRn8KdmkxxQAnWmmnUnQUAMI9ab1px6U0mgBCKbSnBpD7UAIOKQ9aU03P5UAKTTHHNOJppoAgHWgGk70tSUOBozg+1NBpetACjjpSiminUAOzmlH0ptLmgB4NLmm0A0APzmlzTM0uaAJAaXNRg8dqcDQAy9k8qzmcdlx+dcvn1rd1qTbZhP77gfgOawT1qhIDR1oPSigYAcUjnEf407NMm/wBX+NADoz8tOFMiPy0/qKAJFOaa3BzSDg088igAVs041DnBqRWyKYDh0oo60ZAoGFANL1pKBCk0CgigcUAKaTFLR7UANTkke9XFTjiqQ4z9animOcGgZM0IcVWezJb2q7G/PIpzDPNFgNDRMLalB/A2a0ccVl6O+JJU9VrUNJkidRSEe9KfSkNIQhpvWlJ4pvSmANimk8UtIaAGH1pDSk0h7UAN7009accUh5oAQmm0pHNB6UAMNBo4pM0AQCjgdKKMVJQoPNKOtNp1ABTqSkzzQA71pRTc0oNADgaKaDRmgB4NKDg0zNLmgB4pwNRA04HODQBma5Jl4Y89AWP4/wD6qyj1q5qknmXsgzkLhapmqAKKKKACmy/6v8acTTJj8g9M0AOh+6alFQwng1NQAhpwpp96cKAENJT+ophFADw3NOzUQ4pc0wJc0U0GloAdmikHSjmgBc0dab3pQeaAEVck/WnoMGmqcMafmhDJlaplfK1WU4qVWx2piL+mOVvF9wRWxzisCzk2XcTH+9iug6VLJG5puc078DTaAA+1NOaUkAYpD9aAG55oPSjntSZ9aAGmkpT60lADWPNJSk03k0AIaQ0pHvTTkUAIabmnE000AQ59qKKTvUlC0v50g+tLQAZpaTPaj8aAFoBpKKAF70Y96TJo60AOzS5pvtRQA/NG4AEk9BTc1HdPstpG/wBk4/GgDDlfzJGc/wATE0yjsKQ00AtIaKKYBTZv9WPrTqZN/q/xpALB3qYGq8HerC0wHMOKb0pe3Wg0AKD2oIpOlKDQAmKMU7rSEUAANOBqPmlzQBKDRTQaUGgB3vSe9HWimAgPzU7OTTf4qUDtQBIDUiHiohyOKcv1FAEyvskVvQg102QTkdDzXLZzxXRWcgktIn74xSZLJjjFIaKSgBKCeKXNMJ5oAMnFNJpTTe5oADSfzopuaAA000uaQ80ANpDSmmmgBDTTS9KQn8aAIvvc9KSjFL3qShRzRSDg4o70AHWlxS4z3pO1ABnBpM0GigAzzS5zSZoNAC9KM0lHIoAcDVPVZNtts7u2Ktjn61larJunC5+4KAKWaKSlpgHFFFBpgANNn4RfrTqZOTtWkMbCeTVlaqxfeNWVoQhwNBoopgJ70opKOtADunNL1pucUqmmAYpCKfSYzSASnDpSHilpgKOKMmkzS0gA9QaU00nindaYCq2OtPBzUfalUnNAEgrc0Z99mV/uNisLPNa+gvlJlz0INJiZqU0mlBppoEHammlzxTTQAZ70hOaDSGgBDTSaWkNACdKSjpSUAIaaaUnpimk0AFNxg/WjNS2lrPf3cNpbRtLPO6xRRr1dmOAB9SRQB7x8fPgJfWOpXXirwraNc2E5M15ZQrl7durOijqh6kD7uT2+78/4P4e2f8KKKkoT3pc+1FFAARR2oooATtzRRRQAUn0NFFACijNFFABnnP41hXMnmzO3qaKKAIqWiiqAKKKKAFqKc/dFFFIY2L734VYQ0UUCHZpRiiimAlFFFAC0UUUAKDil69KKKADFLRRQAZooooARulKDRRQAoOetOFFFFwFFaehP++lX1TP60UUCZsZ5pDRRQFhppDRRQFhp5NBFFFAWGkCm5oooENNNNFFACHrTT+FFFA7CxxSTSLHEjSSMQqqoJLE9ABX0/wDs+/Aq68P3Ufi3xVb+TeqP9CsXALQ5/wCWj/7WOg7dTzjBRSYI/9k=" alt="Евгения Кудина">
+        <h3>Евгения Кудина</h3>
+        <p>Архитектор защищённых систем работы с персональными данными</p>
+        <p>Эксперт по внедрению мер информационной безопасности в деятельность коммерческих организаций</p>
+      </div>
+      <div class="exp-text">
+        <h2>Категорирование объектов КИИ — обязательное требование ФЗ №187-ФЗ</h2>
+        <p style="margin:0 0 24px">Критическая информационная инфраструктура (КИИ) — это информационные системы, сети и ресурсы, от которых зависит работа жизненно важных отраслей: энергетики, транспорта, связи, финансов, здравоохранения, науки, ТЭК и др. Сбой в работе таких объектов может привести к серьёзным последствиям для государства, бизнеса и населения.</p>
+        <p style="margin:0">Законодательная база:</p>
+        <ul style="margin:0 0 24px">
+          <li>Федеральный закон от 26.07.2017 г. № 187-ФЗ «О безопасности критической информационной инфраструктуры Российской Федерации»</li>
+          <li>Постановление Правительства РФ от 8 февраля 2018 г. № 127</li>
+          <li>Федеральный закон «О персональных данных» от 27.07.2006 № 152-ФЗ</li>
+          <li>И прочие законодательные документы</li>
+        </ul>
+        <p style="margin:0;color:var(--ink);font-weight:600">Мы проведём категорирование «под ключ» — от анализа до создания уведомления во ФСТЭК. Работаем с любыми отраслями, включая арендуемые объекты.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- 11. Преимущества -->
-<section class="sec" style="padding:96px 0;background:#fff">
-<div class="wrap">
-<h2 class="h2" style="margin:0 0 40px;font-size:40px;line-height:1.15;font-weight:800">Наши преимущества</h2>
-<div class="row" style="gap:16px">
-<div style="flex:1 1 260px;min-width:0;padding:24px;border-radius:14px;background:#F4F5F7;font-weight:600">Наши эксперты — регулярно публикуются в ведущих бизнес-изданиях</div>
-<div style="flex:1 1 260px;min-width:0;padding:24px;border-radius:14px;background:#F4F5F7;font-weight:600">Гарантируем полное соответствие 152-ФЗ и Приказа ФСТЭК № 21</div>
-<div style="flex:1 1 260px;min-width:0;padding:24px;border-radius:14px;background:#F4F5F7;font-weight:600">Наши партнёры — передовые компании-производители средств защиты</div>
-<div style="flex:1 1 260px;min-width:0;padding:24px;border-radius:14px;background:#F4F5F7"><div style="font-size:32px;font-weight:800;color:#C2410C">20+</div><div style="font-weight:600">IT-юристов в штате</div></div>
-<div style="flex:1 1 260px;min-width:0;padding:24px;border-radius:14px;background:#F4F5F7"><div style="font-size:32px;font-weight:800;color:#C2410C">100+</div><div style="font-weight:600">услуг по защите бизнеса</div></div>
-<div style="flex:1 1 260px;min-width:0;padding:24px;border-radius:14px;background:#F4F5F7;font-weight:600">Комплексный подход: объединяем IT, право и безопасность</div>
-<div style="flex:1 1 260px;min-width:0;padding:24px;border-radius:14px;background:#F4F5F7"><div style="font-size:32px;font-weight:800;color:#C2410C">50+</div><div style="font-weight:600">публикаций</div></div>
-<div style="flex:1 1 260px;min-width:0;padding:24px;border-radius:14px;background:#F4F5F7;font-weight:600">Работа с проектами любого масштаба</div>
-<div style="flex:1 1 260px;min-width:0;padding:24px;border-radius:14px;background:#F4F5F7;font-weight:600">Проводим курсы</div>
-</div>
-</div>
+<section class="sec" style="padding-top:24px">
+  <div class="wrap">
+    <h2 class="h2">Наши преимущества</h2>
+    <div class="row" style="margin-top:56px;gap:16px">
+      <div class="adv">Наши эксперты — регулярно публикуются в ведущих бизнес-изданиях</div>
+      <div class="adv">Гарантируем полное соответствие 152-ФЗ и Приказа ФСТЭК № 21</div>
+      <div class="adv">Наши партнёры — передовые компании-производители средств защиты</div>
+      <div class="adv"><span class="num">20+</span>IT-юристов в штате</div>
+      <div class="adv"><span class="num">100+</span>услуг по защите бизнеса</div>
+      <div class="adv">Комплексный подход: объединяем IT, право и безопасность</div>
+      <div class="adv"><span class="num">50+</span>публикаций</div>
+      <div class="adv">Работа с проектами любого масштаба</div>
+      <div class="adv">Проводим курсы</div>
+    </div>
+  </div>
 </section>
 
-<!-- 12. Логотипы клиентов -->
-<section class="sec" style="padding:72px 0">
-<div class="wrap">
-<h2 class="h2" style="margin:0 0 32px;font-size:28px;font-weight:800">Нам доверяют</h2>
-<div class="row" style="gap:12px">
-<div style="flex:1 1 160px;height:88px;border-radius:12px;background:#fff;border:1px solid #E1E5EB;display:flex;align-items:center;justify-content:center;font-weight:700;color:#56627A">Bwin</div>
-<div style="flex:1 1 160px;height:88px;border-radius:12px;background:#fff;border:1px solid #E1E5EB;display:flex;align-items:center;justify-content:center;font-weight:700;color:#56627A">М.Видео</div>
-<div style="flex:1 1 160px;height:88px;border-radius:12px;background:#fff;border:1px solid #E1E5EB;display:flex;align-items:center;justify-content:center;font-weight:700;color:#56627A">LUKOIL</div>
-<div style="flex:1 1 160px;height:88px;border-radius:12px;background:#fff;border:1px solid #E1E5EB;display:flex;align-items:center;justify-content:center;font-weight:700;color:#56627A">Газпром</div>
-<div style="flex:1 1 160px;height:88px;border-radius:12px;background:#fff;border:1px solid #E1E5EB;display:flex;align-items:center;justify-content:center;font-weight:700;color:#56627A">Сколково</div>
-<div style="flex:1 1 160px;height:88px;border-radius:12px;background:#fff;border:1px solid #E1E5EB;display:flex;align-items:center;justify-content:center;font-weight:700;color:#56627A">Dior</div>
-<div style="flex:1 1 160px;height:88px;border-radius:12px;border:1px dashed #9AA7B8;display:flex;align-items:center;justify-content:center;font-size:13px;color:#56627A;text-align:center;padding:8px">[Банк — клиент]</div>
-<div style="flex:1 1 160px;height:88px;border-radius:12px;border:1px dashed #9AA7B8;display:flex;align-items:center;justify-content:center;font-size:13px;color:#56627A;text-align:center;padding:8px">[Энергетика — клиент]</div>
-<div style="flex:1 1 160px;height:88px;border-radius:12px;border:1px dashed #9AA7B8;display:flex;align-items:center;justify-content:center;font-size:13px;color:#56627A;text-align:center;padding:8px">[Транспорт — клиент]</div>
-</div>
-</div>
+<!-- 12. Клиенты -->
+<section class="sec" style="padding-top:24px">
+  <div class="wrap">
+    <h2 class="h2">Нам доверяют</h2>
+    <div class="row" style="margin-top:48px;gap:14px">
+      <div class="logo-c">Bwin</div><div class="logo-c">М.Видео</div><div class="logo-c">LUKOIL</div>
+      <div class="logo-c">Газпром</div><div class="logo-c">Сколково</div><div class="logo-c">Dior</div>
+      <div class="logo-c add">[Банк — клиент]</div><div class="logo-c add">[Энергетика — клиент]</div><div class="logo-c add">[Транспорт — клиент]</div>
+    </div>
+  </div>
 </section>
 
 <!-- 13. FAQ -->
-<section class="sec" style="padding:96px 0;background:#fff">
-<div class="wrap" style="max-width:920px">
-<h2 class="h2" style="margin:0 0 40px;font-size:40px;line-height:1.15;font-weight:800">Вопрос-ответ</h2>
-<div style="display:flex;flex-direction:column;gap:12px">
-<details class="faq" open=""><summary>Что такое КИИ?<span aria-hidden="true">+</span></summary><p style="margin:0 0 22px;color:#3B4659">КИИ (Критическая Информационная Инфраструктура) — это объекты, системы и сети, выход из строя или нарушение работы которых может привести к значительным негативным последствиям для безопасности, экономики, здоровья населения или экологии.</p></details>
-<details class="faq"><summary>Кто категорирует объекты КИИ?<span aria-hidden="true">+</span></summary><p style="margin:0 0 22px;color:#3B4659">[Текущий ответ с сайта — без изменений]</p></details>
-<details class="faq"><summary>Какая ответственность за несоблюдение требований безопасности критической информационной инфраструктуры?<span aria-hidden="true">+</span></summary><p style="margin:0 0 22px;color:#3B4659">[Текущий ответ с сайта — без изменений]</p></details>
-<details class="faq"><summary>[Четвёртый вопрос — уточнить у клиента]<span aria-hidden="true">+</span></summary><p style="margin:0 0 22px;color:#3B4659">[Текущий ответ с сайта — без изменений]</p></details>
-<details class="faq"><summary>Что будет, если не провести категорирование вовремя?<span aria-hidden="true">+</span></summary><p style="margin:0 0 22px;color:#3B4659">Штрафы от 100 000 до 500 000 ₽ в зависимости от характера нарушения, риск уголовной ответственности по ст. 274.1 УК при инцидентах с данными КИИ, а также повышенный риск внеплановой проверки со стороны ФСТЭК и прокуратуры.</p></details>
-<details class="faq"><summary>Нужно ли переводить объекты КИИ на российское программное обеспечение?<span aria-hidden="true">+</span></summary><p style="margin:0 0 22px;color:#3B4659">Да, для значимых объектов КИИ (ЗОКИИ) законодательная база уже принята. Сейчас утверждаются отраслевые перечни и сроки перехода, за нарушение которых планируются отдельные штрафы.</p></details>
-<details class="faq"><summary>У моей компании подходящий код ОКВЭД — точно ли нужно категорирование?<span aria-hidden="true">+</span></summary><p style="margin:0 0 22px;color:#3B4659">Не обязательно. Код ОКВЭД — ориентир, но обязанность возникает, только если организация фактически использует АСУ, ИС или ИТКС, подпадающие под определение объекта КИИ. Точный ответ даст только анализ на этапе категорирования.</p></details>
-</div>
-</div>
+<section class="sec" style="padding-top:24px">
+  <div class="wrap" style="max-width:1040px">
+    <h2 class="h2">Вопрос-ответ</h2>
+    <div style="margin-top:48px;display:flex;flex-direction:column;gap:12px">
+      <details class="faq" open><summary>Что такое КИИ?<i aria-hidden="true">+</i></summary><p>КИИ (Критическая Информационная Инфраструктура) — это объекты, системы и сети, выход из строя или нарушение работы которых может привести к значительным негативным последствиям для безопасности, экономики, здоровья населения или экологии.</p></details>
+      <details class="faq"><summary>Кто категорирует объекты КИИ?<i aria-hidden="true">+</i></summary><p>[Текущий ответ с сайта — без изменений]</p></details>
+      <details class="faq"><summary>Какая ответственность за несоблюдение требований безопасности критической информационной инфраструктуры?<i aria-hidden="true">+</i></summary><p>[Текущий ответ с сайта — без изменений]</p></details>
+      <details class="faq"><summary>[Четвёртый вопрос — уточнить у клиента]<i aria-hidden="true">+</i></summary><p>[Текущий ответ с сайта — без изменений]</p></details>
+      <details class="faq"><summary>Что будет, если не провести категорирование вовремя?<i aria-hidden="true">+</i></summary><p>Штрафы от 100 000 до 500 000 ₽ в зависимости от характера нарушения, риск уголовной ответственности по ст. 274.1 УК при инцидентах с данными КИИ, а также повышенный риск внеплановой проверки со стороны ФСТЭК и прокуратуры.</p></details>
+      <details class="faq"><summary>Нужно ли переводить объекты КИИ на российское программное обеспечение?<i aria-hidden="true">+</i></summary><p>Да, для значимых объектов КИИ (ЗОКИИ) законодательная база уже принята. Сейчас утверждаются отраслевые перечни и сроки перехода, за нарушение которых планируются отдельные штрафы.</p></details>
+      <details class="faq"><summary>У моей компании подходящий код ОКВЭД — точно ли нужно категорирование?<i aria-hidden="true">+</i></summary><p>Не обязательно. Код ОКВЭД — ориентир, но обязанность возникает, только если организация фактически использует АСУ, ИС или ИТКС, подпадающие под определение объекта КИИ. Точный ответ даст только анализ на этапе категорирования.</p></details>
+    </div>
+  </div>
 </section>
 
 <!-- 14. Вам может быть интересно -->
-<section class="sec" style="padding:96px 0">
-<div class="wrap">
-<h2 class="h2" style="margin:0 0 32px;font-size:32px;font-weight:800">Вам может быть интересно</h2>
-<div class="row">
-<a href="#" class="col" style="background:#fff;border:1px solid #E1E5EB;border-radius:16px;padding:28px;text-decoration:none;color:#0F1B2D;display:flex;justify-content:space-between;gap:20px">
-<div><div style="font-weight:800;font-size:20px;margin-bottom:8px">Разработка модели угроз</div><div style="color:#3B4659;font-size:15px">Определение и документирование перечня актуальных угроз и нарушителей</div></div>
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
-</a>
-<a href="#" class="col" style="background:#fff;border:1px solid #E1E5EB;border-radius:16px;padding:28px;text-decoration:none;color:#0F1B2D;display:flex;justify-content:space-between;gap:20px">
-<div><div style="font-weight:800;font-size:20px;margin-bottom:8px">Криптографические средства защиты информации</div><div style="color:#3B4659;font-size:15px">Сертифицированные средства защиты подтверждают подлинность и неизменность электронных документов</div></div>
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
-</a>
-</div>
-</div>
+<section class="sec" style="padding-top:24px">
+  <div class="wrap">
+    <h2 class="h2">Вам может быть интересно</h2>
+    <div class="row" style="margin-top:48px">
+      <a href="#" class="xlink"><div><h3>Разработка модели угроз</h3><p>Определение и документирование перечня актуальных угроз и нарушителей</p></div><span class="arr"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a href="#" class="xlink"><div><h3>Криптографические средства защиты информации</h3><p>Сертифицированные средства защиты подтверждают подлинность и неизменность электронных документов</p></div><span class="arr"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
 </section>
 
 <!-- 15. Статьи -->
-<section class="sec" style="padding:96px 0;background:#fff">
-<div class="wrap">
-<div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:16px;margin-bottom:32px">
-<h2 class="h2" style="margin:0;font-size:32px;font-weight:800">Наши статьи</h2>
-<a href="#" style="font-weight:700;text-decoration:none">Все статьи →</a>
-</div>
-<div class="row" style="gap:20px">
-<a href="#" style="flex:1 1 300px;min-width:0;text-decoration:none;color:#0F1B2D;border-radius:16px;overflow:hidden;background:#F4F5F7;border:2px solid #C2410C">
-<div style="height:180px;background:#DDE2E9;display:flex;align-items:center;justify-content:center;color:#56627A;font-size:13px">[Обложка]</div>
-<div style="padding:20px"><div style="font-size:12px;font-weight:700;color:#9A3412;margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em">Рекомендуем добавить</div><div style="font-weight:700;font-size:18px">[Статья про категорирование КИИ]</div></div>
-</a>
-<a href="#" style="flex:1 1 300px;min-width:0;text-decoration:none;color:#0F1B2D;border-radius:16px;overflow:hidden;background:#F4F5F7">
-<div style="height:180px;background:#DDE2E9;display:flex;align-items:center;justify-content:center;color:#56627A;font-size:13px">[Обложка]</div>
-<div style="padding:20px"><div style="font-weight:700;font-size:18px">Защита персональных данных в банке</div></div>
-</a>
-<a href="#" style="flex:1 1 300px;min-width:0;text-decoration:none;color:#0F1B2D;border-radius:16px;overflow:hidden;background:#F4F5F7">
-<div style="height:180px;background:#DDE2E9;display:flex;align-items:center;justify-content:center;color:#56627A;font-size:13px">[Обложка]</div>
-<div style="padding:20px"><div style="font-weight:700;font-size:18px">Оборотные штрафы за утечку персональных данных</div></div>
-</a>
-</div>
-</div>
+<section class="sec" style="padding-top:24px">
+  <div class="wrap">
+    <h2 class="h2">Наши статьи</h2>
+    <p class="sub"><a href="#" style="text-decoration:none">Все статьи →</a></p>
+    <div class="row" style="margin-top:48px">
+      <a href="#" class="art rec"><div class="cov">[Обложка]</div><div class="t"><div style="font-size:12px;color:var(--blue);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Рекомендуем добавить</div>[Статья про категорирование КИИ]</div></a>
+      <a href="#" class="art"><div class="cov">[Обложка]</div><div class="t">Защита персональных данных в банке</div></a>
+      <a href="#" class="art"><div class="cov">[Обложка]</div><div class="t">Оборотные штрафы за утечку персональных данных</div></a>
+    </div>
+  </div>
 </section>
 
 <!-- 16. Финальная форма -->
-<section id="form-final" class="sec" style="padding:96px 0">
-<div class="wrap" style="max-width:920px">
-<h2 class="h2" style="margin:0 0 32px;font-size:40px;line-height:1.15;font-weight:800;text-align:center">Обсудите ваши задачи с нашим экспертом</h2>
-<form style="background:#fff;border:1px solid #E1E5EB;border-radius:20px;padding:40px;display:flex;flex-direction:column;gap:18px">
-<div class="row" style="gap:16px">
-<div class="field"><label for="f2-phone">Телефон</label><input id="f2-phone" type="tel" placeholder="+7 (___) ___-__-__"></div>
-<div class="field"><label for="f2-mail">Почта</label><input id="f2-mail" type="email" placeholder="name@company.ru"></div>
-<div class="field"><label for="f2-company">Компания</label><input id="f2-company" type="text" placeholder="ООО «Компания»"></div>
-</div>
-<label class="check"><input type="checkbox"><span>[Текущая формулировка согласия по 152-ФЗ — без изменений]</span></label>
-<label class="check"><input type="checkbox"><span>[Текущая формулировка согласия по 38-ФЗ — без изменений]</span></label>
-<button type="button" class="btn btn-main" style="align-self:flex-start">Получить консультацию</button>
-</form>
-</div>
+<section id="form-final" class="sec" style="padding-top:24px;padding-bottom:0">
+  <div class="wrap">
+    <form class="form-white" onsubmit="return false">
+      <h2 class="h2" style="text-align:left;font-size:44px;margin-bottom:36px">Обсудите ваши задачи с нашим экспертом</h2>
+      <div class="fields">
+        <div class="f"><label class="sr" for="p2">Телефон</label><input id="p2" type="tel" placeholder="Телефон"></div>
+        <div class="f"><label class="sr" for="e2">Почта</label><input id="e2" type="email" placeholder="Почта"></div>
+        <div class="f"><label class="sr" for="c2">Компания</label><input id="c2" placeholder="Компания"></div>
+      </div>
+      <p class="req" style="color:var(--text)">Обязательно отметьте поля ниже*</p>
+      <label class="chk"><input type="checkbox"><span>Нажимая кнопку "Получить консультацию", я соглашаюсь на обработку моих персональных данных в соотв. с ФЗ от 27.07.2006 №152-ФЗ на условиях и для целей, определенных Согласием на обработку персональных данных. *</span></label>
+      <label class="chk"><input type="checkbox"><span>Нажимая кнопку "Получить консультацию" я соглашаюсь получение рассылки в соотв. с ФЗ от 13.03.2006 №38-ФЗ на условиях и для целей, определенных Политикой конфиденциальности и Согласием на осуществление рекламной рассылки. *</span></label>
+      <button class="btn btn-blue" type="submit" style="width:100%;margin-top:24px;min-height:76px;font-size:17px">Получить консультацию</button>
+    </form>
+  </div>
 </section>
 
 <!-- 17. Футер -->
-<footer style="background:#0F1B2D;color:#B4C0CF;padding:56px 0 32px;font-size:14px">
-<div class="wrap">
-<div class="row" style="gap:40px;margin-bottom:40px">
-<div class="col"><div style="color:#fff;font-weight:800;font-size:22px;margin-bottom:12px">CASE<span style="color:#F08A5D">.</span></div><div>[Юридическое наименование, ИНН, ОГРН]</div></div>
-<div class="col"><div style="color:#fff;font-weight:700;margin-bottom:12px">Контакты</div><div>[+7 ТЕЛЕФОН]</div><div>[E-MAIL]</div><div>[АДРЕС]</div></div>
-<div class="col"><div style="color:#fff;font-weight:700;margin-bottom:12px">Информация</div><div style="display:flex;flex-direction:column;gap:6px"><a href="#" style="color:#B4C0CF">Политика конфиденциальности</a><a href="#" style="color:#B4C0CF">Карта сайта</a></div></div>
-</div>
-<div style="border-top:1px solid rgba(255,255,255,.12);padding-top:24px">© CASE, [ГОД]</div>
-</div>
+<footer>
+  <div class="wrap">
+    <div class="row" style="gap:40px;margin-bottom:48px">
+      <div style="flex:1 1 260px"><a href="#" class="logo"><svg width="44" height="44" viewBox="0 0 54 54" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><path d="M27 5l19 11v22L27 49 8 38V16z"/><path d="M14 19l13-7 13 7M14 25l13-7 13 7M14 31l13-7 7 4M20 37l7-4 13 7M27 43l-7-4"/></svg><div><b style="font-size:24px">Кейс</b><span style="font-size:16px">групп</span></div></a><p style="margin:20px 0 0">[Юридическое наименование, ИНН, ОГРН]</p></div>
+      <div style="flex:1 1 220px;display:flex;flex-direction:column;gap:8px"><span style="color:#fff;font-weight:600">Контакты</span><a href="mailto:info@case-group.ru">info@case-group.ru</a><a href="tel:+79311783643">+7 (931) 178-36-43</a><a href="tel:+78003331531">+7 (800) 333-15-31</a></div>
+      <div style="flex:1 1 220px;display:flex;flex-direction:column;gap:8px"><span style="color:#fff;font-weight:600">Информация</span><a href="#">Политика конфиденциальности</a><a href="#">Карта сайта</a></div>
+    </div>
+    <div style="border-top:1px solid #222;padding-top:24px">© Кейс групп, [ГОД]</div>
+  </div>
 </footer>
 
-</div>
 </body>
 </html>
