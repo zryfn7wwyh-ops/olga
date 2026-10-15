@@ -9,6 +9,7 @@ cd site
 npm install
 npm run dev      # http://localhost:3000
 npm run build    # статическая сборка в site/out — её можно залить на любой хостинг
+python3 scripts/build-preview.py out preview.html   # автономный HTML для показа (без React, интерактивы на vanilla JS)
 ```
 
 ## Как менять контент
@@ -76,4 +77,4 @@ npm run build    # статическая сборка в site/out — её мо
 - актуальность всех контактов перед публикацией.
 
 ### Файлы
-`site/` — новый проект: `app/` (layout, page, globals.css, robots, sitemap, icon), `components/` (27 файлов), `data/` (11 файлов), `lib/` (analytics, schema, cn), `public/og.jpg`, конфиги (`package.json`, `next.config.ts`, `tsconfig.json`, `postcss.config.mjs`).
+`site/` — новый проект: `app/` (layout, page, globals.css, robots, sitemap, icon), `components/` (28 файлов), `data/` (11 файлов), `lib/` (analytics, schema, cn), `public/og.jpg`, конфиги (`package.json`, `next.config.ts`, `tsconfig.json`, `postcss.config.mjs`).
