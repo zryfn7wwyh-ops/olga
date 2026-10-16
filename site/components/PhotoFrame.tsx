@@ -63,8 +63,8 @@ export function PhotoFrame({ src, alt, label = "Фото", hint = "Место д
         <path fill="currentColor" d="M200 70c-44 0-72 32-72 78 0 34 14 62 34 78v24c-74 16-122 52-140 128-6 26-8 64-8 122h372c0-58-2-96-8-122-18-76-66-112-140-128v-24c20-16 34-44 34-78 0-46-28-78-72-78Z" />
       </svg>
       <div className="absolute left-5 top-5 right-5 flex items-start justify-between gap-4">
-        <span className="tech opacity-80">{label}</span>
-        <span className="tech hidden text-right opacity-60 sm:inline">{hintTop ? hint : "4 : 5"}</span>
+        <span className="tech whitespace-nowrap opacity-80">{label}</span>
+        <span className={cn("tech text-right opacity-60", hintTop ? "hidden xl:inline" : "hidden sm:inline")}>{hintTop ? hint : "4 : 5"}</span>
       </div>
       {!hintTop && (
         <div className="absolute bottom-5 left-5 right-5">

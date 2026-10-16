@@ -67,7 +67,7 @@ export function Hero() {
             hint="Место для портрета · новая фотосессия"
             className="aspect-[4/5] w-full xs:aspect-[5/6] sm:aspect-[16/11] lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
           />
-          <div className="absolute bottom-6 left-4 right-4 z-10 sm:bottom-10 sm:left-8 sm:right-8 lg:left-6 lg:right-6 xl:left-0 xl:right-auto xl:-translate-x-[150px]">
+          <div className="absolute bottom-4 left-4 right-4 z-10 sm:bottom-8 sm:left-8 sm:right-auto sm:w-[460px] lg:bottom-10 lg:left-6 lg:right-6 lg:w-auto xl:left-10 xl:right-auto xl:w-[480px]">
             <RankingFeature />
           </div>
         </div>

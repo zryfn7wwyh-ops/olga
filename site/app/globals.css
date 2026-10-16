@@ -157,6 +157,10 @@
   .link:hover { text-decoration-color: currentColor; }
   .on-dark .link { color: var(--color-mist); text-decoration-color: rgb(168 187 197 / 0.35); }
   .on-dark .link:hover { color: #fff; }
+  /* Светлая плашка рейтинга внутри тёмного hero */
+  .plaque .link { color: var(--color-steel-deep); text-decoration-color: rgb(69 101 119 / 0.35); }
+  .plaque .link:hover { color: var(--color-ink); text-decoration-color: currentColor; }
+  .plaque :focus-visible { outline-color: var(--color-steel); }
 
   /* Тонкая координатная сетка */
   .grid-lines {

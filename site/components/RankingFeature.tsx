@@ -28,29 +28,33 @@ export function RatingDate({ className }: { className?: string }) {
 }
 
 /**
- * Главный визуальный элемент первого экрана: крупное «57».
- * Цифра частично заходит на фотографию (desktop).
+ * Главный визуальный элемент первого экрана: светлая плашка рейтинга поверх фото.
+ * Контрастна тёмному hero и не пересекается с текстовой колонкой.
  */
 export function RankingFeature() {
   return (
-    <div className="relative">
-      <span className="tech text-bronze">01 / Рейтинг</span>
-      <div className="mt-3 flex items-end gap-4 lg:gap-5">
+    <div className="plaque relative bg-ivory text-text shadow-[0_30px_80px_-24px_rgb(0_0_0/0.65)]">
+      <span aria-hidden className="absolute inset-x-0 top-0 h-[3px] bg-bronze" />
+      <div className="flex items-center justify-between gap-4 px-5 pt-5 sm:px-7 sm:pt-6">
+        <span className="tech text-bronze">01 / Рейтинг</span>
+        <span className="tech bg-ink px-2.5 py-1 text-ivory">ТОП-60</span>
+      </div>
+      <div className="flex items-center gap-4 px-5 pb-5 pt-3 sm:gap-6 sm:px-7 sm:pb-6">
         <span
-          className="h-display tabular -mb-[0.12em] block text-[120px] leading-[0.85] text-ivory sm:text-[160px] lg:text-[150px] xl:text-[200px]"
+          className="h-display tabular block shrink-0 text-[88px] leading-[0.9] tracking-[-0.04em] text-ink xs:text-[96px] sm:text-[112px] lg:text-[96px] xl:text-[120px]"
           aria-hidden="true"
         >
           {rating.position}
         </span>
-        <span className="mb-3 block h-[min(48%,96px)] w-px bg-bronze/70" aria-hidden />
-        <p className="mb-2 max-w-[200px] text-[15px] leading-snug text-ivory/90">
+        <span aria-hidden className="block w-px self-stretch bg-line" />
+        <p className="min-w-0 text-[15px] font-semibold leading-snug text-ink sm:text-[17px]">
           <span className="sr-only">{rating.position} </span>место среди {formatNumber(rating.total)} арбитражных управляющих
-          <span className="mt-2 block text-[13px] text-mist">по данным {rating.sourceGenitive}*</span>
+          <span className="mt-2 block text-[13px] font-normal text-muted">по данным {rating.sourceGenitive}*</span>
         </p>
       </div>
-      <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-[13px] text-mist">
-        <SourceLink />
-        <RatingDate className="text-mist/70" />
+      <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-t border-line px-5 py-3.5 text-[13px] sm:px-7">
+        <SourceLink className="font-semibold" />
+        <RatingDate className="text-muted" />
       </div>
     </div>
   );
