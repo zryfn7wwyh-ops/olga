@@ -11,14 +11,19 @@ cd site
 npm install
 npm run dev            # http://localhost:5173
 npm run build          # dist/ + генерация public/sitemap.xml и public/robots.txt
-npm run build:preview  # статическая сборка с HashRouter (dist-preview/)
 ```
 
-Стек: React 18, React Router 6, Tailwind CSS 3, Lucide React, Vite. Сервер должен отдавать `index.html` на все пути (`public/_redirects`, `vercel.json`; для nginx — `try_files $uri /index.html`).
+Стек: React 18, Tailwind CSS 3, Lucide React, Vite. Сборка в `dist/` — обычные статические файлы, размещаются на любом хостинге.
 
-## Маршруты
+## Одна страница, постоянные якоря
 
-`/` — главная (только навигация) · `/sveden` — оглавление · 14 подразделов `/sveden/common`, `struct`, `document`, `education`, `eduStandarts`, `managers`, `employees`, `objects`, `grants`, `paid_edu`, `budget`, `vacant`, `inter`, `catering` · `/contacts` · `/privacy` · любой другой адрес — 404.
+Весь сайт — одна страница. Каждый подраздел имеет постоянную ссылку-якорь:
+
+`#top` — начало · `#sveden` — сведения · `#common`, `#struct`, `#document`, `#education`, `#eduStandarts`, `#managers`, `#employees`, `#objects`, `#grants`, `#paid_edu`, `#budget`, `#vacant`, `#inter`, `#catering` — 14 подразделов · `#contacts` · `#privacy`.
+
+Пример прямой ссылки: `https://<домен>/#paid_edu`. Оглавление закреплено сбоку (на телефоне — раскрывающаяся панель под шапкой) и подсвечивает текущий подраздел.
+
+**Важно для юристов:** в ТЗ предложены отдельные адреса `/sveden/...`. По решению заказчика сайт сделан одностраничным, подразделы открываются по якорям `/#common` и т. д. Нужно ли размещать подразделы именно по адресам `/sveden/<подраздел>`, надо сверить с действующей редакцией приказа № 1493 до отправки ссылки министерству.
 
 ## Как заполнять сведения (без изменения компонентов)
 
@@ -31,12 +36,12 @@ src/data/sveden.js        все подразделы: slug, title, blocks
 
 - Поле: `{ label, value, prop, confirm }` — замените `value`; `confirm: true` выводит метку «Требует подтверждения».
 - Документ: `{ title, date, file, format }` — пока `file: null`, показывается «Документ будет загружен». Положите файл в `public/docs/` и укажите `file: '/docs/ustav.pdf'`, `format: 'PDF'`, `date`.
-- Подраздел добавляется или исключается правкой массива `svedenSections` — меню, оглавление и sitemap обновятся сами.
+- Подраздел добавляется или исключается правкой массива `svedenSections` — оглавление и страница обновятся сами.
 - Блок `review` содержит позиции справки ЮО (научная деятельность, результаты приёма, трудоустройство выпускников, план ФХД/смета, бюджетные и внебюджетные показатели) со значением «[Информация уточняется]» до заключения ЮО.
-- Контакты на `/contacts` берутся из «Основных сведений» — один источник данных.
+- Контакты в блоке `#contacts` берутся из «Основных сведений» — один источник данных.
 - `prop` — предварительные идентификаторы для машиночитаемой разметки (выводятся как `data-prop`); перевести в `itemprop` после сверки с действующей редакцией приказа № 1493.
 
-Компоненты: `Header`, `Sidebar`, `Breadcrumbs`, `InfoTable` (+ `FieldsTable`), `DocumentList`, `Footer`, `SvedenContent` (рендер блоков).
+Компоненты: `Header`, `Sidebar` (оглавление), `InfoTable` (+ `FieldsTable`), `DocumentList`, `Footer`, `SvedenContent` (рендер блоков), `Accordion`.
 
 ## Перед направлением ссылки министерству
 

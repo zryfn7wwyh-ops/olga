@@ -1,10 +1,9 @@
-import { Link } from 'react-router-dom';
 import { org } from '../data/site.js';
 
-export default function Logo({ light = false }) {
+export default function Logo() {
   return (
-    <Link to="/" className={`rounded text-lg font-bold ${light ? 'text-white' : 'text-navy'}`} aria-label={`${org.logo} — на главную`}>
+    <a href="#top" className="rounded text-lg font-bold text-navy" aria-label={`${org.logo} — в начало страницы`}>
       {org.logo}
-    </Link>
+    </a>
   );
 }

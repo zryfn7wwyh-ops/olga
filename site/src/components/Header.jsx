@@ -1,19 +1,15 @@
 import { useEffect, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
 import { Eye, Menu, X } from 'lucide-react';
 import Logo from './Logo.jsx';
 import { mainNav, prototypeNotice } from '../data/site.js';
 import { useA11yMode } from '../lib/a11y.js';
 
-const navCls = ({ isActive }) =>
-  `block rounded px-3 py-2 text-sm font-medium transition ${isActive ? 'text-accent underline underline-offset-8 decoration-2' : 'text-navy hover:text-accent'}`;
+const navCls = 'block rounded px-3 py-2 text-sm font-medium text-navy transition hover:text-accent hover:underline underline-offset-8';
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const { pathname } = useLocation();
   const [a11y, toggleA11y] = useA11yMode();
 
-  useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {
     if (!open) return;
     const onKey = (e) => e.key === 'Escape' && setOpen(false);
@@ -29,19 +25,12 @@ export default function Header() {
         <nav aria-label="Основное меню" className="ml-auto hidden lg:block">
           <ul className="flex items-center gap-1">
             {mainNav.map((item) => (
-              <li key={item.to}>
-                <NavLink to={item.to} end={item.to === '/'} className={navCls}>{item.label}</NavLink>
-              </li>
+              <li key={item.id}><a href={`#${item.id}`} className={navCls}>{item.label}</a></li>
             ))}
           </ul>
         </nav>
         <div className="ml-auto flex items-center gap-1 lg:ml-2">
-          <button
-            type="button"
-            onClick={toggleA11y}
-            aria-pressed={a11y}
-            className="flex h-10 items-center gap-2 rounded px-2 text-sm text-navy transition hover:bg-soft"
-          >
+          <button type="button" onClick={toggleA11y} aria-pressed={a11y} className="flex h-10 items-center gap-2 rounded px-2 text-sm text-navy transition hover:bg-soft">
             <Eye aria-hidden="true" className="h-5 w-5" />
             <span className="hidden sm:inline">Версия для слабовидящих</span>
             <span className="sr-only sm:hidden">Версия для слабовидящих</span>
@@ -61,9 +50,7 @@ export default function Header() {
       <nav id="mobile-menu" aria-label="Мобильное меню" hidden={!open} className="border-t border-line lg:hidden">
         <ul className="container-x flex flex-col py-2">
           {mainNav.map((item) => (
-            <li key={item.to}>
-              <NavLink to={item.to} end={item.to === '/'} className={({ isActive }) => `${navCls({ isActive })} py-3 text-base`}>{item.label}</NavLink>
-            </li>
+            <li key={item.id}><a href={`#${item.id}`} onClick={() => setOpen(false)} className={`${navCls} py-3 text-base`}>{item.label}</a></li>
           ))}
         </ul>
       </nav>

@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { org, privacy } from '../data/site.js';
 
 export default function Footer() {
@@ -14,8 +13,8 @@ export default function Footer() {
           <div className="flex gap-2"><dt className="text-muted">E-mail:</dt><dd>{org.email}</dd></div>
         </dl>
         <ul className="space-y-1">
-          <li><Link to="/sveden" className="link">Сведения об образовательной организации</Link></li>
-          {privacy.enabled && <li><Link to="/privacy" className="link">{privacy.title}</Link></li>}
+          <li><a href="#sveden" className="link">Сведения об образовательной организации</a></li>
+          {privacy.enabled && <li><a href="#privacy" className="link">{privacy.title}</a></li>}
         </ul>
       </div>
     </footer>

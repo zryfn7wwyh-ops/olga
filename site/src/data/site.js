@@ -7,10 +7,11 @@ export const org = {
   email: '[E-mail]',
 };
 
+// Навигация по якорям одностраничного сайта.
 export const mainNav = [
-  { label: 'Главная', to: '/' },
-  { label: 'Сведения об образовательной организации', to: '/sveden' },
-  { label: 'Контакты', to: '/contacts' },
+  { label: 'Главная', id: 'top' },
+  { label: 'Сведения об образовательной организации', id: 'sveden' },
+  { label: 'Контакты', id: 'contacts' },
 ];
 
 export const home = {
@@ -23,7 +24,7 @@ export const seo = {
   defaultDescription: 'Официальные сведения об образовательной деятельности ООО «Кейс Групп».',
 };
 
-// Политика обработки ПД — ссылка в футере выводится, только если enabled: true.
+// Политика обработки ПД — блок и ссылка в футере выводятся, только если enabled: true.
 export const privacy = {
   enabled: true,
   title: 'Политика обработки персональных данных',

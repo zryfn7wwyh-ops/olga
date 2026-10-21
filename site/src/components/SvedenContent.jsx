@@ -38,16 +38,16 @@ function Review({ items }) {
 // Рендер блоков подраздела из конфигурации src/data/sveden.js.
 export default function SvedenContent({ blocks }) {
   return (
-    <div className="space-y-10">
+    <div className="space-y-8">
       {blocks.map((b, i) => (
         <section key={i} data-prop={b.prop} aria-label={b.title || undefined}>
-          {b.title && <h2 className="mb-3 text-lg font-bold md:text-xl">{b.title}</h2>}
+          {b.title && <h3 className="mb-3 text-base font-bold md:text-lg">{b.title}</h3>}
           {b.type === 'fields' && <FieldsTable rows={b.rows} caption={b.title} />}
           {b.type === 'table' && <InfoTable title={b.title} columns={b.columns} rows={b.rows} />}
           {b.type === 'files' && <DocumentList items={b.items} />}
           {b.type === 'persons' && <Persons items={b.items} />}
           {b.type === 'modules' && (
-            <Accordion items={b.items.map((p) => ({ title: p.title, content: <ul className="list-disc space-y-1 pl-5">{p.modules.map((m) => <li key={m}>{m}</li>)}</ul> }))} />
+            <Accordion headingLevel={4} items={b.items.map((p) => ({ title: p.title, content: <ul className="list-disc space-y-1 pl-5">{p.modules.map((m) => <li key={m}>{m}</li>)}</ul> }))} />
           )}
           {b.type === 'review' && <Review items={b.items} />}
           {b.type === 'note' && (
