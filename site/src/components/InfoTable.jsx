@@ -1,19 +1,4 @@
 import { useId } from 'react';
-import { MissingDoc, NeedsConfirm } from './StatusBadge.jsx';
-
-// Ячейка: строка | { doc: true } | { text, confirm }
-export function Cell({ value }) {
-  if (value && typeof value === 'object') {
-    if (value.doc) return <MissingDoc />;
-    return (
-      <span className="flex flex-wrap items-center gap-2">
-        {value.text}
-        {value.confirm && <NeedsConfirm />}
-      </span>
-    );
-  }
-  return value;
-}
 
 // Таблица «поле — значение».
 export function FieldsTable({ rows, caption }) {
@@ -22,10 +7,10 @@ export function FieldsTable({ rows, caption }) {
       {caption && <caption className="sr-only">{caption}</caption>}
       <tbody>
         {rows.map((r) => (
-          <tr key={r.label} data-prop={r.prop} className="flex flex-col border-b border-line md:table-row">
+          <tr key={r.label} className="flex flex-col border-b border-line md:table-row">
             <th scope="row" className="bg-soft px-4 pb-1 pt-3 align-top font-semibold text-navy md:w-2/5 md:border-r md:border-line md:py-3">{r.label}</th>
             <td className="px-4 pb-3 pt-1 align-top text-ink md:py-3">
-              <Cell value={r.confirm ? { text: r.value, confirm: true } : r.value} />
+              {r.value}
             </td>
           </tr>
         ))}
@@ -53,9 +38,9 @@ export default function InfoTable({ title, columns, rows }) {
                 <tr key={i}>
                   {row.map((cell, j) =>
                     j === 0 ? (
-                      <th key={j} scope="row" className="border border-line px-3 py-2.5 align-top font-medium text-navy"><Cell value={cell} /></th>
+                      <th key={j} scope="row" className="border border-line px-3 py-2.5 align-top font-medium text-navy">{cell}</th>
                     ) : (
-                      <td key={j} className="border border-line px-3 py-2.5 align-top text-ink"><Cell value={cell} /></td>
+                      <td key={j} className="border border-line px-3 py-2.5 align-top text-ink">{cell}</td>
                     ),
                   )}
                 </tr>
@@ -67,12 +52,12 @@ export default function InfoTable({ title, columns, rows }) {
       <ul className="space-y-3 md:hidden" aria-label={title}>
         {rows.map((row, i) => (
           <li key={i} className="border border-line">
-            <p className="bg-soft px-4 py-2.5 text-sm font-semibold text-navy"><Cell value={row[0]} /></p>
+            <p className="bg-soft px-4 py-2.5 text-sm font-semibold text-navy">{row[0]}</p>
             <dl className="divide-y divide-line px-4 text-sm">
               {row.slice(1).map((cell, j) => (
                 <div key={j} className="py-2.5">
                   <dt className="text-muted">{columns[j + 1]}</dt>
-                  <dd className="mt-0.5 break-words text-ink"><Cell value={cell} /></dd>
+                  <dd className="mt-0.5 break-words text-ink">{cell}</dd>
                 </div>
               ))}
             </dl>

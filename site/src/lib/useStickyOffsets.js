@@ -1,25 +1,13 @@
 import { useEffect } from 'react';
 
-/*
- * Записывает высоту закреплённой шапки в CSS-переменные:
- *   --header-h — высота шапки (к ней прилипает мобильное оглавление);
- *   --sticky-h — шапка + мобильное оглавление (отступ для якорей).
- */
+// Записывает высоту закреплённой шапки (без раскрытого мобильного меню) в --header-h.
 export function useStickyOffsets() {
   useEffect(() => {
-    const root = document.documentElement;
-    const header = document.querySelector('header');
-    const toc = document.getElementById('sveden-toc-bar');
-    const update = () => {
-      const h = header?.offsetHeight || 0;
-      const t = toc && getComputedStyle(toc).display !== 'none' ? toc.offsetHeight : 0;
-      root.style.setProperty('--header-h', `${h}px`);
-      root.style.setProperty('--sticky-h', `${h + t}px`);
-    };
+    const header = document.getElementById('header-bar');
+    const update = () => document.documentElement.style.setProperty('--header-h', `${header?.offsetHeight || 0}px`);
     update();
     const ro = new ResizeObserver(update);
-    [header, toc].forEach((el) => el && ro.observe(el));
-    window.addEventListener('resize', update);
-    return () => { ro.disconnect(); window.removeEventListener('resize', update); };
+    if (header) ro.observe(header);
+    return () => ro.disconnect();
   }, []);
 }

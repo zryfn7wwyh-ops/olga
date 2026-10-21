@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Eye, Menu, X } from 'lucide-react';
 import Logo from './Logo.jsx';
-import { mainNav, prototypeNotice } from '../data/site.js';
+import { blocks } from '../data/landing.js';
+import { prototypeNotice } from '../data/site.js';
 import { useA11yMode } from '../lib/a11y.js';
 
-const navCls = 'block rounded px-3 py-2 text-sm font-medium text-navy transition hover:text-accent hover:underline underline-offset-8';
-
-export default function Header() {
+// Шапка: на desktop навигация — в боковом оглавлении, на mobile — раскрывающееся меню из 10 якорей.
+export default function Header({ active }) {
   const [open, setOpen] = useState(false);
   const [a11y, toggleA11y] = useA11yMode();
 
@@ -19,40 +19,51 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-surface">
-      <p className="bg-soft px-4 py-1.5 text-center text-xs text-navy">{prototypeNotice}</p>
-      <div className="container-x flex h-16 items-center gap-4">
-        <Logo />
-        <nav aria-label="Основное меню" className="ml-auto hidden lg:block">
-          <ul className="flex items-center gap-1">
-            {mainNav.map((item) => (
-              <li key={item.id}><a href={`#${item.id}`} className={navCls}>{item.label}</a></li>
-            ))}
-          </ul>
-        </nav>
-        <div className="ml-auto flex items-center gap-1 lg:ml-2">
-          <button type="button" onClick={toggleA11y} aria-pressed={a11y} className="flex h-10 items-center gap-2 rounded px-2 text-sm text-navy transition hover:bg-soft">
-            <Eye aria-hidden="true" className="h-5 w-5" />
-            <span className="hidden sm:inline">Версия для слабовидящих</span>
-            <span className="sr-only sm:hidden">Версия для слабовидящих</span>
-          </button>
-          <button
-            type="button"
-            className="grid h-10 w-10 place-items-center rounded text-navy transition hover:bg-soft lg:hidden"
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-            onClick={() => setOpen((v) => !v)}
-          >
-            {open ? <X aria-hidden="true" className="h-6 w-6" /> : <Menu aria-hidden="true" className="h-6 w-6" />}
-            <span className="sr-only">{open ? 'Закрыть меню' : 'Открыть меню'}</span>
-          </button>
+      <div id="header-bar">
+        <p className="bg-soft px-4 py-1.5 text-center text-xs text-navy">{prototypeNotice}</p>
+        <div className="container-x flex h-16 items-center gap-4">
+          <Logo />
+          <div className="ml-auto flex items-center gap-1">
+            <button
+              type="button"
+              onClick={toggleA11y}
+              aria-pressed={a11y}
+              className="flex h-10 items-center gap-2 rounded px-2 text-sm text-navy transition hover:bg-soft"
+            >
+              <Eye aria-hidden="true" className="h-5 w-5" />
+              <span className="hidden sm:inline">Версия для слабовидящих</span>
+              <span className="sr-only sm:hidden">Версия для слабовидящих</span>
+            </button>
+            <button
+              type="button"
+              className="flex h-10 items-center gap-2 rounded px-2 text-sm font-medium text-navy transition hover:bg-soft lg:hidden"
+              aria-expanded={open}
+              aria-controls="mobile-menu"
+              onClick={() => setOpen((v) => !v)}
+            >
+              {open ? <X aria-hidden="true" className="h-6 w-6" /> : <Menu aria-hidden="true" className="h-6 w-6" />}
+              <span className="hidden sm:inline">Разделы</span>
+              <span className="sr-only sm:hidden">{open ? 'Закрыть меню разделов' : 'Открыть меню разделов'}</span>
+            </button>
+          </div>
         </div>
       </div>
-      <nav id="mobile-menu" aria-label="Мобильное меню" hidden={!open} className="border-t border-line lg:hidden">
-        <ul className="container-x flex flex-col py-2">
-          {mainNav.map((item) => (
-            <li key={item.id}><a href={`#${item.id}`} onClick={() => setOpen(false)} className={`${navCls} py-3 text-base`}>{item.label}</a></li>
+      <nav id="mobile-menu" aria-label="Разделы сайта" hidden={!open} className="max-h-[70vh] overflow-y-auto border-t border-line lg:hidden">
+        <ol className="container-x py-2">
+          {blocks.map((b, i) => (
+            <li key={b.id}>
+              <a
+                href={`#${b.id}`}
+                onClick={() => setOpen(false)}
+                aria-current={active === b.id ? 'location' : undefined}
+                className={`flex gap-3 rounded px-3 py-3 text-base transition hover:bg-soft hover:text-accent ${active === b.id ? 'font-semibold text-accent' : 'text-navy'}`}
+              >
+                <span className="w-6 shrink-0 text-right tabular-nums text-muted">{i + 1}.</span>
+                {b.title}
+              </a>
+            </li>
           ))}
-        </ul>
+        </ol>
       </nav>
     </header>
   );
