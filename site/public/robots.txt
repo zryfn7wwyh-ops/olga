@@ -1,0 +1,7 @@
+# Прототип: индексация закрыта до публикации.
+# Перед запуском замените на:
+#   User-agent: *
+#   Allow: /
+#   Sitemap: https://<домен>/sitemap.xml
+User-agent: *
+Disallow: /

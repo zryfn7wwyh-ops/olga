@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --c-navy: 16 43 69;        /* #102B45 */
+    --c-accent: 22 116 184;    /* #1674B8 */
+    --c-accent-dark: 16 93 150;
+    --c-soft: 234 244 252;     /* #EAF4FC */
+    --c-surface: 255 255 255;  /* #FFFFFF */
+    --c-ink: 36 52 71;         /* #243447 */
+    --c-muted: 104 120 138;    /* #68788A */
+    --c-line: 216 228 239;
+  }
+  /* Версия для слабовидящих: крупный шрифт, высокий контраст, без анимаций */
+  html.a11y {
+    font-size: 125%;
+    --c-navy: 0 0 0;
+    --c-accent: 0 51 153;
+    --c-accent-dark: 0 0 0;
+    --c-soft: 255 255 255;
+    --c-ink: 0 0 0;
+    --c-muted: 0 0 0;
+    --c-line: 0 0 0;
+  }
+  html.a11y *, html.a11y *::before, html.a11y *::after {
+    animation: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+  }
+  html.a11y .card { border-width: 2px; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+  body { @apply bg-surface text-ink font-sans antialiased; }
+  :focus-visible { @apply outline-none ring-2 ring-accent ring-offset-2; }
+  h1, h2, h3 { @apply text-navy; text-wrap: balance; }
+}
+
+@layer components {
+  .container-x { @apply mx-auto w-full max-w-content px-4 sm:px-6 lg:px-8; }
+  .card { @apply rounded-xl2 border border-line bg-surface shadow-card; }
+  .card-hover { @apply transition duration-200 hover:-translate-y-0.5 hover:shadow-card-hover; }
+  .eyebrow { @apply text-sm font-semibold uppercase tracking-wider text-accent; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold transition duration-150 disabled:opacity-60; }
+  .btn-primary { @apply btn bg-accent text-white hover:bg-accent-dark active:translate-y-px; }
+  .btn-secondary { @apply btn border border-accent/40 bg-surface text-accent hover:border-accent hover:bg-soft active:translate-y-px; }
+  .btn-ghost-light { @apply btn border border-white/40 text-white hover:bg-white/10 active:translate-y-px; }
+  .link { @apply font-medium text-accent underline-offset-4 hover:underline; }
+  .input { @apply w-full rounded-lg border border-line bg-surface px-4 py-3 text-ink placeholder:text-muted/80 transition focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30; }
+  .input-error { @apply border-red-500 focus:border-red-500 focus:ring-red-500/30; }
+  .prose-text { @apply text-base leading-relaxed text-ink; }
+}
+
+@keyframes fade-up { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.animate-fade-up { animation: fade-up .45s ease-out both; }
