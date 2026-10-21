@@ -29,7 +29,6 @@
     transition: none !important;
     box-shadow: none !important;
   }
-  html.a11y .card { border-width: 2px; }
   html { scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -42,18 +41,7 @@
 
 @layer components {
   .container-x { @apply mx-auto w-full max-w-content px-4 sm:px-6 lg:px-8; }
-  .card { @apply rounded-xl2 border border-line bg-surface shadow-card; }
-  .card-hover { @apply transition duration-200 hover:-translate-y-0.5 hover:shadow-card-hover; }
-  .eyebrow { @apply text-sm font-semibold uppercase tracking-wider text-accent; }
-  .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold transition duration-150 disabled:opacity-60; }
-  .btn-primary { @apply btn bg-accent text-white hover:bg-accent-dark active:translate-y-px; }
-  .btn-secondary { @apply btn border border-accent/40 bg-surface text-accent hover:border-accent hover:bg-soft active:translate-y-px; }
-  .btn-ghost-light { @apply btn border border-white/40 text-white hover:bg-white/10 active:translate-y-px; }
-  .link { @apply font-medium text-accent underline-offset-4 hover:underline; }
-  .input { @apply w-full rounded-lg border border-line bg-surface px-4 py-3 text-ink placeholder:text-muted/80 transition focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30; }
-  .input-error { @apply border-red-500 focus:border-red-500 focus:ring-red-500/30; }
-  .prose-text { @apply text-base leading-relaxed text-ink; }
+  .link { @apply font-medium text-accent underline underline-offset-4 decoration-accent/40 hover:decoration-accent; }
+  .badge { @apply inline-flex items-center gap-1.5 whitespace-nowrap rounded border px-2 py-0.5 text-xs font-medium; }
 }
 
-@keyframes fade-up { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-.animate-fade-up { animation: fade-up .45s ease-out both; }

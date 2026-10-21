@@ -1,28 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://example.com/</loc></url>
-  <url><loc>https://example.com/education</loc></url>
-  <url><loc>https://example.com/education/programma-1</loc></url>
-  <url><loc>https://example.com/education/programma-2</loc></url>
-  <url><loc>https://example.com/education/programma-3</loc></url>
-  <url><loc>https://example.com/education/programma-4</loc></url>
   <url><loc>https://example.com/sveden</loc></url>
   <url><loc>https://example.com/sveden/common</loc></url>
   <url><loc>https://example.com/sveden/struct</loc></url>
   <url><loc>https://example.com/sveden/document</loc></url>
   <url><loc>https://example.com/sveden/education</loc></url>
+  <url><loc>https://example.com/sveden/eduStandarts</loc></url>
   <url><loc>https://example.com/sveden/managers</loc></url>
   <url><loc>https://example.com/sveden/employees</loc></url>
   <url><loc>https://example.com/sveden/objects</loc></url>
+  <url><loc>https://example.com/sveden/grants</loc></url>
   <url><loc>https://example.com/sveden/paid_edu</loc></url>
   <url><loc>https://example.com/sveden/budget</loc></url>
   <url><loc>https://example.com/sveden/vacant</loc></url>
-  <url><loc>https://example.com/sveden/grants</loc></url>
   <url><loc>https://example.com/sveden/inter</loc></url>
   <url><loc>https://example.com/sveden/catering</loc></url>
-  <url><loc>https://example.com/sveden/eduStandarts</loc></url>
   <url><loc>https://example.com/contacts</loc></url>
   <url><loc>https://example.com/privacy</loc></url>
-  <url><loc>https://example.com/consent</loc></url>
-  <url><loc>https://example.com/cookies</loc></url>
 </urlset>

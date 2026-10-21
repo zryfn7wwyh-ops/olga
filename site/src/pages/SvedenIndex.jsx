@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ChevronRight, Info } from 'lucide-react';
+import { Scale } from 'lucide-react';
 import { svedenMeta, svedenSections } from '../data/sveden.js';
 import { usePageMeta } from '../lib/usePageMeta.js';
 
@@ -7,17 +7,17 @@ export default function SvedenIndex() {
   usePageMeta({ title: svedenMeta.title });
   return (
     <>
-      <p className="flex gap-3 rounded-xl2 border border-accent/30 bg-soft p-4 text-sm">
-        <Info aria-hidden="true" className="h-5 w-5 shrink-0 text-accent" />
-        {svedenMeta.intro}
+      <p className="flex gap-3 border-l-4 border-accent bg-soft p-4 text-sm text-navy">
+        <Scale aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
+        {svedenMeta.disclaimer}
       </p>
-      <ol className="mt-8 grid gap-3 md:grid-cols-2">
+      <h2 className="mt-8 text-lg font-bold">Оглавление</h2>
+      <ol className="mt-3 border-t border-line">
         {svedenSections.map((s, i) => (
-          <li key={s.slug}>
-            <Link to={`/sveden/${s.slug}`} className="group flex h-full items-center gap-4 rounded-xl2 border border-line bg-surface p-4 transition hover:border-accent hover:bg-soft">
-              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-soft text-sm font-bold text-accent group-hover:bg-surface">{i + 1}</span>
-              <span className="flex-1 font-medium text-navy">{s.title}</span>
-              <ChevronRight aria-hidden="true" className="h-5 w-5 shrink-0 text-muted group-hover:text-accent" />
+          <li key={s.slug} className="border-b border-line">
+            <Link to={`/sveden/${s.slug}`} className="flex gap-3 py-3 text-navy hover:text-accent hover:underline">
+              <span className="w-6 shrink-0 text-right tabular-nums text-muted">{i + 1}.</span>
+              <span>{s.title}</span>
             </Link>
           </li>
         ))}

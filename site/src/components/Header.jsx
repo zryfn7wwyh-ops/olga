@@ -1,22 +1,16 @@
 import { useEffect, useState } from 'react';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { Eye, Menu, X } from 'lucide-react';
 import Logo from './Logo.jsx';
-import { mainNav } from '../data/site.js';
+import { mainNav, prototypeNotice } from '../data/site.js';
 import { useA11yMode } from '../lib/a11y.js';
 
-export function useGoToLead() {
-  const navigate = useNavigate();
-  return () => navigate('/', { state: { scrollTo: 'lead' } });
-}
-
 const navCls = ({ isActive }) =>
-  `rounded-md px-3 py-2 text-sm font-medium transition ${isActive ? 'bg-soft text-accent' : 'text-ink hover:bg-soft hover:text-accent'}`;
+  `block rounded px-3 py-2 text-sm font-medium transition ${isActive ? 'text-accent underline underline-offset-8 decoration-2' : 'text-navy hover:text-accent'}`;
 
 export default function Header() {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
-  const goToLead = useGoToLead();
   const [a11y, toggleA11y] = useA11yMode();
 
   useEffect(() => setOpen(false), [pathname]);
@@ -28,10 +22,11 @@ export default function Header() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-surface/95 backdrop-blur">
-      <div className="container-x flex h-16 items-center gap-4 lg:h-[72px]">
+    <header className="sticky top-0 z-40 border-b border-line bg-surface">
+      <p className="bg-soft px-4 py-1.5 text-center text-xs text-navy">{prototypeNotice}</p>
+      <div className="container-x flex h-16 items-center gap-4">
         <Logo />
-        <nav aria-label="Основное меню" className="ml-auto hidden xl:block">
+        <nav aria-label="Основное меню" className="ml-auto hidden lg:block">
           <ul className="flex items-center gap-1">
             {mainNav.map((item) => (
               <li key={item.to}>
@@ -40,21 +35,20 @@ export default function Header() {
             ))}
           </ul>
         </nav>
-        <div className="ml-auto flex items-center gap-2 xl:ml-2">
+        <div className="ml-auto flex items-center gap-1 lg:ml-2">
           <button
             type="button"
             onClick={toggleA11y}
             aria-pressed={a11y}
-            title="Версия для слабовидящих"
-            className="grid h-10 w-10 place-items-center rounded-lg text-navy transition hover:bg-soft"
+            className="flex h-10 items-center gap-2 rounded px-2 text-sm text-navy transition hover:bg-soft"
           >
             <Eye aria-hidden="true" className="h-5 w-5" />
-            <span className="sr-only">Версия для слабовидящих</span>
+            <span className="hidden sm:inline">Версия для слабовидящих</span>
+            <span className="sr-only sm:hidden">Версия для слабовидящих</span>
           </button>
-          <button type="button" onClick={goToLead} className="btn-primary hidden sm:inline-flex">Оставить заявку</button>
           <button
             type="button"
-            className="grid h-10 w-10 place-items-center rounded-lg text-navy transition hover:bg-soft xl:hidden"
+            className="grid h-10 w-10 place-items-center rounded text-navy transition hover:bg-soft lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
             onClick={() => setOpen((v) => !v)}
@@ -64,20 +58,15 @@ export default function Header() {
           </button>
         </div>
       </div>
-      <div id="mobile-menu" hidden={!open} className="border-t border-line bg-surface xl:hidden">
-        <nav aria-label="Мобильное меню" className="container-x py-4">
-          <ul className="flex flex-col gap-1">
-            {mainNav.map((item) => (
-              <li key={item.to}>
-                <NavLink to={item.to} end={item.to === '/'} className={({ isActive }) => `${navCls({ isActive })} block py-3 text-base`}>
-                  {item.label}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-          <button type="button" onClick={goToLead} className="btn-primary mt-4 w-full sm:hidden">Оставить заявку</button>
-        </nav>
-      </div>
+      <nav id="mobile-menu" aria-label="Мобильное меню" hidden={!open} className="border-t border-line lg:hidden">
+        <ul className="container-x flex flex-col py-2">
+          {mainNav.map((item) => (
+            <li key={item.to}>
+              <NavLink to={item.to} end={item.to === '/'} className={({ isActive }) => `${navCls({ isActive })} py-3 text-base`}>{item.label}</NavLink>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </header>
   );
 }
