@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, Info } from 'lucide-react';
 import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
 import Sidebar from './components/Sidebar.jsx';
 import InfoTable, { FieldsTable } from './components/InfoTable.jsx';
 import DocumentList from './components/DocumentList.jsx';
+import TeacherCard from './components/TeacherCard.jsx';
 import { blocks } from './data/landing.js';
 import { useActiveSection } from './lib/useActiveSection.js';
 import { useStickyOffsets } from './lib/useStickyOffsets.js';
@@ -21,6 +22,16 @@ function List({ items }) {
   );
 }
 
+// Официальное уведомление внутри блока.
+function Notice({ text }) {
+  return (
+    <p className="mb-6 flex gap-3 border-l-4 border-accent bg-soft p-4 text-sm text-navy">
+      <Info aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
+      {text}
+    </p>
+  );
+}
+
 // Содержимое блока по его типу данных.
 function BlockBody({ b }) {
   if (b.groups)
@@ -28,9 +39,16 @@ function BlockBody({ b }) {
       <div className="grid gap-8 md:grid-cols-2">
         {b.groups.map((g) => (
           <div key={g.title}>
-            <h3 className="text-lg font-bold">{g.title}</h3>
-            <p className="mb-4 mt-2 text-muted">{g.text}</p>
-            <List items={g.items} />
+            <h3 className="mb-3 text-lg font-bold">{g.title}</h3>
+            {g.text && <p className="text-ink">{g.text}</p>}
+            {g.facts && (
+              <dl className="mt-4 space-y-1 text-sm">
+                {g.facts.map((f) => (
+                  <div key={f.label} className="flex flex-wrap gap-x-2"><dt className="font-semibold text-navy">{f.label}:</dt><dd>{f.value}</dd></div>
+                ))}
+              </dl>
+            )}
+            {g.items && <List items={g.items} />}
           </div>
         ))}
       </div>
@@ -38,16 +56,18 @@ function BlockBody({ b }) {
   if (b.id === 'results')
     return (
       <>
-        <p className="mb-4 text-muted">{b.intro}</p>
-        <ol className="grid gap-3 sm:grid-cols-2">
-          {b.items.map((t, i) => (
+        {b.intro && <p className="mb-4 text-muted">{b.intro}</p>}
+        <ul className="max-w-4xl space-y-3">
+          {b.items.map((t) => (
             <li key={t} className="flex gap-3 border border-line p-4">
-              <span className="font-bold tabular-nums text-accent">{i + 1}</span>{t}
+              <CheckCircle2 aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
+              {t}
             </li>
           ))}
-        </ol>
+        </ul>
       </>
     );
+  if (b.teachers) return <div className="space-y-6">{b.teachers.map((t) => <TeacherCard key={t.name} t={t} />)}</div>;
   if (b.columns) return <InfoTable title={b.title} columns={b.columns} rows={b.rows} />;
   if (b.fields) return <FieldsTable rows={b.fields} caption={b.title} />;
   if (b.items) return <DocumentList items={b.items} status={b.status} />;
@@ -87,6 +107,7 @@ export default function App() {
             <p className="text-sm font-semibold uppercase tracking-wider text-accent">1. {first.title}</p>
             <h1 id="program-title" className="mt-3 text-2xl font-bold md:text-4xl">{first.programName}</h1>
             <p className="mt-4 max-w-3xl text-lg text-ink">{first.description}</p>
+            {first.notice && <div className="mt-6 max-w-3xl"><Notice text={first.notice} /></div>}
           </section>
 
           {rest.map((b, i) => (
@@ -95,6 +116,7 @@ export default function App() {
                 <span className="mr-2 tabular-nums text-muted">{i + 2}.</span>
                 {b.title}
               </h2>
+              {b.notice && <Notice text={b.notice} />}
               <BlockBody b={b} />
             </section>
           ))}
