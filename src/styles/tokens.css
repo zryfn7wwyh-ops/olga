@@ -25,6 +25,17 @@
   --color-danger-soft: #fdecea;
   --color-paper-2: #efede6;
 
+  /* Нейтральные серые для контролов и макетов — в тон палитре */
+  --shadow-rgb: 16 24 32;
+  --gray-placeholder: #69727d;
+  --gray-control: #8a939d;
+  --gray-border-hover: #b9bfc6;
+  --gray-skeleton: #e6e8e4;
+  --gray-chrome: #fbfbf9;
+  --gray-hairline: #e6e8e4;
+  --gray-filter: #c3c8c2;
+  --gray-icon: #b4bab3;
+
   /*
    * «Полосы» — шапка, первый экран, тёмные секции, сцены концептов, подвал.
    * По умолчанию это графит палитры; светлые палитры переопределяют их отдельно.
@@ -83,8 +94,8 @@
   --radius-xl: 24px;
   --control-h: 48px;
   --tap: 44px;
-  --shadow-card: 0 1px 2px rgb(16 24 32 / 0.04), 0 8px 24px -12px rgb(16 24 32 / 0.12);
-  --shadow-float: 0 2px 4px rgb(16 24 32 / 0.04), 0 24px 48px -24px rgb(16 24 32 / 0.28);
+  --shadow-card: 0 1px 2px rgb(var(--shadow-rgb) / 0.04), 0 8px 24px -12px rgb(var(--shadow-rgb) / 0.12);
+  --shadow-float: 0 2px 4px rgb(var(--shadow-rgb) / 0.04), 0 24px 48px -24px rgb(var(--shadow-rgb) / 0.28);
   --shadow-on-ink: 0 1px 0 rgb(255 255 255 / 0.06) inset, 0 40px 90px -40px rgb(0 0 0 / 0.7), 0 12px 24px -12px rgb(0 0 0 / 0.35);
   --focus-ring: 0 0 0 3px var(--color-surface), 0 0 0 5px var(--color-accent);
 
@@ -116,6 +127,15 @@
   --color-accent-on-ink: #7ed6b2;
   --color-accent-soft: #e3f1eb;
   --color-paper-2: #f0eee7;
+  --shadow-rgb: 14 27 23;
+  --gray-placeholder: #6b7871;
+  --gray-control: #7d8c84;
+  --gray-border-hover: #b3c2b9;
+  --gray-skeleton: #e3eae6;
+  --gray-chrome: #f8faf9;
+  --gray-hairline: #e3eae6;
+  --gray-filter: #bfccc4;
+  --gray-icon: #afbdb5;
 }
 
 /*
@@ -124,9 +144,9 @@
  */
 [data-palette="emerald-light"] {
   --color-ink: #0e1b17;
-  --color-paper: #f7f7f3;
-  --color-muted: #4f5e57;
-  --color-line: #d6ddd8;
+  --color-paper: #f6f8f6;
+  --color-muted: #4c5b54;
+  --color-line: #d5dfd9;
   --color-accent: #0f7a5a;
   --color-accent-hover: #0b6349;
   --accent-rgb: 15 122 90;
@@ -137,20 +157,29 @@
   --color-on-ink-muted: #a6b5ae;
   --color-accent-on-ink: #7ed6b2;
   --color-accent-soft: #e3f1eb;
-  --color-paper-2: #eef2ee;
+  --color-paper-2: #eef3f0;
 
-  --band-bg: #e4ede7;
-  --band-2: #d8e4dc;
+  --band-bg: #e6efea;
+  --band-2: #dae6df;
   --band-3: #0e1b17;
-  --band-line: #c3d2c8;
+  --band-line: #c4d3ca;
   --band-fg: #0e1b17;
   --band-btn-bg: var(--color-accent);
   --band-btn-hover: var(--color-accent-hover);
   --band-btn-fg: #fff;
-  --band-muted: #46554e;
+  --band-muted: #4c5b54;
   --band-accent: #0b6349;
   --band-glow: rgb(15 122 90 / 0.16);
   --band-shadow: 0 2px 4px rgb(14 27 23 / 0.04), 0 30px 60px -30px rgb(14 27 23 / 0.3);
+  --shadow-rgb: 14 27 23;
+  --gray-placeholder: #6b7871;
+  --gray-control: #7d8c84;
+  --gray-border-hover: #b3c2b9;
+  --gray-skeleton: #e3eae6;
+  --gray-chrome: #f8faf9;
+  --gray-hairline: #e3eae6;
+  --gray-filter: #bfccc4;
+  --gray-icon: #afbdb5;
 }
 
 @media (min-width: 768px) {

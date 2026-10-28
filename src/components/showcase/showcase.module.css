@@ -38,7 +38,7 @@
   display: block;
   height: 3cqw;
   border-radius: 1cqw;
-  background: #e6e8e4;
+  background: var(--gray-skeleton);
 }
 
 .skInk {
@@ -175,7 +175,7 @@
   gap: 1cqw;
   padding: 1.4cqw 2cqw;
   border-bottom: 1px solid var(--color-line);
-  background: #fbfbf9;
+  background: var(--gray-chrome);
 }
 
 .browserBar i {
@@ -250,7 +250,7 @@
   justify-content: space-between;
   gap: 2cqw;
   padding: 2.2cqw 4cqw;
-  border-bottom: 1px solid #eceee9;
+  border-bottom: 1px solid var(--gray-hairline);
 }
 
 .logo {
@@ -320,8 +320,8 @@
   gap: 1.2cqw;
   padding: 2.4cqw;
   border-radius: 1.4cqw;
-  border: 1px solid #e3e6e1;
-  box-shadow: 0 1cqw 3cqw -1.5cqw rgb(16 24 32 / 0.25);
+  border: 1px solid var(--gray-hairline);
+  box-shadow: 0 1cqw 3cqw -1.5cqw rgb(var(--shadow-rgb) / 0.25);
 }
 
 .mFormTitle {
@@ -331,8 +331,8 @@
 .mInput {
   padding: 1cqw 1.2cqw;
   border-radius: 0.8cqw;
-  border: 1px solid #e3e6e1;
-  color: #69727d;
+  border: 1px solid var(--gray-hairline);
+  color: var(--gray-placeholder);
 }
 
 .mBtn {
@@ -407,7 +407,7 @@
   width: 1.6cqw;
   height: 1.6cqw;
   border-radius: 0.4cqw;
-  border: 1px solid #c3c8c2;
+  border: 1px solid var(--gray-filter);
 }
 
 .filter[data-on="true"] i {
@@ -430,14 +430,14 @@
   gap: 0.8cqw;
   padding: 1.4cqw;
   border-radius: 1.2cqw;
-  border: 1px solid #e6e8e4;
+  border: 1px solid var(--gray-hairline);
 }
 
 .productImg {
   aspect-ratio: 4 / 3;
   border-radius: 0.8cqw;
   background:
-    repeating-linear-gradient(135deg, transparent 0 6px, rgb(16 24 32 / 0.04) 6px 7px),
+    repeating-linear-gradient(135deg, transparent 0 6px, rgb(var(--shadow-rgb) / 0.04) 6px 7px),
     var(--color-paper);
   display: grid;
   place-items: center;
@@ -445,7 +445,7 @@
 
 .productImg svg {
   width: 40%;
-  color: #b4bab3;
+  color: var(--gray-icon);
 }
 
 .productName {
@@ -484,8 +484,8 @@
 .pInput {
   padding: 3.5cqw 4cqw;
   border-radius: 3cqw;
-  border: 1px solid #e3e6e1;
-  color: #69727d;
+  border: 1px solid var(--gray-hairline);
+  color: var(--gray-placeholder);
 }
 
 .pBtn {

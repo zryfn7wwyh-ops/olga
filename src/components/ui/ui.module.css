@@ -163,11 +163,11 @@
 }
 
 .input::placeholder {
-  color: #69727d;
+  color: var(--gray-placeholder);
 }
 
 .input:hover {
-  border-color: #b9bfc6;
+  border-color: var(--gray-border-hover);
 }
 
 .input:focus {
@@ -273,7 +273,7 @@
 }
 
 .radioCard:hover {
-  border-color: #b9bfc6;
+  border-color: var(--gray-border-hover);
 }
 
 .radioCard input {
@@ -288,7 +288,7 @@
   flex: none;
   width: 18px;
   height: 18px;
-  border: 1.5px solid #9aa3ad;
+  border: 1.5px solid var(--gray-control);
   border-radius: 50%;
   background: var(--color-surface);
   transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
@@ -352,7 +352,7 @@
 .segment:has(input:checked) {
   background: var(--color-surface);
   color: var(--color-ink);
-  box-shadow: 0 1px 2px rgb(16 24 32 / 0.08);
+  box-shadow: 0 1px 2px rgb(var(--shadow-rgb) / 0.08);
 }
 
 .segment:has(input:focus-visible) {
@@ -375,7 +375,7 @@
   width: 22px;
   height: 22px;
   margin: 0;
-  border: 1.5px solid #9aa3ad;
+  border: 1.5px solid var(--gray-control);
   border-radius: 5px;
   background: var(--color-surface);
   cursor: pointer;
@@ -464,7 +464,7 @@
 }
 
 .dialog::backdrop {
-  background: rgb(16 24 32 / 0.56);
+  background: rgb(var(--shadow-rgb) / 0.56);
 }
 
 .dialogInner {
