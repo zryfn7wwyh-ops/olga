@@ -111,6 +111,15 @@ docs/             acceptance.md, lighthouse/
 - `site.ts` — бренд, контакты, реквизиты, SEO. Пока `confirmed: false`, контакты и JSON-LD не выводятся;
 - `legal.ts` — модель согласия, версия документа, ссылки. Пока `approved: false`, страницы `/privacy` и `/consent` показывают помеченный черновик.
 
+## Цветовые палитры
+
+Цвета заданы токенами в `src/styles/tokens.css`. Палитра выбирается в `src/content/site.ts` (`company.palette`):
+
+- `graphite` — графит и синий, по дизайн-ТЗ (по умолчанию);
+- `emerald` — «Изумруд»: тёмно-зелёный графит, тёплая бумага, изумрудный акцент.
+
+Обе палитры проверены на контраст WCAG AA. Новая палитра — блок `[data-palette="…"]` с переопределением цветовых токенов.
+
 ## Аналитика
 
 `src/lib/analytics.ts` — события `estimate_form_view`, `site_type_select`, `quiz_open`, `quiz_step_complete`, `quiz_result_view`, `pdn_consultation_open`, `lead_submit_attempt`, `lead_submit_success`, `lead_submit_error`, `case_view` (зарезервировано на случай перехода к реальному кейсу). Параметры — только категориальные; ключи `contact/phone/email/name/description` и значения, похожие на email/телефон, отбрасываются. Счётчик не подключён: события пишутся в `window.dataLayer` (если он есть) и в DOM-событие `site:analytics`.

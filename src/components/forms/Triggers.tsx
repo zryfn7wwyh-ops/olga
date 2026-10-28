@@ -12,7 +12,7 @@ type Variant = "primary" | "secondary" | "ghost" | "onInk" | "onInkSecondary" | 
 export function EstimateButton({
   siteType,
   children,
-  variant = "link",
+  variant = "primary",
   block,
 }: {
   siteType?: Exclude<SiteType, "other">;
@@ -24,7 +24,7 @@ export function EstimateButton({
   return (
     <Button variant={variant} block={block} onClick={() => requestEstimate(siteType)} data-site-type={siteType}>
       {children}
-      {variant === "link" && <Icon name="arrow" size={18} />}
+      <Icon name="arrow" size={18} />
     </Button>
   );
 }

@@ -219,7 +219,7 @@
   height: 100%;
   border-radius: 14cqw;
   padding: 3.5cqw;
-  background: #232d38;
+  background: var(--color-ink-3);
   box-shadow: var(--shadow-on-ink), 0 0 0 1px rgb(255 255 255 / 0.08) inset;
 }
 

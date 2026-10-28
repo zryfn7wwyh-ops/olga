@@ -8,16 +8,18 @@
   --color-line: #d9ddd8;
   --color-accent: #3154d8;
   --color-accent-hover: #2443b6;
+  --accent-rgb: 49 84 216;
   --color-positive: #247460;
   --color-danger: #b42318;
 
   /* Производные (графитовые секции, подложки) */
   --color-ink-2: #1a242e;
   --color-ink-line: #2c3743;
+  --color-ink-3: #232d38;
   --color-on-ink: #f7f6f2;
   --color-on-ink-muted: #a9b2bc;
   --color-accent-on-ink: #8ea5ff;
-  --color-ink-glow: rgb(49 84 216 / 0.32);
+  --color-ink-glow: rgb(var(--accent-rgb) / 0.32);
   --color-accent-soft: #e9edfb;
   --color-positive-soft: #e6f2ee;
   --color-danger-soft: #fdecea;
@@ -75,6 +77,28 @@
   --dur-base: 200ms;
 
   --header-h: 64px;
+}
+
+/*
+ * Альтернативная палитра «Изумруд». Включается атрибутом data-palette="emerald"
+ * на <html> (см. company.palette в content/site.ts). Остальные токены общие.
+ */
+[data-palette="emerald"] {
+  --color-ink: #0e1b17;
+  --color-paper: #f5f4ef;
+  --color-muted: #55625d;
+  --color-line: #d7dcd7;
+  --color-accent: #0f7a5a;
+  --color-accent-hover: #0b6349;
+  --accent-rgb: 15 122 90;
+  --color-ink-2: #16261f;
+  --color-ink-line: #2a3a33;
+  --color-ink-3: #22322b;
+  --color-on-ink: #f5f4ef;
+  --color-on-ink-muted: #a6b5ae;
+  --color-accent-on-ink: #7ed6b2;
+  --color-accent-soft: #e3f1eb;
+  --color-paper-2: #edebe3;
 }
 
 @media (min-width: 768px) {
