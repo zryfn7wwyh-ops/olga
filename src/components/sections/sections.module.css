@@ -24,6 +24,27 @@
   margin-bottom: var(--space-8);
 }
 
+@media (min-width: 1024px) {
+  .introSplit {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+    column-gap: var(--grid-gap);
+    max-width: none;
+  }
+  .introSplit > :first-child {
+    padding-top: 0.9em;
+  }
+  .introBody {
+    display: grid;
+    gap: var(--space-4);
+    max-width: 860px;
+  }
+}
+
+.introBody {
+  display: grid;
+  gap: var(--space-4);
+}
+
 .introRow {
   display: grid;
   gap: var(--space-5);
@@ -31,7 +52,28 @@
 }
 
 @media (min-width: 1024px) {
-  .introRow {
+  @media (min-width: 1024px) {
+  .introSplit {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+    column-gap: var(--grid-gap);
+    max-width: none;
+  }
+  .introSplit > :first-child {
+    padding-top: 0.9em;
+  }
+  .introBody {
+    display: grid;
+    gap: var(--space-4);
+    max-width: 860px;
+  }
+}
+
+.introBody {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.introRow {
     grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
     align-items: end;
   }
@@ -59,8 +101,9 @@
   color: var(--color-accent);
 }
 
-.ink .kickerIndex {
-  color: #8ea5ff;
+.ink .kickerIndex,
+.hero .kickerIndex {
+  color: var(--color-accent-on-ink);
 }
 
 .kicker::after {
@@ -97,8 +140,59 @@
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
-  padding-block: clamp(2rem, 1rem + 4vw, 5.5rem) clamp(3rem, 2rem + 4vw, 6rem);
+  padding-block: clamp(2.5rem, 1rem + 5vw, 6.5rem) 0;
   overflow: hidden;
+  background:
+    radial-gradient(900px 520px at 88% -8%, var(--color-ink-glow), transparent 65%),
+    radial-gradient(700px 420px at -10% 110%, rgb(49 84 216 / 0.12), transparent 70%),
+    var(--color-ink);
+  color: var(--color-on-ink);
+}
+
+.hero .kicker {
+  color: var(--color-on-ink-muted);
+}
+
+.specs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: clamp(3rem, 2rem + 4vw, 6rem) 0 0;
+  border-top: 1px solid var(--color-ink-line);
+}
+
+@media (min-width: 1024px) {
+  .specs {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.spec {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  padding: var(--space-5) var(--space-4) var(--space-6) 0;
+}
+
+@media (min-width: 1024px) {
+  .spec + .spec {
+    padding-left: var(--space-5);
+    border-left: 1px solid var(--color-ink-line);
+  }
+}
+
+.spec dt {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-accent-on-ink);
+}
+
+.spec dd {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--color-on-ink);
+  line-height: 1.45;
 }
 
 .heroGrid {
@@ -124,9 +218,9 @@
 
 .heroTitle {
   font-size: var(--text-hero);
-  line-height: 1.04;
-  letter-spacing: -0.035em;
-  font-weight: 750;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  font-weight: 680;
   overflow-wrap: break-word;
   hyphens: manual;
 }
@@ -140,12 +234,12 @@
 }
 
 .heroAccent {
-  color: var(--color-accent);
+  color: var(--color-accent-on-ink);
 }
 
 .heroLead {
   font-size: var(--text-md);
-  color: var(--color-muted);
+  color: var(--color-on-ink-muted);
   max-width: 56ch;
 }
 
@@ -153,7 +247,7 @@
   display: grid;
   gap: 0;
   list-style: none;
-  border-top: 1px solid var(--color-line);
+  border-top: 1px solid var(--color-ink-line);
   max-width: 600px;
 }
 
@@ -162,7 +256,7 @@
   grid-template-columns: 32px 1fr;
   gap: 12px;
   padding-block: 14px;
-  border-bottom: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-ink-line);
   font-weight: 500;
   line-height: 1.45;
 }
@@ -170,7 +264,7 @@
 .heroBenefits li span:first-child {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  color: var(--color-accent);
+  color: var(--color-accent-on-ink);
   padding-top: 3px;
 }
 
@@ -180,7 +274,7 @@
   flex-wrap: wrap;
   gap: 8px 16px;
   font-size: var(--text-sm);
-  color: var(--color-muted);
+  color: var(--color-on-ink-muted);
 }
 
 .heroArt {
@@ -195,7 +289,7 @@
   top: -10%;
   width: min(900px, 90vw);
   aspect-ratio: 1;
-  color: var(--color-line);
+  color: var(--color-ink-line);
 }
 
 @media (max-width: 1023px) {
@@ -239,21 +333,23 @@
 .formatCard {
   display: grid;
   grid-template-rows: auto 1fr;
-  border: 1px solid var(--color-line);
+  border: 1px solid transparent;
   border-radius: var(--radius-lg);
   background: var(--color-surface);
+  box-shadow: var(--shadow-card);
   overflow: hidden;
-  transition: border-color var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease);
+  transition: border-color var(--dur-base) var(--ease);
 }
 
 .formatCard:hover {
-  border-color: #c3c8c2;
-  box-shadow: var(--shadow-card);
+  border-color: var(--color-line);
 }
 
 .formatPreview {
-  padding: var(--space-5) var(--space-5) 0;
-  background: var(--color-paper-2);
+  padding: var(--space-6) var(--space-6) 0;
+  background:
+    radial-gradient(420px 220px at 80% 0%, rgb(49 84 216 / 0.1), transparent 70%),
+    var(--color-paper);
   border-bottom: 1px solid var(--color-line);
 }
 
@@ -262,7 +358,7 @@
   gap: var(--space-4);
   align-content: start;
   grid-template-rows: auto auto 1fr auto;
-  padding: var(--space-5);
+  padding: var(--space-6);
 }
 
 .points {
@@ -421,11 +517,12 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: var(--color-paper);
-  border: 1.5px solid var(--color-accent);
+  background: var(--color-ink);
+  border: 0;
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--color-accent);
+  color: var(--color-on-ink);
+  box-shadow: 0 0 0 6px var(--color-paper);
 }
 
 .step p {
@@ -487,10 +584,8 @@
   display: grid;
   gap: var(--space-3);
   align-content: start;
-  padding: var(--space-5);
-  border-radius: var(--radius-lg);
-  background: var(--color-surface);
-  border: 1px solid var(--color-line);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-ink);
 }
 
 .factorIcon {
@@ -515,7 +610,9 @@
   gap: var(--space-5);
   padding: clamp(2rem, 1rem + 4vw, 4.5rem);
   border-radius: var(--radius-xl);
-  background: var(--color-ink);
+  background:
+    radial-gradient(700px 360px at 100% 0%, var(--color-ink-glow), transparent 70%),
+    var(--color-ink);
   color: var(--color-on-ink);
   overflow: hidden;
   isolation: isolate;

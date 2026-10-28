@@ -19,6 +19,7 @@ export function PriceFactors() {
     <section className={s.section} id="pricing-factors" aria-labelledby="pricing-title">
       <div className="container">
         <SectionIntro
+          split
           id="pricing-factors"
           titleId="pricing-title"
           index={priceFactors.index}

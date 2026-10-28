@@ -9,7 +9,8 @@ export function WorkShowcase() {
   return (
     <section className={s.section} id="work" aria-labelledby="work-title">
       <div className="container">
-        <SectionIntro id="work" titleId="work-title" index={work.index} kicker={work.kicker} title={work.title} lead={work.lead} />
+        <SectionIntro
+          split id="work" titleId="work-title" index={work.index} kicker={work.kicker} title={work.title} lead={work.lead} />
         <ol className={s2.cases}>
           {cases.map((item) => (
             <li key={item.id} className={s2.case}>

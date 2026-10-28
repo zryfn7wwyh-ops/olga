@@ -28,7 +28,7 @@
 | AC-20 | SEO: title/description, заголовки, alt, sitemap/robots | ✔ | e2e `AC-20`; Lighthouse SEO 100. Растровых изображений нет, декоративные SVG скрыты `aria-hidden` |
 | AC-21 | Аналитика: попытки, успехи, ошибки без ПДн | ✔ | e2e `AC-08` (события без контакта), unit `analytics.test.ts`. Счётчик не подключён — ждёт решения заказчика |
 | AC-22 | Сервер: проверка payload, лимит частоты, антиспам, секреты закрыты | ✔ | unit `server.test.ts` (rate limit, дубли, канал), e2e `AC-22` (422/413/400); секреты только в server-only модуле |
-| AC-23 | Браузеры, performance, доступность проверены | ◐ | Lighthouse (Chromium): mobile — Performance 94, Accessibility 100, Best Practices 100, SEO 100 (LCP 2,4 с, CLS 0,001, TBT 130 мс); desktop — 100/100/100/100. Отчёты: `docs/lighthouse/`. **Safari, Firefox, Edge, iOS Safari, Android Chrome вручную не проверялись** |
+| AC-23 | Браузеры, performance, доступность проверены | ◐ | Lighthouse (Chromium), после редизайна: mobile — Performance 84, Accessibility 100, Best Practices 100, SEO 100 (LCP 3,1 с, CLS 0,001, TBT 310 мс); desktop — 100/100/100/100. Мобильный замер нестабилен в этой среде: предыдущая версия в тех же условиях давала 88–89 при том же LCP. Отчёты: `docs/lighthouse/`. **Safari, Firefox, Edge, iOS Safari, Android Chrome вручную не проверялись** |
 | AC-24 | README: запуск, env, доставка лидов, контент, motion-slots | ✔ | `README.md`, `src/animations/README.md`, `.env.example` |
 
 Core Web Vitals в ТЗ — критерии на реальных пользовательских данных (p75); лабораторные значения Lighthouse выше — ориентир, а не замер.

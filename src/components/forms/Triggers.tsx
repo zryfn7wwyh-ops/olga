@@ -6,13 +6,13 @@ import { Icon } from "@/components/ui/Icon";
 import type { SiteType } from "@/lib/leads/schema";
 import { useLeadUI } from "./LeadUIProvider";
 
-type Variant = "primary" | "secondary" | "ghost" | "onInk" | "onInkSecondary";
+type Variant = "primary" | "secondary" | "ghost" | "onInk" | "onInkSecondary" | "onInkGhost" | "link";
 
 /** Кнопка карточки формата: предвыбирает тип в Hero-форме и ведёт к #calc. */
 export function EstimateButton({
   siteType,
   children,
-  variant = "secondary",
+  variant = "link",
   block,
 }: {
   siteType?: Exclude<SiteType, "other">;
@@ -24,6 +24,7 @@ export function EstimateButton({
   return (
     <Button variant={variant} block={block} onClick={() => requestEstimate(siteType)} data-site-type={siteType}>
       {children}
+      {variant === "link" && <Icon name="arrow" size={18} />}
     </Button>
   );
 }

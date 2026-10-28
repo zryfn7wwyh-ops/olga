@@ -11,12 +11,13 @@
   min-height: var(--control-h);
   padding: 12px 24px;
   border: 1px solid var(--btn-border);
-  border-radius: var(--radius-md);
+  border-radius: 8px;
   background: var(--btn-bg);
   color: var(--btn-fg);
   font-family: var(--font-text);
   font-weight: 600;
   font-size: var(--text-base);
+  letter-spacing: -0.005em;
   line-height: 1.25;
   text-align: center;
   text-decoration: none;
@@ -67,6 +68,37 @@
   --btn-bg-hover: var(--color-ink-2);
   --btn-fg: var(--color-on-ink);
   --btn-border: var(--color-on-ink-muted);
+}
+
+.onInkGhost {
+  --btn-bg: transparent;
+  --btn-bg-hover: var(--color-ink-2);
+  --btn-fg: var(--color-accent-on-ink);
+  padding-inline: 12px;
+}
+
+/* Строчная кнопка-ссылка с линией сверху — для карточек форматов */
+.link {
+  --btn-bg: transparent;
+  --btn-bg-hover: transparent;
+  --btn-fg: var(--color-ink);
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px 0 0;
+  border: 0;
+  border-top: 1px solid var(--color-line);
+  border-radius: 0;
+  text-align: left;
+}
+
+.link:hover:not(:disabled) {
+  color: var(--color-accent);
+}
+
+.link:focus-visible {
+  box-shadow: none;
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
 }
 
 .block {

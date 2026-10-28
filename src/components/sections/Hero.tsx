@@ -34,12 +34,22 @@ export function Hero() {
           </ul>
           <div className={s.heroQuiz}>
             <span>{hero.quizPrompt}</span>
-            <QuizButton />
+            <QuizButton variant="onInkGhost" />
           </div>
         </div>
         <div className={s.heroForm}>
           <EstimateForm />
         </div>
+      </div>
+      <div className="container">
+        <dl className={s.specs} aria-label="Что проверяем перед запуском">
+          {hero.specs.map((item) => (
+            <div key={item.label} className={s.spec}>
+              <dt>{item.label}</dt>
+              <dd>{item.value}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );

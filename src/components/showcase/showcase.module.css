@@ -89,8 +89,9 @@
   padding: clamp(1rem, 0.5rem + 3vw, 3rem);
   padding-bottom: clamp(2.5rem, 1.5rem + 4vw, 4.5rem);
   border-radius: var(--radius-xl);
-  background: var(--color-paper-2);
-  border: 1px solid var(--color-line);
+  background:
+    radial-gradient(600px 360px at 20% 0%, var(--color-ink-glow), transparent 70%),
+    var(--color-ink);
   min-width: 0;
 }
 
@@ -111,7 +112,7 @@
   gap: 8px;
   padding: 6px 10px;
   border-radius: 999px;
-  border: 1px dashed var(--color-muted);
+  border: 1px solid var(--color-line);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   letter-spacing: 0.02em;
@@ -137,6 +138,7 @@
 
 .caseTitle {
   font-size: var(--text-xl);
+  letter-spacing: -0.03em;
 }
 
 .caseSummary {
@@ -163,9 +165,8 @@
   container-type: inline-size;
   border-radius: 12px;
   background: var(--color-surface);
-  box-shadow: var(--shadow-float);
+  box-shadow: var(--shadow-on-ink);
   overflow: hidden;
-  border: 1px solid var(--color-line);
 }
 
 .browserBar {
@@ -218,8 +219,8 @@
   height: 100%;
   border-radius: 14cqw;
   padding: 3.5cqw;
-  background: var(--color-ink);
-  box-shadow: var(--shadow-float);
+  background: #232d38;
+  box-shadow: var(--shadow-on-ink), 0 0 0 1px rgb(255 255 255 / 0.08) inset;
 }
 
 .phoneScreen {

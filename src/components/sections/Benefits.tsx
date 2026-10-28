@@ -6,7 +6,8 @@ export function Benefits() {
   return (
     <section className={s.section} id="advantages" aria-labelledby="advantages-title">
       <div className="container">
-        <SectionIntro id="advantages" titleId="advantages-title" index={benefits.index} kicker={benefits.kicker} title={benefits.title} />
+        <SectionIntro
+          split id="advantages" titleId="advantages-title" index={benefits.index} kicker={benefits.kicker} title={benefits.title} />
         <ul className={s.cards3} style={{ listStyle: "none" }}>
           {benefits.items.map((item, i) => (
             <li key={item.title} className={s.benefit}>

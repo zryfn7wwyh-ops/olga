@@ -9,7 +9,8 @@ export function SiteTypes() {
   return (
     <section className={`${s.section} ${s.paper2}`} id="formats" aria-labelledby="formats-title">
       <div className="container">
-        <SectionIntro id="formats" titleId="formats-title" index={formats.index} kicker={formats.kicker} title={formats.title} lead={formats.lead} />
+        <SectionIntro
+          split id="formats" titleId="formats-title" index={formats.index} kicker={formats.kicker} title={formats.title} lead={formats.lead} />
         <ul className={s.cards3} style={{ listStyle: "none" }}>
           {formats.items.map((item) => (
             <li key={item.id} className={s.formatCard}>

@@ -6,7 +6,8 @@ export function Process() {
   return (
     <section className={s.section} id="steps" aria-labelledby="steps-title">
       <div className="container">
-        <SectionIntro id="steps" titleId="steps-title" index={steps.index} kicker={steps.kicker} title={steps.title} />
+        <SectionIntro
+          split id="steps" titleId="steps-title" index={steps.index} kicker={steps.kicker} title={steps.title} />
         <div className={s.stepsWrap}>
           <div className={s.processLine} data-motion="process-line" data-motion-id="process-line" aria-hidden="true">
             <span className={s.processLineInner} data-motion-layer />

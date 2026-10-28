@@ -6,7 +6,8 @@ export function Deliverables() {
   return (
     <section className={`${s.section} ${s.paper2}`} id="deliver" aria-labelledby="deliver-title">
       <div className="container">
-        <SectionIntro id="deliver" titleId="deliver-title" index={deliverables.index} kicker={deliverables.kicker} title={deliverables.title} />
+        <SectionIntro
+          split id="deliver" titleId="deliver-title" index={deliverables.index} kicker={deliverables.kicker} title={deliverables.title} />
         <ul className={s.deliverList}>
           {deliverables.items.map((item, i) => (
             <li key={item.title}>

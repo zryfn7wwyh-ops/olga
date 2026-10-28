@@ -1,7 +1,7 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 import s from "./ui.module.css";
 
-type Variant = "primary" | "secondary" | "ghost" | "onInk" | "onInkSecondary";
+type Variant = "primary" | "secondary" | "ghost" | "onInk" | "onInkSecondary" | "onInkGhost" | "link";
 
 type Common = { variant?: Variant; block?: boolean; size?: "md" | "sm"; children: ReactNode };
 
