@@ -8,8 +8,8 @@
 }
 
 .ink {
-  background: var(--color-ink);
-  color: var(--color-on-ink);
+  background: var(--band-bg);
+  color: var(--band-fg);
 }
 
 .paper2 {
@@ -94,7 +94,7 @@
 }
 
 .ink .kicker {
-  color: var(--color-on-ink-muted);
+  color: var(--band-muted);
 }
 
 .kickerIndex {
@@ -103,7 +103,7 @@
 
 .ink .kickerIndex,
 .hero .kickerIndex {
-  color: var(--color-accent-on-ink);
+  color: var(--band-accent);
 }
 
 .kicker::after {
@@ -125,7 +125,7 @@
 }
 
 .ink .lead {
-  color: var(--color-on-ink-muted);
+  color: var(--band-muted);
 }
 
 .h3 {
@@ -143,21 +143,21 @@
   padding-block: clamp(2.5rem, 1rem + 5vw, 6.5rem) 0;
   overflow: hidden;
   background:
-    radial-gradient(900px 520px at 88% -8%, var(--color-ink-glow), transparent 65%),
+    radial-gradient(900px 520px at 88% -8%, var(--band-glow), transparent 65%),
     radial-gradient(700px 420px at -10% 110%, rgb(var(--accent-rgb) / 0.12), transparent 70%),
-    var(--color-ink);
-  color: var(--color-on-ink);
+    var(--band-bg);
+  color: var(--band-fg);
 }
 
 .hero .kicker {
-  color: var(--color-on-ink-muted);
+  color: var(--band-muted);
 }
 
 .specs {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   margin: clamp(3rem, 2rem + 4vw, 6rem) 0 0;
-  border-top: 1px solid var(--color-ink-line);
+  border-top: 1px solid var(--band-line);
 }
 
 @media (min-width: 1024px) {
@@ -176,7 +176,7 @@
 @media (min-width: 1024px) {
   .spec + .spec {
     padding-left: var(--space-5);
-    border-left: 1px solid var(--color-ink-line);
+    border-left: 1px solid var(--band-line);
   }
 }
 
@@ -185,13 +185,13 @@
   font-size: var(--text-xs);
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--color-accent-on-ink);
+  color: var(--band-accent);
 }
 
 .spec dd {
   margin: 0;
   font-size: var(--text-sm);
-  color: var(--color-on-ink);
+  color: var(--band-fg);
   line-height: 1.45;
 }
 
@@ -234,12 +234,12 @@
 }
 
 .heroAccent {
-  color: var(--color-accent-on-ink);
+  color: var(--band-accent);
 }
 
 .heroLead {
   font-size: var(--text-md);
-  color: var(--color-on-ink-muted);
+  color: var(--band-muted);
   max-width: 56ch;
 }
 
@@ -247,7 +247,7 @@
   display: grid;
   gap: 0;
   list-style: none;
-  border-top: 1px solid var(--color-ink-line);
+  border-top: 1px solid var(--band-line);
   max-width: 600px;
 }
 
@@ -256,7 +256,7 @@
   grid-template-columns: 32px 1fr;
   gap: 12px;
   padding-block: 14px;
-  border-bottom: 1px solid var(--color-ink-line);
+  border-bottom: 1px solid var(--band-line);
   font-weight: 500;
   line-height: 1.45;
 }
@@ -264,7 +264,7 @@
 .heroBenefits li span:first-child {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  color: var(--color-accent-on-ink);
+  color: var(--band-accent);
   padding-top: 3px;
 }
 
@@ -274,7 +274,7 @@
   flex-wrap: wrap;
   gap: 8px 16px;
   font-size: var(--text-sm);
-  color: var(--color-on-ink-muted);
+  color: var(--band-muted);
 }
 
 .heroArt {
@@ -289,7 +289,7 @@
   top: -10%;
   width: min(900px, 90vw);
   aspect-ratio: 1;
-  color: var(--color-ink-line);
+  color: var(--band-line);
 }
 
 @media (max-width: 1023px) {
@@ -417,14 +417,14 @@
   display: grid;
   gap: 0;
   list-style: none;
-  border-top: 1px solid var(--color-ink-line);
+  border-top: 1px solid var(--band-line);
 }
 
 .approachList li {
   display: grid;
   gap: 8px;
   padding-block: var(--space-5);
-  border-bottom: 1px solid var(--color-ink-line);
+  border-bottom: 1px solid var(--band-line);
 }
 
 @media (min-width: 768px) {
@@ -435,15 +435,15 @@
 }
 
 .approachList p {
-  color: var(--color-on-ink-muted);
+  color: var(--band-muted);
 }
 
 .approachNote {
   padding: var(--space-4) var(--space-5);
-  border-left: 2px solid var(--color-accent-on-ink);
-  background: var(--color-ink-2);
+  border-left: 2px solid var(--band-accent);
+  background: var(--band-2);
   font-size: var(--text-sm);
-  color: var(--color-on-ink-muted);
+  color: var(--band-muted);
 }
 
 /* ---------- Этапы ---------- */
@@ -521,7 +521,7 @@
   border: 0;
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--color-on-ink);
+  color: var(--band-fg);
   box-shadow: 0 0 0 6px var(--color-paper);
 }
 
@@ -611,9 +611,9 @@
   padding: clamp(2rem, 1rem + 4vw, 4.5rem);
   border-radius: var(--radius-xl);
   background:
-    radial-gradient(700px 360px at 100% 0%, var(--color-ink-glow), transparent 70%),
-    var(--color-ink);
-  color: var(--color-on-ink);
+    radial-gradient(700px 360px at 100% 0%, var(--band-glow), transparent 70%),
+    var(--band-bg);
+  color: var(--band-fg);
   overflow: hidden;
   isolation: isolate;
 }
@@ -639,7 +639,7 @@
   width: 520px;
   height: 520px;
   border-radius: 50%;
-  border: 1px solid var(--color-ink-line);
+  border: 1px solid var(--band-line);
   box-shadow: 0 0 0 60px rgb(var(--accent-rgb) / 0.08), 0 0 0 120px rgb(var(--accent-rgb) / 0.05);
 }
 
@@ -649,7 +649,7 @@
 }
 
 .ctaText p {
-  color: var(--color-on-ink-muted);
+  color: var(--band-muted);
   max-width: 56ch;
 }
 

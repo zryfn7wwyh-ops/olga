@@ -90,8 +90,8 @@
   padding-bottom: clamp(2.5rem, 1.5rem + 4vw, 4.5rem);
   border-radius: var(--radius-xl);
   background:
-    radial-gradient(600px 360px at 20% 0%, var(--color-ink-glow), transparent 70%),
-    var(--color-ink);
+    radial-gradient(600px 360px at 20% 0%, var(--band-glow), transparent 70%),
+    var(--band-bg);
   min-width: 0;
 }
 
@@ -165,7 +165,7 @@
   container-type: inline-size;
   border-radius: 12px;
   background: var(--color-surface);
-  box-shadow: var(--shadow-on-ink);
+  box-shadow: var(--band-shadow);
   overflow: hidden;
 }
 
@@ -219,8 +219,8 @@
   height: 100%;
   border-radius: 14cqw;
   padding: 3.5cqw;
-  background: var(--color-ink-3);
-  box-shadow: var(--shadow-on-ink), 0 0 0 1px rgb(255 255 255 / 0.08) inset;
+  background: var(--band-3);
+  box-shadow: var(--band-shadow), 0 0 0 1px rgb(255 255 255 / 0.08) inset;
 }
 
 .phoneScreen {

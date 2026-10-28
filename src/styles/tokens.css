@@ -25,6 +25,23 @@
   --color-danger-soft: #fdecea;
   --color-paper-2: #efede6;
 
+  /*
+   * «Полосы» — шапка, первый экран, тёмные секции, сцены концептов, подвал.
+   * По умолчанию это графит палитры; светлые палитры переопределяют их отдельно.
+   */
+  --band-bg: var(--color-ink);
+  --band-2: var(--color-ink-2);
+  --band-3: var(--color-ink-3);
+  --band-line: var(--color-ink-line);
+  --band-fg: var(--color-on-ink);
+  --band-btn-bg: var(--color-on-ink);
+  --band-btn-hover: #fff;
+  --band-btn-fg: var(--color-ink);
+  --band-muted: var(--color-on-ink-muted);
+  --band-accent: var(--color-accent-on-ink);
+  --band-glow: var(--color-ink-glow);
+  --band-shadow: var(--shadow-on-ink);
+
   /* Типографика */
   --font-display: "Manrope Variable", "Manrope", system-ui, sans-serif;
   --font-text: "Inter Variable", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -102,25 +119,38 @@
 }
 
 /*
- * «Изумруд на угле и песке»: тот же изумрудный акцент, тёплый угольный
- * графит для тёмных блоков и песочная бумага для светлых.
+ * «Изумруд · светлая»: те же изумрудные кнопки, но вместо тёмных полос —
+ * светлый шалфей с тёмным текстом; страница целиком светлая.
  */
-[data-palette="emerald-sand"] {
-  --color-ink: #171614;
-  --color-paper: #f3efe6;
-  --color-muted: #5e5a52;
-  --color-line: #dad3c5;
+[data-palette="emerald-light"] {
+  --color-ink: #0e1b17;
+  --color-paper: #f7f7f3;
+  --color-muted: #4f5e57;
+  --color-line: #d6ddd8;
   --color-accent: #0f7a5a;
   --color-accent-hover: #0b6349;
   --accent-rgb: 15 122 90;
-  --color-ink-2: #201f1c;
-  --color-ink-line: #34322e;
-  --color-ink-3: #2a2926;
-  --color-on-ink: #f3efe6;
-  --color-on-ink-muted: #b3ada2;
+  --color-ink-2: #16261f;
+  --color-ink-line: #2a3a33;
+  --color-ink-3: #22322b;
+  --color-on-ink: #f5f4ef;
+  --color-on-ink-muted: #a6b5ae;
   --color-accent-on-ink: #7ed6b2;
   --color-accent-soft: #e3f1eb;
-  --color-paper-2: #f0ece3;
+  --color-paper-2: #eef2ee;
+
+  --band-bg: #e4ede7;
+  --band-2: #d8e4dc;
+  --band-3: #0e1b17;
+  --band-line: #c3d2c8;
+  --band-fg: #0e1b17;
+  --band-btn-bg: var(--color-accent);
+  --band-btn-hover: var(--color-accent-hover);
+  --band-btn-fg: #fff;
+  --band-muted: #46554e;
+  --band-accent: #0b6349;
+  --band-glow: rgb(15 122 90 / 0.16);
+  --band-shadow: 0 2px 4px rgb(14 27 23 / 0.04), 0 30px 60px -30px rgb(14 27 23 / 0.3);
 }
 
 @media (min-width: 768px) {

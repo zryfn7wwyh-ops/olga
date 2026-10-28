@@ -58,22 +58,22 @@
 }
 
 .onInk {
-  --btn-bg: var(--color-on-ink);
-  --btn-bg-hover: #fff;
-  --btn-fg: var(--color-ink);
+  --btn-bg: var(--band-btn-bg);
+  --btn-bg-hover: var(--band-btn-hover);
+  --btn-fg: var(--band-btn-fg);
 }
 
 .onInkSecondary {
   --btn-bg: transparent;
-  --btn-bg-hover: var(--color-ink-2);
-  --btn-fg: var(--color-on-ink);
-  --btn-border: var(--color-on-ink-muted);
+  --btn-bg-hover: var(--band-2);
+  --btn-fg: var(--band-fg);
+  --btn-border: var(--band-muted);
 }
 
 .onInkGhost {
   --btn-bg: transparent;
-  --btn-bg-hover: var(--color-ink-2);
-  --btn-fg: var(--color-accent-on-ink);
+  --btn-bg-hover: var(--band-2);
+  --btn-fg: var(--band-accent);
   padding-inline: 12px;
 }
 

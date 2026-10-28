@@ -2,9 +2,9 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background: var(--color-ink);
-  border-bottom: 1px solid var(--color-ink-line);
-  color: var(--color-on-ink);
+  background: var(--band-bg);
+  border-bottom: 1px solid var(--band-line);
+  color: var(--band-fg);
 }
 
 .bar {
@@ -33,7 +33,7 @@
   width: 28px;
   height: 28px;
   border-radius: 7px;
-  background: var(--color-on-ink);
+  background: var(--band-fg);
   position: relative;
 }
 
@@ -66,14 +66,14 @@
   border-radius: var(--radius-sm);
   font-size: var(--text-sm);
   font-weight: 500;
-  color: var(--color-on-ink-muted);
+  color: var(--band-muted);
   text-decoration: none;
   transition: background-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
 
 .navLink:hover {
-  color: var(--color-on-ink);
-  background: var(--color-ink-2);
+  color: var(--band-fg);
+  background: var(--band-2);
 }
 
 .actions {
@@ -92,10 +92,10 @@
   justify-content: center;
   width: var(--tap);
   height: var(--tap);
-  border: 1px solid var(--color-ink-line);
+  border: 1px solid var(--band-line);
   border-radius: var(--radius-md);
   background: transparent;
-  color: var(--color-on-ink);
+  color: var(--band-fg);
 }
 
 @media (min-width: 1024px) {
@@ -111,8 +111,8 @@
 }
 
 .mobileMenu {
-  border-top: 1px solid var(--color-ink-line);
-  background: var(--color-ink);
+  border-top: 1px solid var(--band-line);
+  background: var(--band-bg);
   padding-block: var(--space-4) var(--space-5);
   max-height: calc(100dvh - var(--header-h));
   overflow: auto;
@@ -138,7 +138,7 @@
   display: flex;
   align-items: center;
   min-height: 52px;
-  border-bottom: 1px solid var(--color-ink-line);
+  border-bottom: 1px solid var(--band-line);
   font-family: var(--font-display);
   font-weight: 700;
   font-size: var(--text-md);
@@ -147,8 +147,8 @@
 
 /* ---------- Footer ---------- */
 .footer {
-  background: var(--color-ink);
-  color: var(--color-on-ink);
+  background: var(--band-bg);
+  color: var(--band-fg);
   padding-block: var(--space-9) var(--space-6);
   font-size: var(--text-sm);
 }
@@ -176,7 +176,7 @@
   font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--color-on-ink-muted);
+  color: var(--band-muted);
 }
 
 .footerLinks {
@@ -189,7 +189,7 @@
   display: inline-flex;
   align-items: center;
   min-height: 36px;
-  color: var(--color-on-ink);
+  color: var(--band-fg);
   text-decoration: none;
 }
 
@@ -199,7 +199,7 @@
 }
 
 .footerMuted {
-  color: var(--color-on-ink-muted);
+  color: var(--band-muted);
   max-width: 44ch;
 }
 
@@ -210,16 +210,16 @@
   gap: var(--space-3);
   margin-top: var(--space-8);
   padding-top: var(--space-5);
-  border-top: 1px solid var(--color-ink-line);
-  color: var(--color-on-ink-muted);
+  border-top: 1px solid var(--band-line);
+  color: var(--band-muted);
 }
 
 .pending {
   display: inline-flex;
   padding: 2px 8px;
   border-radius: 4px;
-  border: 1px dashed var(--color-on-ink-muted);
+  border: 1px dashed var(--band-muted);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  color: var(--color-on-ink-muted);
+  color: var(--band-muted);
 }
