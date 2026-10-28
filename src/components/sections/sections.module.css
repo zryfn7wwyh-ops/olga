@@ -247,13 +247,21 @@
   padding-top: 3px;
 }
 
+/* Подложка под подсказкой о квизе */
 .heroQuiz {
+  justify-self: start;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 8px 16px;
+  gap: 4px 12px;
+  max-width: 100%;
+  padding: 8px 8px 8px 20px;
+  border: 1px solid var(--band-panel-line);
+  border-radius: var(--radius-lg);
+  background: var(--band-panel);
   font-size: var(--text-sm);
-  color: var(--band-muted);
+  font-weight: 500;
+  color: var(--band-fg);
 }
 
 .heroArt {

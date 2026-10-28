@@ -49,6 +49,8 @@
   --band-primary-hover: var(--color-accent-hover);
   --band-primary-fg: #fff;
   --band-nav: var(--band-muted);
+  --band-panel: rgb(255 255 255 / 0.06);
+  --band-panel-line: rgb(255 255 255 / 0.12);
   --band-btn-bg: var(--color-on-ink);
   --band-btn-hover: #fff;
   --band-btn-fg: var(--color-ink);
@@ -175,6 +177,8 @@
   --band-primary-hover: #22322b;
   --band-primary-fg: #fff;
   --band-nav: #0e1b17;
+  --band-panel: rgb(255 255 255 / 0.62);
+  --band-panel-line: rgb(255 255 255 / 0.9);
   --band-muted: #35423c;
   --band-accent: #0b6349;
   --band-glow: rgb(15 122 90 / 0.18);
