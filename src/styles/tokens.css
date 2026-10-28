@@ -98,7 +98,29 @@
   --color-on-ink-muted: #a6b5ae;
   --color-accent-on-ink: #7ed6b2;
   --color-accent-soft: #e3f1eb;
-  --color-paper-2: #edebe3;
+  --color-paper-2: #f0eee7;
+}
+
+/*
+ * «Изумруд на угле и песке»: тот же изумрудный акцент, тёплый угольный
+ * графит для тёмных блоков и песочная бумага для светлых.
+ */
+[data-palette="emerald-sand"] {
+  --color-ink: #171614;
+  --color-paper: #f3efe6;
+  --color-muted: #5e5a52;
+  --color-line: #dad3c5;
+  --color-accent: #0f7a5a;
+  --color-accent-hover: #0b6349;
+  --accent-rgb: 15 122 90;
+  --color-ink-2: #201f1c;
+  --color-ink-line: #34322e;
+  --color-ink-3: #2a2926;
+  --color-on-ink: #f3efe6;
+  --color-on-ink-muted: #b3ada2;
+  --color-accent-on-ink: #7ed6b2;
+  --color-accent-soft: #e3f1eb;
+  --color-paper-2: #f0ece3;
 }
 
 @media (min-width: 768px) {

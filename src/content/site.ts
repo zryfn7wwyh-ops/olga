@@ -3,12 +3,15 @@
  * не предоставлены заказчиком. Пока `confirmed: false`, на странице не выводятся
  * контакты и структурированные данные Organization.
  */
-export type Palette = "graphite" | "emerald";
+export type Palette = "graphite" | "emerald" | "emerald-sand";
 
 export const company = {
   confirmed: false,
-  /** Цветовая палитра сайта: «graphite» — графит и синий (по дизайн-ТЗ), «emerald» — изумруд. */
-  palette: "graphite" as Palette,
+  /**
+   * Цветовая палитра сайта: «emerald» — изумруд (выбрана заказчиком),
+   * «emerald-sand» — изумруд на угле и песке, «graphite» — графит и синий из дизайн-ТЗ.
+   */
+  palette: "emerald" as Palette,
   /** Рабочее название до утверждения бренда. */
   brand: "Студия веб-разработки",
   shortBrand: "Веб-студия",
