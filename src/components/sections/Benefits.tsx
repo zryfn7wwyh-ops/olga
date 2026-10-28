@@ -1,3 +1,4 @@
+import { Rich } from "@/components/ui/Rich";
 import { benefits } from "@/content/page";
 import { SectionIntro } from "./SectionIntro";
 import s from "./sections.module.css";
@@ -13,7 +14,9 @@ export function Benefits() {
             <li key={item.title} className={s.benefit}>
               <span className={s.benefitNum}>0{i + 1}</span>
               <h3 className={s.h3}>{item.title}</h3>
-              <p className={s.muted}>{item.text}</p>
+              <p className={s.muted}>
+                <Rich text={item.text} />
+              </p>
             </li>
           ))}
         </ul>

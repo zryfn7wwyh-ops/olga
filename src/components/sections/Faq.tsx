@@ -1,3 +1,4 @@
+import { Rich } from "@/components/ui/Rich";
 import { Icon } from "@/components/ui/Icon";
 import { faq } from "@/content/faq";
 import { faqIntro } from "@/content/page";
@@ -19,7 +20,9 @@ export function Faq() {
                   <Icon name="plus" size={18} />
                 </span>
               </summary>
-              <p className={s.faqAnswer}>{item.a}</p>
+              <p className={s.faqAnswer}>
+                <Rich text={item.a} />
+              </p>
             </details>
           ))}
         </div>

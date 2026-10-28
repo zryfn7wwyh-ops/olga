@@ -48,6 +48,11 @@ p {
   text-wrap: pretty;
 }
 
+strong {
+  font-weight: 620;
+  color: var(--strong-color, var(--color-ink));
+}
+
 ul,
 ol {
   margin: 0;

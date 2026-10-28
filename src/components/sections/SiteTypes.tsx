@@ -1,3 +1,4 @@
+import { Rich } from "@/components/ui/Rich";
 import { EstimateButton, QuizButton } from "@/components/forms/Triggers";
 import { FormatPreview } from "@/components/showcase/FormatPreview";
 import { Icon } from "@/components/ui/Icon";
@@ -19,7 +20,9 @@ export function SiteTypes() {
               </div>
               <div className={s.formatBody}>
                 <h3 className={s.h3}>{item.title}</h3>
-                <p className={s.muted}>{item.text}</p>
+                <p className={s.muted}>
+                  <Rich text={item.text} />
+                </p>
                 <ul className={s.points}>
                   {item.points.map((p) => (
                     <li key={p}>

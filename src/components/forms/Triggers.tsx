@@ -6,7 +6,7 @@ import { Icon } from "@/components/ui/Icon";
 import type { SiteType } from "@/lib/leads/schema";
 import { useLeadUI } from "./LeadUIProvider";
 
-type Variant = "primary" | "secondary" | "ghost" | "onInk" | "onInkSecondary" | "onInkGhost" | "link";
+type Variant = "primary" | "secondary" | "ghost" | "onInk" | "onInkSecondary" | "onInkGhost" | "link" | "band";
 
 /** Кнопка карточки формата: предвыбирает тип в Hero-форме и ведёт к #calc. */
 export function EstimateButton({

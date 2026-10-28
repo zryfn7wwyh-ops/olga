@@ -1,3 +1,4 @@
+import { Rich } from "@/components/ui/Rich";
 import { EstimateForm } from "@/components/forms/EstimateForm";
 import { QuizButton } from "@/components/forms/Triggers";
 import { hero } from "@/content/page";
@@ -23,7 +24,9 @@ export function Hero() {
               </span>
             ))}
           </h1>
-          <p className={s.heroLead}>{hero.lead}</p>
+          <p className={s.heroLead}>
+            <Rich text={hero.lead} />
+          </p>
           <ul className={s.heroBenefits}>
             {hero.benefits.map((b, i) => (
               <li key={b}>

@@ -1,3 +1,4 @@
+import { Rich } from "@/components/ui/Rich";
 import { ConsultationButton } from "@/components/forms/Triggers";
 import { approach } from "@/content/page";
 import { SectionIntro } from "./SectionIntro";
@@ -18,11 +19,15 @@ export function DataProtection() {
             {approach.items.map((item) => (
               <li key={item.title}>
                 <h3 className={s.h3}>{item.title}</h3>
-                <p>{item.text}</p>
+                <p>
+                  <Rich text={item.text} />
+                </p>
               </li>
             ))}
           </ul>
-          <p className={s.approachNote}>{approach.note}</p>
+          <p className={s.approachNote}>
+            <Rich text={approach.note} />
+          </p>
         </div>
       </div>
     </section>

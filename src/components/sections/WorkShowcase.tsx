@@ -1,3 +1,4 @@
+import { Rich } from "@/components/ui/Rich";
 import { CasePreview } from "@/components/showcase/CasePreview";
 import s2 from "@/components/showcase/showcase.module.css";
 import { cases } from "@/content/cases";
@@ -26,7 +27,9 @@ export function WorkShowcase() {
                 <span className={s2.badge}>{item.kind === "concept" ? "Демонстрационный концепт" : "Проект клиента"}</span>
                 <p className={s2.caseFormat}>{item.format}</p>
                 <h3 className={s2.caseTitle}>{item.title}</h3>
-                <p className={s2.caseSummary}>{item.summary}</p>
+                <p className={s2.caseSummary}>
+                  <Rich text={item.summary} />
+                </p>
                 <ul className={s2.focus} aria-label="Что показывает концепт">
                   {item.focus.map((f) => (
                     <li key={f}>{f}</li>

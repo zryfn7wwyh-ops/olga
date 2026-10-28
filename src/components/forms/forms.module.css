@@ -181,3 +181,17 @@
     grid-column: 1 / -1;
   }
 }
+
+.cardText,
+.legalNote {
+  font-weight: 450;
+}
+
+.recoLabel,
+.cardKicker {
+  font-weight: 500;
+}
+
+.estimateCard {
+  --strong-color: var(--color-ink);
+}

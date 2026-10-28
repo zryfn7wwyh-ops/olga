@@ -1,3 +1,4 @@
+import { Rich } from "@/components/ui/Rich";
 import { steps } from "@/content/page";
 import { SectionIntro } from "./SectionIntro";
 import s from "./sections.module.css";
@@ -22,7 +23,9 @@ export function Process() {
                 <span className="visually-hidden">Этап {i + 1}. </span>
                 {item.title}
               </h3>
-              <p>{item.text}</p>
+              <p>
+                <Rich text={item.text} />
+              </p>
             </li>
           ))}
           </ol>

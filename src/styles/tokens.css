@@ -45,6 +45,10 @@
   --band-3: var(--color-ink-3);
   --band-line: var(--color-ink-line);
   --band-fg: var(--color-on-ink);
+  --band-primary-bg: var(--color-accent);
+  --band-primary-hover: var(--color-accent-hover);
+  --band-primary-fg: #fff;
+  --band-nav: var(--band-muted);
   --band-btn-bg: var(--color-on-ink);
   --band-btn-hover: #fff;
   --band-btn-fg: var(--color-ink);
@@ -114,7 +118,7 @@
 [data-palette="emerald"] {
   --color-ink: #0e1b17;
   --color-paper: #f5f4ef;
-  --color-muted: #55625d;
+  --color-muted: #48554f;
   --color-line: #d7dcd7;
   --color-accent: #0f7a5a;
   --color-accent-hover: #0b6349;
@@ -145,7 +149,7 @@
 [data-palette="emerald-light"] {
   --color-ink: #0e1b17;
   --color-paper: #f5f8f6;
-  --color-muted: #4c5b54;
+  --color-muted: #3d4a44;
   --color-line: #d2ddd6;
   --color-accent: #0f7a5a;
   --color-accent-hover: #0b6349;
@@ -164,10 +168,14 @@
   --band-3: #0e1b17;
   --band-line: #adc2b4;
   --band-fg: #0e1b17;
-  --band-btn-bg: var(--color-accent);
-  --band-btn-hover: var(--color-accent-hover);
+  --band-btn-bg: #0e1b17;
+  --band-btn-hover: #22322b;
   --band-btn-fg: #fff;
-  --band-muted: #44524b;
+  --band-primary-bg: #0e1b17;
+  --band-primary-hover: #22322b;
+  --band-primary-fg: #fff;
+  --band-nav: #0e1b17;
+  --band-muted: #35423c;
   --band-accent: #0b6349;
   --band-glow: rgb(15 122 90 / 0.18);
   --band-shadow: 0 2px 4px rgb(14 27 23 / 0.04), 0 30px 60px -30px rgb(14 27 23 / 0.3);

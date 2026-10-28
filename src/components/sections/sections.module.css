@@ -52,28 +52,7 @@
 }
 
 @media (min-width: 1024px) {
-  @media (min-width: 1024px) {
-  .introSplit {
-    grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
-    column-gap: var(--grid-gap);
-    max-width: none;
-  }
-  .introSplit > :first-child {
-    padding-top: 0.9em;
-  }
-  .introBody {
-    display: grid;
-    gap: var(--space-4);
-    max-width: 860px;
-  }
-}
-
-.introBody {
-  display: grid;
-  gap: var(--space-4);
-}
-
-.introRow {
+  .introRow {
     grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
     align-items: end;
   }
@@ -521,7 +500,7 @@
   border: 0;
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--band-fg);
+  color: var(--color-on-ink);
   box-shadow: 0 0 0 6px var(--color-paper);
 }
 
@@ -780,4 +759,32 @@
 .briefAside .intro,
 .faqGrid .intro {
   margin-bottom: 0;
+}
+
+/* ---------- Плотность вторичного текста и выделения ---------- */
+.lead,
+.heroLead,
+.muted,
+.step p,
+.deliverList p,
+.factor p,
+.approachList p,
+.faqAnswer,
+.ctaText p,
+.briefChecklist {
+  font-weight: 450;
+}
+
+.kicker {
+  font-weight: 500;
+}
+
+.heroBenefits li {
+  font-weight: 560;
+}
+
+.ink,
+.hero,
+.cta {
+  --strong-color: var(--band-fg);
 }

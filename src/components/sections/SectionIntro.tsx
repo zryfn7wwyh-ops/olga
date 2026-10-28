@@ -1,3 +1,4 @@
+import { Rich } from "@/components/ui/Rich";
 import type { ReactNode } from "react";
 import s from "./sections.module.css";
 
@@ -26,7 +27,7 @@ export function SectionIntro({ id, index, kicker, title, lead, titleId, split }:
         <h2 className={s.h2} id={titleId}>
           {title}
         </h2>
-        {lead && <p className={s.lead}>{lead}</p>}
+        {lead && <p className={s.lead}>{typeof lead === "string" ? <Rich text={lead} /> : lead}</p>}
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+import { Rich } from "@/components/ui/Rich";
 import { ButtonLink } from "@/components/ui/Button";
 import { priceFactors } from "@/content/page";
 import { SectionIntro } from "./SectionIntro";
@@ -34,7 +35,9 @@ export function PriceFactors() {
                 {ICONS[i]}
               </svg>
               <h3 className={s.h3}>{item.title}</h3>
-              <p>{item.text}</p>
+              <p>
+                <Rich text={item.text} />
+              </p>
             </li>
           ))}
         </ul>

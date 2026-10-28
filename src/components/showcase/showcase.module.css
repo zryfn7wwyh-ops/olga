@@ -508,3 +508,12 @@
 .pCard b {
   font-weight: 700;
 }
+
+.caseSummary {
+  font-weight: 450;
+}
+
+.caseFormat,
+.focus li {
+  font-weight: 500;
+}

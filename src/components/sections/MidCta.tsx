@@ -1,3 +1,4 @@
+import { Rich } from "@/components/ui/Rich";
 import { ButtonLink } from "@/components/ui/Button";
 import { midCta } from "@/content/page";
 import s from "./sections.module.css";
@@ -14,7 +15,9 @@ export function MidCta() {
             <h2 className={s.h2} id="mid-cta-title">
               {midCta.title}
             </h2>
-            <p>{midCta.text}</p>
+            <p>
+              <Rich text={midCta.text} />
+            </p>
           </div>
           <div>
             <ButtonLink href="#brief" variant="onInk">

@@ -70,6 +70,13 @@
   --btn-border: var(--band-muted);
 }
 
+/* Главная кнопка на «полосе» (шапка): в тёмных палитрах — акцент, в светлой — графит */
+.band {
+  --btn-bg: var(--band-primary-bg);
+  --btn-bg-hover: var(--band-primary-hover);
+  --btn-fg: var(--band-primary-fg);
+}
+
 .onInkGhost {
   --btn-bg: transparent;
   --btn-bg-hover: var(--band-2);
@@ -146,7 +153,7 @@
 }
 
 .optional {
-  font-weight: 400;
+  font-weight: 450;
   color: var(--color-muted);
 }
 
@@ -200,6 +207,7 @@
 
 .hint {
   font-size: var(--text-xs);
+  font-weight: 450;
   color: var(--color-muted);
 }
 
@@ -367,6 +375,7 @@
   align-items: start;
   font-size: var(--text-sm);
   line-height: 1.45;
+  font-weight: 450;
   color: var(--color-muted);
 }
 

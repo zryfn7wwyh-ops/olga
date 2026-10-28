@@ -54,7 +54,7 @@ export function Header() {
           </ul>
         </nav>
         <div className={s.actions}>
-          <Button className={s.ctaDesktop} size="sm" onClick={estimate}>
+          <Button className={s.ctaDesktop} variant="band" size="sm" onClick={estimate}>
             Рассчитать стоимость
           </Button>
           <button
@@ -81,7 +81,7 @@ export function Header() {
               </li>
             ))}
           </ul>
-          <Button block onClick={estimate}>
+          <Button variant="band" block onClick={estimate}>
             Рассчитать стоимость
           </Button>
         </nav>

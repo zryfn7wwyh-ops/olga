@@ -1,3 +1,4 @@
+import { Rich } from "@/components/ui/Rich";
 import { deliverables } from "@/content/page";
 import { SectionIntro } from "./SectionIntro";
 import s from "./sections.module.css";
@@ -15,7 +16,9 @@ export function Deliverables() {
                 0{i + 1}
               </span>
               <h3 className={s.h3}>{item.title}</h3>
-              <p>{item.text}</p>
+              <p>
+                <Rich text={item.text} />
+              </p>
             </li>
           ))}
         </ul>
