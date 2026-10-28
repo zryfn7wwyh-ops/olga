@@ -1,0 +1,227 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgb(247 246 242 / 0.92);
+  backdrop-filter: saturate(1.4) blur(10px);
+  -webkit-backdrop-filter: saturate(1.4) blur(10px);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  height: var(--header-h);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: var(--tap);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-md);
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.logoMark {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  background: var(--color-ink);
+  position: relative;
+}
+
+.logoMark::after {
+  content: "";
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--color-accent);
+}
+
+.nav {
+  display: none;
+}
+
+.navList {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+}
+
+.navLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  padding: 0 14px;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-ink);
+  text-decoration: none;
+  transition: background-color var(--dur-fast) var(--ease);
+}
+
+.navLink:hover {
+  background: var(--color-paper-2);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ctaDesktop {
+  display: none;
+}
+
+.menuBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--tap);
+  height: var(--tap);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+@media (min-width: 1024px) {
+  .nav {
+    display: block;
+  }
+  .ctaDesktop {
+    display: inline-flex;
+  }
+  .menuBtn {
+    display: none;
+  }
+}
+
+.mobileMenu {
+  border-top: 1px solid var(--color-line);
+  background: var(--color-paper);
+  padding-block: var(--space-4) var(--space-5);
+  max-height: calc(100dvh - var(--header-h));
+  overflow: auto;
+}
+
+.mobileMenu[hidden] {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .mobileMenu {
+    display: none;
+  }
+}
+
+.mobileList {
+  display: grid;
+  list-style: none;
+  margin-bottom: var(--space-4);
+}
+
+.mobileList a {
+  display: flex;
+  align-items: center;
+  min-height: 52px;
+  border-bottom: 1px solid var(--color-line);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-md);
+  text-decoration: none;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  background: var(--color-ink);
+  color: var(--color-on-ink);
+  padding-block: var(--space-9) var(--space-6);
+  font-size: var(--text-sm);
+}
+
+.footerGrid {
+  display: grid;
+  gap: var(--space-7);
+}
+
+@media (min-width: 768px) {
+  .footerGrid {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 3fr) minmax(0, 4fr);
+  }
+}
+
+.footer .logoMark {
+  background: var(--color-on-ink);
+}
+
+.footerCol {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+}
+
+.footerTitle {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-on-ink-muted);
+}
+
+.footerLinks {
+  display: grid;
+  gap: 4px;
+  list-style: none;
+}
+
+.footerLinks a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  color: var(--color-on-ink);
+  text-decoration: none;
+}
+
+.footerLinks a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footerMuted {
+  color: var(--color-on-ink-muted);
+  max-width: 44ch;
+}
+
+.footerBottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: var(--space-8);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-ink-line);
+  color: var(--color-on-ink-muted);
+}
+
+.pending {
+  display: inline-flex;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px dashed var(--color-on-ink-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-on-ink-muted);
+}
