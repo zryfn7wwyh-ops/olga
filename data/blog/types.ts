@@ -28,7 +28,14 @@ export type ContentBlock =
   | ImageBlock
   | CalloutBlock;
 
-export type BlogCategoryId = "family" | "inheritance" | "civil" | "business" | "advice";
+export type BlogCategoryId =
+  | "family"
+  | "inheritance"
+  | "civil"
+  | "business"
+  | "advice"
+  | "dtp"
+  | "criminal";
 
 export type BlogCategory = {
   id: BlogCategoryId;
