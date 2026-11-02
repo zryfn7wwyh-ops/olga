@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { contacts } from "@/data/contacts";
 import { useCallModal } from "@/components/CallModalProvider";
 import { Button } from "@/components/ui/Button";
@@ -10,19 +12,21 @@ import { SocialIconLink } from "@/components/ui/SocialIconLink";
 import { MaxIcon, MenuIcon, CloseIcon, PhoneIcon, TelegramIcon } from "@/components/ui/icons";
 
 const NAV_LINKS = [
-  { href: "#services", label: "Услуги" },
-  { href: "#about", label: "Об адвокате" },
-  { href: "#process", label: "Как проходит работа" },
-  { href: "#cases", label: "Кейсы" },
-  { href: "#reviews", label: "Отзывы" },
-  { href: "#prices", label: "Стоимость" },
-  { href: "#contacts", label: "Контакты" },
+  { href: "/#services", label: "Услуги" },
+  { href: "/#about", label: "Об адвокате" },
+  { href: "/#process", label: "Как проходит работа" },
+  { href: "/#cases", label: "Кейсы" },
+  { href: "/blog", label: "Статьи" },
+  { href: "/#reviews", label: "Отзывы" },
+  { href: "/#prices", label: "Стоимость" },
+  { href: "/#contacts", label: "Контакты" },
 ];
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { openModal } = useCallModal();
+  const pathname = usePathname();
 
   useEffect(() => {
     function handleScroll() {
@@ -49,7 +53,7 @@ export function Header() {
       }`}
     >
       <Container size="wide" className="flex h-16 items-center justify-between gap-4 py-3 sm:h-20">
-        <a href="#" className="flex shrink-0 items-center gap-3">
+        <Link href="/" className="flex shrink-0 items-center gap-3">
           <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-bronze/50 font-display text-lg text-ink">
             АА
           </span>
@@ -59,18 +63,23 @@ export function Header() {
               Аксёнова Анита Георгиевна
             </span>
           </span>
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-3 2xl:gap-4 xl:flex" aria-label="Основная навигация">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="whitespace-nowrap text-sm font-medium text-text transition-colors hover:text-bronze"
-            >
-              {link.label}
-            </a>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isActive = link.href === "/blog" && pathname?.startsWith("/blog");
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`whitespace-nowrap text-sm font-medium transition-colors hover:text-bronze ${
+                  isActive ? "text-bronze" : "text-text"
+                }`}
+              >
+                {link.label}
+              </a>
+            );
+          })}
         </nav>
 
         <div className="hidden shrink-0 items-center gap-4 xl:flex">
@@ -108,16 +117,21 @@ export function Header() {
       {isMenuOpen ? (
         <div className="border-t border-line bg-paper xl:hidden">
           <Container className="flex flex-col gap-1 py-4">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setIsMenuOpen(false)}
-                className="rounded-lg px-2 py-3 text-base font-medium text-text transition-colors hover:bg-cream hover:text-bronze"
-              >
-                {link.label}
-              </a>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const isActive = link.href === "/blog" && pathname?.startsWith("/blog");
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`rounded-lg px-2 py-3 text-base font-medium transition-colors hover:bg-cream hover:text-bronze ${
+                    isActive ? "text-bronze" : "text-text"
+                  }`}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
             <div className="mt-3 flex items-center gap-3 border-t border-line pt-4">
               <SocialIconLink
                 href={contacts.maxUrl}

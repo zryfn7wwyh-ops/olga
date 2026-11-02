@@ -2,13 +2,14 @@ import { contacts } from "@/data/contacts";
 import { Container } from "@/components/ui/Container";
 
 const NAV_LINKS = [
-  { href: "#services", label: "Услуги" },
-  { href: "#about", label: "Об адвокате" },
-  { href: "#process", label: "Как проходит работа" },
-  { href: "#cases", label: "Кейсы" },
-  { href: "#reviews", label: "Отзывы" },
-  { href: "#prices", label: "Стоимость" },
-  { href: "#contacts", label: "Контакты" },
+  { href: "/#services", label: "Услуги" },
+  { href: "/#about", label: "Об адвокате" },
+  { href: "/#process", label: "Как проходит работа" },
+  { href: "/#cases", label: "Кейсы" },
+  { href: "/blog", label: "Статьи" },
+  { href: "/#reviews", label: "Отзывы" },
+  { href: "/#prices", label: "Стоимость" },
+  { href: "/#contacts", label: "Контакты" },
 ];
 
 const LEGAL_LINKS = [

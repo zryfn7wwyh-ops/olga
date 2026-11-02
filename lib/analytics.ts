@@ -8,7 +8,11 @@ export type AnalyticsGoal =
   | "document_view"
   | "review_view"
   | "route_build"
-  | "yandex_reviews_click";
+  | "yandex_reviews_click"
+  | "article_open"
+  | "related_article_click"
+  | "blog_filter_change"
+  | "blog_pagination_click";
 
 export type AnalyticsPlacement =
   | "header"
@@ -22,7 +26,10 @@ export type AnalyticsPlacement =
   | "pricing"
   | "reviews"
   | "contacts"
-  | "modal";
+  | "modal"
+  | "blog"
+  | "article"
+  | "article_cta";
 
 export type AnalyticsParams = {
   placement?: AnalyticsPlacement;

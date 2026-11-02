@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Golos_Text, Cormorant } from "next/font/google";
 import { contacts } from "@/data/contacts";
+import { siteUrl } from "@/lib/site";
 import { CallModalProvider } from "@/components/CallModalProvider";
 import "./globals.css";
 
@@ -26,8 +27,6 @@ const signatureFont = Cormorant({
   style: ["italic"],
   display: "swap",
 });
-
-const siteUrl = "https://aksyonova-advokat.ru";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

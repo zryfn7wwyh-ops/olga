@@ -1,0 +1,24 @@
+<svg width="800" height="450" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgConsultation" x1="0" y1="0" x2="800" y2="450" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#17191d" />
+      <stop offset="1" stop-color="#17191d" />
+    </linearGradient>
+    <pattern id="dotsConsultation" width="34" height="34" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.6" fill="#a7895b" fill-opacity="0.35" />
+    </pattern>
+  </defs>
+  <rect width="800" height="450" fill="url(#bgConsultation)" />
+  <rect x="420" y="0" width="380" height="450" fill="url(#dotsConsultation)" />
+
+  <rect x="470" y="150" width="260" height="170" rx="10" fill="none" stroke="#dab876" stroke-opacity="0.45" stroke-width="1.5" />
+  <line x1="500" y1="195" x2="690" y2="195" stroke="#dab876" stroke-opacity="0.45" stroke-width="1.5" />
+  <line x1="500" y1="225" x2="650" y2="225" stroke="#dab876" stroke-opacity="0.3" stroke-width="1.5" />
+  <line x1="500" y1="255" x2="670" y2="255" stroke="#dab876" stroke-opacity="0.3" stroke-width="1.5" />
+
+  <circle cx="70" cy="70" r="26" fill="none" stroke="#c2a67d" stroke-width="1.5" />
+  <text x="70" y="78" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" fill="#faf9f6">АА</text>
+
+  <text x="70" y="380" font-family="Georgia, 'Times New Roman', serif" font-size="34" fill="#faf9f6">Юридические советы</text>
+  <line x1="70" y1="398" x2="230" y2="398" stroke="#dab876" stroke-width="2" />
+</svg>
