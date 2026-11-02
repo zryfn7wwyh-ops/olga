@@ -20,7 +20,7 @@ export default function Header({ active }) {
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-surface">
       <div id="header-bar">
-        <p className="bg-soft px-4 py-1.5 text-center text-xs text-navy">{prototypeNotice}</p>
+        {prototypeNotice && <p className="bg-soft px-4 py-1.5 text-center text-xs text-navy">{prototypeNotice}</p>}
         <div className="container-x flex h-16 items-center gap-4">
           <Logo />
           <div className="ml-auto flex items-center gap-1">

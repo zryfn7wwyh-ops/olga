@@ -16,7 +16,7 @@ export default function DocumentList({ items, status }) {
           </span>
           <span className="shrink-0 pl-8 sm:pl-0">
             {d.file ? (
-              <a href={d.file} target="_blank" rel="noopener" download className="link inline-flex items-center gap-1.5 text-sm">
+              <a href={d.file} target="_blank" rel="noopener" download={d.fileName || true} className="link inline-flex items-center gap-1.5 text-sm">
                 <Download aria-hidden="true" className="h-4 w-4" />
                 Скачать{d.format || d.size ? ` (${[d.format, d.size].filter(Boolean).join(', ')})` : ''}
                 <span className="sr-only">: {d.title}</span>
