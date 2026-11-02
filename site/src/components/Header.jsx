@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Eye, Menu, X } from 'lucide-react';
 import Logo from './Logo.jsx';
-import { blocks } from '../data/landing.js';
+import { blocks, groupStartingAt } from '../data/landing.js';
 import { prototypeNotice } from '../data/site.js';
 import { useA11yMode } from '../lib/a11y.js';
 
@@ -52,14 +52,17 @@ export default function Header({ active }) {
         <ol className="container-x py-2">
           {blocks.map((b, i) => (
             <li key={b.id}>
+              {groupStartingAt(b.id) && (
+                <p className={`px-3 pb-1 text-xs font-bold uppercase tracking-wider text-muted ${i ? 'pt-4' : 'pt-1'}`}>{groupStartingAt(b.id).title}</p>
+              )}
               <a
                 href={`#${b.id}`}
                 onClick={() => setOpen(false)}
                 aria-current={active === b.id ? 'location' : undefined}
-                className={`flex gap-3 rounded px-3 py-3 text-base transition hover:bg-soft hover:text-accent ${active === b.id ? 'font-semibold text-accent' : 'text-navy'}`}
+                className={`flex gap-3 rounded px-3 py-2.5 text-base transition hover:bg-soft hover:text-accent ${active === b.id ? 'font-semibold text-accent' : 'text-navy'}`}
               >
                 <span className="w-6 shrink-0 text-right tabular-nums text-muted">{i + 1}.</span>
-                {b.title}
+                {b.nav}
               </a>
             </li>
           ))}
