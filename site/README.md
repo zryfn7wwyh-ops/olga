@@ -34,9 +34,11 @@ npm run build   # статические файлы в dist/ (+ public/sitemap.x
 
 Плашка над шапкой задаётся в `src/data/site.js` (`prototypeNotice`); сейчас выключена (`null`).
 
-## Индексация
+## Размещение и индексация
 
-До запуска закрыта (`.env`: `VITE_ROBOTS=noindex, nofollow`; `robots.txt` запрещает обход). Для публикации: `VITE_ROBOTS=index, follow` и сборка с `SITE_INDEXABLE=1 SITE_URL=https://<домен>`.
+Готовый к загрузке архив — `keys-group-site.zip` (внутри `ИНСТРУКЦИЯ.txt`). Сборка использует относительные пути и работает как в корне домена, так и в папке существующего сайта.
+
+Индексация открыта (`.env`: `VITE_ROBOTS=index, follow`). Чтобы получить `sitemap.xml`, соберите с адресом сайта: `SITE_URL=https://<домен> npm run build`. Закрыть индексацию: `VITE_ROBOTS=noindex, nofollow` и `SITE_INDEXABLE=0`.
 
 ## Соответствие требованиям
 

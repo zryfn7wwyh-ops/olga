@@ -1,3 +1,2 @@
-# Прототип: индексация закрыта до публикации (SITE_INDEXABLE=1 открывает).
 User-agent: *
-Disallow: /
+Allow: /
