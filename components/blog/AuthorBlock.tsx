@@ -13,7 +13,13 @@ export function AuthorBlock({ authorId }: AuthorBlockProps) {
   return (
     <div className="flex flex-col gap-5 rounded-2xl border border-line bg-paper p-6 sm:flex-row sm:items-center sm:p-7">
       <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full bg-ink/5">
-        <Image src={author.photo} alt={author.name} fill sizes="80px" className="object-cover" />
+        <Image
+          src={author.photo}
+          alt={author.name}
+          fill
+          sizes="80px"
+          className="object-cover object-top"
+        />
       </div>
 
       <div>
