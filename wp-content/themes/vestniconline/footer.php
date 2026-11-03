@@ -901,10 +901,13 @@ document.addEventListener("DOMContentLoaded", function () {
     cookieWindow.style.display = "none";
   });
 
-  cookieButtonSecond.addEventListener("click", function () {
-    setCookie(cookieName, "accepted", 30);
-    cookieWindow.style.display = "none";
-  });
+  // Второй кнопки (.btn_cookie-second) в разметке нет: без проверки здесь была ошибка JS.
+  if (cookieButtonSecond) {
+    cookieButtonSecond.addEventListener("click", function () {
+      setCookie(cookieName, "accepted", 30);
+      cookieWindow.style.display = "none";
+    });
+  }
 });
 </script>
 
