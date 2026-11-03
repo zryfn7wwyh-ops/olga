@@ -46,6 +46,29 @@
     });
   }
 
+  /* ---- Окно «Оставить заявку» ---- */
+  const modal = document.getElementById('lead-modal');
+  if (modal && typeof modal.showModal === 'function') {
+    let opener = null;
+    const close = () => modal.close();
+    document.querySelectorAll('[data-modal="lead"]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        opener = btn;
+        modal.showModal();
+        document.body.classList.add('modal-open');
+        const first = modal.querySelector('input');
+        if (first) first.focus();
+      });
+    });
+    modal.querySelector('.js-modal-close').addEventListener('click', close);
+    modal.addEventListener('click', (e) => { if (e.target === modal) close(); }); // клик по затемнению
+    modal.addEventListener('close', () => {
+      document.body.classList.remove('modal-open');
+      if (opener) opener.focus();
+    });
+  }
+
   /* ---- Ссылки без заданной цели ---- */
   document.querySelectorAll('a[href="#"]').forEach((a) => {
     a.addEventListener('click', (e) => e.preventDefault());
@@ -87,7 +110,7 @@
       if (el.type === 'checkbox') ok = !el.required || el.checked;
       else if (el.required && !el.value.trim()) ok = false;
       else if (el.value && validators[el.type]) ok = validators[el.type](el.value.trim());
-      const wrap = el.closest('.field, .consent');
+      const wrap = el.closest('.field, .mfield, .consent');
       if (wrap) wrap.classList.toggle('is-invalid', !ok);
       el.setAttribute('aria-invalid', String(!ok));
       return ok;

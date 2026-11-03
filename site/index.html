@@ -56,7 +56,7 @@
         </div>
       </div>
       <a class="btn btn--ghost btn--sm" href="#" data-todo="URL личного кабинета не задан"><svg class="btn__ico"><use href="#i-user"/></svg>Войти</a>
-      <a class="btn btn--primary btn--sm" href="#expert-form" data-todo="цель консультации не задана">Бесплатная Консультация</a>
+      <a class="btn btn--primary btn--sm" href="#expert-form" data-modal="lead" aria-haspopup="dialog">Бесплатная Консультация</a>
       <button class="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span></button>
     </div>
 
@@ -100,7 +100,7 @@
         </ul>
         <div class="hero__btns">
           <a class="btn btn--primary" href="#notify-form">Зарегистрироваться сейчас</a>
-          <a class="btn btn--outline" href="#expert-form" data-todo="цель «Узнать стоимость» не задана">Узнать стоимость</a>
+          <a class="btn btn--outline" href="#expert-form" data-modal="lead" aria-haspopup="dialog">Узнать стоимость</a>
         </div>
       </div>
 
@@ -167,7 +167,7 @@
       <div class="check__left">
         <p class="eyebrow">Оставьте заявку</p>
         <h2 id="check-title" class="h2 h2--sm">Зарегистрирована ли ваша компания (ИП) в&nbsp;Роскомнадзоре?</h2>
-        <a class="btn btn--primary btn--check" href="#notify-form" data-todo="цель «Проверить» не задана">Проверить</a>
+        <a class="btn btn--primary btn--check" href="#notify-form" data-modal="lead" aria-haspopup="dialog">Проверить</a>
       </div>
       <ul class="check__grid">
         <li class="stat"><span class="stat__ico"><svg><use href="#i-bars"/></svg></span><span><b>За один день</b><small>Подача документов</small></span></li>
@@ -279,7 +279,7 @@
       <p class="footer__legal" data-verify="реквизиты: в эталоне нечитаемы">Реквизиты и адрес организации — уточнить по исходному макету<br>Часы работы: пн–пт с 9:00 до 18:00</p>
     </div>
     <div class="footer__col footer__col--right">
-      <a class="btn btn--primary btn--sm" href="#expert-form" data-todo="цель консультации не задана">Бесплатная Консультация</a>
+      <a class="btn btn--primary btn--sm" href="#expert-form" data-modal="lead" aria-haspopup="dialog">Бесплатная Консультация</a>
       <ul class="socials" aria-label="Соцсети" data-verify="набор соцсетей и URL">
         <li><a href="#" aria-label="Instagram" data-todo="URL"><svg viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="8" r="2.8" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="11.6" cy="4.4" r=".9" fill="currentColor"/></svg></a></li>
         <li><a href="#" aria-label="Одноклассники" data-todo="URL"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="currentColor"/><circle cx="8" cy="6" r="1.9" fill="none" stroke="#fff" stroke-width="1.3"/><path d="M5.6 9.3c1.5 1 3.3 1 4.8 0M8 10.3l-2 2.2m2-2.2l2 2.2" fill="none" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/></svg></a></li>
@@ -288,6 +288,26 @@
       </ul>
     </div>
   </footer>
+
+<dialog class="modal" id="lead-modal" aria-labelledby="lead-title">
+  <div class="modal__box">
+    <button type="button" class="modal__close js-modal-close" aria-label="Закрыть окно"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 3.5l9 9m0-9l-9 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+    <div class="modal__info">
+      <h2 id="lead-title" class="modal__title">Всероссийский сервис Роском Онлайн провел более 1500 регистраций в Роскомнадзоре и подготовил документы по персональным данным для более чем 300 компаний.</h2>
+      <p class="modal__text">С нами работают как индивидуальные предприниматели, так и крупный и средний бизнес в различных сферах. Мы успешно помогаем клиентам, которые получили предписание Роскомнадзора избежать штрафов и экономим нашим клиентам до 18&nbsp;000&nbsp;000 рублей.</p>
+      <p class="modal__note">Мы разрабатываем для наших клиентов полный пакет документов и регистрируем их в Роскомнадзоре, тем самым полностью закрываем вопрос по персональным данным.</p>
+    </div>
+    <form class="modal__form js-form" novalidate data-endpoint="" data-name="Оставить заявку (окно)">
+      <label class="mfield"><span>Номер телефона</span><input type="tel" name="phone" placeholder="Номер телефона" autocomplete="tel" inputmode="tel" required></label>
+      <label class="mfield"><span>E-mail</span><input type="email" name="email" placeholder="E-mail" autocomplete="email"></label>
+      <p class="req-note">Обязательно отметьте поля ниже*</p>
+      <label class="consent"><input type="checkbox" name="agree_pd" required><span>Нажимая кнопку "Оставить заявку", я соглашаюсь на обработку моих персональных данных в соотв. с ФЗ от 27.07.2006 №152-ФЗ на условиях и для целей, определенных <a href="#" data-todo="URL политики">Политикой конфиденциальности</a>. *</span></label>
+      <label class="consent"><input type="checkbox" name="agree_ads" required><span>Нажимая кнопку "Оставить заявку", я соглашаюсь на получение рассылки в соотв. с ФЗ от 13.03.2006 №38-ФЗ на условиях и для целей, определенных <a href="#" data-todo="URL политики">Политикой конфиденциальности</a>. *</span></label>
+      <button class="btn btn--primary modal__submit" type="submit">Оставить заявку</button>
+      <p class="form-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</dialog>
 
 <script src="main.js" defer></script>
 </body>

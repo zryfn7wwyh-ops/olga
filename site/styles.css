@@ -246,6 +246,59 @@ em{font-style:normal;color:var(--blue-text)}
 .check__art:has(img.is-missing){visibility:hidden}
 img.is-missing{visibility:hidden}
 
+
+/* ---------- modal «Оставить заявку» ---------- */
+.modal{width:min(1386px,100% - 32px);max-width:none;max-height:calc(100% - 32px);padding:0;border:0;border-radius:24px;background:transparent;overflow:visible}
+.modal::backdrop{background:rgba(22,32,64,.45);backdrop-filter:blur(3px)}
+.modal[open]{animation:modal-in .22s ease-out}
+@keyframes modal-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.modal__box{position:relative;display:grid;grid-template-columns:1fr 641px;gap:31px;align-items:center;min-height:740px;padding:57px 63px 57px 22px;border-radius:24px;background:linear-gradient(135deg,#EEF3FE 0%,#E9EFFD 100%);max-height:calc(100dvh - 32px);overflow:auto}
+.modal__close{position:absolute;top:16px;right:16px;width:40px;height:40px;display:grid;place-items:center;border:0;border-radius:50%;background:#fff;color:var(--ink-2);cursor:pointer;box-shadow:0 4px 14px -4px rgba(40,60,120,.25);z-index:2}
+.modal__close:hover{color:var(--blue)}
+.modal__close svg{width:16px;height:16px}
+.modal__info{padding-left:0}
+.modal__title{position:relative;margin-left:32px;padding-bottom:28px;font-size:22px;line-height:32px;font-weight:600;letter-spacing:-.01em;max-width:590px}
+.modal__title::after{content:"";position:absolute;left:-32px;bottom:0;width:216px;height:1px;background:var(--blue)}
+.modal__text{margin:27px 0 0 93px;font-size:16px;line-height:25px;color:var(--ink-2);max-width:540px}
+.modal__note{position:relative;margin:42px 0 0 11px;padding:18px 12px;border-radius:12px;background:#fff;text-align:center;color:var(--blue-text);font-size:19px;line-height:30px;font-weight:600;letter-spacing:-.01em}
+.modal__note::before{content:"!";position:absolute;right:16px;top:-14px;width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:17px;font-weight:700;line-height:1}
+.modal__form{background:#fff;border-radius:30px;padding:38px 53px 40px;box-shadow:0 30px 60px -30px rgba(60,90,170,.3)}
+.mfield{display:block}
+.mfield+.mfield{margin-top:12px}
+.mfield span{display:block;margin-bottom:12px;font-size:17px;line-height:22px;color:var(--ink)}
+.mfield input{width:100%;height:60px;padding:0 20px;border:1px solid #9DB9F5;border-radius:30px;background:#EDF2FE;font-size:16px;color:var(--ink);outline:none}
+.mfield input::placeholder{color:#C3CCDD;font-weight:600}
+.mfield input:focus{background:#fff;border-color:var(--blue)}
+.mfield.is-invalid input{border-color:#E5484D}
+.modal__form .req-note{margin-top:38px;margin-bottom:8px;font-size:17px;letter-spacing:.03em;font-weight:600}
+.modal__form .consent{font-size:17px;line-height:23px;letter-spacing:.03em;color:var(--ink);align-items:center}
+.modal__form .consent+.consent{margin-top:14px}
+.modal__form .consent input{width:14px;height:14px}
+.modal__form .consent a{text-decoration:none}
+.modal__submit{display:flex;margin:36px auto 0;height:60px;padding:0 17px;border-radius:30px;font-size:18px;font-weight:500;min-width:190px}
+body.modal-open{overflow:hidden}
+@media (max-width:1180px){
+  .modal__box{grid-template-columns:1fr minmax(0,560px);padding:48px 32px 40px 16px;min-height:0}
+  .modal__form{padding:32px 32px 32px}
+  .modal__text{margin-left:40px}
+}
+@media (max-width:900px){
+  .modal__box{grid-template-columns:1fr;padding:56px 20px 24px;gap:24px}
+  .modal__title{margin-left:0;font-size:20px;line-height:1.4}
+  .modal__title::after{left:0}
+  .modal__text{margin:20px 0 0;font-size:15px}
+  .modal__note{margin:28px 0 0;font-size:17px;line-height:1.5}
+}
+@media (max-width:640px){
+  .modal{width:calc(100% - 16px);max-height:calc(100% - 16px)}
+  .modal__box{max-height:calc(100dvh - 16px);padding:56px 14px 18px}
+  .modal__form{padding:24px 18px;border-radius:22px}
+  .mfield span,.modal__form .req-note,.modal__form .consent{font-size:15px;line-height:1.45;letter-spacing:0}
+  .mfield input{height:54px}
+  .modal__submit{width:100%}
+}
+@media (prefers-reduced-motion:reduce){.modal[open]{animation:none}}
+
 /* ================= responsive ================= */
 @media (max-width:1279px){
   .reviews__viewport{margin-inline:-16px;padding-inline:16px}
