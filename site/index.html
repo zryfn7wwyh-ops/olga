@@ -32,14 +32,7 @@
   <symbol id="logo-mark" viewBox="0 0 40 40"><rect x="2" y="2" width="36" height="36" rx="7" fill="none" stroke="currentColor" stroke-width="4"/><path d="M14 30V11h9a6 6 0 010 12h-9" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/></symbol>
 </svg>
 
-<div class="hero-bg" aria-hidden="true">
-    <span class="ring ring--blob"></span>
-    <span class="ring ring--disc"></span>
-    <span class="ring ring--glass r1"></span>
-    <span class="ring ring--glass r2"></span>
-    <span class="ring ring--glass r3"></span>
-    <span class="ring ring--arc"></span>
-</div>
+
 
   <header class="header container">
     <div class="header__top">
@@ -80,6 +73,14 @@
 
   <main id="main">
   <section class="hero container" aria-labelledby="hero-title">
+    <div class="hero-bg" aria-hidden="true">
+    <span class="ring ring--blob"></span>
+    <span class="ring ring--disc"></span>
+    <span class="ring ring--glass r1"></span>
+    <span class="ring ring--glass r2"></span>
+    <span class="ring ring--glass r3"></span>
+    <span class="ring ring--arc"></span>
+</div>
     <nav class="crumbs" aria-label="Хлебные крошки">
       <a href="/" aria-label="Главная страница сайта"><svg><use href="#i-home"/></svg></a>
       <span aria-hidden="true">›</span>
@@ -88,7 +89,7 @@
 
     <div class="hero__grid">
       <div class="hero__left">
-        <h1 id="hero-title" class="hero__title">Регистрация в <em>Роскомнадзоре</em> для<br class="d-br"> обработки персональных данных <em>за&nbsp;1&nbsp;день</em></h1>
+        <h1 id="hero-title" class="hero__title">Регистрация в <em>Роскомнадзоре</em> для обработки персональных данных <em>за&nbsp;1&nbsp;день</em></h1>
         <ul class="checks">
           <li><svg><use href="#i-check"/></svg>Уведомление в Роскомнадзор</li>
           <li><svg><use href="#i-check"/></svg>Подготовка Политики обработки персональных данных</li>
@@ -165,7 +166,7 @@
     <div class="check__box">
       <div class="check__left">
         <p class="eyebrow">Оставьте заявку</p>
-        <h2 id="check-title" class="h2 h2--sm">Зарегистрирована ли ваша<br class="d-br"> компания (ИП) в&nbsp;Роскомнадзоре?</h2>
+        <h2 id="check-title" class="h2 h2--sm">Зарегистрирована ли ваша компания (ИП) в&nbsp;Роскомнадзоре?</h2>
         <a class="btn btn--primary btn--check" href="#notify-form" data-todo="цель «Проверить» не задана">Проверить</a>
       </div>
       <ul class="check__grid">
@@ -207,16 +208,16 @@
         <li class="err"><span class="tag">Ошибка 5</span><h3>Ошибки при описании информационных систем</h3><p>Не указываются CRM-системы, корпоративные сервисы, сайты или иные инструменты обработки данных.</p></li>
         <li class="err"><span class="tag">Ошибка 6</span><h3>Не указаны лица, которым поручена обработка</h3><p>Часто забывают про бухгалтерские компании, IT-подрядчиков, CRM-платформы и сервисы рассылок.</p></li>
         <li class="err"><span class="tag">Ошибка 7</span><h3>Уведомление подготовлено без внутреннего пакета документов</h3><p>Компания подаёт сведения в Роскомнадзор до разработки политик, положений, приказов и иных обязательных документов.</p></li>
+        <li class="refusal">
+          <div class="refusal__body">
+            <h3 class="refusal__title">Реальный пример отказа Роскомнадзора</h3>
+            <p>Роскомнадзор отказал оператору во внесении сведений в реестр из-за некорректного заполнения уведомления и несоответствия сведений требованиям законодательства о персональных данных.</p>
+            <a class="btn btn--primary btn--xs js-download" href="assets/docs/otkaz-rkn.pdf" download data-todo="нужен документ заказчика"><svg class="btn__ico"><use href="#i-download"/></svg>Скачать документ отказа</a>
+            <p class="form-status form-status--inline" role="status" aria-live="polite"></p>
+          </div>
+          <span class="ban" aria-hidden="true"><img data-src="assets/ban.webp" alt="" data-asset="ban.webp"></span>
+        </li>
       </ol>
-      <div class="refusal">
-        <div class="refusal__body">
-          <h3 class="refusal__title">Реальный пример отказа Роскомнадзора</h3>
-          <p>Роскомнадзор отказал оператору во внесении сведений в реестр из-за некорректного заполнения уведомления и несоответствия сведений требованиям законодательства о персональных данных.</p>
-          <a class="btn btn--primary btn--xs js-download" href="assets/docs/otkaz-rkn.pdf" download data-todo="нужен документ заказчика"><svg class="btn__ico"><use href="#i-download"/></svg>Скачать документ отказа</a>
-          <p class="form-status form-status--inline" role="status" aria-live="polite"></p>
-        </div>
-        <span class="ban" aria-hidden="true"><img data-src="assets/ban.webp" alt="" data-asset="ban.webp"></span>
-      </div>
     </div>
   </section>
 
