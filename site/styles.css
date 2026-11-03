@@ -135,8 +135,8 @@ em{font-style:normal;color:var(--blue-text)}
 .experts{display:grid;grid-template-columns:546px 1fr;gap:14px;margin-top:130px}
 .experts__photo{position:relative;min-height:432px;border-radius:14px;overflow:hidden;background:
   radial-gradient(120% 90% at 30% 20%,#5F93FF 0,#4780FF 50%,#3C74F4 100%)}
-.experts__photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.experts__title{position:absolute;left:35px;bottom:44px;color:#fff;text-transform:uppercase;font-family:var(--ff-caps);font-weight:700;font-size:30px;line-height:1.25;text-shadow:0 2px 12px rgba(0,30,120,.25)}
+.experts__photo img{position:absolute;left:0;right:0;bottom:-6px;top:12px;width:100%;height:calc(100% - 6px);object-fit:contain;object-position:28% 100%}
+.experts__title{position:absolute;z-index:1;left:35px;bottom:44px;color:#fff;text-transform:uppercase;font-family:var(--ff-caps);font-weight:700;font-size:30px;line-height:1.25;text-shadow:0 2px 12px rgba(0,30,120,.25)}
 .card-form--blue{background:var(--pale);border-radius:18px;padding:34px 37px 30px}
 
 /* ---------- headings ---------- */
@@ -168,7 +168,7 @@ em{font-style:normal;color:var(--blue-text)}
 .stat__ico svg{width:22px;height:22px}
 .stat b{display:block;font-size:20px;font-weight:700;line-height:1.25}
 .stat small{display:block;font-size:16px;color:var(--ink-2);margin-top:6px}
-.check__art{position:absolute;left:330px;top:150px;width:372px;height:263px;z-index:1}
+.check__art{position:absolute;left:250px;top:190px;width:330px;height:297px;z-index:1;pointer-events:none}
 .check__art img{width:100%;height:100%;object-fit:contain}
 
 /* ---------- prep ---------- */
@@ -196,6 +196,8 @@ em{font-style:normal;color:var(--blue-text)}
   background:radial-gradient(circle,transparent 58%,#5D8FF3 59%,#8FB1F8 72%,#4E81EE 85%,transparent 86%)}
 .ban::after{content:"";position:absolute;left:50%;top:50%;width:150px;height:30px;border-radius:15px;background:linear-gradient(180deg,#9DBBF9,#5C8DF1);transform:translate(-50%,-50%) rotate(-45deg)}
 .ban img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:1}
+.ban:has(img:not(.is-missing)){background:none}
+.ban:has(img:not(.is-missing))::after{display:none}
 
 /* ---------- logos ---------- */
 .logos{margin-top:160px;overflow:hidden;padding:20px 0 60px}
@@ -280,7 +282,7 @@ img.is-missing{visibility:hidden}
   .check__box{grid-template-columns:1fr;padding:32px 24px}
   .btn--check{margin-top:24px}
   .check__grid{margin-top:8px}
-  .check__art{display:none}
+  .check__art{position:relative;left:auto;top:auto;justify-self:center;width:300px;height:270px;margin:-20px 0 -24px}
   .prep{margin-top:90px}
   .prep__grid{grid-template-columns:repeat(2,1fr)}
   .errors{margin-top:90px;padding:70px 0}
@@ -304,7 +306,9 @@ img.is-missing{visibility:hidden}
   .card-form__title{font-size:22px;padding:0}
   .card-form__submit{width:100%;white-space:normal;height:auto;min-height:56px;padding:12px 18px}
   .hero__btns .btn{flex:1 1 220px}
-  .experts__title{left:20px;bottom:24px;font-size:24px;max-width:90%}
+  .experts__photo{aspect-ratio:1/1.12}
+  .experts__photo img{object-position:50% 100%}
+  .experts__title{left:20px;bottom:22px;font-size:22px;max-width:90%}
   .cond__grid,.check__grid,.prep__grid,.errors__grid{grid-template-columns:1fr}
   .tile{min-height:0}
   .refusal{grid-column:auto;padding:24px 20px 200px;flex-direction:column}
