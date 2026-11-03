@@ -50,8 +50,11 @@
         opener = btn;
         modal.showModal();
         document.body.classList.add('modal-open');
-        const first = modal.querySelector('input');
-        if (first) first.focus();
+        // На сенсорных экранах не открываем клавиатуру сразу — фокус на окно целиком
+        const fine = window.matchMedia('(pointer: fine)').matches;
+        const target = fine ? modal.querySelector('input') : modal.querySelector('.modal__box');
+        if (target) target.focus({ preventScroll: true });
+        modal.querySelector('.modal__box').scrollTop = 0;
       });
     });
     modal.querySelector('.js-modal-close').addEventListener('click', close);
@@ -60,6 +63,31 @@
       document.body.classList.remove('modal-open');
       if (opener) opener.focus();
     });
+  }
+
+  /* ---- Быстрые ссылки: подсветка блока, который сейчас на экране ---- */
+  const navLinks = [...document.querySelectorAll('.nav a[href^="#"], .footer__nav a[href^="#"]')];
+  const targets = [...new Set(navLinks.map((a) => a.getAttribute('href')))]
+    .map((h) => document.querySelector(h)).filter(Boolean);
+  if (targets.length && 'IntersectionObserver' in window) {
+    const visible = new Map();
+    const setActive = () => {
+      let best = null;
+      targets.forEach((t) => { if (visible.get(t) && !best) best = t; });
+      const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+      if (atBottom) best = targets[targets.length - 1];
+      navLinks.forEach((a) => {
+        const on = !!best && a.getAttribute('href') === '#' + best.id;
+        a.classList.toggle('is-active', on);
+        if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+      });
+    };
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => visible.set(e.target, e.isIntersecting));
+      setActive();
+    }, { rootMargin: '-35% 0px -55% 0px' });
+    targets.forEach((t) => io.observe(t));
+    window.addEventListener('scroll', setActive, { passive: true });
   }
 
   /* ---- Ссылки без заданной цели ---- */

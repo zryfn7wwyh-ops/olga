@@ -60,10 +60,12 @@
 
     <nav class="nav" id="main-nav" aria-label="Основное меню">
       <ul>
-        <li><a href="#" class="has-sub">Услуги<svg><use href="#i-chev"/></svg></a></li>
-        <li><a href="#prep" class="is-active">Чек-лист обязательных процедур</a></li>
-        <li><a href="#" class="has-sub">Полезные материалы<svg><use href="#i-chev"/></svg></a></li>
-        <li><a href="#">Штрафы и Предписания 2025</a></li>
+        <li><a href="#notify-form">Уведомление в РКН</a></li>
+        <li><a href="#experts">Консультация эксперта</a></li>
+        <li><a href="#cond">Кому нужна регистрация</a></li>
+        <li><a href="#check">Проверка регистрации</a></li>
+        <li><a href="#prep">Подготовка к подаче</a></li>
+        <li><a href="#errors">Типичные ошибки</a></li>
         <li><a href="#footer">Контакты</a></li>
       </ul>
     </nav>
@@ -123,7 +125,7 @@
     </div>
   </section>
 
-  <section class="experts container" aria-labelledby="experts-title">
+  <section id="experts" class="experts container" aria-labelledby="experts-title">
     <div class="experts__photo">
       <img data-src="assets/experts.webp" alt="Эксперты компании" width="546" height="432" data-asset="experts.webp" loading="lazy">
       <h2 id="experts-title" class="experts__title">Проверьте с экспертом<br class="d-br"> какая регистрация<br class="d-br"> вам нужна</h2>
@@ -147,7 +149,7 @@
     </form>
   </section>
 
-  <section class="cond container" aria-labelledby="cond-title">
+  <section id="cond" class="cond container" aria-labelledby="cond-title">
     <div class="cond__head">
       <p class="eyebrow">Важно знать</p>
       <h2 id="cond-title" class="h2">Вы <em>должны</em> быть зарегистрированы в реестре <em>Роскомнадзора</em> если:</h2>
@@ -160,7 +162,7 @@
     </ul>
   </section>
 
-  <section class="check container" aria-labelledby="check-title">
+  <section id="check" class="check container" aria-labelledby="check-title">
     <div class="check__box">
       <div class="check__left">
         <p class="eyebrow">Оставьте заявку</p>
@@ -194,7 +196,7 @@
     </ul>
   </section>
 
-  <section class="errors" aria-labelledby="errors-title">
+  <section id="errors" class="errors" aria-labelledby="errors-title">
     <div class="container">
       <h2 id="errors-title" class="h2 h2--center">Типичные <em>ошибки</em> при самостоятельной регистрации</h2>
       <p class="lead lead--center">Из-за этих ошибок Роскомнадзор отказывает во внесении в реестр <br>или возвращает уведомление на доработку</p>
@@ -235,10 +237,12 @@
     </div>
     <div class="footer__col footer__col--mid">
       <nav class="footer__nav" aria-label="Меню в подвале">
-        <a href="#">Услуги<svg><use href="#i-chev"/></svg></a>
-        <a href="#prep" class="is-active">Чек-лист обязательных процедур</a>
-        <a href="#">Полезные материалы<svg><use href="#i-chev"/></svg></a>
-        <a href="#">Штрафы и Предписания 2025</a>
+        <a href="#notify-form">Уведомление в РКН</a>
+        <a href="#experts">Консультация эксперта</a>
+        <a href="#cond">Кому нужна регистрация</a>
+        <a href="#check">Проверка регистрации</a>
+        <a href="#prep">Подготовка к подаче</a>
+        <a href="#errors">Типичные ошибки</a>
       </nav>
       <div class="footer__contacts">
         <a class="contact" href="tel:88005220455" data-verify="номер телефона"><svg><use href="#i-phone"/></svg><span><b>8 (800) 522-04-55</b><small>Бесплатно по России</small></span></a>
@@ -258,8 +262,8 @@
   </footer>
 
 <dialog class="modal" id="lead-modal" aria-labelledby="lead-title">
-  <div class="modal__box">
-    <button type="button" class="modal__close js-modal-close" aria-label="Закрыть окно"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 3.5l9 9m0-9l-9 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+  <button type="button" class="modal__close js-modal-close" aria-label="Закрыть окно"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 3.5l9 9m0-9l-9 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+  <div class="modal__box" tabindex="-1">
     <div class="modal__info">
       <h2 id="lead-title" class="modal__title">Всероссийский сервис Роском Онлайн провел более 1500 регистраций в Роскомнадзоре и подготовил документы по персональным данным для более чем 300 компаний.</h2>
       <p class="modal__text">С нами работают как индивидуальные предприниматели, так и крупный и средний бизнес в различных сферах. Мы успешно помогаем клиентам, которые получили предписание Роскомнадзора избежать штрафов и экономим нашим клиентам до 18&nbsp;000&nbsp;000 рублей.</p>
