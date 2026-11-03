@@ -1,0 +1,29 @@
+hero-bg bottom         736 ref   736 Δ 0
+hero form top          190 ref   190 Δ 0
+hero form bottom       643 ref   643 Δ 0
+hero title top         199 ref   199 Δ 0
+hero btns top          506 ref   506 Δ 0
+experts top            886 ref   886 Δ 0
+experts bottom        1318 ref  1318 Δ 0
+cond grid top         1481 ref  1483 Δ -2
+cond grid bottom      1673 ref  1674 Δ -1
+cond h2 top           1535 ref  1535 Δ 0
+check top             1876 ref  1875 Δ 1
+check bottom          2227 ref  2226 Δ 1
+prep eyebrow          2382 ref  2382 Δ 0
+prep h2 top           2414 ref  2414 Δ 0
+prep grid top         2597 ref  2597 Δ 0
+prep grid bottom      2848 ref  2850 Δ -2
+errors top            2994 ref  2994 Δ 0
+errors h2             3059 ref  3058 Δ 1
+errors grid top       3183 ref  3184 Δ -1
+errors grid bottom    3795 ref  3795 Δ 0
+errors bottom         3869 ref  3869 Δ 0
+logo tile top         4258 ref  4258 Δ 0
+logo tile bottom      4406 ref  4406 Δ 0
+reviews h2            4635 ref  4635 Δ 0
+switch top            4699 ref  4699 Δ 0
+review top            4762 ref  4761 Δ 1
+review bottom         5050 ref  5049 Δ 1
+footer logo top       5234 ref  5233 Δ 1
+pageH 5435 ref 5434 titleW 614 (ref ~601) H 84
