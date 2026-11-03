@@ -6,14 +6,7 @@
      так отсутствующие оригиналы не дают 404, а добавленные подхватываются без правки HTML. */
   const imgs = [...document.querySelectorAll('img[data-asset]')];
   const missing = (img) => {
-    if (img.closest('.logos__track')) {
-      const span = document.createElement('span');
-      span.className = 'is-missing';
-      span.textContent = img.alt;
-      img.replaceWith(span);
-    } else {
-      img.classList.add('is-missing');
-    }
+    img.classList.add('is-missing');
   };
   fetch('assets/manifest.json', { cache: 'no-cache' })
     .then((r) => (r.ok ? r.json() : []))
@@ -169,44 +162,4 @@
     });
   });
 
-  /* ---- Слайдер отзывов ---- */
-  const track = document.querySelector('.js-track');
-  if (track) {
-    const prev = document.querySelector('.js-prev');
-    const next = document.querySelector('.js-next');
-    const dotsBox = document.querySelector('.js-dots');
-    const slides = [...track.children];
-    let index = 0;
-
-    const perView = () => {
-      const w = track.parentElement.clientWidth;
-      return w >= 900 ? 3 : w >= 600 ? 2 : 1;
-    };
-    const pages = () => Math.max(1, slides.length - perView() + 1);
-
-    const render = () => {
-      const n = pages();
-      if (index > n - 1) index = n - 1;
-      if (dotsBox.children.length !== n) {
-        dotsBox.innerHTML = '';
-        for (let i = 0; i < n; i++) {
-          const b = document.createElement('button');
-          b.type = 'button';
-          b.setAttribute('aria-label', 'Отзыв ' + (i + 1));
-          b.addEventListener('click', () => { index = i; render(); });
-          dotsBox.appendChild(b);
-        }
-      }
-      [...dotsBox.children].forEach((b, i) => b.setAttribute('aria-current', String(i === index)));
-      const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-      const step = slides[0].getBoundingClientRect().width + gap;
-      track.style.transform = 'translateX(' + (-index * step) + 'px)';
-      prev.disabled = index === 0;
-      next.disabled = index >= n - 1;
-    };
-    prev.addEventListener('click', () => { index = Math.max(0, index - 1); render(); });
-    next.addEventListener('click', () => { index = Math.min(pages() - 1, index + 1); render(); });
-    window.addEventListener('resize', render);
-    render();
-  }
 })();
