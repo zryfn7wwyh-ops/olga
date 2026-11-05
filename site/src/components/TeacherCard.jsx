@@ -1,4 +1,5 @@
 import { UserRound } from 'lucide-react';
+import { assetUrl } from '../lib/assetUrl.js';
 
 // Карточка преподавателя: фото (или силуэт, если фото нет) и сведения.
 export default function TeacherCard({ t }) {
@@ -11,7 +12,7 @@ export default function TeacherCard({ t }) {
     <article className="grid gap-6 border border-line p-4 sm:grid-cols-[200px_minmax(0,1fr)] sm:p-6">
       {t.photo ? (
         <img
-          src={t.photo}
+          src={assetUrl(t.photo)}
           alt={`Фотография: ${t.name}`}
           width="480"
           height="600"

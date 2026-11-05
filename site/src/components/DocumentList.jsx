@@ -1,5 +1,6 @@
 import { Download, FileText } from 'lucide-react';
 import { MissingDoc } from './StatusBadge.jsx';
+import { assetUrl } from '../lib/assetUrl.js';
 
 // Перечень документов: с файлом — ссылка на скачивание, без файла — заглушка (без имитации скачивания).
 export default function DocumentList({ items, status }) {
@@ -11,12 +12,12 @@ export default function DocumentList({ items, status }) {
             <FileText aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
             <span className="min-w-0 break-words">
               <span className="block font-medium text-navy">{d.title}</span>
-              {d.date && <span className="text-xs text-muted">Дата: {d.date}</span>}
+              {d.note ? <span className="text-xs text-muted">{d.note}</span> : d.date && <span className="text-xs text-muted">Дата: {d.date}</span>}
             </span>
           </span>
           <span className="shrink-0 pl-8 sm:pl-0">
             {d.file ? (
-              <a href={d.file} target="_blank" rel="noopener" download={d.fileName || true} className="link inline-flex items-center gap-1.5 text-sm">
+              <a href={assetUrl(d.file)} target="_blank" rel="noopener" download={d.fileName || true} className="link inline-flex items-center gap-1.5 text-sm">
                 <Download aria-hidden="true" className="h-4 w-4" />
                 Скачать{d.format || d.size ? ` (${[d.format, d.size].filter(Boolean).join(', ')})` : ''}
                 <span className="sr-only">: {d.title}</span>
