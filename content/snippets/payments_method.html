@@ -1,0 +1,21 @@
+<!-- Сниппет Shortcoder «payments_method». Реконструкция по скриншотам vestnic.online от 05.11.2026. -->
+<div class="payment_methods text-center vo-pay">
+	<h2 class="vo-pay-title">Способы оплаты наших услуг</h2>
+	<div class="row rgap-40px">
+		<div class="col-12 col-lg-4 d-flex flex-column align-items-center">
+			<i class="fas fa-vector-square clr-vo-primary" aria-hidden="true"></i>
+			<h4 class="vo-pay-name">Оплата по счету</h4>
+			<button class="vo-btn bg-vo-primary-linear type-2 mt-auto" @click="options.modals.payment_1.visible=true, options.modals.payment_1.title='Сформировать счёт'">Сформировать счёт</button>
+		</div>
+		<div class="col-12 col-lg-4 d-flex flex-column align-items-center">
+			<i class="fas fa-credit-card clr-vo-primary" aria-hidden="true"></i>
+			<h4 class="vo-pay-name">Онлайн оплата<br>банковской картой</h4>
+			<button class="vo-btn bg-vo-primary-linear type-2 mt-auto" @click="options.modals.payment_2.visible=true, options.modals.payment_2.title='Оплатить картой'">Оплатить картой</button>
+		</div>
+		<div class="col-12 col-lg-4 d-flex flex-column align-items-center">
+			<i class="far fa-file-alt clr-vo-primary" aria-hidden="true"></i>
+			<h4 class="vo-pay-name">Отсрочка оплаты по гарантийному письму</h4>
+			<button class="vo-btn bg-vo-primary-linear type-2 mt-auto" @click="options.modals.payment_3.visible=true, options.modals.payment_3.title='Оставить заявку оплаты по гарантийному письму'">Оставить заявку</button>
+		</div>
+	</div>
+</div>

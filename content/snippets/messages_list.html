@@ -1,0 +1,39 @@
+<!-- Сниппет Shortcoder «messages_list». Реконструкция по скриншоту vestnic.online от 05.11.2026.
+     Куда ведут кнопки «Опубликовать», на скриншотах не видно: открывается окно «Разместить объявление» (как кнопка первого экрана). -->
+<div class="row rgap-30px vo-msg-grid">
+	<div class="col-12 col-md-6 col-lg-4">
+		<div class="card-type-1 bg-card-primary">
+			<h4 class="vo-msg-title">Ликвидация</h4>
+			<button class="vo-btn publication vo-msg-btn" @click="options.modals.publication.visible=true, options.modals.publication.title='Разместить объявление'">Опубликовать</button>
+		</div>
+	</div>
+	<div class="col-12 col-md-6 col-lg-4">
+		<div class="card-type-1 bg-card-primary-dark">
+			<h4 class="vo-msg-title">Реорганизация</h4>
+			<button class="vo-btn publication vo-msg-btn" @click="options.modals.publication.visible=true, options.modals.publication.title='Разместить объявление'">Опубликовать</button>
+		</div>
+	</div>
+	<div class="col-12 col-md-6 col-lg-4">
+		<div class="card-type-1 vo-msg-intro">
+			<p>Виды объявлений для публикации в Вестнике госрегистрации через наш сервис</p>
+		</div>
+	</div>
+	<div class="col-12 col-md-6 col-lg-4">
+		<div class="card-type-1 bg-card-secondary">
+			<h4 class="vo-msg-title">Уменьшение УК</h4>
+			<button class="vo-btn publication vo-msg-btn" @click="options.modals.publication.visible=true, options.modals.publication.title='Разместить объявление'">Опубликовать</button>
+		</div>
+	</div>
+	<div class="col-12 col-md-6 col-lg-4">
+		<div class="card-type-1 bg-card-primary-light">
+			<h4 class="vo-msg-title">Смена типа юр. лица</h4>
+			<button class="vo-btn publication vo-msg-btn" @click="options.modals.publication.visible=true, options.modals.publication.title='Разместить объявление'">Опубликовать</button>
+		</div>
+	</div>
+	<div class="col-12 col-md-6 col-lg-4">
+		<div class="card-type-1 bg-card-gray">
+			<h4 class="vo-msg-title">Приобретение 20% долей акций</h4>
+			<button class="vo-btn publication vo-msg-btn" @click="options.modals.publication.visible=true, options.modals.publication.title='Разместить объявление'">Опубликовать</button>
+		</div>
+	</div>
+</div>

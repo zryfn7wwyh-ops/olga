@@ -89,8 +89,12 @@ define( 'AUTH_KEY', '${S[0]}' ); define( 'SECURE_AUTH_KEY', '${S[1]}' );
 define( 'LOGGED_IN_KEY', '${S[2]}' ); define( 'NONCE_KEY', '${S[3]}' );
 define( 'AUTH_SALT', '${S[4]}' ); define( 'SECURE_AUTH_SALT', '${S[5]}' );
 define( 'LOGGED_IN_SALT', '${S[6]}' ); define( 'NONCE_SALT', '${S[7]}' );
-define( 'WP_HOME', 'http://$HOST:$PORT' );
-define( 'WP_SITEURL', 'http://$HOST:$PORT' );
+// Адрес берётся из запроса, чтобы сайт открывался и по 127.0.0.1, и через прокси предпросмотра.
+\$vo_proto = ( ( \$_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '' ) === 'https' || ! empty( \$_SERVER['HTTPS'] ) ) ? 'https' : 'http';
+if ( 'https' === \$vo_proto ) { \$_SERVER['HTTPS'] = 'on'; }
+\$vo_host  = \$_SERVER['HTTP_X_FORWARDED_HOST'] ?? ( \$_SERVER['HTTP_HOST'] ?? '$HOST:$PORT' );
+define( 'WP_HOME', \$vo_proto . '://' . \$vo_host );
+define( 'WP_SITEURL', \$vo_proto . '://' . \$vo_host );
 // Разделение сред: включает локальный приёмник заявок и отключает аналитику
 // (см. wp-content/mu-plugins/vo-local-env.php).
 define( 'VO_ENV', 'local' );

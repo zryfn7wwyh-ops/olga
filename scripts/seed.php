@@ -91,12 +91,30 @@ function vo_upsert( array $p, array $meta = array() ) {
 
 /* ---------- Страницы, подтверждённые исходниками ---------- */
 
+/** Читает файл из content/ без служебных HTML-комментариев. */
+function vo_content( $rel ) {
+	$html = file_get_contents( dirname( __DIR__ ) . '/content/' . $rel );
+	return trim( preg_replace( '/<!--.*?-->\s*/s', '', $html ) );
+}
+
+// Сниппеты Shortcoder из page.php — реконструкция по скриншотам vestnic.online (content/snippets/).
+foreach ( array( 'baner-header', 'messages_list', 'pochemuvigodno', 'formandprice', 'payments_method' ) as $sc ) {
+	vo_upsert( array(
+		'post_type'    => 'shortcoder',
+		'post_title'   => $sc,
+		'post_name'    => $sc,
+		'post_content' => vo_content( "snippets/$sc.html" ),
+	) );
+	say( "сниппет [sc name=\"$sc\"]" );
+}
+
 // ID 10 — главная (functions.php: «10 — Главная»), шаблон tpl-main.php («Главная»).
+// Содержимое — content/home.html (перенесено со скриншотов vestnic.online).
 $home = vo_upsert( array(
 	'import_id'    => 10,
 	'post_title'   => 'Главная',
 	'post_name'    => 'glavnaya',
-	'post_content' => '[vo_gap what="содержимое главной страницы (the_content() шаблона tpl-main.php)" need="post_content и метаполя страницы ID 10 из БД (если применялся Elementor — также _elementor_data), либо полный сохранённый HTML или скриншот vestnic.online/"]',
+	'post_content' => vo_content( 'home.html' ),
 ), array( '_wp_page_template' => 'tpl-main.php' ) );
 update_option( 'show_on_front', 'page' );
 update_option( 'page_on_front', $home );
@@ -132,22 +150,24 @@ foreach ( $legal as $slug => $title ) {
 // your-tel (id/class your-tel — маска в js/app.js и правила в style.css), согласие
 // (.wpcf7-list-item a в style.css). Нужен экспорт форм CF7.
 $forms = array(
-	array( 'title' => 'Рассчитать стоимость объявления - vestnic.online' ),
+	// ID 1260: под форму с этим ID написаны правила div#wpcf7-f1260-o1 в style.css темы.
+	array( 'title' => 'Рассчитать стоимость объявления - vestnic.online', 'id' => 1260, 'file' => '1260.txt' ),
 	array( 'title' => 'Получить консультацию - vestnic.online' ),
 	array( 'title' => 'Заказать звонок - vestnic.online' ),
-	array( 'title' => 'Рассчитать стоимость публикации (Оплата по реквизитам через перевод) - vestnic.online' ),
-	array( 'title' => 'Рассчитать стоимость публикации (Оплата банковской картой) - vestnic.online' ),
-	array( 'title' => 'Рассчитать стоимость публикации (Отсрочка оплаты по гарантийному письму) - vestnic.online' ),
+	array( 'title' => 'Рассчитать стоимость публикации (Оплата по реквизитам через перевод) - vestnic.online', 'file' => 'payment_1.txt' ),
+	array( 'title' => 'Рассчитать стоимость публикации (Оплата банковской картой) - vestnic.online', 'file' => 'payment_2.txt' ),
+	array( 'title' => 'Рассчитать стоимость публикации (Отсрочка оплаты по гарантийному письму) - vestnic.online', 'file' => 'payment_3.txt' ),
 	array( 'title' => 'Форма при выходе с сайта' ),
 	array( 'title' => 'Форма при выходе с сайта (новая версия)', 'hash' => '7296ed5' ),
-	array( 'title' => 'Баннер - Упрощенная или добровольная ликвидация - vestnic.online', 'hash' => '7d9f984' ),
+	array( 'title' => 'Баннер - Упрощенная или добровольная ликвидация - vestnic.online', 'hash' => '7d9f984', 'file' => '7d9f984.txt' ),
 	// ID 4977 указан в footer.php как форма внутри licvidationsModal.
 	array( 'title' => 'Консультация по процедуре ликвидации или подготовке документов для ФНС - vestnic.online', 'hash' => '8af1134', 'id' => 4977 ),
 	array( 'title' => 'Баннер - 10 ошибок, из-за которых сообщение не публикуют - vestnic.online', 'hash' => 'd69330d' ),
 );
 foreach ( $forms as $f ) {
 	$found = get_posts( array( 'post_type' => 'wpcf7_contact_form', 'title' => $f['title'], 'post_status' => 'any', 'numberposts' => 1 ) );
-	$body  = '<div class="vo-gap vo-gap--form">Реконструированная тестовая форма. Нужен экспорт формы CF7 «' . esc_html( $f['title'] ) . '».</div>' . "\n"
+	// Формы, видимые на скриншотах vestnic.online, — из content/forms/; остальные — временные.
+	$body  = ! empty( $f['file'] ) ? vo_content( 'forms/' . $f['file'] ) : '<div class="vo-gap vo-gap--form">Реконструированная тестовая форма. Нужен экспорт формы CF7 «' . esc_html( $f['title'] ) . '».</div>' . "\n"
 		. '<p>[tel* your-tel id:your-tel class:your-tel placeholder "+7(___)___-__-__"]</p>' . "\n"
 		. '<p>[acceptance acceptance-pd] Согласен(на) на обработку <a href="/soglasie-pers-dannyh/" target="_blank">персональных данных</a> [/acceptance]</p>' . "\n"
 		. '<p>[submit "Отправить"]</p>';
@@ -156,7 +176,7 @@ foreach ( $forms as $f ) {
 		'subject'            => '[_site_title] ' . $f['title'],
 		'sender'             => '[_site_title] <wordpress@vestnic.local>',
 		'recipient'          => 'leads@vestnic.local',
-		'body'               => "Форма: {$f['title']}\nТелефон: [your-tel]\nСтраница: [_url]\n",
+		'body'               => "Форма: {$f['title']}\nИмя: [your-name]\nТелефон: [your-tel]\nE-mail: [your-email]\nВид объявления: [form-choose]\nСтраница: [_url]\n",
 		'additional_headers' => '',
 		'attachments'        => '',
 		'use_html'           => false,
@@ -174,6 +194,9 @@ foreach ( $forms as $f ) {
 		'_mail'   => $mail,
 		'_mail_2' => array( 'active' => false ),
 		'_locale' => 'ru_RU',
+		// На скриншотах кнопка отправки активна при неотмеченных согласиях: согласие
+		// проверяется при отправке, а не блокирует кнопку.
+		'_additional_settings' => ! empty( $f['file'] ) ? 'acceptance_as_validation: on' : '',
 	) );
 	if ( $id && ! empty( $f['hash'] ) ) {
 		update_post_meta( $id, '_hash', $f['hash'] . substr( sha1( $f['title'] ), 0, 33 ) );

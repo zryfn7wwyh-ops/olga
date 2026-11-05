@@ -19,7 +19,7 @@ scripts/setup.sh
 scripts/serve.sh
 ```
 
-Сайт: http://127.0.0.1:8080/ · админка: http://127.0.0.1:8080/wp-admin/ (`admin` / `admin`).
+Сайт: http://127.0.0.1:8080/ (адрес берётся из запроса, поэтому сайт открывается и через прокси/предпросмотр) · админка: http://127.0.0.1:8080/wp-admin/ (`admin` / `admin`).
 
 Полная пересборка с нуля (удаляет `.build/`, плагины и базу `vestnic_local`):
 
@@ -48,6 +48,11 @@ wp-content/mu-plugins/vo-local-env.php
                                    совместимость с плагинами, которых нет в архиве
                                    (Shortcoder, Max Mega Menu, поля ACF, jQuery) и изоляция
                                    локальной среды
+wp-content/mu-plugins/vo-reconstruction*
+                                   стили и таймер блоков главной, восстановленных по скриншотам,
+                                   шрифт Source Sans Pro
+content/                           текст главной, 5 сниппетов page.php и тела форм CF7
+                                   (по скриншотам vestnic.online от 05.11.2026)
 wp-content/uploads/                локально размещённые оригиналы из uploads
 scripts/setup.sh                   установка: зависимости, БД, ядро, плагины, наполнение
 scripts/seed.php                   страницы с исходными ID, формы CF7, служебные тестовые страницы

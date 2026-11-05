@@ -1,0 +1,9 @@
+<label class="vo-cf7-label">Имя
+[text* your-name placeholder "Имя"]</label>
+<label class="vo-cf7-label">Телефон
+[tel* your-tel class:your-tel placeholder "Телефон"]</label>
+<label class="vo-cf7-label">E-mail
+[email* your-email placeholder "Email"]</label>
+<div class="vo-cf7-consent">[acceptance acceptance-pd] Нажимая кнопку «Узнать условия», я даю свое <a href="/soglasie-pers-dannyh/" target="_blank">Согласие на обработку моих персональных данных</a> в соответствии с Федеральным законом от 27.07.2006 года № 152-ФЗ «О персональных данных» на условиях и для целей, определенных <a href="/politika-konfidencialnosti/" target="_blank">Политикой конфиденциальности</a>. * [/acceptance]</div>
+<div class="vo-cf7-consent">[acceptance acceptance-ads] Нажимая кнопку «Узнать условия», я даю свое согласие на получение сообщений информационного (рекламного) характера в соответствии с Федеральным законом от 13.03.2006 г № 38-ФЗ «О рекламе» на условиях и для целей, определенных <a href="/politika-konfidencialnosti/" target="_blank">Политикой конфиденциальности</a>, <a href="/soglasie-rassylki/" target="_blank">Согласием на осуществление рекламной рассылки</a> [/acceptance]</div>
+[submit "Узнать условия"]
