@@ -104,3 +104,27 @@ div#wpcf7-f1260-o1 input#your-email { width: 100%; height: 40px; padding: 0 10px
 	.vo-hero-note { flex: 1 1 auto; min-width: 0; }
 	.banner-header .vo-cols-banner img { max-width: 64px; height: auto; }
 }
+
+/* ---------- Кнопка квиза «Нужна публикация в Вестнике?» на узких экранах ----------
+   В теме .quizDiv — position: fixed (идёт вместе с прокруткой), но при ≤992px скрыта
+   (quiz/quizfed__module.css), а мобильный вариант в footer.php закомментирован.
+   По просьбе владельца кнопка плавает внизу экрана и на телефоне. */
+@media screen and (max-width: 992px) {
+	#app .quizDiv {
+		display: flex !important;
+		left: 10px;
+		bottom: 10px;
+		width: calc(100% - 20px);
+		max-width: 520px;
+		padding: 6px 8px 6px 18px;
+		gap: 10px;
+		justify-content: space-between;
+		box-sizing: border-box;
+	}
+	#app .quizDiv > div { font-size: 15px !important; line-height: 1.2 !important; margin-bottom: 0 !important; }
+	#app .quizDiv #openQuizButton { flex-shrink: 0; gap: 4px; padding: 6px 12px; font-size: 14px; }
+	#app .quizDiv #openQuizButton img { width: 14px; height: 14px; }
+	body { padding-bottom: 80px; }
+	/* Плавающая иконка телефона (footer.php: bottom 60px) — над плашкой квиза, с запасом на pulse-анимацию. */
+	img.phone__icon_form { bottom: 76px !important; }
+}

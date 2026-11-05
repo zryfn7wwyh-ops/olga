@@ -167,7 +167,7 @@ $forms = array(
 foreach ( $forms as $f ) {
 	$found = get_posts( array( 'post_type' => 'wpcf7_contact_form', 'title' => $f['title'], 'post_status' => 'any', 'numberposts' => 1 ) );
 	// Формы, видимые на скриншотах vestnic.online, — из content/forms/; остальные — временные.
-	$body  = ! empty( $f['file'] ) ? vo_content( 'forms/' . $f['file'] ) : '<div class="vo-gap vo-gap--form">Реконструированная тестовая форма. Нужен экспорт формы CF7 «' . esc_html( $f['title'] ) . '».</div>' . "\n"
+	$body  = ! empty( $f['file'] ) ? vo_content( 'forms/' . $f['file'] ) : '<!-- Временная форма: нужен экспорт формы CF7 «' . esc_html( $f['title'] ) . '». -->' . "\n"
 		. '<p>[tel* your-tel id:your-tel class:your-tel placeholder "+7(___)___-__-__"]</p>' . "\n"
 		. '<p>[acceptance acceptance-pd] Согласен(на) на обработку <a href="/soglasie-pers-dannyh/" target="_blank">персональных данных</a> [/acceptance]</p>' . "\n"
 		. '<p>[submit "Отправить"]</p>';

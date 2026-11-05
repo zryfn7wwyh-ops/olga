@@ -98,7 +98,7 @@ define( 'WP_SITEURL', \$vo_proto . '://' . \$vo_host );
 // Разделение сред: включает локальный приёмник заявок и отключает аналитику
 // (см. wp-content/mu-plugins/vo-local-env.php).
 define( 'VO_ENV', 'local' );
-define( 'VO_SHOW_GAPS', true );              // показывать маркеры «не хватает данных»
+define( 'VO_SHOW_GAPS', false );             // true — показывать жёлтые маркеры «не хватает данных»
 define( 'VO_LOCAL_SPOOL', '$BUILD' );        // куда пишутся письма и заявки
 define( 'WP_ENVIRONMENT_TYPE', 'local' );
 define( 'WP_DEBUG', true );

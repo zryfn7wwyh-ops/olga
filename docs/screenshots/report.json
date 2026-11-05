@@ -1,6 +1,6 @@
 {
   "base": "http://127.0.0.1:8080",
-  "date": "2026-11-05T07:02:28.686Z",
+  "date": "2026-11-05T08:18:02.495Z",
   "pages": [
     {
       "name": "home",
@@ -51,10 +51,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 400 normal",
@@ -73,6 +70,7 @@
         "Вестник Онлайн"
       ],
       "console": [
+        "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
@@ -82,6 +80,7 @@
       ],
       "pageErrors": [],
       "failed": [
+        "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png",
         "net::ERR_TUNNEL_CONNECTION_FAILED https://vestnic.online/wp-content/uploads/2021/08/list-1-e1631894188197.png",
         "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png",
         "net::ERR_TUNNEL_CONNECTION_FAILED https://vestnic.online/wp-content/uploads/2021/08/bg1-1.jpg"
@@ -136,10 +135,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 400 normal",
@@ -221,10 +217,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -300,10 +293,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -379,10 +369,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -399,6 +386,7 @@
         "Тест: «Без вставок (wc)» (tpl-blank-2.php)"
       ],
       "console": [
+        "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
@@ -406,6 +394,7 @@
       ],
       "pageErrors": [],
       "failed": [
+        "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png",
         "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png"
       ]
     },
@@ -458,10 +447,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 400 normal",
@@ -480,10 +466,10 @@
         "Вестник Онлайн"
       ],
       "console": [
-        "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
-        "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
-        "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "error: Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED",
+        "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
+        "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
+        "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
         "error: Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
       ],
@@ -543,10 +529,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -621,10 +604,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -701,10 +681,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -779,10 +756,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -798,6 +772,7 @@
         "Search Results for: Тест"
       ],
       "console": [
+        "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
@@ -805,6 +780,7 @@
       ],
       "pageErrors": [],
       "failed": [
+        "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png",
         "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png"
       ]
     },
@@ -858,10 +834,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -940,11 +913,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "содержимое страницы «Контакты» (ID 1986); адрес /kontakty/ и шаблон не подтверждены",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 400 normal",
@@ -1026,11 +995,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "текст документа «Политика конфиденциальности»; шаблон страницы не подтверждён",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 400 normal",
@@ -1112,10 +1077,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 400 normal",
@@ -1137,14 +1099,14 @@
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
-        "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
         "error: Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED",
+        "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
         "error: Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
       ],
       "pageErrors": [],
       "failed": [
-        "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png",
         "net::ERR_TUNNEL_CONNECTION_FAILED https://vestnic.online/wp-content/uploads/2021/08/list-1-e1631894188197.png",
+        "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png",
         "net::ERR_TUNNEL_CONNECTION_FAILED https://vestnic.online/wp-content/uploads/2021/08/bg1-1.jpg"
       ]
     },
@@ -1197,10 +1159,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 400 normal",
@@ -1282,10 +1241,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -1361,10 +1317,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -1381,6 +1334,7 @@
         "Заголовок из поля field_61233a9cf3c38"
       ],
       "console": [
+        "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
@@ -1388,6 +1342,7 @@
       ],
       "pageErrors": [],
       "failed": [
+        "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png",
         "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png"
       ]
     },
@@ -1440,10 +1395,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -1460,6 +1412,7 @@
         "Тест: «Без вставок (wc)» (tpl-blank-2.php)"
       ],
       "console": [
+        "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
@@ -1467,6 +1420,7 @@
       ],
       "pageErrors": [],
       "failed": [
+        "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png",
         "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png"
       ]
     },
@@ -1519,10 +1473,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 400 normal",
@@ -1602,10 +1553,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -1680,10 +1628,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -1758,10 +1703,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -1777,7 +1719,6 @@
         "Category: Тестовая рубрика"
       ],
       "console": [
-        "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
@@ -1785,7 +1726,6 @@
       ],
       "pageErrors": [],
       "failed": [
-        "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png",
         "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png"
       ]
     },
@@ -1838,10 +1778,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -1917,10 +1854,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -1937,6 +1871,7 @@
       ],
       "console": [
         "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
@@ -1946,6 +1881,7 @@
       "pageErrors": [],
       "failed": [
         "404 http://127.0.0.1:8080/net-takoy-stranicy/",
+        "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png",
         "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png",
         "net::ERR_TUNNEL_CONNECTION_FAILED https://s.w.org/images/core/emoji/17.0.2/svg/1f642.svg"
       ]
@@ -1999,11 +1935,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "содержимое страницы «Контакты» (ID 1986); адрес /kontakty/ и шаблон не подтверждены",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 400 normal",
@@ -2083,11 +2015,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "текст документа «Политика конфиденциальности»; шаблон страницы не подтверждён",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 400 normal",
@@ -2109,13 +2037,13 @@
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
-        "error: Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED",
-        "error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "error: Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
       ],
       "pageErrors": [],
       "failed": [
-        "net::ERR_TUNNEL_CONNECTION_FAILED https://vestnic.online/wp-content/uploads/2021/08/list-1-e1631894188197.png",
-        "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png"
+        "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png",
+        "net::ERR_TUNNEL_CONNECTION_FAILED https://vestnic.online/wp-content/uploads/2021/08/list-1-e1631894188197.png"
       ]
     },
     {
@@ -2167,10 +2095,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 400 normal",
@@ -2251,10 +2176,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 400 normal",
@@ -2335,10 +2257,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -2356,7 +2275,6 @@
         "Тест: «Без вставок» (tpl-blank.php), H1 выводится"
       ],
       "console": [
-        "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
@@ -2364,7 +2282,6 @@
       ],
       "pageErrors": [],
       "failed": [
-        "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png",
         "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png"
       ]
     },
@@ -2417,10 +2334,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -2438,6 +2352,7 @@
         "Заголовок из поля field_61233a9cf3c38"
       ],
       "console": [
+        "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
@@ -2445,6 +2360,7 @@
       ],
       "pageErrors": [],
       "failed": [
+        "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png",
         "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png"
       ]
     },
@@ -2497,10 +2413,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -2577,10 +2490,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 400 normal",
@@ -2661,10 +2571,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -2681,7 +2588,6 @@
         "Тест: статья с блоками «Эксперт», FAQ и «Скачивания»"
       ],
       "console": [
-        "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
@@ -2689,7 +2595,6 @@
       ],
       "pageErrors": [],
       "failed": [
-        "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png",
         "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png"
       ]
     },
@@ -2742,10 +2647,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -2821,10 +2723,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -2900,10 +2799,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -2980,10 +2876,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -3001,6 +2894,7 @@
       ],
       "console": [
         "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
@@ -3010,6 +2904,7 @@
       "pageErrors": [],
       "failed": [
         "404 http://127.0.0.1:8080/net-takoy-stranicy/",
+        "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png",
         "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png",
         "net::ERR_TUNNEL_CONNECTION_FAILED https://s.w.org/images/core/emoji/17.0.2/svg/1f642.svg"
       ]
@@ -3063,11 +2958,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "содержимое страницы «Контакты» (ID 1986); адрес /kontakty/ и шаблон не подтверждены",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 400 normal",
@@ -3148,11 +3039,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "текст документа «Политика конфиденциальности»; шаблон страницы не подтверждён",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 400 normal",
@@ -3172,10 +3059,10 @@
         "Вестник Онлайн"
       ],
       "console": [
-        "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
-        "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
-        "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "error: Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED",
+        "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
+        "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
+        "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "error: Failed to load resource: the server responded with a status of 404 (Not Found)"
       ],
       "pageErrors": [],
@@ -3233,10 +3120,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 400 normal",
@@ -3317,10 +3201,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 400 normal",
@@ -3401,10 +3282,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -3481,10 +3359,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -3502,7 +3377,6 @@
         "Заголовок из поля field_61233a9cf3c38"
       ],
       "console": [
-        "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
@@ -3510,7 +3384,6 @@
       ],
       "pageErrors": [],
       "failed": [
-        "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png",
         "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png"
       ]
     },
@@ -3563,10 +3436,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -3643,10 +3513,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 400 normal",
@@ -3727,10 +3594,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -3747,6 +3611,7 @@
         "Тест: статья с блоками «Эксперт», FAQ и «Скачивания»"
       ],
       "console": [
+        "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
@@ -3754,6 +3619,7 @@
       ],
       "pageErrors": [],
       "failed": [
+        "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png",
         "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png"
       ]
     },
@@ -3806,10 +3672,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -3885,10 +3748,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -3964,10 +3824,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -4044,10 +3901,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -4127,11 +3981,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "содержимое страницы «Контакты» (ID 1986); адрес /kontakty/ и шаблон не подтверждены",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 400 normal",
@@ -4212,11 +4062,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "текст документа «Политика конфиденциальности»; шаблон страницы не подтверждён",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 400 normal",
@@ -4297,10 +4143,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 400 normal",
@@ -4381,10 +4224,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 400 normal",
@@ -4465,10 +4305,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -4545,10 +4382,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -4566,7 +4400,6 @@
         "Заголовок из поля field_61233a9cf3c38"
       ],
       "console": [
-        "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
@@ -4574,7 +4407,6 @@
       ],
       "pageErrors": [],
       "failed": [
-        "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png",
         "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png"
       ]
     },
@@ -4627,10 +4459,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -4709,10 +4538,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 400 normal",
@@ -4793,10 +4619,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -4872,10 +4695,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -4951,10 +4771,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -5030,10 +4847,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -5050,6 +4864,7 @@
         "Search Results for: Тест"
       ],
       "console": [
+        "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
@@ -5057,6 +4872,7 @@
       ],
       "pageErrors": [],
       "failed": [
+        "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png",
         "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png"
       ]
     },
@@ -5110,10 +4926,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 900 normal",
@@ -5131,6 +4944,7 @@
       ],
       "console": [
         "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
@@ -5140,6 +4954,7 @@
       "pageErrors": [],
       "failed": [
         "404 http://127.0.0.1:8080/net-takoy-stranicy/",
+        "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png",
         "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png",
         "net::ERR_TUNNEL_CONNECTION_FAILED https://s.w.org/images/core/emoji/17.0.2/svg/1f642.svg"
       ]
@@ -5193,11 +5008,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "содержимое страницы «Контакты» (ID 1986); адрес /kontakty/ и шаблон не подтверждены",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 400 normal",
@@ -5278,11 +5089,7 @@
         "/wp-content/uploads/2026/08/img-list-ten.png",
         "/wp-content/uploads/2024/07/phone.svg"
       ],
-      "gaps": [
-        "главное меню max_mega_menu_1 (пункты и вложенность)",
-        "текст документа «Политика конфиденциальности»; шаблон страницы не подтверждён",
-        "главное меню max_mega_menu_1 (пункты и вложенность)"
-      ],
+      "gaps": [],
       "fonts": [
         "Font Awesome 5 Brands 400 normal",
         "Font Awesome 5 Free 400 normal",
@@ -5350,7 +5157,6 @@
         "menu left after close: -507"
       ],
       "console": [
-        "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
@@ -5359,7 +5165,6 @@
       ],
       "pageErrors": [],
       "failed": [
-        "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png",
         "net::ERR_TUNNEL_CONNECTION_FAILED https://vestnic.online/wp-content/uploads/2021/08/bg1-1.jpg",
         "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png"
       ]
@@ -5390,7 +5195,7 @@
       "width": 390,
       "ok": true,
       "notes": [
-        "desktop button visible: false",
+        "desktop button visible: true",
         "mobile trigger in DOM: 0"
       ],
       "console": [
@@ -5437,19 +5242,19 @@
       "width": 1440,
       "ok": true,
       "notes": [
-        "lead endpoint: 200 {\"status\":\"ok\",\"success\":true,\"local\":\"20261105-070830-nJBlFb.json\"}"
+        "lead endpoint: 200 {\"status\":\"ok\",\"success\":true,\"local\":\"20261105-082409-gQICCc.json\"}"
       ],
       "console": [
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
-        "error: Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED",
-        "error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "error: Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
       ],
       "pageErrors": [],
       "failed": [
-        "net::ERR_TUNNEL_CONNECTION_FAILED https://vestnic.online/wp-content/uploads/2021/08/list-1-e1631894188197.png",
-        "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png"
+        "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png",
+        "net::ERR_TUNNEL_CONNECTION_FAILED https://vestnic.online/wp-content/uploads/2021/08/list-1-e1631894188197.png"
       ]
     },
     {
@@ -5481,6 +5286,7 @@
         "after OK visible: false"
       ],
       "console": [
+        "error: Failed to load resource: the server responded with a status of 404 (Not Found)",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
         "warning: Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled and not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
@@ -5494,6 +5300,7 @@
       ],
       "pageErrors": [],
       "failed": [
+        "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png",
         "net::ERR_TUNNEL_CONNECTION_FAILED https://vestnic.online/wp-content/uploads/2021/08/list-1-e1631894188197.png",
         "404 http://127.0.0.1:8080/wp-content/uploads/2024/02/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2-1.png",
         "net::ERR_TUNNEL_CONNECTION_FAILED https://vestnic.online/wp-content/uploads/2021/08/list-1-e1631894188197.png",
