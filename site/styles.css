@@ -240,9 +240,11 @@ section[id],#notify-form,#footer{scroll-margin-top:24px}
 
 /* ---------- кому нужна регистрация ---------- */
 .cond{margin-top:140px}
+.cond .h2{font-size:clamp(28px,2.55vw,40px)}
 .cond__scheme{position:relative;margin-top:50px;min-height:520px}
 .cond__art{position:absolute;left:50%;top:10px;width:560px;height:500px;transform:translateX(-50%)}
 .cond__art img{width:100%;height:100%;object-fit:contain}
+.cond__art img:not(.is-missing){height:auto}
 .cond__ph{position:absolute;inset:40px 30px 30px;border-radius:26px;background:linear-gradient(145deg,#6FA2FF 0%,#3D7BFF 55%,#2F6AE8 100%);box-shadow:0 30px 60px -30px rgba(40,90,220,.6),inset 0 0 0 2px rgba(255,255,255,.35);display:flex;gap:12px;padding:22px 26px;align-items:flex-start}
 .cond__ph::before{content:"";position:absolute;left:0;right:0;top:66px;height:3px;background:rgba(255,255,255,.55)}
 .cond__ph i{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.85)}
@@ -263,6 +265,13 @@ section[id],#notify-form,#footer{scroll-margin-top:24px}
 .cond__item--br{right:0;top:410px}
 .cond__item--br::after{right:calc(100% + 24px);width:150px}
 .cond__item--br::before{right:calc(100% + 174px)}
+
+.cond__full{display:none;width:100%;height:auto}
+/* когда есть полная схема из макета — показываем её, а список оставляем для поисковиков и экранных читалок */
+.cond__scheme:has(.cond__full:not(.is-missing)){min-height:0}
+.cond__scheme:has(.cond__full:not(.is-missing)) .cond__full{display:block}
+.cond__scheme:has(.cond__full:not(.is-missing)) .cond__art{display:none}
+.cond__scheme:has(.cond__full:not(.is-missing)) .cond__list{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* ---------- зарегистрирована ли компания ---------- */
 .check{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:140px}
@@ -493,7 +502,10 @@ body.modal-open{overflow:hidden}
   .experts__form{padding:8px 32px 36px}
   .cond{margin-top:90px}
   .cond__scheme{min-height:0;display:flex;flex-direction:column;align-items:center;gap:28px}
-  .cond__art{position:relative;left:auto;top:auto;transform:none;width:min(420px,100%);height:auto;aspect-ratio:560/500}
+  .cond__scheme .cond__full,.cond__scheme:has(.cond__full:not(.is-missing)) .cond__full{display:none}
+  .cond__scheme:has(.cond__full:not(.is-missing)) .cond__art{display:block}
+  .cond__scheme:has(.cond__full:not(.is-missing)) .cond__list{position:relative;width:100%;height:auto;overflow:visible;clip:auto;white-space:normal}
+  .cond__art{position:relative;left:auto;top:auto;transform:none;width:min(420px,100%);height:auto;aspect-ratio:auto}
   .cond__list{height:auto;display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%}
   .cond__item{position:relative;inset:auto;max-width:none;padding:18px 20px 18px 50px;border-radius:16px;background:var(--pale);font-size:17px}
   .cond__item::after{display:none}
