@@ -58,8 +58,10 @@ var app = new Vue({
             ym(82948618,'reachGoal','order_done')
         }, false );
 
+        // На рабочем сайте через 30 секунд открывается окно ликвидации (подтверждено владельцем
+        // 05.11.2026); в архиве темы здесь было 'tenModal'.
         setTimeout(() => {
-            this.toggleModal('tenModal');
+            this.toggleModal('licvidModal');
         }, 30000);
 	},
     data: {

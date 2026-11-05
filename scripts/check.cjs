@@ -220,12 +220,13 @@ async function audit(page) {
     await shot(page, 'flow-callbackWidget-2-thanks-1440');
   });
 
-  // 5. Отложенное окно tenModal через 30 секунд.
+  // 5. Отложенное окно через 30 секунд (на рабочем сайте — окно ликвидации licvidModal).
   await flow('tenModal', 1440, async (page, res) => {
     const before = await page.locator('.fComponent-modal.overlay:visible').count();
     await page.waitForTimeout(31000);
     const after = await page.locator('.fComponent-modal.overlay:visible').count();
     res.notes.push(`visible modals before=${before} after 31s=${after}`);
+    res.notes.push('opened: ' + (await page.evaluate(() => Object.keys(app.options.modals).filter((k) => app.options.modals[k].visible).join(','))));
     await shot(page, 'flow-tenModal-1-open-1440');
   });
 

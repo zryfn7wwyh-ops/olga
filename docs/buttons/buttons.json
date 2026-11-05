@@ -1,6 +1,6 @@
 {
   "url": "http://127.0.0.1:8080/",
-  "date": "2026-11-05T08:34:09.331Z",
+  "date": "2026-11-05T08:39:26.961Z",
   "widths": {
     "390": {
       "buttons": [
@@ -141,7 +141,9 @@
             "formNotFound": false,
             "fields": [
               "your-tel",
-              "acceptance-pd"
+              "your-email",
+              "acceptance-pd",
+              "acceptance-ads"
             ]
           }
         },
@@ -207,7 +209,9 @@
             "formNotFound": false,
             "fields": [
               "your-tel",
-              "acceptance-pd"
+              "your-email",
+              "acceptance-pd",
+              "acceptance-ads"
             ]
           }
         },
@@ -222,7 +226,8 @@
             "formNotFound": false,
             "fields": [
               "your-tel",
-              "acceptance-pd"
+              "acceptance-pd",
+              "acceptance-ads"
             ]
           }
         },
@@ -268,7 +273,8 @@
             "formNotFound": false,
             "fields": [
               "your-tel",
-              "acceptance-pd"
+              "acceptance-pd",
+              "acceptance-ads"
             ]
           }
         },
@@ -409,7 +415,9 @@
             "formNotFound": false,
             "fields": [
               "your-tel",
-              "acceptance-pd"
+              "your-email",
+              "acceptance-pd",
+              "acceptance-ads"
             ]
           }
         },
@@ -475,7 +483,9 @@
             "formNotFound": false,
             "fields": [
               "your-tel",
-              "acceptance-pd"
+              "your-email",
+              "acceptance-pd",
+              "acceptance-ads"
             ]
           }
         },
@@ -490,7 +500,8 @@
             "formNotFound": false,
             "fields": [
               "your-tel",
-              "acceptance-pd"
+              "acceptance-pd",
+              "acceptance-ads"
             ]
           }
         },
@@ -522,7 +533,7 @@
     {
       "form": "10010",
       "title": "Заказать звонок",
-      "status": "sent",
+      "status": "wpcf7-acceptance-as-validation sent",
       "after": {
         "kind": "modal",
         "title": "Заказать звонок",
@@ -530,7 +541,8 @@
         "formNotFound": false,
         "fields": [
           "your-tel",
-          "acceptance-pd"
+          "acceptance-pd",
+          "acceptance-ads"
         ]
       }
     },
@@ -552,7 +564,7 @@
     {
       "form": "10009",
       "title": "Получить консультацию",
-      "status": "sent",
+      "status": "wpcf7-acceptance-as-validation sent",
       "after": {
         "kind": "modal",
         "title": "Получить консультацию",
@@ -560,7 +572,9 @@
         "formNotFound": false,
         "fields": [
           "your-tel",
-          "acceptance-pd"
+          "your-email",
+          "acceptance-pd",
+          "acceptance-ads"
         ]
       }
     },

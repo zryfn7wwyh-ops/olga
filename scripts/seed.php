@@ -156,8 +156,8 @@ foreach ( $legal as $slug => $title ) {
 $forms = array(
 	// ID 1260: под форму с этим ID написаны правила div#wpcf7-f1260-o1 в style.css темы.
 	array( 'title' => 'Рассчитать стоимость объявления - vestnic.online', 'id' => 1260, 'file' => '1260.txt' ),
-	array( 'title' => 'Получить консультацию - vestnic.online' ),
-	array( 'title' => 'Заказать звонок - vestnic.online' ),
+	array( 'title' => 'Получить консультацию - vestnic.online', 'file' => 'consulting.txt' ),
+	array( 'title' => 'Заказать звонок - vestnic.online', 'file' => 'call.txt' ),
 	array( 'title' => 'Рассчитать стоимость публикации (Оплата по реквизитам через перевод) - vestnic.online', 'file' => 'payment_1.txt' ),
 	array( 'title' => 'Рассчитать стоимость публикации (Оплата банковской картой) - vestnic.online', 'file' => 'payment_2.txt' ),
 	array( 'title' => 'Рассчитать стоимость публикации (Отсрочка оплаты по гарантийному письму) - vestnic.online', 'file' => 'payment_3.txt' ),
