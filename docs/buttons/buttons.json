@@ -1,0 +1,634 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "date": "2026-11-05T08:34:09.331Z",
+  "widths": {
+    "390": {
+      "buttons": [
+        {
+          "i": 0,
+          "text": "Разместить объявление",
+          "where": "banner-header pb-5",
+          "opened": {
+            "kind": "modal",
+            "title": "Разместить объявление",
+            "form": "1260",
+            "formNotFound": false,
+            "fields": [
+              "form-choose",
+              "your-tel",
+              "your-email",
+              "acceptance-pd",
+              "acceptance-ads"
+            ]
+          }
+        },
+        {
+          "i": 1,
+          "text": "Рассчитать стоимость",
+          "where": "banner-header pb-5",
+          "opened": {
+            "kind": "modal",
+            "title": "Рассчитать стоимость объявления",
+            "form": "1260",
+            "formNotFound": false,
+            "fields": [
+              "form-choose",
+              "your-tel",
+              "your-email",
+              "acceptance-pd",
+              "acceptance-ads"
+            ]
+          }
+        },
+        {
+          "i": 2,
+          "text": "ОПУБЛИКОВАТЬ",
+          "where": "row rgap-30px vo-msg-grid",
+          "opened": {
+            "kind": "modal",
+            "title": "Разместить объявление",
+            "form": "1260",
+            "formNotFound": false,
+            "fields": [
+              "form-choose",
+              "your-tel",
+              "your-email",
+              "acceptance-pd",
+              "acceptance-ads"
+            ]
+          }
+        },
+        {
+          "i": 3,
+          "text": "ОПУБЛИКОВАТЬ",
+          "where": "row rgap-30px vo-msg-grid",
+          "opened": {
+            "kind": "modal",
+            "title": "Разместить объявление",
+            "form": "1260",
+            "formNotFound": false,
+            "fields": [
+              "form-choose",
+              "your-tel",
+              "your-email",
+              "acceptance-pd",
+              "acceptance-ads"
+            ]
+          }
+        },
+        {
+          "i": 4,
+          "text": "ОПУБЛИКОВАТЬ",
+          "where": "row rgap-30px vo-msg-grid",
+          "opened": {
+            "kind": "modal",
+            "title": "Разместить объявление",
+            "form": "1260",
+            "formNotFound": false,
+            "fields": [
+              "form-choose",
+              "your-tel",
+              "your-email",
+              "acceptance-pd",
+              "acceptance-ads"
+            ]
+          }
+        },
+        {
+          "i": 5,
+          "text": "ОПУБЛИКОВАТЬ",
+          "where": "row rgap-30px vo-msg-grid",
+          "opened": {
+            "kind": "modal",
+            "title": "Разместить объявление",
+            "form": "1260",
+            "formNotFound": false,
+            "fields": [
+              "form-choose",
+              "your-tel",
+              "your-email",
+              "acceptance-pd",
+              "acceptance-ads"
+            ]
+          }
+        },
+        {
+          "i": 6,
+          "text": "ОПУБЛИКОВАТЬ",
+          "where": "row rgap-30px vo-msg-grid",
+          "opened": {
+            "kind": "modal",
+            "title": "Разместить объявление",
+            "form": "1260",
+            "formNotFound": false,
+            "fields": [
+              "form-choose",
+              "your-tel",
+              "your-email",
+              "acceptance-pd",
+              "acceptance-ads"
+            ]
+          }
+        },
+        {
+          "i": 7,
+          "text": "Получить консультацию специалиста",
+          "where": "row vo-why",
+          "opened": {
+            "kind": "modal",
+            "title": "Получить консультацию",
+            "form": "10009",
+            "formNotFound": false,
+            "fields": [
+              "your-tel",
+              "acceptance-pd"
+            ]
+          }
+        },
+        {
+          "i": 8,
+          "text": "Сформировать счёт",
+          "where": "payment_methods text-center vo-pay",
+          "opened": {
+            "kind": "modal",
+            "title": "Сформировать счёт",
+            "form": "10011",
+            "formNotFound": false,
+            "fields": [
+              "your-tel",
+              "your-email",
+              "acceptance-pd",
+              "acceptance-ads"
+            ]
+          }
+        },
+        {
+          "i": 9,
+          "text": "Оплатить картой",
+          "where": "payment_methods text-center vo-pay",
+          "opened": {
+            "kind": "modal",
+            "title": "Оплатить картой",
+            "form": "10012",
+            "formNotFound": false,
+            "fields": [
+              "your-tel",
+              "your-email",
+              "acceptance-pd",
+              "acceptance-ads"
+            ]
+          }
+        },
+        {
+          "i": 10,
+          "text": "Оставить заявку",
+          "where": "payment_methods text-center vo-pay",
+          "opened": {
+            "kind": "modal",
+            "title": "Оставить заявку оплаты по гарантийному письму",
+            "form": "10013",
+            "formNotFound": false,
+            "fields": [
+              "your-tel",
+              "your-email",
+              "acceptance-pd",
+              "acceptance-ads"
+            ]
+          }
+        },
+        {
+          "i": 11,
+          "text": "Получить консультацию специалиста",
+          "where": "entry-content contentBorderBlock vo-home-text",
+          "opened": {
+            "kind": "modal",
+            "title": "Получить консультацию",
+            "form": "10009",
+            "formNotFound": false,
+            "fields": [
+              "your-tel",
+              "acceptance-pd"
+            ]
+          }
+        },
+        {
+          "i": 12,
+          "text": "Обратный звонок",
+          "where": "mb-40px mt-40px",
+          "opened": {
+            "kind": "modal",
+            "title": "Заказать звонок",
+            "form": "10010",
+            "formNotFound": false,
+            "fields": [
+              "your-tel",
+              "acceptance-pd"
+            ]
+          }
+        },
+        {
+          "i": 13,
+          "text": "Продолжить",
+          "where": "quizDiv",
+          "opened": {
+            "kind": "quiz",
+            "title": "Сделаем ее вместо вас онлайн, сэкономив вам 30% затрат на пошлину Журнала",
+            "form": "quiz"
+          }
+        },
+        {
+          "i": 14,
+          "text": "phone__icon_form",
+          "where": "home wp-singular page-template page-template-tpl-main page-template-tpl-main-php page page-id-10 wp-theme-vestniconline",
+          "opened": {
+            "kind": "callback",
+            "title": "Здравствуйте, мы перезвоним вам через 40 секунд?",
+            "form": "callback-widget"
+          }
+        },
+        {
+          "text": "Бургер (мобильное меню)",
+          "opened": {
+            "kind": "mobile-menu"
+          }
+        }
+      ],
+      "pageErrors": []
+    },
+    "1440": {
+      "buttons": [
+        {
+          "i": 0,
+          "text": "Перезвоните мне",
+          "where": "mt-30px",
+          "opened": {
+            "kind": "modal",
+            "title": "Заказать звонок",
+            "form": "10010",
+            "formNotFound": false,
+            "fields": [
+              "your-tel",
+              "acceptance-pd"
+            ]
+          }
+        },
+        {
+          "i": 1,
+          "text": "Разместить объявление",
+          "where": "banner-header pb-5",
+          "opened": {
+            "kind": "modal",
+            "title": "Разместить объявление",
+            "form": "1260",
+            "formNotFound": false,
+            "fields": [
+              "form-choose",
+              "your-tel",
+              "your-email",
+              "acceptance-pd",
+              "acceptance-ads"
+            ]
+          }
+        },
+        {
+          "i": 2,
+          "text": "Рассчитать стоимость",
+          "where": "banner-header pb-5",
+          "opened": {
+            "kind": "modal",
+            "title": "Рассчитать стоимость объявления",
+            "form": "1260",
+            "formNotFound": false,
+            "fields": [
+              "form-choose",
+              "your-tel",
+              "your-email",
+              "acceptance-pd",
+              "acceptance-ads"
+            ]
+          }
+        },
+        {
+          "i": 3,
+          "text": "ОПУБЛИКОВАТЬ",
+          "where": "row rgap-30px vo-msg-grid",
+          "opened": {
+            "kind": "modal",
+            "title": "Разместить объявление",
+            "form": "1260",
+            "formNotFound": false,
+            "fields": [
+              "form-choose",
+              "your-tel",
+              "your-email",
+              "acceptance-pd",
+              "acceptance-ads"
+            ]
+          }
+        },
+        {
+          "i": 4,
+          "text": "ОПУБЛИКОВАТЬ",
+          "where": "row rgap-30px vo-msg-grid",
+          "opened": {
+            "kind": "modal",
+            "title": "Разместить объявление",
+            "form": "1260",
+            "formNotFound": false,
+            "fields": [
+              "form-choose",
+              "your-tel",
+              "your-email",
+              "acceptance-pd",
+              "acceptance-ads"
+            ]
+          }
+        },
+        {
+          "i": 5,
+          "text": "ОПУБЛИКОВАТЬ",
+          "where": "row rgap-30px vo-msg-grid",
+          "opened": {
+            "kind": "modal",
+            "title": "Разместить объявление",
+            "form": "1260",
+            "formNotFound": false,
+            "fields": [
+              "form-choose",
+              "your-tel",
+              "your-email",
+              "acceptance-pd",
+              "acceptance-ads"
+            ]
+          }
+        },
+        {
+          "i": 6,
+          "text": "ОПУБЛИКОВАТЬ",
+          "where": "row rgap-30px vo-msg-grid",
+          "opened": {
+            "kind": "modal",
+            "title": "Разместить объявление",
+            "form": "1260",
+            "formNotFound": false,
+            "fields": [
+              "form-choose",
+              "your-tel",
+              "your-email",
+              "acceptance-pd",
+              "acceptance-ads"
+            ]
+          }
+        },
+        {
+          "i": 7,
+          "text": "ОПУБЛИКОВАТЬ",
+          "where": "row rgap-30px vo-msg-grid",
+          "opened": {
+            "kind": "modal",
+            "title": "Разместить объявление",
+            "form": "1260",
+            "formNotFound": false,
+            "fields": [
+              "form-choose",
+              "your-tel",
+              "your-email",
+              "acceptance-pd",
+              "acceptance-ads"
+            ]
+          }
+        },
+        {
+          "i": 8,
+          "text": "Получить консультацию специалиста",
+          "where": "row vo-why",
+          "opened": {
+            "kind": "modal",
+            "title": "Получить консультацию",
+            "form": "10009",
+            "formNotFound": false,
+            "fields": [
+              "your-tel",
+              "acceptance-pd"
+            ]
+          }
+        },
+        {
+          "i": 9,
+          "text": "Сформировать счёт",
+          "where": "payment_methods text-center vo-pay",
+          "opened": {
+            "kind": "modal",
+            "title": "Сформировать счёт",
+            "form": "10011",
+            "formNotFound": false,
+            "fields": [
+              "your-tel",
+              "your-email",
+              "acceptance-pd",
+              "acceptance-ads"
+            ]
+          }
+        },
+        {
+          "i": 10,
+          "text": "Оплатить картой",
+          "where": "payment_methods text-center vo-pay",
+          "opened": {
+            "kind": "modal",
+            "title": "Оплатить картой",
+            "form": "10012",
+            "formNotFound": false,
+            "fields": [
+              "your-tel",
+              "your-email",
+              "acceptance-pd",
+              "acceptance-ads"
+            ]
+          }
+        },
+        {
+          "i": 11,
+          "text": "Оставить заявку",
+          "where": "payment_methods text-center vo-pay",
+          "opened": {
+            "kind": "modal",
+            "title": "Оставить заявку оплаты по гарантийному письму",
+            "form": "10013",
+            "formNotFound": false,
+            "fields": [
+              "your-tel",
+              "your-email",
+              "acceptance-pd",
+              "acceptance-ads"
+            ]
+          }
+        },
+        {
+          "i": 12,
+          "text": "Получить консультацию специалиста",
+          "where": "entry-content contentBorderBlock vo-home-text",
+          "opened": {
+            "kind": "modal",
+            "title": "Получить консультацию",
+            "form": "10009",
+            "formNotFound": false,
+            "fields": [
+              "your-tel",
+              "acceptance-pd"
+            ]
+          }
+        },
+        {
+          "i": 13,
+          "text": "Обратный звонок",
+          "where": "mb-40px mt-40px",
+          "opened": {
+            "kind": "modal",
+            "title": "Заказать звонок",
+            "form": "10010",
+            "formNotFound": false,
+            "fields": [
+              "your-tel",
+              "acceptance-pd"
+            ]
+          }
+        },
+        {
+          "i": 14,
+          "text": "Продолжить",
+          "where": "quizDiv",
+          "opened": {
+            "kind": "quiz",
+            "title": "Сделаем ее вместо вас онлайн, сэкономив вам 30% затрат на пошлину Журнала",
+            "form": "quiz"
+          }
+        },
+        {
+          "i": 15,
+          "text": "phone__icon_form",
+          "where": "home wp-singular page-template page-template-tpl-main page-template-tpl-main-php page page-id-10 wp-theme-vestniconline",
+          "opened": {
+            "kind": "callback",
+            "title": "Здравствуйте, мы перезвоним вам через 40 секунд?",
+            "form": "callback-widget"
+          }
+        }
+      ],
+      "pageErrors": []
+    }
+  },
+  "submits": [
+    {
+      "form": "10010",
+      "title": "Заказать звонок",
+      "status": "sent",
+      "after": {
+        "kind": "modal",
+        "title": "Заказать звонок",
+        "form": "10010",
+        "formNotFound": false,
+        "fields": [
+          "your-tel",
+          "acceptance-pd"
+        ]
+      }
+    },
+    {
+      "form": "1260",
+      "title": "Разместить объявление",
+      "status": "wpcf7-acceptance-as-validation sent",
+      "after": {
+        "kind": "modal",
+        "title": "",
+        "form": "4977",
+        "formNotFound": false,
+        "fields": [
+          "your-tel",
+          "acceptance-pd"
+        ]
+      }
+    },
+    {
+      "form": "10009",
+      "title": "Получить консультацию",
+      "status": "sent",
+      "after": {
+        "kind": "modal",
+        "title": "Получить консультацию",
+        "form": "10009",
+        "formNotFound": false,
+        "fields": [
+          "your-tel",
+          "acceptance-pd"
+        ]
+      }
+    },
+    {
+      "form": "10011",
+      "title": "Сформировать счёт",
+      "status": "wpcf7-acceptance-as-validation sent",
+      "after": {
+        "kind": "modal",
+        "title": "Сформировать счёт",
+        "form": "10011",
+        "formNotFound": false,
+        "fields": [
+          "your-tel",
+          "your-email",
+          "acceptance-pd",
+          "acceptance-ads"
+        ]
+      }
+    },
+    {
+      "form": "10012",
+      "title": "Оплатить картой",
+      "status": "wpcf7-acceptance-as-validation sent",
+      "after": {
+        "kind": "modal",
+        "title": "Оплатить картой",
+        "form": "10012",
+        "formNotFound": false,
+        "fields": [
+          "your-tel",
+          "your-email",
+          "acceptance-pd",
+          "acceptance-ads"
+        ]
+      }
+    },
+    {
+      "form": "10013",
+      "title": "Оставить заявку оплаты по гарантийному письму",
+      "status": "wpcf7-acceptance-as-validation sent",
+      "after": {
+        "kind": "modal",
+        "title": "Оставить заявку оплаты по гарантийному письму",
+        "form": "10013",
+        "formNotFound": false,
+        "fields": [
+          "your-tel",
+          "your-email",
+          "acceptance-pd",
+          "acceptance-ads"
+        ]
+      }
+    },
+    {
+      "form": "встроенная (.leadForm)",
+      "title": "Рассчитать стоимость объявления",
+      "status": "wpcf7-acceptance-as-validation sent",
+      "after": {
+        "kind": "modal",
+        "title": "",
+        "form": "4977",
+        "formNotFound": false,
+        "fields": [
+          "your-tel",
+          "acceptance-pd"
+        ]
+      }
+    }
+  ]
+}

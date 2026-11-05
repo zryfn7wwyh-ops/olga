@@ -29,6 +29,10 @@ require "$wp_core/wp-load.php";
 require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
+// Скрипт работает без пользователя, и kses вырезал бы атрибуты Vue (@click) из разметки
+// сниппетов и главной. Администратор сайта (unfiltered_html) сохраняет их как есть — делаем так же.
+kses_remove_filters();
+
 function say( $m ) { fwrite( STDOUT, "  - $m\n" ); }
 
 if ( ! is_blog_installed() ) {
