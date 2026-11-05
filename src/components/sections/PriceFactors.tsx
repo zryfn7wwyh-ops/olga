@@ -1,18 +1,20 @@
 import { Rich } from "@/components/ui/Rich";
-import { ButtonLink } from "@/components/ui/Button";
 import { priceFactors } from "@/content/page";
 import { SectionIntro } from "./SectionIntro";
 import s from "./sections.module.css";
 
 const ICONS = [
   // Объём
-  <path key="v" d="M8 8h24v24H8zM14 14h12M14 20h12M14 26h7" />,
+  <path key="v" d="M5 2.5h18v23H5zM9.5 8.5h9M9.5 13.5h9M9.5 18.5h5" />,
   // Контент
-  <path key="c" d="M7 30 15 20l6 6 4-5 8 9M7 10h26v20H7zM27 15.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />,
+  <g key="c">
+    <path d="M2.5 5h23v18h-23zM2.5 19l7-7 6 6 4-4 6 6" />
+    <circle cx="19" cy="10" r="2" />
+  </g>,
   // Интеграции
-  <path key="i" d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM28 32a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM12 16v6a6 6 0 0 0 6 6h6M28 24v-6a6 6 0 0 0-6-6h-6" />,
+  <path key="i" d="M3 3h8v8H3zM17 17h8v8h-8zM11 7h7a3 3 0 0 1 3 3v7" />,
   // Логика
-  <path key="l" d="M6 20h8l4-8 4 16 4-8h8" />,
+  <path key="l" d="M1.5 15h7l3-9 5 17 3-8h7" />,
 ];
 
 export function PriceFactors() {
@@ -20,7 +22,6 @@ export function PriceFactors() {
     <section className={s.section} id="pricing-factors" aria-labelledby="pricing-title">
       <div className="container">
         <SectionIntro
-          split
           id="pricing-factors"
           titleId="pricing-title"
           index={priceFactors.index}
@@ -31,7 +32,7 @@ export function PriceFactors() {
         <ul className={s.factors}>
           {priceFactors.items.map((item, i) => (
             <li key={item.title} className={s.factor}>
-              <svg className={s.factorIcon} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" aria-hidden="true">
+              <svg className={s.factorIcon} viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
                 {ICONS[i]}
               </svg>
               <h3 className={s.h3}>{item.title}</h3>
@@ -41,11 +42,6 @@ export function PriceFactors() {
             </li>
           ))}
         </ul>
-        <div className={s.factorsFoot}>
-          <ButtonLink href="#brief" variant="secondary">
-            {priceFactors.cta}
-          </ButtonLink>
-        </div>
       </div>
     </section>
   );

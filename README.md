@@ -2,7 +2,9 @@
 
 Одностраничный адаптивный сайт услуги «Создание сайтов» с главным оффером «Рассчитать стоимость сайта», четырьмя сценариями заявок и настоящей серверной отправкой.
 
-Стек: **Next.js 15 (App Router) + TypeScript + CSS Modules / CSS-переменные**. Без UI-китов и анимационных библиотек. Шрифты Manrope, Inter, IBM Plex Mono (лицензия OFL) подключены локально через `@fontsource` — без запросов к Google Fonts.
+Стек: **Next.js 15 (App Router) + TypeScript + CSS Modules / CSS-переменные**. Без UI-китов и анимационных библиотек. Шрифт Geologica (лицензия OFL) подключён локально через `@fontsource-variable/geologica` — без запросов к Google Fonts.
+
+Дизайн — по редизайну заказчика: исходный файл лежит в `docs/design/site-redesign.html`.
 
 ## Запуск
 
@@ -91,7 +93,7 @@ src/
                   Deliverables, PriceFactors, MidCta, Faq, FinalBrief, SectionIntro
     forms/        EstimateForm, QuizDialog, ConsultationDialog, BriefForm,
                   LeadContactFields, LeadUIProvider, Triggers, useLeadForm, SuccessPanel
-    showcase/     FormatPreview, CasePreview (макеты интерфейсов собраны кодом)
+    showcase/     FormatPreview, CasePreview, CaseStage (макеты собраны кодом, ширина меняется ползунком)
     ui/           Button, Field, RadioCard (+Segmented), Checkbox, FormStatus, Dialog, Icon
     legal/        LegalPage
   content/        page.ts, cases.ts, faq.ts, options.ts, legal.ts, site.ts
@@ -99,7 +101,7 @@ src/
   styles/         tokens.css
   animations/     README.md, index.ts
 tests/            unit/, e2e/
-docs/             acceptance.md, lighthouse/
+docs/             acceptance.md, lighthouse/, design/site-redesign.html
 ```
 
 ## Контент
@@ -111,15 +113,13 @@ docs/             acceptance.md, lighthouse/
 - `site.ts` — бренд, контакты, реквизиты, SEO. Пока `confirmed: false`, контакты и JSON-LD не выводятся;
 - `legal.ts` — модель согласия, версия документа, ссылки. Пока `approved: false`, страницы `/privacy` и `/consent` показывают помеченный черновик.
 
-## Цветовые палитры
+## Дизайн
 
-Цвета заданы токенами в `src/styles/tokens.css`. Палитра выбирается в `src/content/site.ts` (`company.palette`):
+Цвета, радиусы, отступы и шрифт — токены в `src/styles/tokens.css` (по `docs/design/site-redesign.html`). Акцент — `--accent` (изумрудный `#0b7d5c`); в исходнике редизайна предусмотрены альтернативы `#1f3fd4`, `#c9400a`, `#d4182a` — достаточно поменять `--accent` и `--accent-rgb`.
 
-- `emerald` — «Изумруд»: тёмно-зелёный графит, тёплая бумага, изумрудный акцент (по умолчанию, выбрана заказчиком);
-- `emerald-light` — «Изумруд · светлая»: те же изумрудные кнопки, вместо тёмных полос — светлый шалфей с тёмным текстом;
-- `graphite` — графит и синий, исходный вариант из дизайн-ТЗ.
+Тёмные области (форма на первом экране, блок «Работы», подвал) переопределяют переменные `--fg`, `--mut`, `--t` и др., поэтому одни и те же компоненты работают на светлом и тёмном фоне (класс `dark` в `components/ui/ui.module.css`).
 
-Обе палитры проверены на контраст WCAG AA. Новая палитра — блок `[data-palette="…"]` с переопределением цветовых токенов. Цвета шапки, первого экрана, тёмных секций и подвала задаются отдельными токенами `--band-*`, поэтому палитра может сделать их и тёмными, и светлыми.
+Анимация из редизайна (подъём строк H1, шкала 320–1440 px, линия этапов, демонстрация ширины макетов, появление диалогов) — на CSS, без библиотек. Выключается `ui.motion = false` в `src/content/site.ts`; при `prefers-reduced-motion` выключена всегда.
 
 ## Аналитика
 
@@ -127,7 +127,7 @@ docs/             acceptance.md, lighthouse/
 
 ## Motion-слоты
 
-См. `src/animations/README.md`. Слоты размечены `data-motion` / `data-motion-id`, анимаций в первой версии нет.
+См. `src/animations/README.md`. Слоты размечены `data-motion` / `data-motion-id`; анимации из редизайна уже подключены к части слотов (см. README в папке).
 
 ## Перед публичным релизом (блокеры)
 

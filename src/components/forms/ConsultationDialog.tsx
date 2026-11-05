@@ -68,7 +68,7 @@ function ConsultationFlow() {
       </div>
       <LeadContactFields form={form} idPrefix="consult" />
       <SubmitErrorStatus form={form} />
-      <Button type="submit" block loading={form.submitting} disabled={form.submitting}>
+      <Button type="submit" block size="lg" loading={form.submitting} disabled={form.submitting}>
         {form.submitting ? "Отправляем…" : "Обсудить требования и оценку"}
       </Button>
       <p className={s.legalNote}>

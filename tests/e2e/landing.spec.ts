@@ -51,11 +51,11 @@ test("AC-04: phone/email switch changes label, type, autocomplete and validation
   await expect(input).toHaveAttribute("type", "tel");
   await expect(input).toHaveAttribute("autocomplete", "tel");
   await input.fill("+7 900 000-00-00");
-  await form.getByText("Email", { exact: true }).click();
+  await form.getByRole("radio", { name: "Email" }).check();
   await expect(input).toHaveAttribute("type", "email");
   await expect(input).toHaveAttribute("autocomplete", "email");
   await expect(input).toHaveValue("");
-  await expect(form.getByText("Email", { exact: true }).last()).toBeVisible();
+  await expect(form.locator('label[for="estimate-contact"]')).toHaveText("Email");
   await input.fill("wrong");
   await form.getByRole("button", { name: "Получить предварительный расчёт" }).click();
   await expect(form.getByText("Проверьте email")).toBeVisible();
@@ -101,7 +101,7 @@ test("AC-08: success appears only after the real server confirms", async ({ page
   await page.goto("/");
   const form = hero(page);
   await form.getByRole("radio", { name: "Корпоративный сайт" }).check();
-  await form.getByText("Email", { exact: true }).click();
+  await form.getByRole("radio", { name: "Email" }).check();
   await page.locator("#estimate-contact").fill("e2e@example.com");
   await page.locator("#estimate-consent").check();
   await form.getByRole("button", { name: "Получить предварительный расчёт" }).click();
@@ -170,7 +170,7 @@ test("AC-11: PDn consultation validates and sends the correct source", async ({ 
   await dialog.getByRole("button", { name: "Обсудить требования и оценку" }).click();
   await expect(dialog.getByText("Выберите один из вариантов")).toBeVisible();
   await dialog.getByRole("radio", { name: "Регистрации пользователей" }).check();
-  await dialog.getByText("Email", { exact: true }).click();
+  await dialog.getByRole("radio", { name: "Email" }).check();
   await page.locator("#consult-contact").fill("dpo@example.com");
   await dialog.getByRole("checkbox").check();
   await dialog.getByRole("button", { name: "Обсудить требования и оценку" }).click();

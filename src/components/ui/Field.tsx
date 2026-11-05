@@ -16,7 +16,7 @@ export function FieldShell({ id, label, optional, hint, error, children }: Field
     <div className={s.field}>
       <label className={s.label} htmlFor={id}>
         {label}
-        {optional && <span className={s.optional}> — необязательно</span>}
+        {optional && <small className={s.optional}> — необязательно</small>}
       </label>
       {children}
       {hint && !error && (

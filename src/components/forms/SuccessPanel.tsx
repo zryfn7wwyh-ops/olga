@@ -12,14 +12,12 @@ export const SUCCESS_TEXT =
 export function SuccessPanel({ form, text = SUCCESS_TEXT, onReset }: { form: LeadFormState; text?: string; onReset?: () => void }) {
   return (
     <div className={s.success}>
-      <span className={s.successIcon}>
-        <Icon name="check" size={24} />
-      </span>
+      <Icon name="tick" />
       <FormStatus ref={form.statusRef} tone="success" title="Спасибо! Заявка получена." testMode={form.testMode}>
         {text}
       </FormStatus>
       {onReset && (
-        <Button variant="ghost" size="sm" onClick={onReset}>
+        <Button variant="outline" onClick={onReset}>
           Отправить ещё одну заявку
         </Button>
       )}

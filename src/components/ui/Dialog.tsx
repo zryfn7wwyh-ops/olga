@@ -98,21 +98,19 @@ export function Dialog({ open, onClose, title, description, children, returnFocu
     >
       {open && (
         <div className={s.dialogInner}>
-          <div className={s.dialogHeader}>
-            <div style={{ display: "grid", gap: 8 }}>
-              <h2 className={s.dialogTitle} id={titleId}>
-                {title}
-              </h2>
-              {description && (
-                <p id={descId} style={{ color: "var(--color-muted)" }}>
-                  {description}
-                </p>
-              )}
-            </div>
-            <button type="button" className={s.dialogClose} onClick={() => ref.current?.close()} aria-label="Закрыть" data-close>
-              <Icon name="close" />
-            </button>
-          </div>
+          <button type="button" className={s.dialogClose} onClick={() => ref.current?.close()} aria-label="Закрыть" data-close>
+            <Icon name="close" />
+          </button>
+          <header>
+            <h2 className={s.dialogTitle} id={titleId}>
+              {title}
+            </h2>
+            {description && (
+              <p id={descId} className={s.dialogDesc}>
+                {description}
+              </p>
+            )}
+          </header>
           {children}
         </div>
       )}

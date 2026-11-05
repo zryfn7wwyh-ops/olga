@@ -105,7 +105,7 @@ export function BriefForm() {
       </div>
       <LeadContactFields form={form} idPrefix="brief" />
       <SubmitErrorStatus form={form} />
-      <Button type="submit" loading={form.submitting} disabled={form.submitting}>
+      <Button type="submit" block size="lg" loading={form.submitting} disabled={form.submitting}>
         {form.submitting ? "Отправляем…" : "Получить предварительный расчёт"}
       </Button>
       <NoScriptNotice />

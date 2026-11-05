@@ -1,45 +1,30 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { Button } from "@/components/ui/Button";
-import { Icon } from "@/components/ui/Icon";
+import { Button, type ButtonVariant } from "@/components/ui/Button";
 import type { SiteType } from "@/lib/leads/schema";
 import { useLeadUI } from "./LeadUIProvider";
 
-type Variant = "primary" | "secondary" | "ghost" | "onInk" | "onInkSecondary" | "onInkGhost" | "link" | "band";
-
 /** Кнопка карточки формата: предвыбирает тип в Hero-форме и ведёт к #calc. */
-export function EstimateButton({
-  siteType,
-  children,
-  variant = "primary",
-  block,
-}: {
-  siteType?: Exclude<SiteType, "other">;
-  children: ReactNode;
-  variant?: Variant;
-  block?: boolean;
-}) {
+export function EstimateButton({ siteType, children }: { siteType?: Exclude<SiteType, "other">; children: ReactNode }) {
   const { requestEstimate } = useLeadUI();
   return (
-    <Button variant={variant} block={block} onClick={() => requestEstimate(siteType)} data-site-type={siteType}>
+    <Button block arrow onClick={() => requestEstimate(siteType)} data-site-type={siteType}>
       {children}
-      <Icon name="arrow" size={18} />
     </Button>
   );
 }
 
-export function QuizButton({ children = "Подобрать сайт за 3 вопроса", variant = "ghost" }: { children?: ReactNode; variant?: Variant }) {
+export function QuizButton({ children = "Подобрать сайт за 3 вопроса", variant = "dark" }: { children?: ReactNode; variant?: ButtonVariant }) {
   const { openQuiz } = useLeadUI();
   return (
-    <Button variant={variant} onClick={(e) => openQuiz(e.currentTarget)} aria-haspopup="dialog">
+    <Button variant={variant} arrow onClick={(e) => openQuiz(e.currentTarget)} aria-haspopup="dialog">
       {children}
-      <Icon name="arrow" size={18} />
     </Button>
   );
 }
 
-export function ConsultationButton({ children, variant = "onInk" }: { children: ReactNode; variant?: Variant }) {
+export function ConsultationButton({ children, variant = "light" }: { children: ReactNode; variant?: ButtonVariant }) {
   const { openConsultation } = useLeadUI();
   return (
     <Button variant={variant} onClick={(e) => openConsultation(e.currentTarget)} aria-haspopup="dialog">

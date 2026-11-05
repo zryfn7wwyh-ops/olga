@@ -18,7 +18,7 @@ type Props<T extends string> = {
   idPrefix: string;
 };
 
-/** Группа радиокарточек на нативных input[type=radio]: стрелки и Tab работают из коробки. */
+/** Группа плиток выбора на нативных input[type=radio]: стрелки и Tab работают из коробки. */
 function RadioCardGroupInner<T extends string>(
   { name, legend, legendHidden, options, value, onChange, columns = 2, size = "md", error, idPrefix }: Props<T>,
   ref: React.ForwardedRef<HTMLInputElement>,
@@ -27,9 +27,9 @@ function RadioCardGroupInner<T extends string>(
   return (
     <fieldset className={s.fieldset} aria-describedby={error ? errorId : undefined}>
       <legend className={legendHidden ? "visually-hidden" : s.legend}>{legend}</legend>
-      <div className={s.radioGrid} style={{ "--cols": columns } as CSSProperties}>
+      <div className={`${s.tiles} ${size === "lg" ? s.tilesLarge : ""}`} style={{ "--cols": columns } as CSSProperties}>
         {options.map((o, i) => (
-          <label key={o.value} className={`${s.radioCard} ${size === "lg" ? s.radioCardLarge : ""}`}>
+          <label key={o.value} className={s.tile}>
             <input
               ref={i === 0 ? ref : undefined}
               type="radio"
@@ -39,7 +39,6 @@ function RadioCardGroupInner<T extends string>(
               onChange={() => onChange(o.value)}
               aria-invalid={error ? true : undefined}
             />
-            <span className={s.radioDot} aria-hidden="true" />
             <span>{o.label}</span>
           </label>
         ))}
@@ -73,7 +72,7 @@ export function Segmented<T extends string>({ name, legend, options, value, onCh
         {options.map((o) => (
           <label key={o.value} className={s.segment}>
             <input type="radio" name={name} value={o.value} checked={value === o.value} onChange={() => onChange(o.value)} />
-            {o.label}
+            <span>{o.label}</span>
           </label>
         ))}
       </div>

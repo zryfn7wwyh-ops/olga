@@ -9,6 +9,7 @@ import { LeadContactFields } from "./LeadContactFields";
 import { useLeadUI } from "./LeadUIProvider";
 import { NoScriptNotice, SubmitErrorStatus, SuccessPanel } from "./SuccessPanel";
 import { useLeadForm } from "./useLeadForm";
+import uiStyles from "@/components/ui/ui.module.css";
 import s from "./forms.module.css";
 
 /** Форма A — расчёт стоимости (source=hero_estimate). */
@@ -34,9 +35,9 @@ export function EstimateForm() {
   }, []);
 
   return (
-    <div className={s.estimateCard} ref={cardRef}>
+    <div className={`${s.estimateCard} ${uiStyles.dark}`} ref={cardRef}>
       <div className={s.cardHead}>
-        <p className={s.cardKicker}>Предварительный расчёт</p>
+        <p className="mono">Предварительный расчёт</p>
         <h2 className={s.cardTitle} id="estimate-title">
           Рассчитать стоимость сайта
         </h2>
@@ -71,7 +72,7 @@ export function EstimateForm() {
           </div>
           <LeadContactFields form={form} idPrefix="estimate" contactRef={ui.estimateContactRef} />
           <SubmitErrorStatus form={form} />
-          <Button type="submit" block loading={form.submitting} disabled={form.submitting}>
+          <Button type="submit" block size="lg" loading={form.submitting} disabled={form.submitting}>
             {form.submitting ? "Отправляем…" : "Получить предварительный расчёт"}
           </Button>
           <NoScriptNotice />

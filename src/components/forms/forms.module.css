@@ -1,197 +1,174 @@
 .form {
-  display: grid;
-  gap: var(--space-5);
-}
-
-.stack {
-  display: grid;
-  gap: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
 .honeypot {
   position: absolute;
-  left: -10000px;
+  left: -9999px;
   width: 1px;
   height: 1px;
   overflow: hidden;
 }
 
 .legalNote {
-  font-size: var(--text-xs);
-  color: var(--color-muted);
-  line-height: 1.5;
-}
-
-.legalNote a {
-  color: inherit;
-  text-underline-offset: 2px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--dim);
 }
 
 .noscript {
   padding: 12px 14px;
-  border-radius: var(--radius-md);
-  background: var(--color-paper-2);
-  font-size: var(--text-sm);
-  color: var(--color-muted);
+  border-radius: 14px;
+  background: var(--t);
+  font-size: 14px;
+  color: var(--mut);
 }
 
-/* ---------- Hero-форма ---------- */
+/* ---------- Форма расчёта на первом экране (тёмная карточка) ---------- */
 .estimateCard {
-  position: relative;
-  display: grid;
-  gap: var(--space-5);
-  padding: var(--space-5);
-  border: 0;
-  border-radius: var(--radius-lg);
-  background: var(--color-surface);
-  color: var(--color-ink);
-  box-shadow: var(--band-shadow);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: clamp(20px, 1.9vw, 26px);
+  border-radius: var(--r-lg);
+  background: var(--ink);
 }
 
-@media (min-width: 768px) {
-  .estimateCard {
-    padding: var(--space-6);
-  }
+.estimateCard .form {
+  flex: 1;
+  justify-content: space-between;
+  gap: 14px;
 }
 
-.cardHead {
-  display: grid;
-  gap: 6px;
-}
-
-.cardKicker {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--color-accent);
+.cardHead p:first-child {
+  color: var(--mut);
 }
 
 .cardTitle {
-  font-size: var(--text-lg);
+  margin-top: 8px;
+  font-size: clamp(24px, 1.95vw, 38px);
+  line-height: 1.14;
+  letter-spacing: -0.022em;
 }
 
 .cardText {
-  font-size: var(--text-sm);
-  color: var(--color-muted);
+  margin-top: 8px;
+  font-size: 15px;
+  color: var(--mut);
 }
 
+.cardHead + .form {
+  margin-top: 20px;
+}
+
+/* ---------- Успех ---------- */
 .success {
-  display: grid;
-  gap: var(--space-4);
-  justify-items: start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 8px 0;
 }
 
-.successIcon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: var(--color-positive-soft);
-  color: var(--color-positive);
+.success > svg {
+  color: var(--accent);
 }
 
 /* ---------- Квиз ---------- */
 .progress {
-  display: grid;
-  gap: 8px;
-}
-
-.progressMeta {
   display: flex;
   justify-content: space-between;
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: var(--color-muted);
+  margin-bottom: 8px;
+  color: var(--mut);
 }
 
-.progressTrack {
+.track {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 4px;
 }
 
-.progressTrack span {
+.track span {
   height: 4px;
   border-radius: 2px;
-  background: var(--color-line);
+  background: var(--t);
 }
 
-.progressTrack span[data-done="true"] {
-  background: var(--color-accent);
+.track span[data-done="true"] {
+  background: var(--accent);
 }
 
 .question {
-  font-family: var(--font-display);
-  font-size: var(--text-lg);
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  display: block;
+  margin-bottom: 4px;
+  font-size: clamp(20px, 2vw, 24px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.016em;
+  color: var(--fg);
 }
 
 .quizNav {
   display: flex;
   justify-content: space-between;
-  gap: var(--space-3);
   flex-wrap: wrap;
+  gap: 10px;
+}
+
+.quizNav > * {
+  flex: 1 1 auto;
+}
+
+@media (max-width: 520px) {
+  .quizNav > * {
+    flex-basis: 100%;
+  }
 }
 
 .recommendation {
-  display: grid;
-  gap: 8px;
-  padding: var(--space-5);
-  border-radius: var(--radius-md);
-  background: var(--color-paper);
-  border: 1px solid var(--color-line);
+  padding: 18px;
+  border-radius: 18px;
+  background: var(--soft);
 }
 
 .recoLabel {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--color-muted);
+  color: var(--accent);
 }
 
 .recoTitle {
-  font-size: var(--text-lg);
+  margin-top: 6px;
+  font-size: 24px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.recoText {
+  margin-top: 6px;
+  font-size: 15px;
+  color: var(--mut);
 }
 
 .answers {
-  display: grid;
-  gap: 4px;
-  margin-top: 4px;
-  font-size: var(--text-sm);
-  color: var(--color-muted);
-  list-style: none;
+  margin-top: 10px;
+  font-size: 14px;
+  color: var(--mut);
 }
 
 /* ---------- Бриф ---------- */
 .briefGrid {
   display: grid;
-  gap: var(--space-5);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
 }
 
-@media (min-width: 768px) {
+.span2 {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 520px) {
   .briefGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr);
   }
-  .span2 {
-    grid-column: 1 / -1;
-  }
-}
-
-.cardText,
-.legalNote {
-  font-weight: 450;
-}
-
-.recoLabel,
-.cardKicker {
-  font-weight: 500;
-}
-
-.estimateCard {
-  --strong-color: var(--color-ink);
 }

@@ -1,12 +1,12 @@
 .page {
-  padding: clamp(2rem, 1rem + 4vw, 5rem) var(--gutter);
+  padding: clamp(32px, 5vw, 80px) var(--gx);
 }
 
 .inner {
+  display: grid;
+  gap: 20px;
   max-width: 760px;
   margin-inline: auto;
-  display: grid;
-  gap: var(--space-5);
 }
 
 .back {
@@ -14,42 +14,48 @@
   display: inline-flex;
   align-items: center;
   min-height: var(--tap);
-  color: var(--color-accent);
-  font-weight: 600;
+  color: var(--accent);
+  font-weight: 400;
   text-decoration: none;
 }
 
 .title {
-  font-size: var(--text-2xl);
+  font-size: clamp(30px, 4vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.032em;
 }
 
 .meta {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: var(--color-muted);
+  color: var(--mut);
 }
 
 .draft {
-  padding: var(--space-4) var(--space-5);
-  border-radius: var(--radius-md);
-  border: 1px dashed #b58a00;
-  background: #fff8e1;
-  color: #5c4500;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: var(--t);
+  color: var(--fg);
 }
 
 .body {
   display: grid;
-  gap: var(--space-4);
-  color: var(--color-ink);
+  gap: 14px;
+  color: var(--fg);
 }
 
 .body h2 {
-  font-size: var(--text-lg);
-  margin-top: var(--space-4);
+  margin-top: 12px;
+  font-size: clamp(20px, 1.8vw, 28px);
+  letter-spacing: -0.018em;
 }
 
 .body ul {
-  padding-left: 1.25rem;
   display: grid;
   gap: 6px;
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+
+.body p,
+.body li {
+  color: var(--mut);
 }

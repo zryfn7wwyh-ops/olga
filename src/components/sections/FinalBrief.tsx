@@ -8,21 +8,23 @@ const CHECKLIST = ["Только контакт обязателен", "Тип �
 
 export function FinalBrief() {
   return (
-    <section className={`${s.section} ${s.paper2}`} id="brief" aria-labelledby="brief-title">
-      <div className={`container ${s.briefGrid}`}>
-        <div className={s.briefAside}>
-          <SectionIntro id="brief" titleId="brief-title" index={brief.index} kicker={brief.kicker} title={brief.title} lead={brief.lead} />
-          <ul className={s.briefChecklist}>
-            {CHECKLIST.map((c) => (
-              <li key={c}>
-                <Icon name="check" size={18} />
-                {c}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className={s.briefCard}>
-          <BriefForm />
+    <section className={s.section} id="brief" aria-labelledby="brief-title">
+      <div className="container">
+        <div className={s.split}>
+          <div className={s.splitAside}>
+            <SectionIntro id="brief" layout="stacked" titleId="brief-title" index={brief.index} kicker={brief.kicker} title={brief.title} lead={brief.lead} />
+            <ul className={`${s.checks} ${s.briefChecks}`}>
+              {CHECKLIST.map((c) => (
+                <li key={c}>
+                  <Icon name="check" />
+                  {c}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className={s.briefCard}>
+            <BriefForm />
+          </div>
         </div>
       </div>
     </section>

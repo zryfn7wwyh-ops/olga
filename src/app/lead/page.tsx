@@ -16,10 +16,10 @@ export default async function LeadStatusPage({ searchParams }: { searchParams: P
   const { status } = await searchParams;
   const t = TEXTS[(status as keyof typeof TEXTS) ?? "error"] ?? TEXTS.error;
   return (
-    <main style={{ padding: "clamp(3rem, 2rem + 4vw, 6rem) var(--gutter)", maxWidth: 720, margin: "0 auto", display: "grid", gap: 24 }}>
-      <h1 style={{ fontSize: "var(--text-2xl)" }}>{t.title}</h1>
-      <p style={{ color: "var(--color-muted)" }}>{t.text}</p>
-      <a href="/#calc" style={{ color: "var(--color-accent)", fontWeight: 600 }}>
+    <main style={{ padding: "clamp(48px, 6vw, 96px) var(--gx)", maxWidth: 720, margin: "0 auto", display: "grid", gap: 24 }}>
+      <h1 style={{ fontSize: "clamp(30px, 4vw, 56px)", letterSpacing: "-0.032em", lineHeight: 1.05 }}>{t.title}</h1>
+      <p style={{ color: "var(--mut)" }}>{t.text}</p>
+      <a href="/#calc" style={{ color: "var(--accent)", fontWeight: 400 }}>
         ← Вернуться на страницу
       </a>
     </main>

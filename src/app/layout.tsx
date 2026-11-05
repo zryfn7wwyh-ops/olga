@@ -1,10 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import "@fontsource-variable/manrope/wght.css";
-import "@fontsource-variable/inter/wght.css";
-import "@fontsource/ibm-plex-mono/400.css";
-import "@fontsource/ibm-plex-mono/500.css";
+import "@fontsource-variable/geologica/wght.css";
 import "./globals.css";
-import { company, seo, siteUrl } from "@/content/site";
+import { company, seo, siteUrl, ui } from "@/content/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -26,12 +23,12 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#0E1B17",
+  themeColor: "#0B0F0D",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ru" data-palette={company.palette}>
+    <html lang="ru" data-anim={ui.motion ? "on" : "off"}>
       <body>{children}</body>
     </html>
   );

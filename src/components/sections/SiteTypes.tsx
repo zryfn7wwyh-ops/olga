@@ -1,46 +1,41 @@
-import { Rich } from "@/components/ui/Rich";
 import { EstimateButton, QuizButton } from "@/components/forms/Triggers";
 import { FormatPreview } from "@/components/showcase/FormatPreview";
 import { Icon } from "@/components/ui/Icon";
+import { Rich } from "@/components/ui/Rich";
 import { formats } from "@/content/page";
 import { SectionIntro } from "./SectionIntro";
 import s from "./sections.module.css";
 
 export function SiteTypes() {
   return (
-    <section className={`${s.section} ${s.paper2}`} id="formats" aria-labelledby="formats-title">
+    <section className={s.section} id="formats" aria-labelledby="formats-title">
       <div className="container">
-        <SectionIntro
-          split id="formats" titleId="formats-title" index={formats.index} kicker={formats.kicker} title={formats.title} lead={formats.lead} />
-        <ul className={s.cards3} style={{ listStyle: "none" }}>
+        <SectionIntro id="formats" titleId="formats-title" index={formats.index} kicker={formats.kicker} title={formats.title} lead={formats.lead} />
+        <div className={s.formats}>
           {formats.items.map((item) => (
-            <li key={item.id} className={s.formatCard}>
-              <div className={s.formatPreview} aria-hidden="true">
-                <FormatPreview kind={item.id} />
-              </div>
+            <article key={item.id} className={s.format}>
+              <FormatPreview kind={item.id} />
               <div className={s.formatBody}>
-                <h3 className={s.h3}>{item.title}</h3>
-                <p className={s.muted}>
+                <h3 className={s.formatTitle}>{item.title}</h3>
+                <p>
                   <Rich text={item.text} />
                 </p>
-                <ul className={s.points}>
+                <ul className={s.checks}>
                   {item.points.map((p) => (
                     <li key={p}>
-                      <Icon name="check" size={18} />
+                      <Icon name="check" />
                       {p}
                     </li>
                   ))}
                 </ul>
-                <EstimateButton siteType={item.id} block>
-                  {item.cta}
-                </EstimateButton>
+                <EstimateButton siteType={item.id}>{item.cta}</EstimateButton>
               </div>
-            </li>
+            </article>
           ))}
-        </ul>
-        <div className={s.formatsFoot}>
+        </div>
+        <div className={s.formatsStrip}>
           <span>Не уверены, какой формат выбрать?</span>
-          <QuizButton />
+          <QuizButton variant="soft" />
         </div>
       </div>
     </section>

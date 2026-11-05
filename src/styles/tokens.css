@@ -1,219 +1,61 @@
-/* Дизайн-токены: Quiet Confidence / Digital Craft */
+/*
+ * Дизайн-токены. Визуальная система — по редизайну заказчика (site-redesign.html):
+ * белая страница, светлые плитки, графит, изумрудный акцент, шрифт Geologica.
+ */
 :root {
   /* Цвет */
-  --color-ink: #101820;
-  --color-paper: #f7f6f2;
-  --color-surface: #ffffff;
-  --color-muted: #56616f;
-  --color-line: #d9ddd8;
-  --color-accent: #3154d8;
-  --color-accent-hover: #2443b6;
-  --accent-rgb: 49 84 216;
-  --color-positive: #247460;
-  --color-danger: #b42318;
+  --accent: #0b7d5c;
+  --accent-rgb: 11 125 92;
+  --paper: #fff;
+  --t: #f1f3f0; /* плитки и подложки */
+  --t-hover: #e6e9e4;
+  --ink: #0b0f0d;
+  --fg: #0b0f0d;
+  --mut: #4f5b55;
+  --dim: #5d6963;
+  --line: #dfe3de;
+  --line2: #c9cfc9;
+  --on: #fff; /* текст на акценте */
+  --soft: color-mix(in srgb, var(--accent) 10%, #fff);
+  --err: #c4291c;
 
-  /* Производные (графитовые секции, подложки) */
-  --color-ink-2: #1a242e;
-  --color-ink-line: #2c3743;
-  --color-ink-3: #232d38;
-  --color-on-ink: #f7f6f2;
-  --color-on-ink-muted: #a9b2bc;
-  --color-accent-on-ink: #8ea5ff;
-  --color-ink-glow: rgb(var(--accent-rgb) / 0.32);
-  --color-accent-soft: #e9edfb;
-  --color-positive-soft: #e6f2ee;
-  --color-danger-soft: #fdecea;
-  --color-paper-2: #efede6;
-
-  /* Нейтральные серые для контролов и макетов — в тон палитре */
-  --shadow-rgb: 16 24 32;
-  --gray-placeholder: #69727d;
-  --gray-control: #8a939d;
-  --gray-border-hover: #b9bfc6;
-  --gray-skeleton: #e6e8e4;
-  --gray-chrome: #fbfbf9;
-  --gray-hairline: #e6e8e4;
-  --gray-filter: #c3c8c2;
-  --gray-icon: #b4bab3;
-
-  /*
-   * «Полосы» — шапка, первый экран, тёмные секции, сцены концептов, подвал.
-   * По умолчанию это графит палитры; светлые палитры переопределяют их отдельно.
-   */
-  --band-bg: var(--color-ink);
-  --band-2: var(--color-ink-2);
-  --band-3: var(--color-ink-3);
-  --band-line: var(--color-ink-line);
-  --band-fg: var(--color-on-ink);
-  --band-primary-bg: var(--color-accent);
-  --band-primary-hover: var(--color-accent-hover);
-  --band-primary-fg: #fff;
-  --band-nav: var(--band-muted);
-  --band-panel: rgb(255 255 255 / 0.06);
-  --band-panel-line: rgb(255 255 255 / 0.12);
-  --band-btn-bg: var(--color-on-ink);
-  --band-btn-hover: #fff;
-  --band-btn-fg: var(--color-ink);
-  --band-muted: var(--color-on-ink-muted);
-  --band-accent: var(--color-accent-on-ink);
-  --band-glow: var(--color-ink-glow);
-  --band-shadow: var(--shadow-on-ink);
+  /* Оттенки тёмных блоков */
+  --dark-mut: #c2ccc6;
+  --dark-dim: #a3afa8;
+  --dark-line: #3a443e;
+  --dark-t: #1b211e;
+  --dark-stage: #171d1a;
+  --dark-err: #ff9f8e;
 
   /* Типографика */
-  --font-display: "Manrope Variable", "Manrope", system-ui, sans-serif;
-  --font-text: "Inter Variable", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --sans: "Geologica Variable", "Geologica", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fs-body: clamp(16px, 1.05vw, 20px);
+  --fs-mono: 13px;
 
-  --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
-  --text-base: 1rem;
-  --text-md: 1.125rem;
-  --text-lg: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
-  --text-xl: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
-  --text-2xl: clamp(2rem, 1.25rem + 2.6vw, 3.5rem);
-  --text-hero: clamp(2.25rem, 1.2rem + 3.3vw, 4rem);
-
-  /* Шаг сетки 8px */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.5rem;
-  --space-6: 2rem;
-  --space-7: 2.5rem;
-  --space-8: 3rem;
-  --space-9: 4rem;
-  --space-10: 5rem;
-  --space-11: 7.5rem;
-  --section-y: clamp(4.5rem, 2.75rem + 6.5vw, 9rem);
-
-  /* Сетка */
-  --container: 1312px;
-  --gutter: 16px;
-  --grid-columns: 4;
-  --grid-gap: 16px;
-
-  /* Формы и элементы */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
-  --control-h: 48px;
+  /* Сетка и ритм */
+  --gx: clamp(16px, 3vw, 60px);
+  --g: clamp(14px, 1.45vw, 28px);
+  --sp: clamp(68px, 9vw, 168px);
+  --mw: 2560px;
+  --r: 22px; /* карточки */
+  --rb: 12px; /* кнопки */
+  --r-lg: 28px; /* крупные блоки */
+  --header-offset: 88px;
   --tap: 44px;
-  --shadow-card: 0 1px 2px rgb(var(--shadow-rgb) / 0.04), 0 8px 24px -12px rgb(var(--shadow-rgb) / 0.12);
-  --shadow-float: 0 2px 4px rgb(var(--shadow-rgb) / 0.04), 0 24px 48px -24px rgb(var(--shadow-rgb) / 0.28);
-  --shadow-on-ink: 0 1px 0 rgb(255 255 255 / 0.06) inset, 0 40px 90px -40px rgb(0 0 0 / 0.7), 0 12px 24px -12px rgb(0 0 0 / 0.35);
-  --focus-ring: 0 0 0 3px var(--color-surface), 0 0 0 5px var(--color-accent);
 
-  /* Переходы: только стандартные hover/focus, 150–220 мс */
-  --ease: cubic-bezier(0.2, 0, 0, 1);
-  --dur-fast: 150ms;
-  --dur-base: 200ms;
-
-  --header-h: 64px;
+  /* Движение */
+  --ease: cubic-bezier(0.2, 0.7, 0.1, 1);
+  --dur: 0.15s;
 }
 
-/*
- * Альтернативная палитра «Изумруд». Включается атрибутом data-palette="emerald"
- * на <html> (см. company.palette в content/site.ts). Остальные токены общие.
- */
-[data-palette="emerald"] {
-  --color-ink: #0e1b17;
-  --color-paper: #f5f4ef;
-  --color-muted: #48554f;
-  --color-line: #d7dcd7;
-  --color-accent: #0f7a5a;
-  --color-accent-hover: #0b6349;
-  --accent-rgb: 15 122 90;
-  --color-ink-2: #16261f;
-  --color-ink-line: #2a3a33;
-  --color-ink-3: #22322b;
-  --color-on-ink: #f5f4ef;
-  --color-on-ink-muted: #a6b5ae;
-  --color-accent-on-ink: #7ed6b2;
-  --color-accent-soft: #e3f1eb;
-  --color-paper-2: #f0eee7;
-  --shadow-rgb: 14 27 23;
-  --gray-placeholder: #6b7871;
-  --gray-control: #7d8c84;
-  --gray-border-hover: #b3c2b9;
-  --gray-skeleton: #e3eae6;
-  --gray-chrome: #f8faf9;
-  --gray-hairline: #e3eae6;
-  --gray-filter: #bfccc4;
-  --gray-icon: #afbdb5;
-}
-
-/*
- * «Изумруд · светлая»: те же изумрудные кнопки, но вместо тёмных полос —
- * светлый шалфей с тёмным текстом; страница целиком светлая.
- */
-[data-palette="emerald-light"] {
-  --color-ink: #0e1b17;
-  --color-paper: #f5f8f6;
-  --color-muted: #3d4a44;
-  --color-line: #d2ddd6;
-  --color-accent: #0f7a5a;
-  --color-accent-hover: #0b6349;
-  --accent-rgb: 15 122 90;
-  --color-ink-2: #16261f;
-  --color-ink-line: #2a3a33;
-  --color-ink-3: #22322b;
-  --color-on-ink: #f5f4ef;
-  --color-on-ink-muted: #a6b5ae;
-  --color-accent-on-ink: #7ed6b2;
-  --color-accent-soft: #e3f1eb;
-  --color-paper-2: #e9f0eb;
-
-  --band-bg: #cedcd2;
-  --band-2: #c2d3c8;
-  --band-3: #0e1b17;
-  --band-line: #adc2b4;
-  --band-fg: #0e1b17;
-  --band-btn-bg: #0e1b17;
-  --band-btn-hover: #22322b;
-  --band-btn-fg: #fff;
-  --band-primary-bg: #0e1b17;
-  --band-primary-hover: #22322b;
-  --band-primary-fg: #fff;
-  --band-nav: #0e1b17;
-  --band-panel: rgb(255 255 255 / 0.62);
-  --band-panel-line: rgb(255 255 255 / 0.9);
-  --band-muted: #35423c;
-  --band-accent: #0b6349;
-  --band-glow: rgb(15 122 90 / 0.18);
-  --band-shadow: 0 2px 4px rgb(14 27 23 / 0.04), 0 30px 60px -30px rgb(14 27 23 / 0.3);
-  --shadow-rgb: 14 27 23;
-  --gray-placeholder: #6b7871;
-  --gray-control: #7d8c84;
-  --gray-border-hover: #b3c2b9;
-  --gray-skeleton: #e3eae6;
-  --gray-chrome: #f8faf9;
-  --gray-hairline: #e3eae6;
-  --gray-filter: #bfccc4;
-  --gray-icon: #afbdb5;
-}
-
-@media (min-width: 768px) {
+@media (min-width: 1600px) {
   :root {
-    --gutter: 32px;
-    --grid-columns: 8;
-    --grid-gap: 24px;
-    --header-h: 72px;
-  }
-}
-
-@media (min-width: 1200px) {
-  :root {
-    --gutter: 48px;
-    --grid-columns: 12;
-    --grid-gap: 24px;
+    --fs-mono: 15px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   :root {
-    --dur-fast: 0ms;
-    --dur-base: 0ms;
+    --dur: 0s;
   }
 }

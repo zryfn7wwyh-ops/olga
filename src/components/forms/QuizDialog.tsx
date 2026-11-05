@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Dialog } from "@/components/ui/Dialog";
-import { Icon } from "@/components/ui/Icon";
 import { RadioCardGroup } from "@/components/ui/RadioCard";
 import { track } from "@/lib/analytics";
 import { isQuizComplete, QUIZ_QUESTIONS, recommendSite, type QuizAnswers } from "@/lib/quiz";
@@ -62,9 +61,9 @@ function QuizFlow() {
     return (
       <div className={s.form}>
         <div className={s.recommendation} ref={resultRef} tabIndex={-1} aria-live="polite">
-          <p className={s.recoLabel}>Предварительная рекомендация</p>
+          <p className={`mono ${s.recoLabel}`}>Предварительная рекомендация</p>
           <h3 className={s.recoTitle}>{reco.title}</h3>
-          <p>{reco.text}</p>
+          <p className={s.recoText}>{reco.text}</p>
           <ul className={s.answers} aria-label="Ваши ответы">
             {QUIZ_QUESTIONS.map((q) => (
               <li key={q.id}>— {q.options.find((o) => o.value === answers[q.id])?.label}</li>
@@ -86,7 +85,7 @@ function QuizFlow() {
           <SubmitErrorStatus form={form} />
           <div className={s.quizNav}>
             <Button
-              variant="ghost"
+              variant="outline"
               onClick={() => {
                 setShowResult(false);
                 setStep(0);
@@ -110,15 +109,15 @@ function QuizFlow() {
 
   return (
     <div className={s.form}>
-      <div className={s.progress}>
-        <div className={s.progressMeta}>
+      <div>
+        <div className={`mono ${s.progress}`}>
           <span aria-hidden="true">Вопрос</span>
           <span>
             <span className="visually-hidden">Вопрос </span>
             {step + 1}/{QUIZ_QUESTIONS.length}
           </span>
         </div>
-        <div className={s.progressTrack} aria-hidden="true">
+        <div className={s.track} aria-hidden="true">
           {QUIZ_QUESTIONS.map((item, i) => (
             <span key={item.id} data-done={i <= step} />
           ))}
@@ -139,8 +138,7 @@ function QuizFlow() {
       />
 
       <div className={s.quizNav}>
-        <Button variant="secondary" onClick={() => setStep((n) => n - 1)} disabled={step === 0}>
-          <Icon name="back" size={18} />
+        <Button variant="outline" onClick={() => setStep((n) => n - 1)} disabled={step === 0}>
           Назад
         </Button>
         <Button
@@ -154,7 +152,6 @@ function QuizFlow() {
           }}
         >
           {last ? "Показать рекомендацию" : "Далее"}
-          <Icon name="arrow" size={18} />
         </Button>
       </div>
     </div>

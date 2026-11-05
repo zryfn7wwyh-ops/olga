@@ -20,7 +20,7 @@ export function Header() {
         btnRef.current?.focus();
       }
     };
-    const onResize = () => window.innerWidth >= 1024 && setOpen(false);
+    const onResize = () => window.innerWidth > 860 && setOpen(false);
     window.addEventListener("keydown", onKey);
     window.addEventListener("resize", onResize);
     return () => {
@@ -29,32 +29,23 @@ export function Header() {
     };
   }, [open]);
 
-  const estimate = () => {
-    setOpen(false);
-    requestEstimate();
-  };
-
   return (
     <header className={s.header}>
-      <div className={`container ${s.bar}`}>
+      <div className={s.bar}>
         <a className={s.logo} href="#top">
-          <span className={s.logoMark} aria-hidden="true" />
+          <span className={s.mark} aria-hidden="true" />
           {company.shortBrand}
           <span className="visually-hidden"> — в начало страницы</span>
         </a>
         <nav className={s.nav} aria-label="Основная навигация">
-          <ul className={s.navList}>
-            {nav.map((item) => (
-              <li key={item.href}>
-                <a className={s.navLink} href={item.href}>
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+          {nav.map((item) => (
+            <a key={item.href} className={s.navLink} href={item.href}>
+              {item.label}
+            </a>
+          ))}
         </nav>
         <div className={s.actions}>
-          <Button className={s.ctaDesktop} variant="band" size="sm" onClick={estimate}>
+          <Button className={s.ctaDesktop} onClick={() => requestEstimate()}>
             Рассчитать стоимость
           </Button>
           <button
@@ -70,22 +61,13 @@ export function Header() {
           </button>
         </div>
       </div>
-      <div id="mobile-menu" className={s.mobileMenu} hidden={!open}>
-        <nav className="container" aria-label="Мобильная навигация">
-          <ul className={s.mobileList}>
-            {nav.map((item) => (
-              <li key={item.href}>
-                <a href={item.href} onClick={() => setOpen(false)}>
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <Button variant="band" block onClick={estimate}>
-            Рассчитать стоимость
-          </Button>
-        </nav>
-      </div>
+      <nav id="mobile-menu" className={s.mobileMenu} hidden={!open} aria-label="Мобильная навигация">
+        {nav.map((item) => (
+          <a key={item.href} href={item.href} onClick={() => setOpen(false)}>
+            {item.label}
+          </a>
+        ))}
+      </nav>
     </header>
   );
 }

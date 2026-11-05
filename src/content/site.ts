@@ -3,16 +3,8 @@
  * не предоставлены заказчиком. Пока `confirmed: false`, на странице не выводятся
  * контакты и структурированные данные Organization.
  */
-export type Palette = "graphite" | "emerald" | "emerald-light";
-
 export const company = {
   confirmed: false,
-  /**
-   * Цветовая палитра сайта: «emerald» — изумруд (выбрана заказчиком),
-   * «emerald-light» — изумруд на светлом шалфее (без тёмных блоков),
-   * «graphite» — графит и синий из дизайн-ТЗ.
-   */
-  palette: "emerald" as Palette,
   /** Рабочее название до утверждения бренда. */
   brand: "Студия веб-разработки",
   shortBrand: "Веб-студия",
@@ -22,6 +14,14 @@ export const company = {
     address: null as string | null,
   },
   requisites: null as string | null,
+};
+
+/**
+ * Интерфейсная анимация из редизайна (подъём строк H1, шкала адаптива, линия этапов,
+ * демонстрация ширины макетов). При prefers-reduced-motion всегда выключена.
+ */
+export const ui = {
+  motion: true,
 };
 
 export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").replace(/\/$/, "");

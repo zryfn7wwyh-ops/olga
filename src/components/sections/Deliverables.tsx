@@ -5,23 +5,22 @@ import s from "./sections.module.css";
 
 export function Deliverables() {
   return (
-    <section className={`${s.section} ${s.paper2}`} id="deliver" aria-labelledby="deliver-title">
+    <section className={s.section} id="deliver" aria-labelledby="deliver-title">
       <div className="container">
-        <SectionIntro
-          split id="deliver" titleId="deliver-title" index={deliverables.index} kicker={deliverables.kicker} title={deliverables.title} />
-        <ul className={s.deliverList}>
+        <SectionIntro id="deliver" titleId="deliver-title" index={deliverables.index} kicker={deliverables.kicker} title={deliverables.title} />
+        <ol className={s.deliver}>
           {deliverables.items.map((item, i) => (
             <li key={item.title}>
-              <span className={s.deliverNum} aria-hidden="true">
+              <span className="mono" aria-hidden="true">
                 0{i + 1}
               </span>
-              <h3 className={s.h3}>{item.title}</h3>
+              <h3 className={s.deliverTitle}>{item.title}</h3>
               <p>
                 <Rich text={item.text} />
               </p>
             </li>
           ))}
-        </ul>
+        </ol>
       </div>
     </section>
   );
