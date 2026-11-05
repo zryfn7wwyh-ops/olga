@@ -6,6 +6,14 @@
      так отсутствующие оригиналы не дают 404, а добавленные подхватываются без правки HTML. */
   const imgs = [...document.querySelectorAll('img[data-asset]')];
   const missing = (img) => {
+    if (img.dataset.fallback === 'text') {
+      // нет файла логотипа — показываем название текстом
+      const span = document.createElement('span');
+      span.className = 'is-missing';
+      span.textContent = img.alt;
+      img.replaceWith(span);
+      return;
+    }
     img.classList.add('is-missing');
   };
   fetch('assets/manifest.json', { cache: 'no-cache' })
@@ -131,7 +139,7 @@
       if (el.type === 'checkbox') ok = !el.required || el.checked;
       else if (el.required && !el.value.trim()) ok = false;
       else if (el.value && validators[el.type]) ok = validators[el.type](el.value.trim());
-      const wrap = el.closest('.field, .mfield, .consent');
+      const wrap = el.closest('.field, .mfield, .lfield, .consent');
       if (wrap) wrap.classList.toggle('is-invalid', !ok);
       el.setAttribute('aria-invalid', String(!ok));
       return ok;
@@ -153,7 +161,7 @@
       const endpoint = form.dataset.endpoint;
       if (!endpoint) {
         status.classList.add('is-error');
-        status.textContent = 'Отправка пока не подключена: не задан адрес приёма заявок. Позвоните нам: 8 (800) 522-04-55.';
+        status.textContent = 'Отправка пока не подключена: не задан адрес приёма заявок. Позвоните нам: 8 (800) 301-76-89.';
         console.warn('[form] «' + form.dataset.name + '»: не задан data-endpoint');
         return;
       }

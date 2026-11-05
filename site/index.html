@@ -11,9 +11,8 @@
 </head>
 <body>
 <!--
-  ВНИМАНИЕ: файл Figma (FJl1f2K8AlI9BTdbFuuwV5, узел 1:20) был недоступен при вёрстке.
-  Значения сняты с уменьшенного PNG-эталона. Места, требующие сверки с исходником,
-  помечены атрибутом data-verify. Пустые адреса и файлы перечислены в README.md.
+  Вёрстка по PNG-эталону и скриншотам заказчика. Места, требующие сверки,
+  помечены атрибутом data-verify. Недостающие файлы и адреса — в README.md.
 -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-check" viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
@@ -29,6 +28,13 @@
   <symbol id="i-pin" viewBox="0 0 16 16"><path d="M8 1a5 5 0 00-5 5c0 3.6 5 9 5 9s5-5.4 5-9a5 5 0 00-5-5zm0 7a2 2 0 110-4 2 2 0 010 4z" fill="currentColor"/></symbol>
   <symbol id="i-download" viewBox="0 0 16 16"><path d="M2 9v3.5A1.5 1.5 0 003.5 14h9a1.5 1.5 0 001.5-1.5V9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8 2v8m-3-3l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M10 3L5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M8 3.5h6.5L19 8v10.5A2 2 0 0117 20.5H8a2 2 0 01-2-2v-13a2 2 0 012-2z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 3.5V8h4.5M9 12h6M9 15.5h6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M4 7v12.5A2 2 0 006 21.5h9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15.5" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 12.5l8-8m-3 3l2.5 2.5m-5-0.5l2 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-cheer" viewBox="0 0 24 24"><circle cx="12" cy="9" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 6l3.5 6.5V20m10.5-14l-3.5 6.5V20M9 20h6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 2.5l.6 1.3 1.4.2-1 1 .2 1.4-1.2-.7-1.2.7.2-1.4-1-1 1.4-.2z" fill="currentColor"/></symbol>
+  <symbol id="i-cert" viewBox="0 0 24 24"><rect x="4" y="3.5" width="13" height="17" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M7.5 8h6M7.5 11.5h6M7.5 15h3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="17.5" cy="15.5" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16 18.3V22l1.5-1 1.5 1v-3.7" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 10h16M8.5 3.5v4m7-4v4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M11 13.5l1.3-1v5.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 2.8v5.4c0 4.4-3 8.2-7 9.8-4-1.6-7-5.4-7-9.8V5.8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8.8 12.2l2.2 2.2 4.2-4.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 20 20"><path d="M4 10h12M10 4v12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
 </svg>
 
 
@@ -38,34 +44,39 @@
       <a class="logo" href="/" aria-label="Роском онлайн — на главную">
         <img class="logo__img" src="assets/logo.svg" alt="Роском онлайн" width="125" height="46">
       </a>
-      <div class="rating" data-verify="подпись под рейтингом">
-        <div class="rating__row"><svg class="rating__pin"><use href="#i-pin"/></svg><b>5.0</b><span class="stars" aria-label="5 из 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
+      <div class="rating">
+        <div class="rating__row"><svg class="rating__pin"><use href="#i-pin"/></svg><b>5,0</b><span class="stars" aria-label="5 из 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
         <small>Рейтинг организации в Яндексе</small>
       </div>
-
+      <a class="partner" href="https://www.klerk.ru/" target="_blank" rel="noopener" title="Официальный партнер портала klerk.ru по работе с персональными данными" data-verify="ссылка партнёра">
+        <span class="partner__logo"><img data-src="assets/klerk.svg" alt="Клерк" data-asset="klerk.svg" data-fallback="text"></span>
+        <span class="partner__text">Официальный партнер портала <u>klerk.ru</u><br>по работе с персональными данными</span>
+      </a>
       <div class="contacts">
-        <a class="contact" href="tel:88005220455" data-verify="номер телефона">
+        <a class="contact" href="tel:88003017689">
           <svg><use href="#i-phone"/></svg>
-          <span><b>8 (800) 522-04-55</b><small>Бесплатно по России</small></span>
+          <span><b>8 (800) 301-76-89</b><small>Бесплатно по России</small></span>
         </a>
-        <div class="contact" data-verify="график работы">
+        <div class="contact">
           <svg><use href="#i-clock"/></svg>
-          <span><b>с 9:00 до 18:00 пн–пт</b><small>График работы</small></span>
+          <span><b>с 8:00-17:00 пн-пт</b><small>График работы</small></span>
         </div>
       </div>
-      <a class="btn btn--ghost btn--sm" href="#" data-todo="URL личного кабинета не задан"><svg class="btn__ico"><use href="#i-user"/></svg>Войти</a>
-      <a class="btn btn--primary btn--sm" href="#expert-form" data-modal="lead" aria-haspopup="dialog">Бесплатная Консультация</a>
+      <a class="btn btn--ghost btn--sm btn--pill" href="#" data-todo="URL личного кабинета не задан"><svg class="btn__ico"><use href="#i-user"/></svg>Войти</a>
+      <a class="btn btn--primary btn--sm btn--pill" href="#" data-modal="lead" aria-haspopup="dialog">Запрос КП</a>
       <button class="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span></button>
     </div>
 
-    <nav class="nav" id="main-nav" aria-label="Основное меню">
+    <nav class="nav" id="main-nav" aria-label="Быстрые ссылки по странице">
       <ul>
-        <li><a href="#notify-form">Уведомление в РКН</a></li>
-        <li><a href="#experts">Консультация эксперта</a></li>
+        <li><a href="#experts">Проверка с экспертом</a></li>
         <li><a href="#cond">Кому нужна регистрация</a></li>
-        <li><a href="#check">Проверка регистрации</a></li>
+        <li><a href="#benefits">Преимущества</a></li>
+        <li><a href="#fines">Штрафы</a></li>
         <li><a href="#prep">Подготовка к подаче</a></li>
         <li><a href="#errors">Типичные ошибки</a></li>
+        <li><a href="#clients">Клиенты</a></li>
+        <li><a href="#faq">Вопросы и ответы</a></li>
         <li><a href="#footer">Контакты</a></li>
       </ul>
     </nav>
@@ -74,111 +85,143 @@
   <main id="main">
   <section class="hero container" aria-labelledby="hero-title">
     <div class="hero-bg" aria-hidden="true">
-    <span class="ring ring--blob"></span>
-    <span class="ring ring--disc"></span>
-    <span class="ring ring--glass r1"></span>
-    <span class="ring ring--glass r2"></span>
-    <span class="ring ring--glass r3"></span>
-    <span class="ring ring--arc"></span>
-</div>
+      <span class="ring ring--blob"></span>
+      <span class="ring ring--disc"></span>
+      <span class="ring ring--glass r1"></span>
+      <span class="ring ring--glass r2"></span>
+      <span class="ring ring--glass r3"></span>
+      <span class="ring ring--arc"></span>
+    </div>
     <nav class="crumbs" aria-label="Хлебные крошки">
       <a href="/" aria-label="Главная страница сайта"><svg><use href="#i-home"/></svg></a>
       <span aria-hidden="true">›</span>
-      <span aria-current="page">Главная</span>
+      <a href="#" data-todo="URL раздела «Услуги»">Услуги</a>
+      <span aria-hidden="true">›</span>
+      <span aria-current="page">Регистрация оператора персональных данных в реестре Роскомнадзора</span>
     </nav>
 
     <div class="hero__grid">
       <div class="hero__left">
-        <h1 id="hero-title" class="hero__title">Регистрация в <em>Роскомнадзоре</em> для обработки персональных данных <em>за&nbsp;1&nbsp;день</em></h1>
-        <ul class="checks">
-          <li><svg><use href="#i-check"/></svg>Уведомление в Роскомнадзор</li>
-          <li><svg><use href="#i-check"/></svg>Подготовка Политики обработки персональных данных</li>
-          <li><svg><use href="#i-check"/></svg>Разработка всех обязательных документов по ФЗ №152</li>
-          <li><svg><use href="#i-check"/></svg>Внедрение системы работы с персональными данными по новым правилам Роскомнадзора для бизнеса</li>
-          <li><svg><use href="#i-check"/></svg>Юридический аудит сайта и подготовка обязательных документов для публикации</li>
-          <li><svg><use href="#i-check"/></svg>Технический аудит сайта: выявление нарушений и защита от блокировки</li>
+        <h1 id="hero-title" class="hero__title">Регистрация в Роскомнадзоре для обработки персональных данных за&nbsp;1&nbsp;день</h1>
+        <ul class="bullets">
+          <li>Уведомление в Роскомнадзор</li>
+          <li>Подготовка Политики обработки персональных данных</li>
+          <li>Разработка всех обязательных документов по ФЗ №152</li>
+          <li>Организация системы работы с персональными данными (более 50 процедур и документов) по новым требованиям Роскомнадзора для юридических лиц и ИП</li>
+          <li>Защита от штрафов и подготовка ответов на уже поступившие Предписания и Требования Роскомнадзора</li>
+          <li>Юридический аудит сайтов на соответствие новым требованиям Роскомнадзора (с разработкой документов, обязательных к размещению на сайте)</li>
+          <li>Анализ технических нарушений сайта (нехватка данных, ошибки в коде, некорректная информация, технические ошибки, риски трансграничной передачи и тд), включая рекомендации об их устранении для исключения блокировки сайта</li>
         </ul>
         <div class="hero__btns">
-          <a class="btn btn--primary" href="#notify-form" data-modal="lead" aria-haspopup="dialog">Зарегистрироваться сейчас</a>
-          <a class="btn btn--outline" href="#expert-form" data-modal="lead" aria-haspopup="dialog">Узнать стоимость</a>
+          <a class="btn btn--primary btn--pill" href="#notify-form" data-modal="lead" aria-haspopup="dialog">Зарегистрироваться сейчас</a>
+          <a class="btn btn--primary btn--pill" href="#notify-form" data-modal="lead" aria-haspopup="dialog">Узнать стоимость</a>
         </div>
+        <ul class="chips" data-verify="подписи к иконкам 2–6">
+          <li class="chip chip--wide"><span class="chip__ico"><svg><use href="#i-key"/></svg></span><span><b>Разработка документов</b><small>под ключ</small></span></li>
+          <li class="chip"><span class="chip__ico"><svg><use href="#i-cheer"/></svg></span></li>
+          <li class="chip"><span class="chip__ico"><svg><use href="#i-cert"/></svg></span></li>
+          <li class="chip"><span class="chip__ico"><svg><use href="#i-cal"/></svg></span></li>
+          <li class="chip"><span class="chip__ico"><svg><use href="#i-doc"/></svg></span></li>
+          <li class="chip"><span class="chip__ico"><svg><use href="#i-shield"/></svg></span></li>
+        </ul>
       </div>
 
-      <form class="card-form card-form--glass js-form" id="notify-form" novalidate data-endpoint="" data-name="Уведомление в РКН">
+      <form class="card-form card-form--white js-form" id="notify-form" novalidate data-endpoint="" data-name="Уведомление в РКН">
         <h2 class="card-form__title">Сформировать Уведомление для регистрации в&nbsp;Роскомнадзоре</h2>
         <div class="fields">
-          <label class="field"><span class="sr">Номер телефона</span><input type="tel" name="phone" placeholder="Номер телефона" autocomplete="tel" required inputmode="tel"></label>
-          <label class="field"><span class="sr">E-mail</span><input type="email" name="email" placeholder="E-mail" autocomplete="email" required></label>
-          <label class="field field--select"><span class="sr">Организационно-правовая форма</span>
-            <select name="opf" required><option value="" selected disabled>Выберите ОПФ</option><option>ИП</option><option>ООО</option><option>АО</option><option>НКО</option><option>Другое</option></select></label>
-          <label class="field field--select"><span class="sr">Мессенджер</span>
-            <select name="messenger"><option value="" selected disabled>Выберите мессенджер</option><option>Telegram</option><option>WhatsApp</option><option>MAX</option><option>Не нужен</option></select></label>
-          <label class="field field--select field--wide"><span class="sr">Услуга</span>
-            <select name="service" required><option value="" disabled>Выберите услугу</option><option selected>Внесение изменений в реестр Роскомнадзора</option><option>Первичная регистрация в реестре операторов</option></select></label>
+          <label class="lfield"><span>Номер телефона *</span><input type="tel" name="phone" placeholder="+7 xxx xx xx" autocomplete="tel" required inputmode="tel"></label>
+          <label class="lfield"><span>E-mail</span><input type="email" name="email" placeholder="E-mail" autocomplete="email"></label>
+          <label class="lfield lfield--select field--wide"><span>Выбрать ОПФ</span>
+            <select name="opf"><option value="" selected disabled>Выбрать</option><option>ИП</option><option>ООО</option><option>АО</option><option>НКО</option><option>Другое</option></select></label>
+          <label class="lfield lfield--select field--wide" data-verify="варианты ответа"><span>Внесение изменений в реестр Роскомнадзора</span>
+            <select name="changes"><option value="" selected disabled>Выбрать</option><option>Да, нужно внести изменения</option><option>Нет, первичная регистрация</option></select></label>
         </div>
-        <p class="req-note">Обязательно отметьте поля ниже*</p>
-        <label class="consent"><input type="checkbox" name="agree_pd" required><span>Нажимая кнопку "Разработать уведомление для регистрации", я соглашаюсь на обработку моих персональных данных в соотв. с ФЗ от 27.07.2006 №152-ФЗ на условиях и для целей, определенных <a href="#" data-todo="URL политики">Политикой конфиденциальности</a>.*</span></label>
-        <label class="consent"><input type="checkbox" name="agree_ads" required><span>Нажимая кнопку "Разработать уведомление для регистрации", я соглашаюсь на получение рассылки в соотв. с ФЗ от 13.03.2006 №38-ФЗ на условиях и для целей, определенных <a href="#" data-todo="URL политики">Политикой конфиденциальности</a>.*</span></label>
-        <button class="btn btn--primary card-form__submit" type="submit">Разработать уведомление для регистрации</button>
+        <p class="req-note">Обязательно отметьте поля ниже</p>
+        <label class="consent"><input type="checkbox" name="agree_pd" required><span>Нажимая кнопку "Разработать уведомление для регистрации", я даю свое <a href="#" data-todo="URL согласия">Согласие на обработку моих персональных данных</a> в соответствии с Федеральным законом от 27.07.2006 года № 152-ФЗ «О персональных данных» на условиях и для целей, определенных <a href="#" data-todo="URL политики">Политикой конфиденциальности</a>.</span></label>
+        <label class="consent"><input type="checkbox" name="agree_ads" required><span>Нажимая кнопку "Разработать уведомление для регистрации", я даю свое согласие на получение сообщений информационного (рекламного) характера в соответствии с Федеральным законом от 13.03.2006 г № 38-ФЗ «О рекламе» на условиях и для целей, определенных <a href="#" data-todo="URL политики">Политикой конфиденциальности</a>, <a href="#" data-todo="URL согласия на рассылку">Согласием на осуществление рекламной рассылки</a>.</span></label>
+        <button class="btn btn--primary btn--pill card-form__submit" type="submit">Разработать уведомление для регистрации</button>
         <p class="form-status" role="status" aria-live="polite"></p>
       </form>
     </div>
   </section>
 
-  <section id="experts" class="experts container" aria-labelledby="experts-title">
-    <div class="experts__photo">
-      <img data-src="assets/experts.webp" alt="Эксперты компании" width="546" height="432" data-asset="experts.webp" loading="lazy">
-      <h2 id="experts-title" class="experts__title">Проверьте с экспертом<br class="d-br"> какая регистрация<br class="d-br"> вам нужна</h2>
-    </div>
-    <form class="card-form card-form--blue js-form" id="expert-form" novalidate data-endpoint="" data-name="Перечень документов">
-      <div class="fields fields--loose">
-        <label class="field"><span class="sr">Имя</span><input type="text" name="name" placeholder="Имя*" autocomplete="given-name" required></label>
-        <label class="field"><span class="sr">Телефон</span><input type="tel" name="phone" placeholder="+7 xxx xx xx" autocomplete="tel" required inputmode="tel"></label>
-        <label class="field field--select"><span class="sr">Организационно-правовая форма</span>
-          <select name="opf"><option value="" selected disabled>Выберите ОПФ</option><option>ИП</option><option>ООО</option><option>АО</option><option>НКО</option><option>Другое</option></select></label>
-        <label class="field field--select"><span class="sr">Мессенджер</span>
-          <select name="messenger"><option value="" selected disabled>Выберите мессенджер</option><option>Telegram</option><option>WhatsApp</option><option>MAX</option><option>Не нужен</option></select></label>
-        <label class="field field--select field--wide"><span class="sr">Вид деятельности</span>
-          <select name="activity" data-verify="список видов деятельности"><option value="" selected disabled>Выберите вид деятельности</option><option>Торговля</option><option>Услуги</option><option>IT и интернет</option><option>Медицина</option><option>Образование</option><option>Другое</option></select></label>
+  <section id="experts" class="experts container" aria-labelledby="experts-h">
+    <h2 id="experts-h" class="h2 h2--center">Как узнать, какой у вас вид регистрации в Роскомнадзоре?</h2>
+    <div class="experts__card">
+      <div class="experts__photo">
+        <img data-src="assets/experts.webp" alt="Эксперты Роском Онлайн" width="635" height="573" data-asset="experts.webp" loading="lazy">
+        <p class="experts__title">Проверьте с экспертом, какая регистрация вам нужна</p>
       </div>
-      <p class="req-note">Обязательно отметьте поля ниже*</p>
-      <label class="consent"><input type="checkbox" name="agree_pd" required><span>Нажимая кнопку "Получить перечень документов", я соглашаюсь на обработку моих персональных данных в соотв. с ФЗ от 27.07.2006 №152-ФЗ на условиях и для целей, определенных <a href="#" data-todo="URL политики">Политикой конфиденциальности</a>.*</span></label>
-      <label class="consent"><input type="checkbox" name="agree_ads" required><span>Нажимая кнопку "Получить перечень документов", я соглашаюсь на получение рассылки в соотв. с ФЗ от 13.03.2006 №38-ФЗ на условиях и для целей, определенных <a href="#" data-todo="URL политики">Политикой конфиденциальности</a>.*</span></label>
-      <button class="btn btn--primary card-form__submit" type="submit">Получить перечень документов</button>
-      <p class="form-status" role="status" aria-live="polite"></p>
-    </form>
+      <form class="experts__form js-form" id="expert-form" novalidate data-endpoint="" data-name="Проверить бесплатно">
+        <label class="lfield lfield--select"><span class="sr">Организационно-правовая форма</span>
+          <select name="opf"><option value="" selected disabled>Выбрать ОПФ</option><option>ИП</option><option>ООО</option><option>АО</option><option>НКО</option><option>Другое</option></select></label>
+        <label class="lfield"><span class="sr">Номер телефона</span><input type="tel" name="phone" placeholder="Номер телефона *" autocomplete="tel" required inputmode="tel"></label>
+        <label class="lfield"><span class="sr">E-mail</span><input type="email" name="email" placeholder="E-mail" autocomplete="email"></label>
+        <p class="req-note">Обязательно отметьте поля ниже</p>
+        <label class="consent"><input type="checkbox" name="agree_pd" required><span>Нажимая кнопку "Проверить бесплатно", я даю свое <a href="#" data-todo="URL согласия">Согласие на обработку моих персональных данных</a> в соответствии с Федеральным законом от 27.07.2006 года № 152-ФЗ «О персональных данных» на условиях и для целей, определенных <a href="#" data-todo="URL политики">Политикой конфиденциальности</a>.</span></label>
+        <label class="consent"><input type="checkbox" name="agree_ads" required><span>Нажимая кнопку "Проверить бесплатно", я даю свое согласие на получение сообщений информационного (рекламного) характера в соответствии с Федеральным законом от 13.03.2006 г № 38-ФЗ «О рекламе» на условиях и для целей, определенных <a href="#" data-todo="URL политики">Политикой конфиденциальности</a>, <a href="#" data-todo="URL согласия на рассылку">Согласием на осуществление рекламной рассылки</a>.</span></label>
+        <button class="btn btn--white btn--pill card-form__submit" type="submit">Проверить бесплатно</button>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
   </section>
 
   <section id="cond" class="cond container" aria-labelledby="cond-title">
-    <div class="cond__head">
-      <p class="eyebrow">Важно знать</p>
-      <h2 id="cond-title" class="h2">Вы <em>должны</em> быть зарегистрированы в реестре <em>Роскомнадзора</em> если:</h2>
+    <h2 id="cond-title" class="h2 h2--center">Вы должны быть зарегистрированы в реестре Роскомнадзора если:</h2>
+    <div class="cond__scheme">
+      <div class="cond__art" aria-hidden="true">
+        <img data-src="assets/cond-dashboard.webp" alt="" data-asset="cond-dashboard.webp">
+        <span class="cond__ph"><i></i><i></i><i></i></span>
+      </div>
+      <ul class="cond__list">
+        <li class="cond__item cond__item--tl">Имеете действующую базу клиентов</li>
+        <li class="cond__item cond__item--tr">У вас в компании или ИП есть сотрудники в штате</li>
+        <li class="cond__item cond__item--bl">У вас есть сайт, с помощью которого вы собираете данные</li>
+        <li class="cond__item cond__item--br">Совершаете любые действия с персональными данными</li>
+      </ul>
     </div>
-    <ul class="cond__grid">
-      <li class="tile"><svg><use href="#i-warn"/></svg>Имеете действующую базу клиентов</li>
-      <li class="tile"><svg><use href="#i-warn"/></svg>У вас в компании или ИП есть сотрудники в штате</li>
-      <li class="tile"><svg><use href="#i-warn"/></svg>У вас есть сайт, с помощью которого вы собираете данные</li>
-      <li class="tile"><svg><use href="#i-warn"/></svg>Совершаете любые действия с персональными данными</li>
-    </ul>
   </section>
 
   <section id="check" class="check container" aria-labelledby="check-title">
-    <div class="check__box">
-      <div class="check__left">
-        <p class="eyebrow">Оставьте заявку</p>
-        <h2 id="check-title" class="h2 h2--sm">Зарегистрирована ли ваша компания (ИП) в&nbsp;Роскомнадзоре?</h2>
-        <a class="btn btn--primary btn--check" href="#notify-form" data-modal="lead" aria-haspopup="dialog">Проверить</a>
-      </div>
-      <ul class="check__grid">
-        <li class="stat"><span class="stat__ico"><svg><use href="#i-bars"/></svg></span><span><b>За один день</b><small>Подача документов</small></span></li>
-        <li class="stat"><span class="stat__ico"><svg><use href="#i-bars"/></svg></span><span><b>На сайте</b><small>Заполнение формы</small></span></li>
-        <li class="stat"><span class="stat__ico"><svg><use href="#i-bars"/></svg></span><span><b>Подготовка</b><small>Уведомления</small></span></li>
-        <li class="stat"><span class="stat__ico"><svg><use href="#i-bars"/></svg></span><span><b>Регистрация</b><small>в Роскомнадзоре</small></span></li>
-      </ul>
-      <div class="check__art" aria-hidden="true">
-        <img data-src="assets/document-pen.webp" alt="" data-asset="document-pen.webp">
-      </div>
+    <ul class="check__stats">
+      <li class="cstat"><span class="cstat__ico"><svg><use href="#i-doc"/></svg></span><span><b>За один день</b><small>Подача документов</small></span></li>
+      <li class="cstat cstat--rev"><span class="cstat__ico"><svg><use href="#i-doc"/></svg></span><span><small>Заполнение формы</small><b>На сайте</b></span></li>
+      <li class="cstat cstat--rev"><span class="cstat__ico"><svg><use href="#i-doc"/></svg></span><span><small>Подготовка</small><b>Уведомления</b></span></li>
+      <li class="cstat cstat--rev"><span class="cstat__ico"><svg><use href="#i-doc"/></svg></span><span><small>Регистрация в</small><b>Роскомнадзоре</b></span></li>
+    </ul>
+    <div class="check__card">
+      <h2 id="check-title" class="check__title">Зарегистрирована ли ваша компания (ИП) в&nbsp;Роскомнадзоре?</h2>
+      <a class="btn btn--white check__btn" href="#" data-modal="lead" aria-haspopup="dialog">Проверить</a>
+      <img class="check__art" data-src="assets/notebook.webp" alt="" aria-hidden="true" data-asset="notebook.webp">
     </div>
+  </section>
+
+  <section id="benefits" class="benefits container" aria-labelledby="benefits-title">
+    <h2 id="benefits-title" class="h2 h2--center">Преимущества работы с Роском Онлайн</h2>
+    <ul class="bento">
+      <li class="bcard bcard--a"><h3>Грамотное составление заявления</h3><span class="bimg"><img data-src="assets/benefits/statement.webp" alt="" data-asset="benefits/statement.webp"></span></li>
+      <li class="bcard bcard--b bcard--row"><span class="bimg"><img data-src="assets/benefits/briefcase.webp" alt="" data-asset="benefits/briefcase.webp"></span><h3>Консультация корпоративных юристов</h3></li>
+      <li class="bcard bcard--c"><span class="bimg bimg--sm"><img data-src="assets/benefits/chat.webp" alt="" data-asset="benefits/chat.webp"></span><h3>Составление ответов для Роскомнадзора</h3></li>
+      <li class="bcard bcard--d"><h3>Скидка 10% на годовое сопровождение</h3><span class="bimg"><img data-src="assets/benefits/cart.webp" alt="" data-asset="benefits/cart.webp"></span></li>
+      <li class="bcard bcard--e"><h3>Памятка по Роскомнадзору в подарок</h3><span class="bimg bimg--fill"><img data-src="assets/benefits/gift.webp" alt="" data-asset="benefits/gift.webp"></span></li>
+    </ul>
+    <ul class="bento2">
+      <li class="bcard bcard--row"><span class="bimg"><img data-src="assets/benefits/diploma.webp" alt="" data-asset="benefits/diploma.webp"></span><h3>Дипломированные специалисты</h3></li>
+      <li class="bcard bcard--row"><span class="bimg"><img data-src="assets/benefits/person.webp" alt="" data-asset="benefits/person.webp"></span><h3>Индивидуальный подход к каждому клиенту</h3></li>
+      <li class="bcard bcard--row bcard--rev"><h3>Закрытие вопроса без отрыва от основной деятельности</h3><span class="bimg"><img data-src="assets/benefits/lock.webp" alt="" data-asset="benefits/lock.webp"></span></li>
+    </ul>
+  </section>
+
+  <section id="fines" class="fines container" aria-labelledby="fines-title">
+    <h2 id="fines-title" class="h2 h2--center">Ответственность за нарушение законодательства о персональных данных</h2>
+    <ul class="fines__grid">
+        <li class="fine"><span class="fine__ico" aria-hidden="true">!</span><h3>Штраф до 300&nbsp;000&nbsp;₽</h3><p>За отсутствие локальных актов по 152-ФЗ.</p></li>
+        <li class="fine"><span class="fine__ico" aria-hidden="true">!</span><h3>Штраф до 60&nbsp;000&nbsp;₽</h3><p>За неопубликованную политику оператора в отношении обработки ПДн.</p></li>
+        <li class="fine"><span class="fine__ico" aria-hidden="true">!</span><h3>Штраф до 1&nbsp;500&nbsp;000&nbsp;₽</h3><p>За обработку персональных данных без письменного согласия субъекта.</p></li>
+        <li class="fine"><span class="fine__ico" aria-hidden="true">!</span><h3>Штраф до 18&nbsp;000&nbsp;000&nbsp;₽</h3><p>За хранение ПДн, собранных с помощью сети «Интернет», на зарубежных ресурсах.</p></li>
+        <li class="fine"><span class="fine__ico" aria-hidden="true">!</span><h3>Штраф 15&nbsp;000&nbsp;000&nbsp;₽</h3><p>Сумма штрафа за утечку ПДн по вине оператора.</p></li>
+        <li class="fine"><span class="fine__ico" aria-hidden="true">!</span><h3>Штраф до 1&nbsp;000&nbsp;000&nbsp;₽</h3><p>За незаконную рекламную рассылку с использованием сети «Интернет».</p></li>
+    </ul>
   </section>
 
   <section class="prep container" id="prep" aria-labelledby="prep-title">
@@ -202,7 +245,7 @@
       <p class="lead lead--center">Из-за этих ошибок Роскомнадзор отказывает во внесении в реестр <br>или возвращает уведомление на доработку</p>
       <ol class="errors__grid">
         <li class="err"><span class="tag">Ошибка 1</span><h3>Неверно определены цели обработки персональных данных</h3><p>Например, указана только работа с клиентами, но не отражены кадровый учёт, работа с соискателями или контрагентами.</p></li>
-        <li class="err err--active"><span class="tag">Ошибка 2</span><h3>Ошибки в правовых основаниях обработки</h3><p>Используются шаблонные формулировки без учёта особенностей бизнеса.</p></li>
+        <li class="err"><span class="tag">Ошибка 2</span><h3>Ошибки в правовых основаниях обработки</h3><p>Используются шаблонные формулировки без учёта особенностей бизнеса.</p></li>
         <li class="err"><span class="tag">Ошибка 3</span><h3>Неполный перечень категорий персональных данных</h3><p>Не учитываются данные сотрудников, представителей контрагентов, посетителей сайта или соискателей.</p></li>
         <li class="err"><span class="tag">Ошибка 4</span><h3>Отсутствуют сведения о мерах защиты</h3><p>Многие компании не знают, какие организационные и технические меры необходимо отражать в уведомлении.</p></li>
         <li class="err"><span class="tag">Ошибка 5</span><h3>Ошибки при описании информационных систем</h3><p>Не указываются CRM-системы, корпоративные сервисы, сайты или иные инструменты обработки данных.</p></li>
@@ -221,6 +264,79 @@
     </div>
   </section>
 
+
+  <section id="clients" class="clients" aria-labelledby="clients-title">
+    <h2 id="clients-title" class="h2 h2--center">Наши клиенты</h2>
+    <ul class="clients__grid container">
+        <li><img data-src="assets/clients/client-01.webp" alt="DOGMA" data-asset="clients/client-01.webp" data-fallback="text"></li>
+        <li><img data-src="assets/clients/client-02.webp" alt="Ведомости" data-asset="clients/client-02.webp" data-fallback="text"></li>
+        <li><img data-src="assets/clients/client-03.webp" alt="Славянка" data-asset="clients/client-03.webp" data-fallback="text"></li>
+        <li><img data-src="assets/clients/client-04.webp" alt="LADA" data-asset="clients/client-04.webp" data-fallback="text"></li>
+        <li><img data-src="assets/clients/client-05.webp" alt="Южный клуб маркетинга" data-asset="clients/client-05.webp" data-fallback="text"></li>
+        <li><img data-src="assets/clients/client-06.webp" alt="Аванта" data-asset="clients/client-06.webp" data-fallback="text"></li>
+        <li><img data-src="assets/clients/client-07.webp" alt="Azzano Exotic" data-asset="clients/client-07.webp" data-fallback="text"></li>
+        <li><img data-src="assets/clients/client-08.webp" alt="Гиагинский молзавод" data-asset="clients/client-08.webp" data-fallback="text"></li>
+        <li><img data-src="assets/clients/client-09.webp" alt="Золото Державы" data-asset="clients/client-09.webp" data-fallback="text"></li>
+        <li><img data-src="assets/clients/client-10.webp" alt="Русаэро" data-asset="clients/client-10.webp" data-fallback="text"></li>
+        <li><img data-src="assets/clients/client-11.webp" alt="Евротест" data-asset="clients/client-11.webp" data-fallback="text"></li>
+        <li><img data-src="assets/clients/client-12.webp" alt="Жемчужина моря" data-asset="clients/client-12.webp" data-fallback="text"></li>
+        <li><img data-src="assets/clients/client-13.webp" alt="RosAero Center" data-asset="clients/client-13.webp" data-fallback="text"></li>
+        <li><img data-src="assets/clients/client-14.webp" alt="Вектор Строй" data-asset="clients/client-14.webp" data-fallback="text"></li>
+        <li><img data-src="assets/clients/client-15.webp" alt="Югпром" data-asset="clients/client-15.webp" data-fallback="text"></li>
+        <li><img data-src="assets/clients/client-16.webp" alt="Хакасский государственный университет" data-asset="clients/client-16.webp" data-fallback="text"></li>
+        <li><img data-src="assets/clients/client-17.webp" alt="Строй Инвест Проект" data-asset="clients/client-17.webp" data-fallback="text"></li>
+        <li><img data-src="assets/clients/client-18.webp" alt="Фильтр Товарково" data-asset="clients/client-18.webp" data-fallback="text"></li>
+        <li><img data-src="assets/clients/client-19.webp" alt="Герб муниципального образования" data-asset="clients/client-19.webp" data-fallback="text"></li>
+        <li><img data-src="assets/clients/client-20.webp" alt="Крайтранс" data-asset="clients/client-20.webp" data-fallback="text"></li>
+    </ul>
+  </section>
+
+  <section id="faq" class="faq" aria-labelledby="faq-title">
+    <div class="container">
+      <h2 id="faq-title" class="h2 h2--center">Ответы на популярные вопросы</h2>
+      <p class="faq__sub">Основное, что необходимо знать о регистрации бизнеса в Роскомнадзоре</p>
+      <div class="faq__list">
+        <details class="faq__item" open>
+          <summary><span>Как проверить, зарегистрирована ли компания в Роскомнадзоре в качестве оператора?</span><i class="faq__toggle" aria-hidden="true"></i></summary>
+          <div class="faq__answer">
+            <p>Для этого необходимо зайти на официальный сайт Роскомнадзора в раздел Реестр операторов <a href="https://pd.rkn.gov.ru/operators-registry/operators-list/" target="_blank" rel="noopener">https://pd.rkn.gov.ru/operators-registry/operators-list/</a>. По наименованию юридического лица или ИНН найти компанию в реестре. В случае, если бизнес зарегистрирован, появятся данные об операторе, включая регистрационный номер, наименование, тип оператора, основание включения в реестр, дату регистрации и начала обработки персональных данных. В случае отсутствия регистрации оператора персональных данных в реестре Роскомнадзора количество найденных компаний будет 0.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary><span>Как можно пройти регистрацию в Роскомнадзоре?</span><i class="faq__toggle" aria-hidden="true"></i></summary>
+          <div class="faq__answer">
+            <p>Оператор до начала обработки персданных обязан уведомить Роскомнадзор о намерении осуществлять обработку ПДн. Если регистрация отсутствует, необходимо направить Уведомление об обработке персональных данных через сайт Роскомнадзора, заполнив все блоки заявления - наименование и адрес оператора, цель обработки ПДн, наименование юр. лица ответственного за организацию обработки перс. данных, дату начала обработки, сроки и условия прекращения, сведения о наличии или отсутствии трансграничной передачи данных, сведения о месте нахождения базы данных и другие. Уведомление можно подать в бумажном виде, в электронном виде с усиленной ЭЦП или через ЕСИА. В случае изменения сведений, указанных в уведомлении оператор обязан уведомить об этом в течение 10 рабочих дней с даты возникновения таких изменений.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary><span>Какие штрафы предусмотрены за отсутствие обязательной регистрации в реестре РКН?</span><i class="faq__toggle" aria-hidden="true"></i></summary>
+          <div class="faq__answer">
+            <p>За отсутствие регистрации предусмотрена административная ответственность в соответствии со статьей 19.7 КоАП РФ и штраф для юридических лиц до 300 000 рублей. Также предусмотрен штраф 60 000 рублей за отсутствие неограниченного доступа к документу, определяющему политику оператора, и сведениям о защите субъекта перс данных. С услугой Регистрации в РКН от компании Роском Онлайн поможет избежать штрафов и соответствовать требованиям регулятора.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary><span>Какие документы нужны для регистрации в Роскомнадзоре?</span><i class="faq__toggle" aria-hidden="true"></i></summary>
+          <div class="faq__answer">
+            <p>Для регистрации в РКН необходимо привести в соответствие законодательству все внутренние акты по работе с ПДн, включая Политику оператора. Документы включают уведомления об обработке перс. данных, политические документы, матрицы доступа, акты оценки вреда, обязательства о неразглашении и другие локальные акты, всего более 60 документов.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary><span>Что дает оператору регистрация в Роскомнадзоре?</span><i class="faq__toggle" aria-hidden="true"></i></summary>
+          <div class="faq__answer">
+            <p>Регистрация легализует оператора в лице контролирующего органа, снижая риск проверок. Это показывает, что компания обрабатывает персданные в соответствии с законодательством. Регистрация исключает риск административной ответственности и штрафов за отсутствие доступа к Политике оператора.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary><span>Сколько стоит регистрация оператора персональных данных в Роскомнадзоре?</span><i class="faq__toggle" aria-hidden="true"></i></summary>
+          <div class="faq__answer">
+            <p>Помощь с регистрацией коммерческой организации в реестре Роскомнадзора может варьироваться в зависимости от количества организационно-распорядительной документации.</p>
+            <p>Что входит в стоимость услуги?</p>
+            <ul><li>Подача уведомления в Роскомнадзор</li><li>Подготовка Политики обработки персональных данных</li><li>Разработка документации по персональным данным</li><li>Организация системы работы с персональными данными по новым требованиям Роскомнадзора</li><li>Юридическая консультация бизнеса</li></ul>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
   </main>
 
   <footer class="footer container" id="footer">
@@ -236,19 +352,21 @@
       </ul>
     </div>
     <div class="footer__col footer__col--mid">
-      <nav class="footer__nav" aria-label="Меню в подвале">
-        <a href="#notify-form">Уведомление в РКН</a>
-        <a href="#experts">Консультация эксперта</a>
+      <nav class="footer__nav" aria-label="Быстрые ссылки в подвале">
+        <a href="#experts">Проверка с экспертом</a>
         <a href="#cond">Кому нужна регистрация</a>
-        <a href="#check">Проверка регистрации</a>
+        <a href="#benefits">Преимущества</a>
+        <a href="#fines">Штрафы</a>
         <a href="#prep">Подготовка к подаче</a>
         <a href="#errors">Типичные ошибки</a>
+        <a href="#clients">Клиенты</a>
+        <a href="#faq">Вопросы и ответы</a>
       </nav>
       <div class="footer__contacts">
-        <a class="contact" href="tel:88005220455" data-verify="номер телефона"><svg><use href="#i-phone"/></svg><span><b>8 (800) 522-04-55</b><small>Бесплатно по России</small></span></a>
+        <a class="contact" href="tel:88003017689"><svg><use href="#i-phone"/></svg><span><b>8 (800) 301-76-89</b><small>Бесплатно по России</small></span></a>
         <a class="contact" href="mailto:info@roskom.online" data-verify="e-mail"><svg><use href="#i-mail"/></svg><span><b>info@roskom.online</b><small>Почта</small></span></a>
       </div>
-      <p class="footer__legal" data-verify="реквизиты: в эталоне нечитаемы">Реквизиты и адрес организации — уточнить по исходному макету<br>Часы работы: пн–пт с 9:00 до 18:00</p>
+      <p class="footer__legal" data-verify="реквизиты: в эталоне нечитаемы">Реквизиты и адрес организации — уточнить по исходному макету<br>Часы работы: пн-пт с 8:00 до 17:00</p>
     </div>
     <div class="footer__col footer__col--right">
       <a class="btn btn--primary btn--sm" href="#expert-form" data-modal="lead" aria-haspopup="dialog">Бесплатная Консультация</a>
@@ -260,6 +378,12 @@
       </ul>
     </div>
   </footer>
+
+
+<aside class="pick" aria-label="Подбор пакета документов">
+  <p class="pick__text">Подобрать пакет документов</p>
+  <a class="pick__btn" href="#" data-modal="lead" aria-haspopup="dialog">Подобрать</a>
+</aside>
 
 <dialog class="modal" id="lead-modal" aria-labelledby="lead-title">
   <button type="button" class="modal__close js-modal-close" aria-label="Закрыть окно"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 3.5l9 9m0-9l-9 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
@@ -273,8 +397,8 @@
       <label class="mfield"><span>Номер телефона</span><input type="tel" name="phone" placeholder="Номер телефона" autocomplete="tel" inputmode="tel" required></label>
       <label class="mfield"><span>E-mail</span><input type="email" name="email" placeholder="E-mail" autocomplete="email"></label>
       <p class="req-note">Обязательно отметьте поля ниже*</p>
-      <label class="consent"><input type="checkbox" name="agree_pd" required><span>Нажимая кнопку "Оставить заявку", я соглашаюсь на обработку моих персональных данных в соотв. с ФЗ от 27.07.2006 №152-ФЗ на условиях и для целей, определенных <a href="#" data-todo="URL политики">Политикой конфиденциальности</a>. *</span></label>
-      <label class="consent"><input type="checkbox" name="agree_ads" required><span>Нажимая кнопку "Оставить заявку", я соглашаюсь на получение рассылки в соотв. с ФЗ от 13.03.2006 №38-ФЗ на условиях и для целей, определенных <a href="#" data-todo="URL политики">Политикой конфиденциальности</a>. *</span></label>
+      <label class="consent"><input type="checkbox" name="agree_pd" required><span>Нажимая кнопку "Оставить заявку", я даю свое <a href="#" data-todo="URL согласия">Согласие на обработку моих персональных данных</a> в соответствии с Федеральным законом от 27.07.2006 года № 152-ФЗ «О персональных данных» на условиях и для целей, определенных <a href="#" data-todo="URL политики">Политикой конфиденциальности</a>.</span></label>
+        <label class="consent"><input type="checkbox" name="agree_ads" required><span>Нажимая кнопку "Оставить заявку", я даю свое согласие на получение сообщений информационного (рекламного) характера в соответствии с Федеральным законом от 13.03.2006 г № 38-ФЗ «О рекламе» на условиях и для целей, определенных <a href="#" data-todo="URL политики">Политикой конфиденциальности</a>, <a href="#" data-todo="URL согласия на рассылку">Согласием на осуществление рекламной рассылки</a>.</span></label>
       <button class="btn btn--primary modal__submit" type="submit">Оставить заявку</button>
       <p class="form-status" role="status" aria-live="polite"></p>
     </form>
