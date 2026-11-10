@@ -34,12 +34,17 @@ function voiceKey(settings) {
   return { prov, cfg: settings[prov] };
 }
 
+/** Скорость голоса: индивидуальная калибровка голоса × общий множитель. */
+export function rhvoiceRate(c) {
+  return Math.round((c.rates?.[c.voice] ?? c.rate ?? 100) * (c.speedFactor ?? 1));
+}
+
 async function synthRHVoice(text, settings, outFile) {
   if (!hasCommand('RHVoice-test')) {
     throw new Error('RHVoice не установлен. Установите: sudo apt-get install rhvoice rhvoice-russian (см. README).');
   }
   const c = settings.rhvoice;
-  runSync('RHVoice-test', ['-p', c.voice, '-r', String(c.rate ?? 100), '-t', String(c.pitch ?? 100), '-v', String(c.volume ?? 100), '-o', outFile], {
+  runSync('RHVoice-test', ['-p', c.voice, '-r', String(rhvoiceRate(c)), '-t', String(c.pitch ?? 100), '-v', String(c.volume ?? 100), '-o', outFile], {
     input: text,
   });
 }
