@@ -47,7 +47,10 @@
     "voiceId": "",
     "modelId": "eleven_multilingual_v2",
     "stability": 0.5,
-    "similarityBoost": 0.75
+    "similarityBoost": 0.75,
+    "style": 0,
+    "speed": 1.0,
+    "note": "voiceId — из `npm run voices -- --provider elevenlabs`. speed 0.7–1.2. modelId: eleven_multilingual_v2 (качество) или eleven_flash_v2_5 (дешевле и быстрее)."
   },
   "yandex": {
     "voice": "filipp",

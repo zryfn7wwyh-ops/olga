@@ -149,6 +149,18 @@ const commands = {
   },
 
   async voices() {
+    if (flags.provider === 'elevenlabs') {
+      const { renderElevenLabsSamples } = await import('./services/voice-generator.js');
+      const out = p('output', 'voice-samples', 'elevenlabs');
+      const ids = flags.ids ? String(flags.ids).split(',') : undefined;
+      const { voices, results } = await renderElevenLabsSamples(out, args.join(' ') || undefined, { ids, limit: +(flags.limit || 8) });
+      console.log('Голоса в аккаунте ElevenLabs:');
+      voices.forEach((v) => console.log(`  ${v.id}  ${v.name}  [${v.category}] ${Object.values(v.labels).join(', ')}`));
+      console.log('\nОбразцы:');
+      results.forEach((x) => console.log('  ' + x));
+      console.log('\nВыбранный voice_id укажите в config/voice-settings.json → elevenlabs.voiceId и поставьте "provider": "elevenlabs"');
+      return;
+    }
     const out = p('output', 'voice-samples');
     const list = await renderVoiceSamples(out, args.join(' ') || undefined);
     list.forEach((x) => console.log(x));
@@ -176,7 +188,8 @@ if (!fn) {
   build-all                собрать все проекты
   approve [проект] [--by "ФИО"]                      согласовать и выпустить финал
   still [проект] [секунды…]                          кадры для визуальной проверки
-  voices ["текст"]         образцы голосов
+  voices ["текст"]         образцы голосов RHVoice
+  voices --provider elevenlabs [--limit 8] [--ids id1,id2] ["текст"]   голоса ElevenLabs из аккаунта и образцы
   list                     список проектов и статусы`);
   process.exit(cmd ? 1 : 0);
 }

@@ -104,7 +104,7 @@ projects/<проект>/
   - `rhvoice.voice` — голос маскота. Мужские: aleksandr-hq, artemiy, mikhail, pavel, yuriy, vitaliy. Женские: elena, anna, irina, tatiana, victoria, arina. Сначала прослушайте образцы: `npm run voices`.
   - `rate` — скорость речи, `pauses` — паузы.
   - `pronunciation` — словарь произношения терминов.
-- **Внешний синтез речи** (естественнее звучит, платный): скопируйте `.env.example` в `.env` и впишите ключ. Затем укажите `"provider": "elevenlabs"` или `"yandex"` в `config/voice-settings.json`. Нужные ключи:
+- **Внешний синтез речи** (естественнее звучит, платный). Пошагово для ElevenLabs — [docs/elevenlabs.md](docs/elevenlabs.md). Кратко: скопируйте `.env.example` в `.env` и впишите ключ. Затем укажите `"provider": "elevenlabs"` или `"yandex"` в `config/voice-settings.json`. Нужные ключи:
   - ElevenLabs: `ELEVENLABS_API_KEY` и `elevenlabs.voiceId` (ID выбранного голоса);
   - Yandex SpeechKit: `YANDEX_SPEECHKIT_API_KEY`, при необходимости `YANDEX_FOLDER_ID`.
 - **Бренд:** `config/brand.json` — цвета, шрифты, услуги, CTA.

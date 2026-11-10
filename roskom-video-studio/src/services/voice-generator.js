@@ -49,20 +49,67 @@ async function synthRHVoice(text, settings, outFile) {
   });
 }
 
-async function synthElevenLabs(text, settings, outFile) {
+/**
+ * HTTP-запрос через curl: curl учитывает системный прокси (HTTPS_PROXY) и одинаково работает
+ * на компьютере пользователя и в облачной среде. Возвращает { status, file }.
+ */
+function curlRequest({ url, method = 'GET', headers = {}, body, outFile }) {
+  const args = ['-sS', '-X', method, '-o', outFile, '-w', '%{http_code}', '--max-time', '120'];
+  for (const [k, v] of Object.entries(headers)) args.push('-H', `${k}: ${v}`);
+  if (body !== undefined) args.push('--data-binary', '@-');
+  args.push(url);
+  const r = runSync('curl', args, { input: body, allowFail: true });
+  if (r.status !== 0) throw new Error(`Сеть: не удалось обратиться к ${new URL(url).host} (${(r.stderr || '').trim()})`);
+  return { status: +r.stdout.trim(), file: outFile };
+}
+
+function elevenKey() {
   loadEnv();
   const key = process.env.ELEVENLABS_API_KEY;
+  if (!key) throw new Error('Нет ELEVENLABS_API_KEY в .env (см. docs/elevenlabs.md)');
+  return key;
+}
+
+function elevenError(status, file) {
+  const text = fs.existsSync(file) ? fs.readFileSync(file, 'utf8').slice(0, 500) : '';
+  const hint = { 401: 'неверный или отключённый API-ключ', 402: 'закончились кредиты/нужен другой тариф', 404: 'неверный voiceId', 422: 'неверные параметры запроса', 429: 'превышен лимит запросов — повторите позже' }[status] || '';
+  return new Error(`ElevenLabs: HTTP ${status}${hint ? ' — ' + hint : ''}. ${text}`);
+}
+
+async function synthElevenLabs(text, settings, outFile) {
+  const key = elevenKey();
   const c = settings.elevenlabs;
-  if (!key) throw new Error('Нет ELEVENLABS_API_KEY в .env');
-  if (!c.voiceId) throw new Error('Не задан elevenlabs.voiceId в config/voice-settings.json');
-  const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${c.voiceId}?output_format=pcm_44100`, {
+  if (!c.voiceId) throw new Error('Не задан elevenlabs.voiceId в config/voice-settings.json (список голосов: npm run voices -- --provider elevenlabs)');
+  const mp3 = outFile.replace(/\.wav$/, '.mp3');
+  const voiceSettings = { stability: c.stability, similarity_boost: c.similarityBoost, style: c.style ?? 0, use_speaker_boost: true };
+  if (c.speed) voiceSettings.speed = c.speed;
+  // mp3_44100_128 доступен на всех тарифах (PCM — только на Pro и выше)
+  const { status } = curlRequest({
+    url: `https://api.elevenlabs.io/v1/text-to-speech/${encodeURIComponent(c.voiceId)}?output_format=mp3_44100_128`,
     method: 'POST',
-    headers: { 'xi-api-key': key, 'content-type': 'application/json' },
-    body: JSON.stringify({ text, model_id: c.modelId, voice_settings: { stability: c.stability, similarity_boost: c.similarityBoost } }),
+    headers: { 'xi-api-key': key, 'content-type': 'application/json', accept: 'audio/mpeg' },
+    body: JSON.stringify({ text, model_id: c.modelId, voice_settings: voiceSettings }),
+    outFile: mp3,
   });
-  if (!res.ok) throw new Error(`ElevenLabs: ${res.status} ${await res.text()}`);
-  const raw = Buffer.from(await res.arrayBuffer());
-  writeWav(outFile, decodePCM16(raw), 44100);
+  if (status !== 200) {
+    const err = elevenError(status, mp3);
+    fs.rmSync(mp3, { force: true });
+    throw err;
+  }
+  runSync('ffmpeg', ['-v', 'error', '-y', '-i', mp3, '-ac', '1', '-ar', '48000', outFile]);
+  fs.rmSync(mp3, { force: true });
+}
+
+/** Голоса из аккаунта ElevenLabs (включая добавленные из библиотеки и клонированные). */
+export function listElevenLabsVoices(tmpDir) {
+  const key = elevenKey();
+  ensureDir(tmpDir);
+  const out = path.join(tmpDir, 'voices.json');
+  const { status } = curlRequest({ url: 'https://api.elevenlabs.io/v1/voices', headers: { 'xi-api-key': key }, outFile: out });
+  if (status !== 200) throw elevenError(status, out);
+  return JSON.parse(fs.readFileSync(out, 'utf8')).voices.map((v) => ({
+    id: v.voice_id, name: v.name, category: v.category, labels: v.labels || {},
+  }));
 }
 
 async function synthYandex(text, settings, outFile) {
@@ -73,13 +120,18 @@ async function synthYandex(text, settings, outFile) {
   const body = new URLSearchParams({ text, lang: 'ru-RU', voice: c.voice, speed: String(c.speed ?? 1), format: 'lpcm', sampleRateHertz: '48000' });
   if (c.role) body.set('emotion', c.role);
   if (process.env.YANDEX_FOLDER_ID) body.set('folderId', process.env.YANDEX_FOLDER_ID);
-  const res = await fetch('https://tts.api.cloud.yandex.net/speech/v1/tts:synthesize', {
+  const raw = outFile.replace(/\.wav$/, '.pcm');
+  const { status } = curlRequest({
+    url: 'https://tts.api.cloud.yandex.net/speech/v1/tts:synthesize',
     method: 'POST',
-    headers: { Authorization: `Api-Key ${key}` },
-    body,
+    headers: { Authorization: `Api-Key ${key}`, 'content-type': 'application/x-www-form-urlencoded' },
+    body: body.toString(),
+    outFile: raw,
   });
-  if (!res.ok) throw new Error(`Yandex SpeechKit: ${res.status} ${await res.text()}`);
-  writeWav(outFile, decodePCM16(Buffer.from(await res.arrayBuffer())), 48000);
+  const buf = fs.readFileSync(raw);
+  fs.rmSync(raw, { force: true });
+  if (status !== 200) throw new Error(`Yandex SpeechKit: HTTP ${status} ${buf.toString('utf8').slice(0, 300)}`);
+  writeWav(outFile, decodePCM16(buf), 48000);
 }
 
 const PROVIDERS = { rhvoice: synthRHVoice, elevenlabs: synthElevenLabs, yandex: synthYandex };
@@ -251,4 +303,30 @@ export async function renderVoiceSamples(outDir, text) {
     }
   }
   return results;
+}
+
+/**
+ * Образцы голосов ElevenLabs из аккаунта (тратит кредиты: ~110 символов на голос).
+ * ids — конкретные voice_id; иначе первые limit голосов аккаунта.
+ */
+export async function renderElevenLabsSamples(outDir, text, { ids, limit = 8 } = {}) {
+  const settings = loadVoiceSettings();
+  ensureDir(outDir);
+  const sample = text || 'Здравствуйте! Я маскот Роском Онлайн. Расскажу, какие документы по персональным данным нужны вашему сайту.';
+  const all = listElevenLabsVoices(path.join(outDir, '.cache'));
+  const chosen = ids?.length ? all.filter((v) => ids.includes(v.id)) : all.slice(0, limit);
+  const results = [];
+  for (const v of chosen) {
+    const s = { ...settings, provider: 'elevenlabs', elevenlabs: { ...settings.elevenlabs, voiceId: v.id } };
+    const safe = v.name.replace(/[^\p{L}\p{N}]+/gu, '_').slice(0, 30);
+    try {
+      const f = await synthesize(sample, s, path.join(outDir, '.cache'));
+      const out = path.join(outDir, `elevenlabs-${safe}-${v.id}.wav`);
+      fs.copyFileSync(f, out);
+      results.push(out);
+    } catch (e) {
+      results.push(`${v.name} (${v.id}): ошибка ${e.message}`);
+    }
+  }
+  return { voices: all, results };
 }
