@@ -212,7 +212,7 @@
     pill.style.alignSelf = 'flex-start';
     root.appendChild(pill);
     const card = h('div', 'card');
-    Object.assign(card.style, { position: 'relative', padding: '50px 46px' });
+    Object.assign(card.style, { position: 'relative', padding: '50px 46px 190px', overflow: 'hidden' });
     const q = buildTitle('«' + (scene.myth || scene.title) + '»', scene.highlight);
     q.style.maxHeight = '420px';
     q.style.color = 'var(--card-ink)';
@@ -226,8 +226,9 @@
       root,
       mount() {
         fitText(q, ctx.v ? 76 : 64, 44);
-        Object.assign(strike.style, { left: '30px', right: '30px', top: '50%' });
-        Object.assign(verdict.style, { right: '24px', bottom: '-60px', background: 'var(--card)' });
+        Object.assign(strike.style, { left: '30px', right: '30px' });
+        Object.assign(verdict.style, { right: '70px', bottom: '45px', background: 'var(--card)' });
+        strike.style.top = q.offsetTop + q.offsetHeight / 2 + 'px';
       },
       pointTarget: () => card,
       update(t) {

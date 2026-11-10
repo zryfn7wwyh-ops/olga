@@ -70,7 +70,7 @@ export function runQuality({ finalFile, mixFile, storyboard, data, range, sceneQ
   }
   check(checks, 'captions-sync', 'Синхронизация речи и субтитров', syncOk, syncOk ? `${caps.length} субтитров совпадают с речью` : syncDetails.slice(0, 8).join('; '));
   const srt = path.join(projectDir, 'captions.srt');
-  check(checks, 'captions-file', 'Файл captions.srt', fs.existsSync(srt) && fs.statSync(srt).size > 0, srt);
+  check(checks, 'captions-file', 'Файл captions.srt', fs.existsSync(srt) && fs.statSync(srt).size > 0, 'captions.srt');
   check(checks, 'captions-readable', 'Читаемость субтитров на мобильном (≤2 строк, ≥48 px, ≥0.45 с)', captionIssues.length === 0 && data.captionFont >= 48,
     captionIssues.length ? captionIssues.slice(0, 6).map((x) => `${x.type}: «${x.text}»`).join('; ') : `шрифт ${data.captionFont} px`, 'warning');
   // 6. Обрезанный текст

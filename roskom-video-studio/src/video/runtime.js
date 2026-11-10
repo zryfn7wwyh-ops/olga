@@ -287,6 +287,15 @@
     RV.fitText(title, v ? 128 : 110, 60);
     m.update(0, 0);
     m.el.style.transform = 'none';
+    if (v) {
+      // маскот целиком под заголовком, над кнопкой
+      const words = [...title.querySelectorAll('.w')];
+      const titleBottom = title.offsetTop + Math.max(...words.map((w) => w.offsetTop + w.offsetHeight));
+      const floor = D.H - 230;
+      const aspect = m.el.offsetHeight / m.el.offsetWidth;
+      const size = Math.min(900, D.W - 80, (floor - titleBottom - 40) / aspect);
+      Object.assign(m.el.style, { width: size + 'px', height: size * aspect + 'px', left: (D.W - size) / 2 + 'px', top: floor - size * aspect + 'px' });
+    }
     const btn = h('div', 'cta-btn', `${RV.icon('arrow')}<span>${esc(D.brand.siteLabel)}</span>`);
     Object.assign(btn.style, { position: 'absolute', left: '64px', bottom: v ? '120px' : '60px', padding: '0 50px', marginTop: 0 });
     el.appendChild(btn);

@@ -1,0 +1,193 @@
+{
+  "ok": true,
+  "status": "ready",
+  "summary": "18/18 проверок пройдено; ошибок 0, на согласовании 0, предупреждений 0",
+  "checks": [
+    {
+      "id": "format",
+      "name": "Формат и разрешение",
+      "ok": true,
+      "level": "ok",
+      "details": "h264 1080×1920 30 fps yuv420p; ожидалось h264 1080×1920 30 fps"
+    },
+    {
+      "id": "audio-stream",
+      "name": "Есть звуковая дорожка AAC",
+      "ok": true,
+      "level": "ok",
+      "details": "aac 48000 Гц"
+    },
+    {
+      "id": "integrity",
+      "name": "Полнота и целостность (полное декодирование без ошибок)",
+      "ok": true,
+      "level": "ok",
+      "details": "ошибок декодирования нет"
+    },
+    {
+      "id": "duration-match",
+      "name": "Длительность видео = длительность таймлайна",
+      "ok": true,
+      "level": "ok",
+      "details": "видео 57.37 с, таймлайн 57.37 с"
+    },
+    {
+      "id": "audio-complete",
+      "name": "Звук без обрыва (длина аудио = длине видео)",
+      "ok": true,
+      "level": "ok",
+      "details": "аудио 57.37 с, видео 57.37 с"
+    },
+    {
+      "id": "black-frames",
+      "name": "Нет чёрных кадров",
+      "ok": true,
+      "level": "ok",
+      "details": "не найдено"
+    },
+    {
+      "id": "blank-frames",
+      "name": "Нет пустых (однотонных) кадров",
+      "ok": true,
+      "level": "ok",
+      "details": "не найдено"
+    },
+    {
+      "id": "audio-gaps",
+      "name": "Нет провалов звука",
+      "ok": true,
+      "level": "ok",
+      "details": "провалов нет"
+    },
+    {
+      "id": "captions-sync",
+      "name": "Синхронизация речи и субтитров",
+      "ok": true,
+      "level": "ok",
+      "details": "30 субтитров совпадают с речью"
+    },
+    {
+      "id": "captions-file",
+      "name": "Файл captions.srt",
+      "ok": true,
+      "level": "ok",
+      "details": "captions.srt"
+    },
+    {
+      "id": "captions-readable",
+      "name": "Читаемость субтитров на мобильном (≤2 строк, ≥48 px, ≥0.45 с)",
+      "ok": true,
+      "level": "ok",
+      "details": "шрифт 54 px"
+    },
+    {
+      "id": "text-clipping",
+      "name": "Нет обрезанного текста и выхода за кадр",
+      "ok": true,
+      "level": "ok",
+      "details": "всё помещается"
+    },
+    {
+      "id": "mascot",
+      "name": "Маскот соответствует оригиналу (хеши файлов не изменены)",
+      "ok": true,
+      "level": "ok",
+      "details": "позы: surprised, thinking, reading, documents, cool, love"
+    },
+    {
+      "id": "brand-spelling",
+      "name": "Корректное написание «Роском Онлайн»",
+      "ok": true,
+      "level": "ok",
+      "details": "ошибок нет"
+    },
+    {
+      "id": "brand",
+      "name": "Фирменное оформление (плашка бренда, цвета, финальный CTA)",
+      "ok": true,
+      "level": "ok",
+      "details": "плашка бренда на всех кадрах, CTA-сцена есть"
+    },
+    {
+      "id": "duration-range",
+      "name": "Длительность в диапазоне 30–60 с",
+      "ok": true,
+      "level": "ok",
+      "details": "57.4 с"
+    },
+    {
+      "id": "sources",
+      "name": "Есть юридические источники (sources.md со ссылками и датой проверки)",
+      "ok": true,
+      "level": "ok",
+      "details": "проверено 2026-11-10"
+    },
+    {
+      "id": "legal",
+      "name": "Все юридические утверждения подтверждены или согласованы",
+      "ok": true,
+      "level": "ok",
+      "details": "Все 5 утверждений подтверждены источниками"
+    }
+  ],
+  "generatedAt": "2026-11-10T08:37:12.188Z",
+  "project": "01-dokumenty-na-saite",
+  "duration": 57.37,
+  "format": "1080x1920@30",
+  "voice": {
+    "provider": "rhvoice",
+    "voice": "aleksandr-hq",
+    "tempo": 1
+  },
+  "music": {
+    "source": "generated",
+    "license": "Собственная музыка, сгенерированная кодом студии — ограничений на коммерческое использование нет"
+  },
+  "render": {
+    "scenes": 5,
+    "rerendered": 5,
+    "seconds": 224
+  },
+  "files": [
+    {
+      "file": "script.md",
+      "exists": true
+    },
+    {
+      "file": "storyboard.json",
+      "exists": true
+    },
+    {
+      "file": "sources.md",
+      "exists": true
+    },
+    {
+      "file": "voice.wav",
+      "exists": true
+    },
+    {
+      "file": "captions.srt",
+      "exists": true
+    },
+    {
+      "file": "preview.mp4",
+      "exists": true
+    },
+    {
+      "file": "final.mp4",
+      "exists": true
+    },
+    {
+      "file": "cover.png",
+      "exists": true
+    },
+    {
+      "file": "publication.md",
+      "exists": true
+    },
+    {
+      "file": "quality-report.json",
+      "exists": true
+    }
+  ]
+}
