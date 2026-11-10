@@ -52,6 +52,33 @@ const commands = {
     console.log(JSON.stringify({ poses: Object.fromEntries(Object.entries(m.poses).map(([k, v]) => [k, `${v.file} — ${v.emotion}`])), states: m.states, problems: m.problems, missing: m.missing }, null, 2));
   },
 
+  async 'import-mascot'() {
+    // npm run import-mascot -- <файл.png|jpg> <id> [--emotion "…"] [--use "…"] [--state greeting] [--scale 1.1]
+    const [file, id] = args;
+    if (!file || !id || !/^[a-z0-9-]+$/.test(id)) throw new Error('Использование: import-mascot <файл> <id латиницей> [--emotion "…"] [--use "…"] [--state имя-состояния] [--scale 1.0]');
+    const posesFile = p('assets', 'mascot', 'poses.json');
+    const poses = readJSON(posesFile);
+    if (poses.poses[id] && !flags.force) throw new Error(`Поза «${id}» уже есть (используйте --force для замены)`);
+    const ext = path.extname(file).toLowerCase();
+    fs.mkdirSync(p('assets', 'mascot', 'source'), { recursive: true });
+    const srcCopy = p('assets', 'mascot', 'source', `${id}${ext}`);
+    fs.copyFileSync(file, srcCopy);
+    const out = p('assets', 'mascot', 'original', `${id}.png`);
+    const { runSync, ffprobe } = await import('./services/util.js');
+    const hasAlpha = ext === '.png' && /a/.test(ffprobe(file).streams[0].pix_fmt || '');
+    if (hasAlpha) fs.copyFileSync(file, out);
+    else {
+      log('Нет прозрачности — вырезаю маскота с фона (tools/cutout.py)…');
+      runSync('python3', ['-I', p('tools', 'cutout.py'), file, out, '--preview', p('output', `cutout-preview-${id}.png`)]);
+      log(`Проверьте качество вырезки: output/cutout-preview-${id}.png`);
+    }
+    poses.poses[id] = { file: `${id}.png`, color: 'blue', emotion: flags.emotion || id, use: flags.use || '', source: `source/${id}${ext}`, ...(flags.scale ? { scale: +flags.scale } : {}) };
+    if (flags.state) poses.states[flags.state] = id;
+    writeJSON(posesFile, poses);
+    const m = buildMascotManifest();
+    log(`Поза «${id}» добавлена. Всего поз: ${Object.keys(m.poses).length}`);
+  },
+
   types() {
     for (const t of listVideoTypes()) console.log(`${t.id.padEnd(15)} ${t.name} — ${t.when}`);
   },
@@ -181,6 +208,7 @@ if (!fn) {
   console.log(`Команды:
   doctor                   проверить окружение и ассеты
   assets                   пересканировать маскота (assets/mascot) и показать позы
+  import-mascot <файл> <id> [--emotion …] [--use …] [--state …] [--scale …]   добавить позу маскота (PNG/JPG; фон вырезается)
   types                    типы роликов (шаблоны)
   new "<тема>" [--type T] [--duration short|medium|long] [--format vertical|horizontal|square]
   validate [проект]        проверить storyboard.json

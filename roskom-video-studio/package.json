@@ -8,6 +8,7 @@
   "scripts": {
     "doctor": "node src/cli.js doctor",
     "assets": "node src/cli.js assets",
+    "import-mascot": "node src/cli.js import-mascot",
     "types": "node src/cli.js types",
     "new": "node src/cli.js new",
     "validate": "node src/cli.js validate",

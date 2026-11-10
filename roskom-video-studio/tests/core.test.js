@@ -51,8 +51,8 @@ test('состояния из ТЗ (greeting, warning, goodbye…) отобра�
   ] };
   const { errors } = validateStoryboard(sb);
   assert.deepEqual(errors, []);
-  assert.equal(sb.scenes[0].mascot.pose, 'happy');
-  assert.equal(sb.scenes[2].mascot.pose, 'love');
+  assert.equal(sb.scenes[0].mascot.pose, 'greeting');
+  assert.equal(sb.scenes[2].mascot.pose, 'goodbye');
 });
 
 test('словарь произношения применяется к тексту озвучки', () => {

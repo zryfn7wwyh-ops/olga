@@ -41,9 +41,13 @@
       img.src = ctx.root + info.path;
       img.dataset.pose = pose;
       img.style.opacity = 0;
+      // scale — выравнивание размера тела между позами (у поз с вытянутыми руками картинка шире)
+      const sc = info.scale || 1;
+      img.style.width = sc * 100 + '%';
+      img.style.left = ((1 - sc) / 2) * 100 + '%';
       imgs[pose] = img;
       el.appendChild(img);
-      if (pose === cfg.pose && info.width) aspect = info.height / info.width;
+      if (pose === cfg.pose && info.width) aspect = (info.height / info.width) * sc;
     }
     const pl = placement(cfg.position || 'right', W, H, aspect, cfg.size);
     el.style.width = pl.size + 'px';

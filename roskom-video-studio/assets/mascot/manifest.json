@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-10T08:00:57.998Z",
+  "generatedAt": "2026-11-10T11:40:23.896Z",
   "poses": {
     "happy": {
       "file": "2.png",
@@ -209,24 +209,102 @@
       "width": 641,
       "height": 540,
       "hasAlpha": true
+    },
+    "greeting": {
+      "file": "greeting.png",
+      "color": "blue",
+      "emotion": "приветствие, машет рукой, улыбается",
+      "use": "начало ролика, «привет!»",
+      "source": "source/greeting.jpg",
+      "scale": 1.12,
+      "path": "assets/mascot/original/greeting.png",
+      "sha256": "dc87396065b3d4098f2db8e2c9a9936d5fb02f53aaae3dc2fb42c12920762a04",
+      "width": 1400,
+      "height": 1296,
+      "hasAlpha": true
+    },
+    "pointing": {
+      "file": "pointing.png",
+      "color": "blue",
+      "emotion": "указывает рукой вправо (от зрителя), улыбается",
+      "use": "указать на элемент справа от маскота; ставить position left / small-left",
+      "source": "source/pointing.jpg",
+      "scale": 1.1,
+      "path": "assets/mascot/original/pointing.png",
+      "sha256": "0270bb5891ecd654e7a381adc143f041fbd6b68dcc2dff6afb490346d4f0d16d",
+      "width": 1400,
+      "height": 1217,
+      "hasAlpha": true
+    },
+    "warning": {
+      "file": "warning.png",
+      "color": "blue",
+      "emotion": "строгий взгляд, ладонь «стоп»",
+      "use": "предупреждение, «осторожно», ошибка (спокойнее, чем красный alarm)",
+      "source": "source/warning.jpg",
+      "scale": 1.06,
+      "path": "assets/mascot/original/warning.png",
+      "sha256": "555dccd9890f85318b83947d5a5eb1fa16340aac8d77eccc85b0cc30d4ecca19",
+      "width": 1400,
+      "height": 1344,
+      "hasAlpha": true
+    },
+    "joy": {
+      "file": "joy.png",
+      "color": "blue",
+      "emotion": "радость, обе руки вверх, глаза зажмурены",
+      "use": "успех, «всё получилось», решение проблемы",
+      "source": "source/joy.jpg",
+      "scale": 1.12,
+      "path": "assets/mascot/original/joy.png",
+      "sha256": "b51004a2e9c628c0d6cdca79fae48ae516cb06cfb4fb3683e43620c520d34c8e",
+      "width": 1400,
+      "height": 1211,
+      "hasAlpha": true
+    },
+    "surprise": {
+      "file": "surprise.png",
+      "color": "blue",
+      "emotion": "удивление, ладони у щёк, рот «о»",
+      "use": "неожиданный факт, крючок",
+      "source": "source/surprise.jpg",
+      "scale": 1.04,
+      "path": "assets/mascot/original/surprise.png",
+      "sha256": "b2b61ec9feff40da8c27e8e930a00900f740dffaa1e01b2a8bf75d0db72d8b80",
+      "width": 1400,
+      "height": 1394,
+      "hasAlpha": true
+    },
+    "goodbye": {
+      "file": "goodbye.png",
+      "color": "blue",
+      "emotion": "прощание, машет рукой, тёплая улыбка",
+      "use": "финал, CTA, «до встречи»",
+      "source": "source/goodbye.jpg",
+      "scale": 1.08,
+      "path": "assets/mascot/original/goodbye.png",
+      "sha256": "39e7801889f802eed433b6e7f8e07910b5fc09dc6ec59ba10443ce86c08c1c91",
+      "width": 1400,
+      "height": 1347,
+      "hasAlpha": true
     }
   },
   "unmapped": [],
   "problems": [],
   "states": {
     "neutral": "neutral",
-    "greeting": "happy",
+    "greeting": "greeting",
     "explaining": "reading",
-    "surprised": "surprised",
-    "warning": "alarm",
-    "joy": "cool",
-    "pointing": "thinking",
-    "goodbye": "love"
+    "surprised": "surprise",
+    "warning": "warning",
+    "joy": "joy",
+    "pointing": "pointing",
+    "goodbye": "goodbye"
   },
   "missing": [
-    "Поза «указывает рукой на элемент» отсутствует — заменяется позой thinking и анимированной стрелкой-указателем (руки не дорисовываются).",
     "Нет раздельных слоёв лица и сменных изображений рта — синхронизация губ недоступна. Используется «говорящее» покачивание всего изображения по громкости речи. Для липсинка нужны: тело без рта + 4–6 форм рта (закрыт, А, О, У, Э/И, улыбка) в PNG с прозрачностью и одинаковой привязкой.",
-    "Разрешение исходников ~470–640 px — на экране 1080×1920 маскот выводится с увеличением до ~1.4×. Рекомендуется предоставить версии 1500 px и больше."
+    "Поза pointing указывает вправо (от зрителя). Отражать изображение нельзя, поэтому маскота с этой позой ставьте слева (position left / small-left / center). Для указания влево нужна отдельная поза.",
+    "Позы 2–20.png — около 470–640 px (на экране увеличиваются до ~1.4×); новые позы greeting, pointing, warning, joy, surprise, goodbye — 1400 px."
   ],
   "lipsync": false
 }
