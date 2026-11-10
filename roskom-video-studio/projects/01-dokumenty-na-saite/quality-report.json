@@ -29,14 +29,14 @@
       "name": "Длительность видео = длительность таймлайна",
       "ok": true,
       "level": "ok",
-      "details": "видео 57.37 с, таймлайн 57.37 с"
+      "details": "видео 40.87 с, таймлайн 40.87 с"
     },
     {
       "id": "audio-complete",
       "name": "Звук без обрыва (длина аудио = длине видео)",
       "ok": true,
       "level": "ok",
-      "details": "аудио 57.37 с, видео 57.37 с"
+      "details": "аудио 40.87 с, видео 40.87 с"
     },
     {
       "id": "black-frames",
@@ -113,7 +113,7 @@
       "name": "Длительность в диапазоне 30–60 с",
       "ok": true,
       "level": "ok",
-      "details": "57.4 с"
+      "details": "40.9 с"
     },
     {
       "id": "sources",
@@ -130,13 +130,13 @@
       "details": "Все 5 утверждений подтверждены источниками"
     }
   ],
-  "generatedAt": "2026-11-10T08:37:12.188Z",
+  "generatedAt": "2026-11-10T09:08:25.108Z",
   "project": "01-dokumenty-na-saite",
-  "duration": 57.37,
+  "duration": 40.87,
   "format": "1080x1920@30",
   "voice": {
     "provider": "rhvoice",
-    "voice": "aleksandr-hq",
+    "voice": "aleksandr",
     "tempo": 1
   },
   "music": {
@@ -146,7 +146,7 @@
   "render": {
     "scenes": 5,
     "rerendered": 5,
-    "seconds": 224
+    "seconds": 164
   },
   "files": [
     {
