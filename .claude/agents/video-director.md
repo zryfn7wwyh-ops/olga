@@ -1,0 +1,1 @@
+../../roskom-video-studio/agents/video-director.md

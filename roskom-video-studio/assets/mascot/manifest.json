@@ -1,0 +1,232 @@
+{
+  "generatedAt": "2026-11-10T08:00:57.998Z",
+  "poses": {
+    "happy": {
+      "file": "2.png",
+      "color": "blue",
+      "emotion": "радость, смех",
+      "use": "приветствие, хорошие новости, финал",
+      "path": "assets/mascot/original/2.png",
+      "sha256": "15a400a61d1fa9b09af4ff7136f352add0e23a771d93c834a6a1d185f5008d47",
+      "width": 475,
+      "height": 423,
+      "hasAlpha": true
+    },
+    "reading": {
+      "file": "3.png",
+      "color": "blue",
+      "emotion": "сосредоточенность, очки, лист",
+      "use": "объяснение требования, проверка документа",
+      "path": "assets/mascot/original/3.png",
+      "sha256": "173535dab9bc8d9cd6483a7950715e73a409360b4824f2430dde67c32f1dc325",
+      "width": 477,
+      "height": 439,
+      "hasAlpha": true
+    },
+    "cool": {
+      "file": "4.png",
+      "color": "blue",
+      "emotion": "уверенность, большой палец",
+      "use": "одобрение, «всё в порядке», решение",
+      "path": "assets/mascot/original/4.png",
+      "sha256": "6acf553c97ae3d941935880f4435256cb749927f436c284e79b79a11cfee5d68",
+      "width": 478,
+      "height": 438,
+      "hasAlpha": true
+    },
+    "thinking": {
+      "file": "5.png",
+      "color": "blue",
+      "emotion": "задумчивость, рука у щеки",
+      "use": "вопрос к зрителю, сомнение",
+      "path": "assets/mascot/original/5.png",
+      "sha256": "d9392b11a2ad64841733b28e737e4351a0adc73c35c9316c8c280a82a77df038",
+      "width": 474,
+      "height": 433,
+      "hasAlpha": true
+    },
+    "surprised": {
+      "file": "6.png",
+      "color": "blue",
+      "emotion": "удивление, широко открытые глаза",
+      "use": "неожиданный факт, крючок",
+      "path": "assets/mascot/original/6.png",
+      "sha256": "8ca454e6007a1c75ab5905ff9ae80c4617205660b882307994430af66b98db42",
+      "width": 456,
+      "height": 434,
+      "hasAlpha": true
+    },
+    "skeptical": {
+      "file": "7.png",
+      "color": "blue",
+      "emotion": "скепсис, взгляд в сторону, напиток",
+      "use": "миф, сомнительное утверждение",
+      "path": "assets/mascot/original/7.png",
+      "sha256": "71d8ffde670982c7bc9fa49d3e58a7c025f90627d213707dc64374ad76aee234",
+      "width": 473,
+      "height": 444,
+      "hasAlpha": true
+    },
+    "love": {
+      "file": "8.png",
+      "color": "blue",
+      "emotion": "сердечко руками",
+      "use": "прощание, благодарность, CTA",
+      "path": "assets/mascot/original/8.png",
+      "sha256": "5eae1795ccdb3b4667a9e22057c50fe8a35f1f4da7283b55624902f25255ddc1",
+      "width": 463,
+      "height": 469,
+      "hasAlpha": true
+    },
+    "phone": {
+      "file": "9.png",
+      "color": "blue",
+      "emotion": "смотрит в телефон",
+      "use": "сайт, заявка, мессенджеры, клиенты",
+      "path": "assets/mascot/original/9.png",
+      "sha256": "5c6021ef3b5534234517efdee71731222030ceaf403059e1bdf5cbc1f439c281",
+      "width": 470,
+      "height": 435,
+      "hasAlpha": true
+    },
+    "sad": {
+      "file": "10.png",
+      "color": "blue",
+      "emotion": "грусть, лежит",
+      "use": "последствия ошибки, проблема",
+      "path": "assets/mascot/original/10.png",
+      "sha256": "00e0f3e3aac2d9b0dc166dae568c3d1576a1b9f22ca22366a4f6c60db50c5c21",
+      "width": 608,
+      "height": 336,
+      "hasAlpha": true
+    },
+    "angry-coffee": {
+      "file": "11.png",
+      "color": "red",
+      "emotion": "злость, красный, кофе",
+      "use": "предупреждение, раздражение от нарушений",
+      "path": "assets/mascot/original/11.png",
+      "sha256": "fc65a3ae3bbe9e68f5ec22d7b31a7ca041635825f213f83cc68efea260a8e255",
+      "width": 467,
+      "height": 492,
+      "hasAlpha": true
+    },
+    "tired": {
+      "file": "12.png",
+      "color": "blue",
+      "emotion": "усталость, кружка",
+      "use": "рутина, «опять бумаги»",
+      "path": "assets/mascot/original/12.png",
+      "sha256": "ad8ef50481d21b4bb8d01758c057e1a32ed63a5902b27459ebeb364bfef9735a",
+      "width": 464,
+      "height": 449,
+      "hasAlpha": true
+    },
+    "shrug": {
+      "file": "13.png",
+      "color": "blue",
+      "emotion": "недоумение, разводит руками",
+      "use": "вопрос, «а что делать?»",
+      "path": "assets/mascot/original/13.png",
+      "sha256": "c779e0461acff8a1656a988e567d0856ca332dbaae79bb22314eac496e38fdc1",
+      "width": 508,
+      "height": 452,
+      "hasAlpha": true
+    },
+    "neutral": {
+      "file": "14.png",
+      "color": "blue",
+      "emotion": "нейтрально, взгляд в сторону",
+      "use": "базовая поза, переходы",
+      "path": "assets/mascot/original/14.png",
+      "sha256": "2d9d71e259a3a01cc6e08cf666ac919754145fbd00a630abcacc258c55ed9bb5",
+      "width": 483,
+      "height": 456,
+      "hasAlpha": true
+    },
+    "laptop": {
+      "file": "15.png",
+      "color": "blue",
+      "emotion": "за ноутбуком, устало",
+      "use": "сайт, онлайн-сервисы, проверка",
+      "path": "assets/mascot/original/15.png",
+      "sha256": "007a193469b54f2fada4b35f7d9f5e1c3c640ac71799cd55692f2b32455e4817",
+      "width": 549,
+      "height": 367,
+      "hasAlpha": true
+    },
+    "hurry": {
+      "file": "16.png",
+      "color": "blue",
+      "emotion": "спешит, летят бумаги",
+      "use": "сроки, срочность, «успейте»",
+      "path": "assets/mascot/original/16.png",
+      "sha256": "b6d081d79e8f7a5ff4db5ab9856dc36ef36beecf014b1afc800aebe28cf91375",
+      "width": 601,
+      "height": 393,
+      "hasAlpha": true
+    },
+    "news": {
+      "file": "17.png",
+      "color": "blue",
+      "emotion": "шляпа из газеты",
+      "use": "новость законодательства",
+      "path": "assets/mascot/original/17.png",
+      "sha256": "62d25a1d349da66e78d7c4ca75c00b28bf3cbbb73260c0a1958aedbd04171ff3",
+      "width": 537,
+      "height": 552,
+      "hasAlpha": true
+    },
+    "documents": {
+      "file": "18.png",
+      "color": "blue",
+      "emotion": "стопка папок на голове",
+      "use": "документы, пакет документов",
+      "path": "assets/mascot/original/18.png",
+      "sha256": "225479c23f7ec6536b9f0efe1e5ec11309c06660a62b2e20318db54b1c5ceab9",
+      "width": 473,
+      "height": 642,
+      "hasAlpha": true
+    },
+    "alarm": {
+      "file": "19.png",
+      "color": "red",
+      "emotion": "ярость, пар из ушей",
+      "use": "предупреждение, штрафы, ошибки",
+      "path": "assets/mascot/original/19.png",
+      "sha256": "f6eaa7fd0f3425b72843de826986af3883f178b257dc94fadf060581fed1831b",
+      "width": 640,
+      "height": 502,
+      "hasAlpha": true
+    },
+    "overwhelmed": {
+      "file": "20.png",
+      "color": "blue",
+      "emotion": "завален бумагами",
+      "use": "хаос в документах, проблема",
+      "path": "assets/mascot/original/20.png",
+      "sha256": "895dabbd797a26a713ece289fe2ac6fe156a4c1a0368a578a9fa5ce49c96453d",
+      "width": 641,
+      "height": 540,
+      "hasAlpha": true
+    }
+  },
+  "unmapped": [],
+  "problems": [],
+  "states": {
+    "neutral": "neutral",
+    "greeting": "happy",
+    "explaining": "reading",
+    "surprised": "surprised",
+    "warning": "alarm",
+    "joy": "cool",
+    "pointing": "thinking",
+    "goodbye": "love"
+  },
+  "missing": [
+    "Поза «указывает рукой на элемент» отсутствует — заменяется позой thinking и анимированной стрелкой-указателем (руки не дорисовываются).",
+    "Нет раздельных слоёв лица и сменных изображений рта — синхронизация губ недоступна. Используется «говорящее» покачивание всего изображения по громкости речи. Для липсинка нужны: тело без рта + 4–6 форм рта (закрыт, А, О, У, Э/И, улыбка) в PNG с прозрачностью и одинаковой привязкой.",
+    "Разрешение исходников ~470–640 px — на экране 1080×1920 маскот выводится с увеличением до ~1.4×. Рекомендуется предоставить версии 1500 px и больше."
+  ],
+  "lipsync": false
+}

@@ -1,0 +1,19 @@
+{
+  "id": "myth-truth",
+  "name": "Миф или правда",
+  "description": "Маскот озвучивает распространённое заблуждение, затем объясняет правильный подход.",
+  "when": "Тема — популярное заблуждение («нас это не касается», «маленьким можно»).",
+  "tag": "Миф или правда",
+  "mood": "calm",
+  "theme": {
+    "vars": { "--bg1": "#E9E4FF", "--bg2": "#DDF7EE", "--grid": "rgba(124,77,255,.18)" },
+    "blobs": ["#B9A6FF", "#8FE3C6", "#FFD6E0"]
+  },
+  "structure": [
+    { "role": "hook",  "layouts": ["hook"],  "mascot": "skeptical", "transition": "none" },
+    { "role": "myth",  "layouts": ["myth"],  "mascot": "skeptical", "transition": "zoom", "note": "Формулировка мифа + штамп МИФ" },
+    { "role": "truth", "layouts": ["truth"], "mascot": "reading",   "transition": "wipe", "note": "Как на самом деле, со ссылкой на норму" },
+    { "role": "solution","layouts": ["checklist", "cards"], "mascot": "cool", "transition": "slide" },
+    { "role": "cta",   "layouts": ["cta"],   "mascot": "happy",     "transition": "circle" }
+  ]
+}

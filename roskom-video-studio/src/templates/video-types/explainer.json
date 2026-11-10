@@ -1,0 +1,16 @@
+{
+  "id": "explainer",
+  "name": "Объясняющий",
+  "description": "Маскот рассказывает об одном требовании законодательства.",
+  "when": "Тема — одно конкретное требование, обязанность или документ.",
+  "tag": "Разбор",
+  "mood": "calm",
+  "theme": { "vars": {}, "blobs": ["#8EA0FF", "#C9D2FF", "#FFE2B8"] },
+  "structure": [
+    { "role": "hook",     "layouts": ["hook", "browser"],      "mascot": "surprised", "transition": "none",  "note": "Вопрос к зрителю или жизненная ситуация, 2–4 с" },
+    { "role": "problem",  "layouts": ["browser", "fact", "hook"], "mascot": "thinking", "transition": "wipe", "note": "В чём риск / что не так" },
+    { "role": "explain",  "layouts": ["cards", "checklist"],   "mascot": "reading",   "transition": "slide", "note": "Что требует закон (с источником)" },
+    { "role": "solution", "layouts": ["checklist", "truth"],   "mascot": "cool",      "transition": "zoom",  "note": "Что сделать — практическая рекомендация" },
+    { "role": "cta",      "layouts": ["cta"],                  "mascot": "love",      "transition": "circle","note": "Ненавязчивый призыв" }
+  ]
+}

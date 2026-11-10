@@ -1,0 +1,19 @@
+{
+  "id": "news",
+  "name": "Новость законодательства",
+  "description": "Что произошло, когда действует и кому важно обратить внимание.",
+  "when": "Изменение закона, новая обязанность, дата вступления в силу.",
+  "tag": "Новости закона",
+  "mood": "energetic",
+  "theme": {
+    "vars": { "--bg1": "#F2F3F7", "--bg2": "#E4E8F7", "--grid": "rgba(22,26,69,.12)" },
+    "blobs": ["#C3CBFF", "#FFC2C4", "#E9ECFF"]
+  },
+  "structure": [
+    { "role": "headline", "layouts": ["news"],   "mascot": "news",      "transition": "none" },
+    { "role": "what",     "layouts": ["cards", "fact"], "mascot": "reading", "transition": "wipe" },
+    { "role": "who",      "layouts": ["checklist", "cards"], "mascot": "documents", "transition": "slide" },
+    { "role": "todo",     "layouts": ["checklist"], "mascot": "hurry",   "transition": "zoom" },
+    { "role": "cta",      "layouts": ["cta"],    "mascot": "love",      "transition": "circle" }
+  ]
+}

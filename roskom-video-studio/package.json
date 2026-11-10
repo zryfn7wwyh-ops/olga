@@ -1,0 +1,25 @@
+{
+  "name": "roskom-video-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Автоматическая видеостудия «Роском Онлайн»: сценарий → озвучка → анимация маскота → субтитры → MP4",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "doctor": "node src/cli.js doctor",
+    "assets": "node src/cli.js assets",
+    "types": "node src/cli.js types",
+    "new": "node src/cli.js new",
+    "validate": "node src/cli.js validate",
+    "build": "node src/cli.js build",
+    "build-all": "node src/cli.js build-all",
+    "approve": "node src/cli.js approve",
+    "still": "node src/cli.js still",
+    "voices": "node src/cli.js voices",
+    "list": "node src/cli.js list",
+    "test": "node --test tests/*.test.js"
+  },
+  "dependencies": {
+    "playwright": "1.63.0"
+  }
+}

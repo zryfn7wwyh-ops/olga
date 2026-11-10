@@ -1,0 +1,43 @@
+{
+  "name": "Роском Онлайн",
+  "site": "https://roskom.online/",
+  "siteLabel": "roskom.online",
+  "note": "Палитра временно подобрана по цвету маскота: сайт roskom.online был недоступен из среды сборки. Замените значения на цвета из утверждённого брендбука.",
+  "colors": {
+    "primary": "#5B6FD8",
+    "primaryDark": "#3D4FB8",
+    "mascot": "#7488C9",
+    "deep": "#161A45",
+    "ink": "#1B1F3B",
+    "soft": "#EEF1FF",
+    "paper": "#FFFFFF",
+    "danger": "#E5484D",
+    "warning": "#FFB020",
+    "success": "#21A86B",
+    "highlight": "#FFD23F"
+  },
+  "fonts": {
+    "main": "Inter",
+    "files": {
+      "400": "assets/fonts/Inter-Regular.otf",
+      "500": "assets/fonts/Inter-Medium.otf",
+      "600": "assets/fonts/Inter-SemiBold.otf",
+      "700": "assets/fonts/Inter-Bold.otf",
+      "800": "assets/fonts/Inter-ExtraBold.otf",
+      "900": "assets/fonts/Inter-Black.otf"
+    }
+  },
+  "logo": null,
+  "services": {
+    "registration": { "title": "Регистрация оператора ПД в Роскомнадзоре", "url": "https://roskom.online/", "cta": "Подадим уведомление в Роскомнадзор за вас — roskom.online" },
+    "documents":    { "title": "Документы по персональным данным", "url": "https://roskom.online/", "cta": "Поможем подготовить документы по персональным данным под требования закона" },
+    "policy":       { "title": "Политика обработки персональных данных", "url": "https://roskom.online/", "cta": "Разработаем политику обработки ПД для вашего сайта — roskom.online" },
+    "site-audit":   { "title": "Юридический аудит сайта", "url": "https://roskom.online/", "cta": "Проверьте, какие документы нужны вашему сайту, на roskom.online" },
+    "rkn-response": { "title": "Ответы на предписания Роскомнадзора", "url": "https://roskom.online/", "cta": "Поможем подготовить ответ на предписание Роскомнадзора" },
+    "consulting":   { "title": "Консультации по 152-ФЗ", "url": "https://roskom.online/", "cta": "Оставьте заявку на консультацию на roskom.online" }
+  },
+  "spelling": {
+    "correct": "Роском Онлайн",
+    "forbidden": ["Роскомонлайн", "РосКом Онлайн", "Роском онлайн", "Роском-Онлайн", "Роскомнадзор Онлайн", "Роском Online"]
+  }
+}

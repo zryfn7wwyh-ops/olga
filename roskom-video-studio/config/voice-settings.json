@@ -1,0 +1,26 @@
+{
+  "provider": "rhvoice",
+  "providerNote": "rhvoice — бесплатный локальный синтез (без ключей). elevenlabs / yandex — внешние API, ключи в .env.",
+  "rhvoice": { "voice": "aleksandr-hq", "rate": 108, "pitch": 100, "volume": 100,
+               "maleVoices": ["aleksandr-hq", "aleksandr", "artemiy", "mikhail", "pavel", "yuriy", "vitaliy", "evgeniy-rus"],
+               "femaleVoices": ["elena", "anna", "irina", "tatiana", "victoria", "arina"] },
+  "elevenlabs": { "voiceId": "", "modelId": "eleven_multilingual_v2", "stability": 0.5, "similarityBoost": 0.75 },
+  "yandex": { "voice": "filipp", "role": "neutral", "speed": 1.05 },
+  "pauses": { "betweenPhrases": 0.28, "sceneStart": 0.15, "sceneEnd": 0.35, "commaExtra": 0 },
+  "autoRate": { "enabled": true, "maxFactor": 1.18 },
+  "pronunciation": {
+    "152-ФЗ": "сто пятьдесят второй эф зэ",
+    "156-ФЗ": "сто пятьдесят шестой эф зэ",
+    "КоАП": "коап",
+    "РКН": "эр ка эн",
+    "ПДн": "персональные данные",
+    "ИП": "и пэ",
+    "ООО": "о о о",
+    "roskom.online": "роском точка онлайн",
+    "Роском Онлайн": "Роском Онлайн",
+    "cookie": "куки",
+    "e-mail": "имейл",
+    "email": "имейл",
+    "%": " процентов"
+  }
+}

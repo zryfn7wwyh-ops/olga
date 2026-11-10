@@ -1,0 +1,22 @@
+{
+  "mode": "auto",
+  "modeNote": "auto — сразу до final.mp4; approval — сначала preview.mp4, финал только после `npm run approve`. Спорные юридические утверждения блокируют финал в любом режиме.",
+  "fps": 30,
+  "formats": {
+    "vertical":   { "width": 1080, "height": 1920, "label": "9:16" },
+    "horizontal": { "width": 1920, "height": 1080, "label": "16:9" },
+    "square":     { "width": 1080, "height": 1080, "label": "1:1" }
+  },
+  "defaultFormat": "vertical",
+  "durations": {
+    "short":    { "min": 30, "max": 60 },
+    "medium":   { "min": 30, "max": 90 },
+    "long":     { "min": 60, "max": 180 }
+  },
+  "defaultDuration": "short",
+  "video": { "codec": "libx264", "crf": 18, "preset": "medium", "pixFmt": "yuv420p" },
+  "preview": { "scale": 0.5, "crf": 28, "preset": "veryfast" },
+  "audio": { "sampleRate": 48000, "loudnessLUFS": -14, "musicVolume": 0.22, "musicDuckedVolume": 0.06, "sfxVolume": 0.5 },
+  "render": { "workers": 4, "jpegQuality": 92, "retries": 2 },
+  "captions": { "maxWordsPerChunk": 5, "maxCharsPerChunk": 34, "fontSize": 54 }
+}

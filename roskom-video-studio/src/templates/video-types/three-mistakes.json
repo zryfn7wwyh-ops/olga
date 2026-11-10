@@ -1,0 +1,22 @@
+{
+  "id": "three-mistakes",
+  "name": "Три ошибки",
+  "description": "Маскот последовательно показывает распространённые ошибки бизнеса.",
+  "when": "Тема про типичные нарушения, «что делают не так», чек-лист проверок.",
+  "tag": "3 ошибки",
+  "mood": "energetic",
+  "theme": {
+    "vars": { "--bg1": "#161A45", "--bg2": "#2B2F80", "--ink": "#FFFFFF", "--muted": "#C9CEF5", "--chip-bg": "rgba(255,255,255,.14)", "--chip-ink": "#FFFFFF",
+              "--grid": "rgba(255,255,255,.09)", "--stripe": "rgba(255,255,255,.04)", "--hl-ink": "#161A45", "--cap-bg": "rgba(255,255,255,.96)", "--cap-hl": "#E5484D", "--cap-ink": "#161A45" },
+    "blobs": ["#5B6FD8", "#E5484D", "#7C4DFF"],
+    "captionInk": "#161A45"
+  },
+  "structure": [
+    { "role": "hook",    "layouts": ["hook"],    "mascot": "alarm",       "transition": "none",  "note": "«Эти 3 ошибки встречаются чаще всего»" },
+    { "role": "mistake1","layouts": ["mistake"], "mascot": "shrug",       "transition": "wipe" },
+    { "role": "mistake2","layouts": ["mistake"], "mascot": "overwhelmed", "transition": "slide" },
+    { "role": "mistake3","layouts": ["mistake"], "mascot": "sad",         "transition": "wipe" },
+    { "role": "solution","layouts": ["checklist"], "mascot": "cool",      "transition": "zoom" },
+    { "role": "cta",     "layouts": ["cta"],     "mascot": "love",        "transition": "circle" }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "qa",
+  "name": "Вопрос — ответ",
+  "description": "Маскот отвечает на частый вопрос предпринимателя.",
+  "when": "Тема сформулирована как вопрос («Нужно ли…», «Что делать, если…»).",
+  "tag": "Вопрос — ответ",
+  "mood": "calm",
+  "theme": {
+    "vars": { "--bg1": "#FFF4E6", "--bg2": "#EEF1FF", "--grid": "rgba(255,150,60,.2)" },
+    "blobs": ["#FFC98A", "#A9B6FF", "#FFE8B0"]
+  },
+  "structure": [
+    { "role": "question", "layouts": ["qa"],    "mascot": "thinking", "transition": "none" },
+    { "role": "answer",   "layouts": ["qa", "truth"], "mascot": "reading", "transition": "slide" },
+    { "role": "details",  "layouts": ["cards", "checklist"], "mascot": "documents", "transition": "wipe" },
+    { "role": "cta",      "layouts": ["cta"],   "mascot": "love",     "transition": "circle" }
+  ]
+}
