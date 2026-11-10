@@ -34,7 +34,12 @@ function Part({ p, caption }) {
     case 'fields':
       return <FieldsTable rows={p.rows} caption={caption} />;
     case 'table':
-      return <InfoTable title={caption} columns={p.columns} rows={p.rows} />;
+      return (
+        <div className="space-y-3">
+          {p.title && <h3 className="max-w-4xl pt-2 text-base font-bold md:text-lg">{p.title}</h3>}
+          <InfoTable title={p.title || caption} columns={p.columns} rows={p.rows} />
+        </div>
+      );
     case 'docs':
       return <DocumentList items={p.items} status={p.status} />;
     case 'notice':

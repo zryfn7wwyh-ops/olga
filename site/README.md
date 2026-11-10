@@ -15,9 +15,9 @@ npm run build   # статические файлы в dist/ (+ public/sitemap.x
 
 ## Блоки и якоря
 
-**Образовательная программа:** 1 `#program` · 2 `#audience` · 3 `#results` · 4 `#teachers` · 5 `#price` · 6 `#conditions`
+**Образовательная программа:** 1 `#program` · 2 `#audience` · 3 `#results` · 4 `#price` · 5 `#conditions`
 
-**Сведения об образовательной организации:** 7 `#education` · 8 `#standards` · 9 `#managers` · 10 `#objects` · 11 `#grants` · 12 `#vacant` · 13 `#catering` · 14 `#budget` · 15 `#inter` · 16 `#documents` · 17 `#contract`
+**Сведения об образовательной организации** (порядок подразделов — по приказу Рособрнадзора № 1493): 6 `#common` · 7 `#struct` · 8 `#documents` · 9 `#education` · 10 `#managers` · 11 `#teachers` · 12 `#objects` · 13 `#paid` · 14 `#budget` · 15 `#vacant` · 16 `#grants` · 17 `#inter` · 18 `#catering` · 19 `#standards`
 
 Меню: на компьютере — закреплённое оглавление слева, на телефоне — кнопка меню в шапке; пункты сгруппированы, текущий блок подсвечивается. Прямая ссылка `https://<домен>/#price` открывает нужный блок.
 
