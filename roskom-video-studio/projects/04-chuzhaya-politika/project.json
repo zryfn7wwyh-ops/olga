@@ -6,7 +6,7 @@
   "format": "vertical",
   "createdAt": "2026-11-17T07:28:28.678Z",
   "status": "AWAITING_APPROVAL",
-  "currentVersion": 3,
+  "currentVersion": 4,
   "approvedVersion": null,
   "approvedHash": null,
   "approvals": [],
@@ -30,6 +30,11 @@
       "at": "2026-11-17T07:38:04.807Z",
       "status": "AWAITING_APPROVAL",
       "note": "Версия 3 отправлена на согласование: Возврат к тексту версии 1 по выбору пользователя (текст без изменений)"
+    },
+    {
+      "at": "2026-11-17T07:38:51.973Z",
+      "status": "AWAITING_APPROVAL",
+      "note": "Версия 4 отправлена на согласование: Текст пользователя полностью, без правок (как в версии 2; убрано и техническое ударение в хуке)"
     }
   ]
 }
