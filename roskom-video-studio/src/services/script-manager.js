@@ -218,6 +218,11 @@ export function checkScript(script, { dir, proj } = {}) {
     if (c.status !== 'confirmed') warnings.push(`Юридическое утверждение не подтверждено (${c.status}): «${c.text}» — предупредите пользователя`);
     if (!c.sources?.length) errors.push(`Нет источника для утверждения «${c.text}»`);
   }
+  // Текст, написанный пользователем: ограничения формы — предупреждения (решает пользователь), запреты и юр. проверка — ошибки
+  if (script.userAuthored) {
+    const soft = /наибольшей оценкой|ниже порога|Сократите текст|Сократите хук|Редакторская проверка|Длинная фраза|Первая фраза блока hook/;
+    for (let i = errors.length - 1; i >= 0; i--) if (soft.test(errors[i])) warnings.unshift('(текст пользователя) ' + errors.splice(i, 1)[0]);
+  }
   return { errors, warnings, estimate: est, range, hookTotals };
 }
 
