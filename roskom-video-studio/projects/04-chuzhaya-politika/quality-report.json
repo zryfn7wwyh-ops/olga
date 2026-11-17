@@ -151,7 +151,7 @@
       "details": "Все 3 утверждений подтверждены источниками"
     }
   ],
-  "generatedAt": "2026-11-17T07:55:01.953Z",
+  "generatedAt": "2026-11-17T08:04:20.176Z",
   "project": "04-chuzhaya-politika",
   "duration": 57.87,
   "format": "1080x1920@30",
@@ -161,13 +161,14 @@
     "tempo": 1
   },
   "music": {
-    "source": "generated",
-    "license": "Собственная музыка, сгенерированная кодом студии — ограничений на коммерческое использование нет"
+    "source": "none",
+    "style": "none",
+    "license": "Без фоновой музыки"
   },
   "render": {
     "scenes": 5,
-    "rerendered": 5,
-    "seconds": 215
+    "rerendered": 0,
+    "seconds": 28
   },
   "files": [
     {

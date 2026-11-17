@@ -157,7 +157,11 @@ export function mixAudio({ voice, sr, totalSec, events, outFile, settings, seed,
   let music;
   let musicInfo;
   const licensed = findLicensedMusic();
-  if (licensed.length) {
+  const styleWanted = musicStyle || settings.musicStyle;
+  if (styleWanted === 'none') {
+    music = new Float32Array(n);
+    musicInfo = { source: 'none', style: 'none', license: 'Без фоновой музыки' };
+  } else if (licensed.length) {
     const track = licensed[seed % licensed.length];
     const src = decodeAudio(track.file, sr);
     music = new Float32Array(n);
@@ -202,6 +206,6 @@ export function mixAudio({ voice, sr, totalSec, events, outFile, settings, seed,
   // Нормализация громкости для соцсетей
   runSync('ffmpeg', ['-v', 'error', '-y', '-i', tmp, '-af', `loudnorm=I=${settings.loudnessLUFS}:TP=-1.5:LRA=11`, '-ar', String(sr), '-ac', '1', outFile]);
   fs.unlinkSync(tmp);
-  log(`Звук: музыка — ${musicInfo.source === 'generated' ? 'сгенерированная' : musicInfo.file}, эффектов: ${events.length}`);
+  log(`Звук: музыка — ${musicInfo.source === 'none' ? 'без музыки' : musicInfo.source === 'generated' ? 'сгенерированная (' + musicInfo.style + ')' : musicInfo.file}, эффектов: ${events.length}`);
   return musicInfo;
 }
