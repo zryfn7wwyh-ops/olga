@@ -11,7 +11,7 @@
   },
   "audience": "Владельцы небольших компаний и ИП, маркетологи и администраторы сайтов с формой заявки",
   "service": "policy",
-  "scriptVersion": 4,
+  "scriptVersion": 6,
   "highlight": [
     "политика",
     "шаблон"
@@ -28,7 +28,18 @@
       ],
       "icon": "policy",
       "voice": [
-        "Политика персональных данных на сайте есть. А к вашему бизнесу она вообще относится?"
+        {
+          "text": "Политика персональных данных есть.",
+          "compact": true
+        },
+        {
+          "text": "А к вашему бизнесу она вообще относится?",
+          "say": "А к **вашему** бизнесу она вообще **относится**?",
+          "riseEnd": {
+            "seconds": 0.55,
+            "factor": 1.32
+          }
+        }
       ],
       "mascot": {
         "pose": "surprise",
@@ -42,8 +53,10 @@
       "transition": "none",
       "timing": {
         "start": 0,
-        "end": 5.1
-      }
+        "end": 4.57
+      },
+      "phrasePause": 0.38,
+      "voiceNote": "Подача хука — вариант 4, утверждён пользователем: первое предложение слитно и утвердительно, пауза 0,38 с, ударение «относится», подъём тона в конце"
     },
     {
       "role": "problem",
@@ -70,8 +83,8 @@
       "camera": "zoom-in",
       "transition": "wipe",
       "timing": {
-        "start": 5.1,
-        "end": 19.4
+        "start": 4.57,
+        "end": 18.87
       }
     },
     {
@@ -113,8 +126,8 @@
       "camera": "none",
       "transition": "slide",
       "timing": {
-        "start": 19.4,
-        "end": 37.7
+        "start": 18.87,
+        "end": 37.17
       }
     },
     {
@@ -139,8 +152,8 @@
       "camera": "zoom-in",
       "transition": "zoom",
       "timing": {
-        "start": 37.7,
-        "end": 47.97
+        "start": 37.17,
+        "end": 47.43
       }
     },
     {
@@ -165,8 +178,8 @@
       "camera": "zoom-out",
       "transition": "circle",
       "timing": {
-        "start": 47.97,
-        "end": 57.87
+        "start": 47.43,
+        "end": 57.33
       }
     }
   ],
@@ -254,6 +267,6 @@
       "#РоскомОнлайн"
     ]
   },
-  "totalDuration": 57.87,
+  "totalDuration": 57.33,
   "musicStyle": "none"
 }

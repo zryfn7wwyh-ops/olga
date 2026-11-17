@@ -188,6 +188,40 @@ export async function renderYandexSamples(outDir, text, { voices } = {}) {
   return results;
 }
 
+/**
+ * Обработка звука фразы (подача, текст не меняется):
+ *  compact: true — убрать паузы внутри фразы (слитная речь);
+ *  riseEnd: { seconds, factor } — плавно поднять тон в конце (вопросительная интонация).
+ */
+export function applyPhraseFx(file, phrase) {
+  if (!phrase.compact && !phrase.riseEnd) return file;
+  const out = file.replace(/\.wav$/, `.fx-${hash(phrase.compact || false, phrase.riseEnd || null)}.wav`);
+  if (fs.existsSync(out)) return out;
+  let cur = file;
+  // обрезка тишины по краям, чтобы подъём тона пришёлся на последнее слово
+  const trimmed = out.replace(/\.wav$/, '.trim.wav');
+  runSync('ffmpeg', ['-v', 'error', '-y', '-i', cur, '-af', 'silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse', '-ac', '1', '-ar', '48000', trimmed]);
+  cur = trimmed;
+  if (phrase.compact) {
+    const c = out.replace(/\.wav$/, '.compact.wav');
+    runSync('ffmpeg', ['-v', 'error', '-y', '-i', cur, '-af', 'silenceremove=stop_periods=-1:stop_duration=0.03:stop_threshold=-38dB:stop_silence=0.015', c]);
+    cur = c;
+  }
+  if (phrase.riseEnd) {
+    const { seconds = 0.55, factor = 1.32 } = phrase.riseEnd === true ? {} : phrase.riseEnd;
+    const dur = parseFloat(runSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', cur]).stdout);
+    const start = Math.max(0, dur - seconds);
+    const cmds = Array.from({ length: 17 }, (_, i) => `${(start + (seconds * i) / 16).toFixed(3)} rubberband pitch ${(1 + (factor - 1) * Math.pow(i / 16, 1.3)).toFixed(4)};`).join('\n');
+    const cmdFile = out.replace(/\.wav$/, '.cmds.txt');
+    fs.writeFileSync(cmdFile, cmds);
+    const r = out.replace(/\.wav$/, '.rise.wav');
+    runSync('ffmpeg', ['-v', 'error', '-y', '-i', cur, '-af', `asendcmd=f=${cmdFile},rubberband=pitch=1:pitchq=quality:formant=preserved`, r]);
+    cur = r;
+  }
+  fs.copyFileSync(cur, out);
+  return out;
+}
+
 const PROVIDERS = { rhvoice: synthRHVoice, elevenlabs: synthElevenLabs, yandex: synthYandex };
 
 export async function synthesize(text, settings, cacheDir) {
@@ -241,7 +275,8 @@ export async function generateVoice(storyboard, { buildDir, fps, range }) {
     const sceneSettings = style ? deepMerge(settings, { [prov]: Object.fromEntries(Object.entries(style).filter(([k]) => !['enabled', 'note'].includes(k))) }) : settings;
     for (const ph of scene.voice || []) {
       const phrase = normPhrase(ph);
-      const file = await synthesize(phrase.say || phrase.text, sceneSettings, cacheDir);
+      let file = await synthesize(phrase.say || phrase.text, sceneSettings, cacheDir);
+      file = applyPhraseFx(file, phrase);
       list.push({ phrase, file });
     }
     raw.push(list);
@@ -295,7 +330,7 @@ export async function generateVoice(storyboard, { buildDir, fps, range }) {
       const dur = list[k].samples.length / SAMPLE_RATE;
       phrases.push({ ...list[k].phrase, start: t, end: t + dur });
       pieces.push({ at: cursorFrames / fps + t, samples: list[k].samples });
-      t += dur + (k < list.length - 1 ? pauses.betweenPhrases : 0);
+      t += dur + (k < list.length - 1 ? (storyboard.scenes[i].phrasePause ?? pauses.betweenPhrases) : 0);
     }
     t += pauses.sceneEnd + (storyboard.scenes[i].hold || 0);
     if (storyboard.scenes[i].minDuration) t = Math.max(t, storyboard.scenes[i].minDuration);

@@ -101,6 +101,8 @@ npm run still -- <проект> 0                 # первый кадр и к�
 
 Поля шаблонов: `browser` — url, title, fields[{label,value}], consent, button, badges[{type,text,icon}], highlightField (индекс поля для подсветки), highlightFieldAt; `registry` — title, company/query, rows[{label,value}], badges; `cards`/`checklist` — title, items, numbered; `mistake` — number, label, title, text; `myth` — myth, verdict ("false"|"true"), verdictText; `truth` — label, title, text | items; `qa` — asker, question, answer; `news` — tag, ticker, date ("1 сентября"), datePrefix, title, text; `fact` — label, value, title, note; `cta` — title, text, button.
 
+Подача фраз (текст не меняется, только звук): у фразы `compact: true` — убрать паузы внутри (слитно), `riseEnd: {seconds: 0.55, factor: 1.32}` — подъём тона в конце (вопрос), `say` с `**слово**` — логическое ударение; у сцены `phrasePause` — пауза между фразами (с), `voiceStyle` — темп/тон/амплуа сцены. Хук можно разбить на две фразы — сверка с утверждённым текстом идёт по всему тексту.
+
 Тайминг появления элементов привязан к фразам: если фраз больше, чем пунктов, пункт *i* появляется с фразой *(фраз − пунктов + i)*. Переопределение: `itemsAtPhrases: [1,2]` или `itemsAt: [1.5, 3.0]` (секунды). Для myth/qa/mistake/news — `revealAtPhrase`.
 
 Иконки: doc, policy, consent, shield, alert, check, cross, phone, globe, calendar, user, users, lock, form, mail, law, building, clock, search, money, stamp, chat, star, list, eye, server, cookie, bell, arrow, question, send, cart, camera.
