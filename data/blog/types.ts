@@ -35,7 +35,9 @@ export type BlogCategoryId =
   | "business"
   | "advice"
   | "dtp"
-  | "criminal";
+  | "criminal"
+  | "medical"
+  | "military";
 
 export type BlogCategory = {
   id: BlogCategoryId;
