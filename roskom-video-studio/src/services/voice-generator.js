@@ -112,26 +112,70 @@ export function listElevenLabsVoices(tmpDir) {
   }));
 }
 
+// Голоса SpeechKit (API v3) и доступные амплуа. Источник: документация Yandex SpeechKit «Список голосов».
+export const YANDEX_VOICES = {
+  male: { filipp: [], ermil: ['neutral', 'good'], zahar: ['neutral', 'good'], madirus: [], alexander: ['neutral', 'good'], kirill: ['neutral', 'strict', 'good'], anton: ['neutral', 'good'] },
+  female: { alena: ['neutral', 'good'], jane: ['neutral', 'good', 'evil'], omazh: ['neutral', 'evil'], dasha: ['neutral', 'good', 'friendly'], julia: ['neutral', 'strict'], lera: ['neutral', 'friendly'], masha: ['good', 'strict', 'friendly'], marina: ['neutral', 'whisper', 'friendly'] },
+};
+
 async function synthYandex(text, settings, outFile) {
   loadEnv();
   const key = process.env.YANDEX_SPEECHKIT_API_KEY;
   const c = settings.yandex;
-  if (!key) throw new Error('Нет YANDEX_SPEECHKIT_API_KEY в .env');
-  const body = new URLSearchParams({ text, lang: 'ru-RU', voice: c.voice, speed: String(c.speed ?? 1), format: 'lpcm', sampleRateHertz: '48000' });
-  if (c.role) body.set('emotion', c.role);
-  if (process.env.YANDEX_FOLDER_ID) body.set('folderId', process.env.YANDEX_FOLDER_ID);
-  const raw = outFile.replace(/\.wav$/, '.pcm');
-  const { status } = curlRequest({
-    url: 'https://tts.api.cloud.yandex.net/speech/v1/tts:synthesize',
-    method: 'POST',
-    headers: { Authorization: `Api-Key ${key}`, 'content-type': 'application/x-www-form-urlencoded' },
-    body: body.toString(),
-    outFile: raw,
-  });
-  const buf = fs.readFileSync(raw);
+  if (!key) throw new Error('Нет YANDEX_SPEECHKIT_API_KEY в .env (в облачной сессии ключ подставляет прокси — достаточно значения proxy-injected)');
+  const hints = [{ voice: c.voice }];
+  if (c.role) hints.push({ role: c.role });
+  if (c.speed && c.speed !== 1) hints.push({ speed: String(c.speed) });
+  const body = {
+    text,
+    outputAudioSpec: { rawAudio: { audioEncoding: 'LINEAR16_PCM', sampleRateHertz: '48000' } },
+    hints,
+    loudnessNormalizationType: 'LUFS',
+  };
+  const raw = outFile.replace(/\.wav$/, '.json');
+  const headers = { Authorization: `Api-Key ${key}`, 'content-type': 'application/json' };
+  if (process.env.YANDEX_FOLDER_ID) headers['x-folder-id'] = process.env.YANDEX_FOLDER_ID;
+  const { status } = curlRequest({ url: 'https://tts.api.cloud.yandex.net/tts/v3/utteranceSynthesis', method: 'POST', headers, body: JSON.stringify(body), outFile: raw });
+  const txt = fs.readFileSync(raw, 'utf8');
   fs.rmSync(raw, { force: true });
-  if (status !== 200) throw new Error(`Yandex SpeechKit: HTTP ${status} ${buf.toString('utf8').slice(0, 300)}`);
-  writeWav(outFile, decodePCM16(buf), 48000);
+  if (status !== 200) throw new Error(`Yandex SpeechKit: HTTP ${status} ${txt.slice(0, 300)}`);
+  // ответ — поток JSON-объектов {"result":{"audioChunk":{"data":"<base64>"}}}, по одному на строку
+  const chunks = [];
+  for (const line of txt.split(/\n+/).filter((l) => l.trim())) {
+    const obj = JSON.parse(line);
+    if (obj.error) throw new Error(`Yandex SpeechKit: ${JSON.stringify(obj.error).slice(0, 300)}`);
+    const d = obj.result?.audioChunk?.data;
+    if (d) chunks.push(Buffer.from(d, 'base64'));
+  }
+  if (!chunks.length) throw new Error('Yandex SpeechKit: пустой ответ');
+  writeWav(outFile, decodePCM16(Buffer.concat(chunks)), 48000);
+}
+
+/** Образцы голосов SpeechKit: каждый голос в нейтральном и в «приветливом» амплуа (если есть). */
+export async function renderYandexSamples(outDir, text, { voices } = {}) {
+  const settings = loadVoiceSettings();
+  ensureDir(outDir);
+  const sample = text || 'Здравствуйте! Я маскот Роском Онлайн. Расскажу, какие документы по персональным данным нужны вашему сайту.';
+  const results = [];
+  for (const [gender, list] of Object.entries(YANDEX_VOICES)) {
+    for (const [voice, roles] of Object.entries(list)) {
+      if (voices && !voices.includes(voice)) continue;
+      const variants = [null, ...['friendly', 'good'].filter((r) => roles.includes(r)).slice(0, 1)];
+      for (const role of variants) {
+        const s = { ...settings, provider: 'yandex', yandex: { ...settings.yandex, voice, role, speed: settings.yandex.speed } };
+        const name = `yandex-${gender}-${voice}${role ? '-' + role : ''}`;
+        try {
+          const f = await synthesize(sample, s, path.join(outDir, '.cache'));
+          const out = path.join(outDir, `${name}.wav`);
+          fs.copyFileSync(f, out);
+          results.push(out);
+        } catch (e) {
+          results.push(`${name}: ошибка ${e.message}`);
+        }
+      }
+    }
+  }
+  return results;
 }
 
 const PROVIDERS = { rhvoice: synthRHVoice, elevenlabs: synthElevenLabs, yandex: synthYandex };

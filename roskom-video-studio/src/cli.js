@@ -176,6 +176,14 @@ const commands = {
   },
 
   async voices() {
+    if (flags.provider === 'yandex') {
+      const { renderYandexSamples } = await import('./services/voice-generator.js');
+      const out = p('output', 'voice-samples', 'yandex');
+      const voices = flags.voices ? String(flags.voices).split(',') : undefined;
+      (await renderYandexSamples(out, args.join(' ') || undefined, { voices })).forEach((x) => console.log(x));
+      console.log('\nВыбранный голос укажите в config/voice-settings.json → yandex.voice (и role), "provider": "yandex"');
+      return;
+    }
     if (flags.provider === 'elevenlabs') {
       const { renderElevenLabsSamples } = await import('./services/voice-generator.js');
       const out = p('output', 'voice-samples', 'elevenlabs');
@@ -217,6 +225,7 @@ if (!fn) {
   approve [проект] [--by "ФИО"]                      согласовать и выпустить финал
   still [проект] [секунды…]                          кадры для визуальной проверки
   voices ["текст"]         образцы голосов RHVoice
+  voices --provider yandex [--voices alena,filipp] ["текст"]   образцы голосов Yandex SpeechKit
   voices --provider elevenlabs [--limit 8] [--ids id1,id2] ["текст"]   голоса ElevenLabs из аккаунта и образцы
   list                     список проектов и статусы`);
   process.exit(cmd ? 1 : 0);

@@ -54,8 +54,9 @@
   },
   "yandex": {
     "voice": "filipp",
-    "role": "neutral",
-    "speed": 1.05
+    "role": null,
+    "speed": 1.35,
+    "note": "API v3. Голоса: мужские filipp, ermil, zahar, madirus, alexander, kirill, anton; женские alena, jane, omazh, dasha, julia, lera, masha, marina. role — амплуа (neutral, good, friendly, strict…), если голос его поддерживает. speed 0.1–3.0. Образцы: npm run voices -- --provider yandex"
   },
   "pauses": {
     "betweenPhrases": 0.28,
