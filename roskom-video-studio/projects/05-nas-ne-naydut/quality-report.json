@@ -92,7 +92,7 @@
       "name": "Маскот соответствует оригиналу (хеши файлов не изменены)",
       "ok": true,
       "level": "ok",
-      "details": "позы: talk, warning, pointing, skeptical"
+      "details": "позы: skeptical, warning, pointing, cool, goodbye"
     },
     {
       "id": "brand-spelling",
@@ -151,7 +151,7 @@
       "details": "Все 3 утверждений подтверждены источниками"
     }
   ],
-  "generatedAt": "2026-11-17T09:19:51.847Z",
+  "generatedAt": "2026-11-17T09:23:16.740Z",
   "project": "05-nas-ne-naydut",
   "duration": 42.37,
   "format": "1080x1920@30",
@@ -167,8 +167,8 @@
   },
   "render": {
     "scenes": 5,
-    "rerendered": 1,
-    "seconds": 40
+    "rerendered": 3,
+    "seconds": 75
   },
   "files": [
     {
