@@ -68,11 +68,16 @@
         "Даже у небольшого магазина есть клиентская база и сотрудники — это тоже персональные данные."
       ],
       "mascot": {
-        "pose": "warning",
+        "pose": "shrug",
         "position": "left",
         "enter": "rise",
-        "action": "nod",
-        "actionAt": 1
+        "poses": [
+          {
+            "at": 3.8,
+            "pose": "documents"
+          }
+        ],
+        "size": 400
       },
       "camera": "zoom-in",
       "transition": "wipe",
@@ -114,10 +119,26 @@
         "Третье — утечка данных. О ней вы обязаны сами сообщить в Роскомнадзор."
       ],
       "mascot": {
-        "pose": "pointing",
+        "pose": "thinking",
         "position": "small-left",
         "enter": "pop",
-        "size": 360
+        "size": 420,
+        "poses": [
+          {
+            "at": 2.85,
+            "pose": "phone"
+          },
+          {
+            "at": 9,
+            "pose": "laptop"
+          },
+          {
+            "at": 15.2,
+            "pose": "alarm"
+          }
+        ],
+        "action": "shake",
+        "actionAt": 15.4
       },
       "camera": "none",
       "transition": "slide",
@@ -167,7 +188,7 @@
         }
       ],
       "mascot": {
-        "pose": "goodbye",
+        "pose": "love",
         "position": "center",
         "enter": "rise"
       },

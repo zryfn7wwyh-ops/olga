@@ -5,6 +5,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { p, readJSON, writeJSON, ensureDir } from './util.js';
 import { loadBrand } from './asset-manager.js';
+import { suggestPose } from './pose-advisor.js';
 
 export const STATUSES = ['DRAFT', 'AWAITING_APPROVAL', 'APPROVED', 'PRODUCTION', 'COMPLETED', 'FAILED'];
 const BLOCK_ORDER = ['hook', 'problem', 'value', 'conclusion', 'cta'];
@@ -406,6 +407,14 @@ export function storyboardFromApproved(dir) {
   for (let i = 0; i < val.length; i += 3) add('value', val.slice(i, i + 3), 'checklist', { transition: i ? 'slide' : 'zoom', mascot: { pose: 'pointing', position: 'small-left' } });
   add('conclusion', ap.blocks.conclusion, 'truth', { transition: 'wipe', mascot: { pose: 'joy', position: 'small', size: 380 } });
   add('cta', ap.blocks.cta, 'cta', { transition: 'circle', button: brand.siteLabel, hold: 0.8, mascot: { pose: 'goodbye', position: 'center' } });
+  // позы — по смыслу каждой сцены, без повторов, из всей библиотеки
+  const usedPoses = [];
+  for (const sc of scenes) {
+    const text = sc.voice.map((v) => (typeof v === 'string' ? v : v.text)).join(' ');
+    const pose = suggestPose(text, sc.role, usedPoses);
+    usedPoses.push(pose);
+    sc.mascot = { ...sc.mascot, pose };
+  }
   return {
     version: 1,
     topic: ap.topic,

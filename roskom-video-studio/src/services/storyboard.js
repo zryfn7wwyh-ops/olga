@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { p, readJSON } from './util.js';
 import { loadMascotManifest, resolvePose } from './asset-manager.js';
+import { poseVarietyWarnings } from './pose-advisor.js';
 
 export const LAYOUTS = ['hook', 'title', 'browser', 'registry', 'cards', 'checklist', 'mistake', 'myth', 'truth', 'qa', 'news', 'fact', 'cta'];
 export const TRANSITIONS = ['none', 'wipe', 'slide', 'zoom', 'fade', 'circle'];
@@ -70,6 +71,7 @@ export function validateStoryboard(sb) {
     if (prev && prev.layout === s.layout && prev.layout !== 'mistake' && (prev.mascot?.position === s.mascot?.position)) warnings.push(`Сцены ${i} и ${i + 1}: одинаковая композиция (${s.layout}, маскот ${s.mascot?.position}) — смените шаблон или положение маскота`);
   });
   if (layoutsUsed.size < 3) warnings.push('Мало разнообразия: используется меньше трёх визуальных шаблонов');
+  if (Array.isArray(sb.scenes)) warnings.push(...poseVarietyWarnings(sb));
   if (!sb.legal) warnings.push('Нет блока legal — юридическая проверка не отражена');
   return { errors, warnings };
 }

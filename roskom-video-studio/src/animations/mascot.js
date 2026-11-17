@@ -33,7 +33,7 @@
     const timeline = [{ at: 0, pose: cfg.pose }, ...(cfg.poses || [])].sort((a, b) => a.at - b.at);
     const imgs = {};
     const lipImgs = {}; // pose -> { viseme -> img }
-    let aspect = 1;
+    let aspect = 0;
     for (const { pose } of timeline) {
       if (imgs[pose]) continue;
       const info = manifest[pose];
@@ -63,8 +63,10 @@
           el.appendChild(im2);
         }
       }
-      if (pose === cfg.pose && info.width) aspect = (info.height / info.width) * sc;
+      // место под маскота — по самой высокой из поз сцены (смена позы не наезжает на контент)
+      if (info.width) aspect = Math.max(aspect, (info.height / info.width) * sc);
     }
+    if (!aspect) aspect = 1;
     const pl = placement(cfg.position || 'right', W, H, aspect, cfg.size);
     el.style.width = pl.size + 'px';
     el.style.height = pl.size * aspect + 'px';
