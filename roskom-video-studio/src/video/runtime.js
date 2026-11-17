@@ -232,7 +232,7 @@
     const issues = [];
     const s = stage.getBoundingClientRect();
     b.el.querySelectorAll('.fit').forEach((el) => {
-      const wide = [...el.querySelectorAll('.w')].some((w) => w.offsetWidth > el.clientWidth + 2);
+      const wide = [...el.querySelectorAll('.w')].some((w) => w.offsetWidth > el.clientWidth + 2) || (!el.querySelector('.w') && el.scrollWidth > el.clientWidth + 2);
       if (el.scrollHeight > el.clientHeight + parseFloat(getComputedStyle(el).fontSize) * 0.2 || wide || el.dataset.overflow) issues.push({ type: 'text-overflow', text: el.textContent.slice(0, 80) });
       else if (el.dataset.fitted && +el.dataset.fitted <= +el.dataset.minPx) issues.push({ type: 'text-min-size', text: el.textContent.slice(0, 80), size: +el.dataset.fitted });
     });

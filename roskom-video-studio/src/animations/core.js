@@ -36,7 +36,7 @@
   function fitText(el, maxPx, minPx) {
     let size = maxPx;
     el.style.fontSize = size + 'px';
-    const over = () => el.scrollHeight > el.clientHeight + parseFloat(el.style.fontSize) * 0.2 || [...el.querySelectorAll('.w')].some((w) => w.offsetWidth > el.clientWidth + 2);
+    const over = () => el.scrollHeight > el.clientHeight + parseFloat(el.style.fontSize) * 0.2 || [...el.querySelectorAll('.w')].some((w) => w.offsetWidth > el.clientWidth + 2) || (!el.querySelector('.w') && el.scrollWidth > el.clientWidth + 2);
     while (size > minPx && over()) {
       size -= 2;
       el.style.fontSize = size + 'px';

@@ -194,11 +194,14 @@
     return {
       root,
       mount() {
-        if (title) fitText(title, ctx.v ? 96 : 76, 48);
+        // при 3+ пунктах заголовок компактнее, чтобы карточки оставались крупными
+        if (title) fitText(title, ctx.v ? (items.length >= 3 ? 72 : 96) : 76, 48);
         // ужимаем карточки, если не помещаются
         let fs = 52;
         const apply = () => items.forEach((el) => { el.querySelector('.t').style.fontSize = fs + 'px'; const s = el.querySelector('.s'); if (s) s.style.fontSize = Math.round(fs * 0.72) + 'px'; el.style.padding = Math.round(fs * 0.62) + 'px 34px'; });
         apply();
+        // сначала уменьшаем заголовок (до 56px), потом карточки
+        while (title && parseFloat(title.style.fontSize) > 56 && root.scrollHeight > root.clientHeight + 1) fitText(title, parseFloat(title.style.fontSize) - 4, 48);
         while (fs > 30 && root.scrollHeight > root.clientHeight + 1) {
           fs -= 2;
           items.forEach((el) => { el.querySelector('.t').style.fontSize = fs + 'px'; const s = el.querySelector('.s'); if (s) s.style.fontSize = Math.round(fs * 0.72) + 'px'; el.style.padding = Math.round(fs * 0.55) + 'px 30px'; });

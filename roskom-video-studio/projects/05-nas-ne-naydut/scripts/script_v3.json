@@ -161,7 +161,7 @@
     "project": "05-nas-ne-naydut",
     "version": 3,
     "createdAt": "2026-11-17T08:33:26.728Z",
-    "status": "AWAITING_APPROVAL",
+    "status": "APPROVED",
     "estimate": {
       "seconds": 41.8,
       "words": 96,
@@ -173,7 +173,11 @@
     },
     "hook": "Думаете, если вы маленький бизнес, Роскомнадзор вас не видит?",
     "hash": "d94c5c80cb15fe7f9ee7e72d9fb6f3aeef8d7081eaaf6b82fb27d7238f9c5ed2",
-    "approval": null,
+    "approval": {
+      "at": "2026-11-17T08:34:43.303Z",
+      "by": "Ольга",
+      "message": "утверждено"
+    },
     "warnings": [
       "(текст пользователя) Выбран хук 2 (22 баллов), но хук с наибольшей оценкой — 1 (24)",
       "Варианты хука лучше делать разных типов"
