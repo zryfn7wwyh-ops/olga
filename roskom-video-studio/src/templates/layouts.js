@@ -72,7 +72,8 @@
       pointTarget: () => title,
       update(t) {
         if (kicker) appear(kicker, t, 0.05, 'left', 0.4);
-        animateWords(title, t, 0.15, 0.07);
+        // слова хука проявляются масштабом, без сдвига: на первом кадре ничего не «обрезается» краем блока
+        animateWords(title, t, 0.15, 0.06, 'pop');
         if (text) appear(text, t, 0.6, 'up');
         if (ic) { appear(ic, t, ctx.itemTimes[0] ?? 0.9, 'pop', 0.5, `rotate(${Math.sin(t * 2) * 5}deg)`); }
       },

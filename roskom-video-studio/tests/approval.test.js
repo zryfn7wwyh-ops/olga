@@ -82,6 +82,9 @@ test('полный цикл: черновик → v1 → правка v2 → у�
   assert.ok(!/\.\.\.|…/.test(v1.text));
   // нейтральный ответ — не утверждение
   assert.throws(() => approveScript(dir, { version: 1, message: 'Спасибо, посмотрю' }), /не является однозначным/);
+  assert.throws(() => approveScript(dir, { version: 1, message: 'Не утверждаю, подожди' }), /не является однозначным/);
+  assert.throws(() => approveScript(dir, { version: 1, message: 'не утверждаю' }), /не является однозначным/);
+  assert.throws(() => approveScript(dir, { version: 1, message: 'Пока не согласовано' }), /не является однозначным/);
   // правка → v2
   const d2 = draft({ changeNote: 'Хук сильнее' });
   d2.blocks.problem = ['В ней чужие цели, чужие данные и чужие риски.'];

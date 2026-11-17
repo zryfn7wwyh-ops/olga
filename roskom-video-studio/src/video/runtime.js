@@ -219,7 +219,7 @@
     b.layout.update(ta);
     if (b.mascot) b.mascot.update(ta, D.envelope[frame] || 0);
     const { sceneTr, sceneOp } = applyTransitions(i, t, sc.duration, b.el);
-    b.el.style.transform = `${sceneTr} ${cameraTransform(sc.camera, t, sc.duration)}`.trim();
+    b.el.style.transform = `${sceneTr} ${cameraTransform(sc.camera, ta, sc.duration)}`.trim();
     b.el.style.opacity = sceneOp;
     progressEl.style.width = (D.W * (frame + 1)) / D.totalFrames + 'px';
     renderCaptions(time);

@@ -333,7 +333,7 @@ export function approveScript(dir, { version, by, message }) {
   if (proj.status !== 'AWAITING_APPROVAL') throw new Error(`Статус проекта ${proj.status} — утверждать нечего (нужен AWAITING_APPROVAL)`);
   if (!message) throw new Error('Укажите дословное сообщение пользователя с утверждением: --message "…"');
   const m = message.toLowerCase().replace(/ё/g, 'е');
-  if (!S.approvalPhrases.some((ph) => m.includes(ph.replace(/ё/g, 'е')))) {
+  if (/(^|[\s,.!?])не\s+(утвер|соглас|запуск|делай)|пока не|подожд|(^|[\s,.!?])стоп/.test(m) || !S.approvalPhrases.some((ph) => m.includes(ph.replace(/ё/g, 'е')))) {
     throw new Error(`Сообщение «${message}» не является однозначным утверждением. Нужны слова: ${S.approvalPhrases.map((x) => `«${x}»`).join(', ')} или другая явная команда — уточните у пользователя`);
   }
   const ver = loadVersion(dir, version);
@@ -413,7 +413,7 @@ export function storyboardFromApproved(dir) {
     type: proj.type || 'explainer',
     format: proj.format || 'vertical',
     duration: proj.duration || 'short',
-    durationRange: targetRange(proj, ap),
+    durationRange: ap.userAuthored ? readJSON(p('config', 'video-settings.json')).durations[proj.duration || 'short'] : targetRange(proj, ap),
     audience: ap.audience,
     service: ap.cta?.service || 'consulting',
     scriptVersion: proj.approvedVersion,

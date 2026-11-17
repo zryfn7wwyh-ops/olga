@@ -91,7 +91,8 @@ export function sceneHash(data, i) {
   const sc = data.scenes[i];
   const env = data.envelope.slice(sc.startFrame, sc.startFrame + sc.frames);
   const caps = data.captions.filter((c) => c.end > sc.start && c.start < sc.start + sc.duration);
-  return hash(engineVersion(), data.W, data.H, data.fps, data.totalFrames, data.theme, data.brand, data.logo, data.captionFont, sc, env, caps,
+  const { timing, ...scene } = sc; // timing пишется в раскадровку после сборки — на картинку не влияет
+  return hash(engineVersion(), data.W, data.H, data.fps, data.totalFrames, data.theme, data.brand, data.logo, data.captionFont, scene, env, caps,
     sc.mascot ? [sc.mascot, ...(sc.mascot.poses || [])].map((k) => data.poses[k.pose]?.sha256) : null);
 }
 
