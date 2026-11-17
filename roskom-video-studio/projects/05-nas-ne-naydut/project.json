@@ -1,0 +1,25 @@
+{
+  "id": "05-nas-ne-naydut",
+  "topic": "Мы маленький бизнес, нас не найдут",
+  "type": "myth-truth",
+  "duration": "short",
+  "format": "vertical",
+  "createdAt": "2026-11-17T08:29:02.361Z",
+  "status": "AWAITING_APPROVAL",
+  "currentVersion": 1,
+  "approvedVersion": null,
+  "approvedHash": null,
+  "approvals": [],
+  "history": [
+    {
+      "at": "2026-11-17T08:29:02.361Z",
+      "status": "DRAFT",
+      "note": "Проект создан"
+    },
+    {
+      "at": "2026-11-17T08:29:44.068Z",
+      "status": "AWAITING_APPROVAL",
+      "note": "Версия 1 отправлена на согласование: Первоначальная версия"
+    }
+  ]
+}

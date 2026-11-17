@@ -52,7 +52,7 @@
     "musicVolume": 0.22,
     "musicDuckedVolume": 0.06,
     "sfxVolume": 0.5,
-    "musicStyle": null,
+    "musicStyle": "none",
     "musicStyleNote": "Стиль собственной музыки: calm, energetic, corporate, lofi, tech, news (null — по типу ролика). Для одного ролика — \"musicStyle\" в storyboard.json."
   },
   "render": {
