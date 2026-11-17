@@ -80,7 +80,10 @@ export async function build(projectDir, opts = {}) {
   projectDir = path.resolve(projectDir);
   const t0 = Date.now();
   log(`Проект: ${path.relative(ROOT, projectDir)}`);
-  assertProductionAllowed(projectDir, readJSON(path.join(projectDir, 'storyboard.json')));
+  const sbPath = path.join(projectDir, 'storyboard.json');
+  if (!fs.existsSync(sbPath)) assertProductionAllowed(projectDir, { scenes: [] }); // сначала понятная ошибка про утверждение
+  if (!fs.existsSync(sbPath)) throw new Error('Сценарий утверждён, но раскадровки ещё нет: npm run storyboard-init -- ' + path.basename(projectDir));
+  assertProductionAllowed(projectDir, readJSON(sbPath));
   setStatus(projectDir, 'PRODUCTION', 'Запущено производство: озвучка, анимация, монтаж');
   try {
     const report = await buildInner(projectDir, opts, t0);

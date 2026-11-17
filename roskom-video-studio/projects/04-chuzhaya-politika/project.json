@@ -1,0 +1,25 @@
+{
+  "id": "04-chuzhaya-politika",
+  "topic": "Можно ли скопировать политику персональных данных с чужого сайта",
+  "type": "explainer",
+  "duration": "short",
+  "format": "vertical",
+  "createdAt": "2026-11-17T07:28:28.678Z",
+  "status": "AWAITING_APPROVAL",
+  "currentVersion": 1,
+  "approvedVersion": null,
+  "approvedHash": null,
+  "approvals": [],
+  "history": [
+    {
+      "at": "2026-11-17T07:28:28.678Z",
+      "status": "DRAFT",
+      "note": "Проект создан"
+    },
+    {
+      "at": "2026-11-17T07:28:49.019Z",
+      "status": "AWAITING_APPROVAL",
+      "note": "Версия 1 отправлена на согласование: Первоначальная версия"
+    }
+  ]
+}
