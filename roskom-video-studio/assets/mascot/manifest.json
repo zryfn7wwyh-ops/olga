@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-10T11:40:23.896Z",
+  "generatedAt": "2026-11-17T08:55:14.512Z",
   "poses": {
     "happy": {
       "file": "2.png",
@@ -287,6 +287,85 @@
       "width": 1400,
       "height": 1347,
       "hasAlpha": true
+    },
+    "talk-closed": {
+      "file": "talk-closed.png",
+      "color": "blue",
+      "emotion": "говорящий маскот: рот закрыт, улыбка",
+      "use": "кадр синхронизации губ (используйте позу talk)",
+      "source": "source/talk/",
+      "path": "assets/mascot/original/talk-closed.png",
+      "sha256": "84f2597facf25f9175f89e06cd62808b2474ff36d8956476c97b5c7968963041",
+      "width": 1400,
+      "height": 1382,
+      "hasAlpha": true
+    },
+    "talk-e": {
+      "file": "talk-e.png",
+      "color": "blue",
+      "emotion": "говорящий маскот: зубы — и/э/с/з",
+      "use": "кадр синхронизации губ (используйте позу talk)",
+      "source": "source/talk/",
+      "path": "assets/mascot/original/talk-e.png",
+      "sha256": "97ba6b1d233000bcad662ba6c4c32c1dab7e3bc1e845acfce66e2f99cf79c5fb",
+      "width": 1400,
+      "height": 1382,
+      "hasAlpha": true
+    },
+    "talk-u": {
+      "file": "talk-u.png",
+      "color": "blue",
+      "emotion": "говорящий маскот: узкий круглый рот — у",
+      "use": "кадр синхронизации губ (используйте позу talk)",
+      "source": "source/talk/",
+      "path": "assets/mascot/original/talk-u.png",
+      "sha256": "727ef526a59929d4f31a3ce0fe40005a5e810199fbdf8a10e29c966bc5dfabbe",
+      "width": 1400,
+      "height": 1382,
+      "hasAlpha": true
+    },
+    "talk-o": {
+      "file": "talk-o.png",
+      "color": "blue",
+      "emotion": "говорящий маскот: открытый рот — о",
+      "use": "кадр синхронизации губ (используйте позу talk)",
+      "source": "source/talk/",
+      "path": "assets/mascot/original/talk-o.png",
+      "sha256": "9e29662c6e04ce1719e14378c7944d70cf718198ea76af0e980287f5680eda45",
+      "width": 1400,
+      "height": 1382,
+      "hasAlpha": true
+    },
+    "talk-a": {
+      "file": "talk-a.png",
+      "color": "blue",
+      "emotion": "говорящий маскот: широко открыт — а",
+      "use": "кадр синхронизации губ (используйте позу talk)",
+      "source": "source/talk/",
+      "path": "assets/mascot/original/talk-a.png",
+      "sha256": "f5aa7f1fc0a065116631986ecc483512feeaa3bf8c7539618ccc34a0fbff9898",
+      "width": 1400,
+      "height": 1382,
+      "hasAlpha": true
+    },
+    "talk": {
+      "file": "talk-closed.png",
+      "color": "blue",
+      "emotion": "говорит — рот двигается синхронно с озвучкой",
+      "use": "любая сцена, где маскот говорит в кадр; лицом к зрителю",
+      "lipsync": {
+        "closed": "talk-closed",
+        "e": "talk-e",
+        "u": "talk-u",
+        "o": "talk-o",
+        "a": "talk-a"
+      },
+      "source": "source/talk/1–5.jpg (tools/lipsync_import.py)",
+      "path": "assets/mascot/original/talk-closed.png",
+      "sha256": "84f2597facf25f9175f89e06cd62808b2474ff36d8956476c97b5c7968963041",
+      "width": 1400,
+      "height": 1382,
+      "hasAlpha": true
     }
   },
   "unmapped": [],
@@ -302,7 +381,7 @@
     "goodbye": "goodbye"
   },
   "missing": [
-    "Нет раздельных слоёв лица и сменных изображений рта — синхронизация губ недоступна. Используется «говорящее» покачивание всего изображения по громкости речи. Для липсинка нужны: тело без рта + 4–6 форм рта (закрыт, А, О, У, Э/И, улыбка) в PNG с прозрачностью и одинаковой привязкой.",
+    "Синхронизация губ есть для одной позы — talk (лицом к зрителю). Для других поз нужны такие же наборы из 5 ртов: закрыт, зубы (и/э), «у», «о», «а» — импорт: python3 tools/lipsync_import.py <имя> closed=… e=… u=… o=… a=…",
     "Поза pointing указывает вправо (от зрителя). Отражать изображение нельзя, поэтому маскота с этой позой ставьте слева (position left / small-left / center). Для указания влево нужна отдельная поза.",
     "Позы 2–20.png — около 470–640 px (на экране увеличиваются до ~1.4×); новые позы greeting, pointing, warning, joy, surprise, goodbye — 1400 px."
   ],

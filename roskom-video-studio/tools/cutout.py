@@ -15,7 +15,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFilter
 
 
-def cutout(src, max_side=1400):
+def cutout(src, max_side=1400, crop=True):
     im = Image.open(src).convert('RGB')
     a = np.asarray(im).astype(np.float32)
     h, w, _ = a.shape
@@ -60,6 +60,8 @@ def cutout(src, max_side=1400):
     rgb = np.clip(rgb, 0, 255)
     out = np.dstack([rgb, alpha * 255]).astype(np.uint8)
     res = Image.fromarray(out, 'RGBA')
+    if not crop:
+        return res
     # 5) обрезка по содержимому с полями
     ys, xs = np.where(alpha > 0.03)
     pad = int(min(w, h) * 0.02)

@@ -90,9 +90,11 @@ async function renderScene(comp, data, i, outFile, settings) {
 export function sceneHash(data, i) {
   const sc = data.scenes[i];
   const env = data.envelope.slice(sc.startFrame, sc.startFrame + sc.frames);
+  const usesLip = sc.mascot && [sc.mascot, ...(sc.mascot.poses || [])].some((k) => data.poses[k.pose]?.lipsync);
+  const vis = usesLip && data.visemes ? data.visemes.slice(sc.startFrame, sc.startFrame + sc.frames).join('') : null;
   const caps = data.captions.filter((c) => c.end > sc.start && c.start < sc.start + sc.duration);
   const { timing, ...scene } = sc; // timing пишется в раскадровку после сборки — на картинку не влияет
-  return hash(engineVersion(), data.W, data.H, data.fps, data.totalFrames, data.theme, data.brand, data.logo, data.captionFont, scene, env, caps,
+  return hash(engineVersion(), data.W, data.H, data.fps, data.totalFrames, data.theme, data.brand, data.logo, data.captionFont, scene, env, caps, vis,
     sc.mascot ? [sc.mascot, ...(sc.mascot.poses || [])].map((k) => data.poses[k.pose]?.sha256) : null);
 }
 

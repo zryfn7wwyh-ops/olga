@@ -32,6 +32,7 @@
     el.appendChild(shadow);
     const timeline = [{ at: 0, pose: cfg.pose }, ...(cfg.poses || [])].sort((a, b) => a.at - b.at);
     const imgs = {};
+    const lipImgs = {}; // pose -> { viseme -> img }
     let aspect = 1;
     for (const { pose } of timeline) {
       if (imgs[pose]) continue;
@@ -47,6 +48,21 @@
       img.style.left = ((1 - sc) / 2) * 100 + '%';
       imgs[pose] = img;
       el.appendChild(img);
+      // поза с синхронизацией губ: дополнительные кадры ртов поверх основы
+      if (info.lipsync) {
+        lipImgs[pose] = {};
+        for (const [vis, framePose] of Object.entries(info.lipsync)) {
+          if (vis === 'closed') { lipImgs[pose][vis] = img; continue; }
+          const fi = manifest[framePose];
+          const im2 = new Image();
+          im2.src = ctx.root + fi.path;
+          im2.style.opacity = 0;
+          im2.style.width = sc * 100 + '%';
+          im2.style.left = ((1 - sc) / 2) * 100 + '%';
+          lipImgs[pose][vis] = im2;
+          el.appendChild(im2);
+        }
+      }
       if (pose === cfg.pose && info.width) aspect = (info.height / info.width) * sc;
     }
     const pl = placement(cfg.position || 'right', W, H, aspect, cfg.size);
@@ -85,15 +101,22 @@
       el,
       bounds: () => ({ x: pl.x, y: pl.bottom - pl.size * aspect, w: pl.size, h: pl.size * aspect }),
       setPointTarget(rect) { this.target = rect; },
-      update(t, amp) {
+      update(t, amp, viseme) {
         // Поза в момент t
         let cur = timeline[0], prevPose = null, swapT = 99;
         for (const k of timeline) if (t >= k.at) { prevPose = cur.pose; cur = k; swapT = t - k.at; }
         for (const [pose, img] of Object.entries(imgs)) {
           let o = pose === cur.pose ? 1 : 0;
           if (swapT < 0.12 && cur.at > 0) o = pose === cur.pose ? swapT / 0.12 : pose === prevPose ? 1 - swapT / 0.12 : 0;
+          if (lipImgs[pose]) {
+            // показываем кадр с нужной формой рта (остальные скрыты); основа = «рот закрыт»
+            const vis = lipImgs[pose][viseme] ? viseme : 'closed';
+            for (const [v, im] of Object.entries(lipImgs[pose])) im.style.opacity = v === vis ? o : 0;
+            continue;
+          }
           img.style.opacity = o;
         }
+        const lipActive = !!lipImgs[cur.pose];
         let tx = 0, ty = 0, sc = 1, rot = 0, sx = 1, sy = 1, op = 1;
         // Появление
         const e = prog(t, enterAt, 0.6);
@@ -106,7 +129,7 @@
         ty += Math.sin(idle) * 9;
         rot += Math.sin(t * 1.3 + seed) * 1.6;
         // «Говорение» — сжатие/растяжение по громкости речи
-        const a = amp || 0;
+        const a = (amp || 0) * (lipActive ? 0.35 : 1); // при синхронизации губ тело «дышит» слабее
         sy *= 1 + a * 0.05;
         sx *= 1 - a * 0.025;
         ty -= a * 8;

@@ -28,12 +28,11 @@
         "Думаете, если вы маленький бизнес, Роскомнадзор вас не видит?"
       ],
       "mascot": {
-        "pose": "skeptical",
+        "pose": "talk",
         "position": "right",
         "enter": "slide",
         "enterAt": 0,
-        "action": "tilt",
-        "actionAt": 1.2
+        "size": 480
       },
       "camera": "punch",
       "transition": "none",
@@ -140,11 +139,10 @@
         "Защищает не размер бизнеса, а порядок в документах."
       ],
       "mascot": {
-        "pose": "cool",
+        "pose": "talk",
         "position": "small",
         "enter": "pop",
-        "action": "nod",
-        "actionAt": 0.8
+        "size": 440
       },
       "camera": "zoom-in",
       "transition": "zoom",
@@ -167,9 +165,10 @@
         }
       ],
       "mascot": {
-        "pose": "goodbye",
+        "pose": "talk",
         "position": "center",
-        "enter": "rise"
+        "enter": "rise",
+        "size": 620
       },
       "hold": 0.8,
       "camera": "zoom-out",

@@ -11,6 +11,7 @@ import { mixAudio } from './audio-mixer.js';
 import { renderVideo, renderCover, captionCheck } from './render-service.js';
 import { runQuality } from './quality.js';
 import { writePublication, writeScriptIfMissing, writeSourcesIfMissing, exportToOutput } from './export-manager.js';
+import { visemeTrack } from './lipsync.js';
 import { assertProductionAllowed, setStatus, voiceMatch, loadApproved } from './script-manager.js';
 
 export function loadVideoSettings() {
@@ -69,10 +70,11 @@ export async function prepare(projectDir, opts = {}) {
     theme: { ...type.theme, tag: sb.tag ?? type.tag },
     poses: manifest.poses,
     envelope: tl.envelope.slice(0, tl.totalFrames),
+    visemes: visemeTrack(tl.voice, SAMPLE_RATE, fps).track.slice(0, tl.totalFrames),
     captions, captionFont: (sb.format || 'vertical') === 'vertical' ? vs.captions.fontSize : Math.round(vs.captions.fontSize * 0.8),
     scenes,
   };
-  writeJSON(path.join(buildDir, 'timeline.json'), { ...data, envelope: `[${data.envelope.length} значений]` });
+  writeJSON(path.join(buildDir, 'timeline.json'), { ...data, envelope: `[${data.envelope.length} значений]`, visemes: data.visemes.join('') });
   return { sb, data, tl, vs, range, buildDir, type };
 }
 

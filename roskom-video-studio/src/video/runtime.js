@@ -217,7 +217,7 @@
     // Первая сцена стартует «в движении»: элементы хука и маскот видны уже на первом кадре (без пустого фона)
     const ta = i === 0 ? t + (sc.introOffset ?? 0.45) : t;
     b.layout.update(ta);
-    if (b.mascot) b.mascot.update(ta, D.envelope[frame] || 0);
+    if (b.mascot) b.mascot.update(ta, D.envelope[frame] || 0, D.visemes ? D.visemes[frame] : null);
     const { sceneTr, sceneOp } = applyTransitions(i, t, sc.duration, b.el);
     b.el.style.transform = `${sceneTr} ${cameraTransform(sc.camera, ta, sc.duration)}`.trim();
     b.el.style.opacity = sceneOp;
