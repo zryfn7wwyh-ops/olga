@@ -11,7 +11,15 @@ import { mixAudio } from './audio-mixer.js';
 import { renderVideo, renderCover, captionCheck } from './render-service.js';
 import { runQuality } from './quality.js';
 import { writePublication, writeScriptIfMissing, writeSourcesIfMissing, exportToOutput } from './export-manager.js';
-import { visemeTrack } from './lipsync.js';
+import { visemeTrackAligned } from './lipsync.js';
+import { prepareSpeechText, loadVoiceSettings } from './voice-generator.js';
+
+/** Дорожка ртов: по произнесённому тексту фраз и их фактическому времени. */
+function lipTrack(sb, tl, fps) {
+  const vsets = loadVoiceSettings(sb.voiceSettings);
+  const phrases = tl.scenes.flatMap((s) => s.phrases.map((ph) => ({ start: s.start + ph.start, end: s.start + ph.end, text: prepareSpeechText(ph.say || ph.text, vsets) })));
+  return visemeTrackAligned(tl.voice, SAMPLE_RATE, fps, phrases).track.slice(0, tl.totalFrames);
+}
 import { assertProductionAllowed, setStatus, voiceMatch, loadApproved } from './script-manager.js';
 
 export function loadVideoSettings() {
@@ -70,7 +78,7 @@ export async function prepare(projectDir, opts = {}) {
     theme: { ...type.theme, tag: sb.tag ?? type.tag },
     poses: manifest.poses,
     envelope: tl.envelope.slice(0, tl.totalFrames),
-    visemes: visemeTrack(tl.voice, SAMPLE_RATE, fps).track.slice(0, tl.totalFrames),
+    visemes: lipTrack(sb, tl, fps),
     captions, captionFont: (sb.format || 'vertical') === 'vertical' ? vs.captions.fontSize : Math.round(vs.captions.fontSize * 0.8),
     scenes,
   };

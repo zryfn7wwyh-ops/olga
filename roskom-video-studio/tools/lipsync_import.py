@@ -22,6 +22,7 @@ ap.add_argument('frames', nargs='+', help='viseme=файл; первый — о�
 ap.add_argument('--out', default='assets/mascot/original')
 ap.add_argument('--max', type=int, default=1400)
 ap.add_argument('--preview')
+ap.add_argument('--full', action='store_true', help='сохранять кадры ртов целиком, а не накладками')
 args = ap.parse_args()
 
 pairs = [f.split('=', 1) for f in args.frames]
@@ -56,8 +57,10 @@ ys2, xs2 = np.where(a > 0.03)
 pad = int(min(W, H) * 0.02)
 box = (max(0, xs2.min() - pad), max(0, ys2.min() - pad), min(W, xs2.max() + pad + 1), min(H, ys2.max() + pad + 1))
 
-def save(v, rgb):
-    out = np.dstack([rgb, alpha]).astype(np.uint8)
+def save(v, rgb, overlay=False):
+    # overlay: кадр рта — прозрачно всё, кроме области рта (кладётся поверх основы, без двойного контура меха)
+    a_out = alpha * mask if overlay else alpha
+    out = np.dstack([rgb, a_out]).astype(np.uint8)
     img = Image.fromarray(out, 'RGBA').crop(box)
     if max(img.size) > args.max: img = img.resize((round(img.width * args.max / max(img.size)), round(img.height * args.max / max(img.size))), Image.LANCZOS)
     path = os.path.join(args.out, f'{args.name}-{v}.png')
@@ -67,7 +70,7 @@ def save(v, rgb):
 made = [save(base_v, base_col)]
 for v, im in others:
     rgb = base_col * (1 - mask) + im * mask   # рот из кадра, остальное — основа
-    made.append(save(v, rgb))
+    made.append(save(v, rgb, overlay=True))
 for path, img in made: print(path, img.size)
 if args.preview:
     imgs = [m[1] for m in made]

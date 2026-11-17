@@ -151,7 +151,7 @@
       "details": "Все 3 утверждений подтверждены источниками"
     }
   ],
-  "generatedAt": "2026-11-17T08:59:22.903Z",
+  "generatedAt": "2026-11-17T09:19:51.847Z",
   "project": "05-nas-ne-naydut",
   "duration": 42.37,
   "format": "1080x1920@30",
@@ -168,7 +168,7 @@
   "render": {
     "scenes": 5,
     "rerendered": 1,
-    "seconds": 43
+    "seconds": 40
   },
   "files": [
     {

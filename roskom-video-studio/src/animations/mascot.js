@@ -101,7 +101,7 @@
       el,
       bounds: () => ({ x: pl.x, y: pl.bottom - pl.size * aspect, w: pl.size, h: pl.size * aspect }),
       setPointTarget(rect) { this.target = rect; },
-      update(t, amp, viseme) {
+      update(t, amp, viseme, prevViseme) {
         // Поза в момент t
         let cur = timeline[0], prevPose = null, swapT = 99;
         for (const k of timeline) if (t >= k.at) { prevPose = cur.pose; cur = k; swapT = t - k.at; }
@@ -109,9 +109,18 @@
           let o = pose === cur.pose ? 1 : 0;
           if (swapT < 0.12 && cur.at > 0) o = pose === cur.pose ? swapT / 0.12 : pose === prevPose ? 1 - swapT / 0.12 : 0;
           if (lipImgs[pose]) {
-            // показываем кадр с нужной формой рта (остальные скрыты); основа = «рот закрыт»
+            // основа (рот закрыт) видна всегда; накладка рта — поверх. На смене формы — плавный переход за кадр
+            img.style.opacity = o;
             const vis = lipImgs[pose][viseme] ? viseme : 'closed';
-            for (const [v, im] of Object.entries(lipImgs[pose])) im.style.opacity = v === vis ? o : 0;
+            const pv = prevViseme && lipImgs[pose][prevViseme] ? prevViseme : 'closed';
+            const changing = pv !== vis;
+            for (const [v, im] of Object.entries(lipImgs[pose])) {
+              if (v === 'closed') continue;
+              let k = 0;
+              if (v === vis) k = changing ? 0.65 : 1;
+              else if (v === pv && changing) k = 0.35;
+              im.style.opacity = o * k;
+            }
             continue;
           }
           img.style.opacity = o;

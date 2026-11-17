@@ -73,3 +73,93 @@ export function visemeTrack(samples, sr, fps, opts = {}) {
   for (let i = 1; i < raw.length - 1; i++) if (raw[i] !== raw[i - 1] && raw[i] !== raw[i + 1]) raw[i] = raw[i - 1];
   return { track: raw, feats, ref };
 }
+
+// ---------- Синхронизация по тексту ----------
+// Текст фразы известен точно: раскладываем его на гласные и «видимые» согласные
+// и привязываем гласные к слогам в звуке (пикам громкости).
+
+const VOWEL = { а: 'a', я: 'a', о: 'o', ё: 'o', у: 'u', ю: 'u', и: 'e', ы: 'e', е: 'e', э: 'e' };
+const LABIAL = new Set(['м', 'б', 'п']);             // губы смыкаются
+const DENTAL = new Set(['ф', 'в', 'с', 'з', 'ш', 'щ', 'ж', 'ч', 'ц']); // зубы/узкая щель
+const LATIN = { a: 'эй', b: 'би', c: 'си', d: 'ди', e: 'и', f: 'эф', g: 'джи', h: 'эйч', i: 'ай', j: 'джей', k: 'кей', l: 'эл', m: 'эм', n: 'эн', o: 'оу', p: 'пи', q: 'кью', r: 'ар', s: 'эс', t: 'ти', u: 'ю', v: 'ви', w: 'дабл ю', x: 'экс', y: 'уай', z: 'зед' };
+
+/** Звуковые единицы текста: [{ kind: 'V'|'C', vis }] */
+export function textUnits(text) {
+  let t = String(text).toLowerCase()
+    .replace(/sil<\[\d+\]>/g, ' ').replace(/[*+]/g, '')
+    .replace(/[a-z]+/g, (w) => (w.length <= 4 ? [...w].map((ch) => LATIN[ch] || '').join(' ') : w));
+  const units = [];
+  for (const ch of t) {
+    if (VOWEL[ch]) units.push({ kind: 'V', vis: VOWEL[ch] });
+    else if (LABIAL.has(ch)) units.push({ kind: 'C', vis: 'closed' });
+    else if (DENTAL.has(ch)) units.push({ kind: 'C', vis: 'e' });
+    else if (/[a-z]/.test(ch)) units.push({ kind: 'V', vis: 'e' }); // длинные латинские слова — грубо
+  }
+  return units;
+}
+
+/**
+ * Дорожка ртов по тексту фраз.
+ * phrases: [{ start, end, text }] — глобальное время (с), text — то, что реально произнесено (с учётом say/словаря).
+ */
+export function visemeTrackAligned(samples, sr, fps, phrases, opts = {}) {
+  const base = visemeTrack(samples, sr, fps, opts); // признаки и запасной вариант
+  const { feats, ref } = base;
+  const n = feats.length;
+  const track = new Array(n).fill('closed');
+  const silence = opts.silence ?? 0.1;
+  const lead = opts.lead ?? 1; // опережение на кадр
+  const energy = feats.map((x) => x.rms / ref);
+  // сглаженная громкость для поиска слогов
+  const sm = energy.map((_, i) => (energy[i - 1] ?? energy[i]) * 0.25 + energy[i] * 0.5 + (energy[i + 1] ?? energy[i]) * 0.25);
+  for (const ph of phrases) {
+    const f0 = Math.max(0, Math.floor(ph.start * fps)), f1 = Math.min(n - 1, Math.ceil(ph.end * fps));
+    const units = textUnits(ph.text);
+    const vowels = units.map((u, i) => (u.kind === 'V' ? i : -1)).filter((i) => i >= 0);
+    if (!vowels.length || f1 - f0 < 3) { for (let f = f0; f <= f1; f++) track[f] = base.track[f]; continue; }
+    // 1) центры гласных: равные доли «речевой массы» фразы, затем подтяжка к ближайшему пику громкости
+    const mass = [];
+    let acc = 0;
+    for (let f = f0; f <= f1; f++) { acc += Math.max(0, sm[f] - silence * 0.5); mass.push(acc); }
+    const centers = vowels.map((_, k) => {
+      const target = ((k + 0.5) / vowels.length) * acc;
+      let f = f0;
+      while (f < f1 && mass[f - f0] < target) f++;
+      let best = f;
+      for (let d = -2; d <= 2; d++) { const g = f + d; if (g >= f0 && g <= f1 && sm[g] > sm[best]) best = g; }
+      return best;
+    });
+    for (let k = 1; k < centers.length; k++) if (centers[k] <= centers[k - 1]) centers[k] = Math.min(f1, centers[k - 1] + 1);
+    // 2) кадры между центрами — форма ближайшей гласной
+    for (let f = f0; f <= f1; f++) {
+      let k = 0;
+      while (k + 1 < centers.length && Math.abs(centers[k + 1] - f) < Math.abs(centers[k] - f)) k++;
+      track[f] = units[vowels[k]].vis;
+    }
+    // 3) граница слогов: видимые согласные (м/б/п — смыкание, с/ш/ф… — зубы), иначе рот на кадр «прикрывается»
+    const smaller = { a: 'o', o: 'u', u: 'closed', e: 'closed', closed: 'closed' };
+    for (let k = 0; k < vowels.length; k++) {
+      const from = k === 0 ? -1 : vowels[k - 1], to = vowels[k];
+      const between = units.slice(from + 1, to);
+      const cons = between.filter((u) => u.kind === 'C');
+      const left = k === 0 ? Math.max(f0, centers[0] - 2) : centers[k - 1], right = centers[k];
+      if (right - left < 2) continue;
+      const mid = Math.max(f0, Math.min(f1, Math.round((left + right) / 2)));
+      if (cons.length) {
+        const pick = cons.find((u) => u.vis === 'closed') || cons[0]; // смыкание губ видно лучше всего
+        const prevVis = k > 0 ? units[vowels[k - 1]].vis : 'closed';
+        // согласная выглядит так же, как соседние гласные (например «с» между «е» и «и») — рот прикрывается
+        track[mid] = pick.vis === units[to].vis && pick.vis === prevVis ? smaller[units[to].vis] : pick.vis;
+      } else if (k > 0 && right - left >= 3) {
+        track[mid] = smaller[units[to].vis]; // невидимые согласные (т, д, к, л, н, р…) — рот чуть прикрывается
+      }
+    }
+    // 4) настоящие паузы внутри фразы — рот закрыт
+    for (let f = f0; f <= f1; f++) if (energy[f] < silence * 0.8) track[f] = 'closed';
+    // громкость: тихая «а» выглядит как «о»
+    for (let f = f0; f <= f1; f++) if (track[f] === 'a' && energy[f] < 0.35) track[f] = 'o';
+  }
+  // опережение: форма рта на кадр раньше звука
+  const out = track.slice(lead).concat(new Array(lead).fill('closed'));
+  return { track: out, feats, ref, mode: 'text' };
+}
