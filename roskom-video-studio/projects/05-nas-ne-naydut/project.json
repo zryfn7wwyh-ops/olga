@@ -6,7 +6,7 @@
   "format": "vertical",
   "createdAt": "2026-11-17T08:29:02.361Z",
   "status": "AWAITING_APPROVAL",
-  "currentVersion": 2,
+  "currentVersion": 3,
   "approvedVersion": null,
   "approvedHash": null,
   "approvals": [],
@@ -25,6 +25,11 @@
       "at": "2026-11-17T08:32:15.553Z",
       "status": "AWAITING_APPROVAL",
       "note": "Версия 2 отправлена на согласование: Хук по идее пользователя «маленький бизнес Роскомнадзор не видит»; убран повтор мифа из блока проблемы; «одна жалоба» перенесена в основную часть"
+    },
+    {
+      "at": "2026-11-17T08:33:26.728Z",
+      "status": "AWAITING_APPROVAL",
+      "note": "Версия 3 отправлена на согласование: Хук — вариант 2 по выбору пользователя"
     }
   ]
 }
