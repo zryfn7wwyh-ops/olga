@@ -103,7 +103,7 @@ async function buildInner(projectDir, opts, t0) {
   const mixFile = path.join(buildDir, 'mix.wav');
   const events = computeSfx(sb, data.scenes);
   const music = mixAudio({ voice: tl.voice, sr: SAMPLE_RATE, totalSec: data.totalFrames / data.fps, events, outFile: mixFile, settings: vs.audio,
-    seed: [...sb.topic].reduce((a, c) => a + c.charCodeAt(0), 0), sfxDir: p('assets', 'sfx'), envelope: data.envelope, fps: data.fps, mood: type.mood });
+    seed: [...sb.topic].reduce((a, c) => a + c.charCodeAt(0), 0), sfxDir: p('assets', 'sfx'), envelope: data.envelope, fps: data.fps, mood: type.mood, musicStyle: sb.musicStyle });
 
   writeScriptIfMissing(projectDir, sb);
   writeSourcesIfMissing(projectDir, sb);

@@ -4,6 +4,7 @@ import path from 'node:path';
 import fs from 'node:fs';
 import { decodeAudio, writeWav, runSync, log } from './util.js';
 import { findLicensedMusic } from './asset-manager.js';
+import { renderMusicStyle } from './music-styles.js';
 
 const TAU = Math.PI * 2;
 
@@ -149,7 +150,7 @@ function getSfx(name, sr, sfxDir) {
  * Сводит voice + music + sfx в mix.wav.
  * events: [{ t: секунды, name: 'whoosh' | 'pop' | ... }]
  */
-export function mixAudio({ voice, sr, totalSec, events, outFile, settings, seed, sfxDir, envelope, fps, mood }) {
+export function mixAudio({ voice, sr, totalSec, events, outFile, settings, seed, sfxDir, envelope, fps, mood, musicStyle }) {
   const n = Math.ceil(totalSec * sr);
   const mix = new Float32Array(n);
   // Музыка
@@ -163,8 +164,9 @@ export function mixAudio({ voice, sr, totalSec, events, outFile, settings, seed,
     for (let i = 0; i < n; i++) music[i] = src[i % src.length];
     musicInfo = { source: 'licensed', file: path.basename(track.file), license: track.license };
   } else {
-    music = generateMusic(totalSec, sr, seed, mood);
-    musicInfo = { source: 'generated', license: 'Собственная музыка, сгенерированная кодом студии — ограничений на коммерческое использование нет' };
+    const style = musicStyle || settings.musicStyle || (mood === 'energetic' ? 'energetic' : 'calm');
+    music = style === 'legacy' ? generateMusic(totalSec, sr, seed, mood) : renderMusicStyle(style, totalSec, sr, seed);
+    musicInfo = { source: 'generated', style, license: 'Собственная музыка, сгенерированная кодом студии — ограничений на коммерческое использование нет' };
   }
   // Приглушение музыки во время речи (по огибающей речи, сглаженной на ~0.4 с)
   const duckCurve = new Float32Array(envelope.length);
