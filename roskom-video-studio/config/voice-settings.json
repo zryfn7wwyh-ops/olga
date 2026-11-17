@@ -56,7 +56,13 @@
     "voice": "kirill",
     "role": "good",
     "speed": 1.35,
-    "note": "API v3. Голоса: мужские filipp, ermil, zahar, madirus, alexander, kirill, anton; женские alena, jane, omazh, dasha, julia, lera, masha, marina. role — амплуа (neutral, good, friendly, strict…), если голос его поддерживает. speed 0.1–3.0. Образцы: npm run voices -- --provider yandex"
+    "note": "API v3. Голоса: мужские filipp, ermil, zahar, madirus, alexander, kirill, anton; женские alena, jane, omazh, dasha, julia, lera, masha, marina. role — амплуа (neutral, good, friendly, strict…), если голос его поддерживает. speed 0.1–3.0. Образцы: npm run voices -- --provider yandex",
+    "hookStyle": {
+      "enabled": false,
+      "speed": 1.45,
+      "pitchShift": 60,
+      "note": "Отдельная подача хука (первой сцены): ярче и энергичнее остального текста. Можно задать voice/role/speed/pitchShift. Логическое ударение — **слово** в поле say."
+    }
   },
   "pauses": {
     "betweenPhrases": 0.28,
@@ -65,8 +71,9 @@
     "commaExtra": 0
   },
   "autoRate": {
-    "enabled": true,
-    "maxFactor": 1.18
+    "enabled": false,
+    "maxFactor": 1.18,
+    "note": "Отключено: темп речи не ускоряется ради тайминга — сценарий сокращается до утверждения."
   },
   "pronunciation": {
     "152-ФЗ": "сто пятьдесят второй эф зэ",

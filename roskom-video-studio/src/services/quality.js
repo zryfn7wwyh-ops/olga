@@ -27,7 +27,7 @@ function blankFrames(file, W, H) {
   return out;
 }
 
-export function runQuality({ finalFile, mixFile, storyboard, data, range, sceneQa, captionIssues, legalState, projectDir }) {
+export function runQuality({ finalFile, mixFile, storyboard, data, range, sceneQa, captionIssues, legalState, projectDir, approvedMatch, firstFrame }) {
   const checks = [];
   const brand = loadBrand();
   // 1. Формат и разрешение
@@ -90,6 +90,15 @@ export function runQuality({ finalFile, mixFile, storyboard, data, range, sceneQ
   check(checks, 'brand', 'Фирменное оформление (плашка бренда, цвета, финальный CTA)', hasCta, hasCta ? 'плашка бренда на всех кадрах, CTA-сцена есть' : 'нет CTA-сцены');
   // 9. Длительность
   check(checks, 'duration-range', `Длительность в диапазоне ${range.min}–${range.max} с`, vDur >= range.min - 0.5 && vDur <= range.max + 0.5, `${vDur.toFixed(1)} с`);
+  // 11. Соответствие утверждённому сценарию
+  if (approvedMatch) check(checks, 'approved-text', 'Озвучка совпадает с утверждённым сценарием (слово в слово)', approvedMatch.ok, approvedMatch.ok ? 'текст раскадровки = утверждённая версия' : approvedMatch.problems.join('; '));
+  // 12. Начало ролика: первый кадр поддерживает хук, хук укладывается в 2–3 с
+  if (firstFrame) {
+    check(checks, 'first-frame', 'Первый кадр поддерживает хук (маскот и визуальный элемент видны сразу)', firstFrame.mascot && firstFrame.elements >= 1,
+      `маскот: ${firstFrame.mascot ? 'виден' : 'НЕ виден'}, элементов хука: ${firstFrame.elements}${firstFrame.highlight ? ', ключевое слово выделено' : ''}`);
+  }
+  const hookEnd = data.scenes[0]?.phrases?.[0] ? data.scenes[0].start + data.scenes[0].phrases[0].end : 0;
+  check(checks, 'hook-timing', 'Хук звучит в первые 2–3 секунды', hookEnd > 0 && hookEnd <= 3.8, `хук заканчивается на ${hookEnd.toFixed(1)} с`, 'warning');
   // 10. Юридические источники
   const srcFile = path.join(projectDir, 'sources.md');
   const hasSources = fs.existsSync(srcFile) && /https?:\/\//.test(fs.readFileSync(srcFile, 'utf8'));

@@ -13,33 +13,45 @@
 6. **Секреты** только в `.env` (не коммитится). Шаблон — `.env.example`.
 7. Не выдавать файл с ошибками за готовое видео: если `quality-report.json` → `status: failed`, final.mp4 не создаётся — объясни пользователю конкретную причину.
 
-## Как создать ролик (полный цикл)
+## Как создать ролик: два этапа
 
-Подробная инструкция — навык `.claude/skills/create-video/SKILL.md`. Кратко:
+**Сначала сценарий и утверждение пользователя, только потом озвучка, анимация и монтаж.** Полный регламент — навык `.claude/skills/create-video/SKILL.md`.
+
+**Этап 1. Сценарий.** Озвучка, TTS, рендер и раскадровка для производства запрещены.
 
 ```bash
-npm run new -- "Тема" --type explainer      # каркас projects/<дата>-<slug>/storyboard.json
-# агенты: researcher → scriptwriter → legal-reviewer → storyboard-director → video-director
-npm run validate -- <проект>
-npm run build -- <проект>                   # озвучка, субтитры, звук, рендер, QA, обложка, публикация
-npm run still -- <проект>                   # контрольные кадры → смотри PNG
+npm run new -- "Тема" --type explainer      # проект, статус DRAFT
+# агенты researcher → scriptwriter → legal-reviewer пишут scripts/draft.json
+npm run script-check -- <проект>            # хуки, текст, длительность, редактура
+npm run script-submit -- <проект>           # версия script_vN, статус AWAITING_APPROVAL
 ```
 
-Режимы: `auto` (по умолчанию) — сразу final.mp4; `approval` (`--mode approval` или `"mode": "approval"` в storyboard) — сначала preview.mp4 и показ сценария/раскадровки пользователю, final после `npm run approve -- <проект> --by "ФИО"`.
+Вывод script-submit показать пользователю **целиком, без сокращений**, спросить «Утверждаем сценарий или внесём правки?» и остановиться. Правки — новая версия и снова весь текст.
 
-## Типовые команды пользователя → действия
+**Утверждение** — только явной командой («Утверждаю», «Согласовано», «Запускай производство», «Делай видео по этому тексту»):
 
-| Запрос | Что делать |
-|---|---|
-| «Сделай видео о … на 45 секунд» | `duration: "short"` (30–60) и ~100 слов; при 61–90 с — `medium`, до 180 — `long` |
-| «Сделай ролик в формате три ошибки» | `--type three-mistakes` |
-| «Создай пять видео о …» | content-planner → 5 проектов → `npm run build -- p1 p2 p3 p4 p5` (или `build-all`) |
-| «Измени начало последнего ролика» | правка `scenes[0]` в последнем проекте → `npm run build` (пересоберётся только изменённая сцена) |
-| «Поменяй голос маскота» | `npm run voices` → выбрать → `config/voice-settings.json` (`rhvoice.voice`) или `voiceSettings` в storyboard |
-| «Сделай видео более динамичным» | агент video-director |
-| «Убери коммерческую вставку» | заменить CTA-сцену на нейтральную (layout `cta` с `title` «Подписывайтесь…» без услуги) или удалить её |
-| «Пересобери видео с новыми субтитрами» | `config/video-settings.json → captions` или `highlight` в сценах → `npm run build` |
-| Горизонтальное / квадратное видео | `"format": "horizontal"` / `"square"` |
+```bash
+npm run approve-script -- <проект> --version N --message "дословно слова пользователя"
+```
+
+**Этап 2. Производство** (только при статусе APPROVED):
+
+```bash
+npm run storyboard-init -- <проект>         # раскадровка из утверждённого текста
+npm run validate -- <проект>
+npm run build -- <проект>                   # сборка сверяет текст с утверждённым; статус PRODUCTION → COMPLETED/FAILED
+npm run still -- <проект> 0                 # первый кадр и контрольные кадры
+```
+
+**Статусы** (`project.json`, команда `npm run status`): DRAFT → AWAITING_APPROVAL → APPROVED → PRODUCTION → COMPLETED / FAILED. После перезапуска сначала смотри статус. Без утверждения ничего не производить.
+
+**Версии**:
+- `scripts/script_vN.md|json` — версии сценария;
+- `hooks_vN.json` — оценки хуков;
+- `script_approved.md|json` — утверждённая версия; прежние утверждённые сохраняются как `script_approved_vK.md`;
+- `script.md` в проекте — копия утверждённой версии.
+
+**Утверждённый текст неприкосновенен.** Можно менять только техническую запись `say` (произношение, ударение `**слово**`). Технические ошибки видео исправляются в монтаже, а не в тексте.
 
 ## Архитектура
 
@@ -87,7 +99,7 @@ npm run still -- <проект>                   # контрольные ка�
 }
 ```
 
-Поля шаблонов: `browser` — url, title, fields[{label,value}], consent, button, badges[{type,text,icon}]; `cards`/`checklist` — title, items, numbered; `mistake` — number, label, title, text; `myth` — myth, verdict ("false"|"true"), verdictText; `truth` — label, title, text | items; `qa` — asker, question, answer; `news` — tag, ticker, date ("1 сентября"), datePrefix, title, text; `fact` — label, value, title, note; `cta` — title, text, button.
+Поля шаблонов: `browser` — url, title, fields[{label,value}], consent, button, badges[{type,text,icon}], highlightField (индекс поля для подсветки), highlightFieldAt; `registry` — title, company/query, rows[{label,value}], badges; `cards`/`checklist` — title, items, numbered; `mistake` — number, label, title, text; `myth` — myth, verdict ("false"|"true"), verdictText; `truth` — label, title, text | items; `qa` — asker, question, answer; `news` — tag, ticker, date ("1 сентября"), datePrefix, title, text; `fact` — label, value, title, note; `cta` — title, text, button.
 
 Тайминг появления элементов привязан к фразам: если фраз больше, чем пунктов, пункт *i* появляется с фразой *(фраз − пунктов + i)*. Переопределение: `itemsAtPhrases: [1,2]` или `itemsAt: [1.5, 3.0]` (секунды). Для myth/qa/mistake/news — `revealAtPhrase`.
 

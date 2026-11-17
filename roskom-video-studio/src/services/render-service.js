@@ -66,10 +66,12 @@ async function renderScene(comp, data, i, outFile, settings) {
   const tmp = outFile + '.part.mp4';
   const enc = startEncoder(tmp, data.fps, settings.video);
   let qa = [];
+  let firstFrame = null;
   const qaFrame = sc.startFrame + Math.max(0, Math.floor(sc.frames - data.fps * 0.45));
   for (let f = sc.startFrame; f < sc.startFrame + sc.frames; f++) {
     await page.evaluate((k) => window.RV.renderFrame(k), f);
     if (f === qaFrame) qa = await page.evaluate((k) => window.RV.qaCheck(k), i);
+    if (i === 0 && f === sc.startFrame) firstFrame = await page.evaluate(() => window.RV.firstFrameCheck());
     const shot = await cdp.send('Page.captureScreenshot', { format: 'jpeg', quality: settings.render.jpegQuality, optimizeForSpeed: true });
     const buf = Buffer.from(shot.data, 'base64');
     if (!enc.ff.stdin.write(buf)) await new Promise((r) => enc.ff.stdin.once('drain', r));
@@ -82,7 +84,7 @@ async function renderScene(comp, data, i, outFile, settings) {
   const nb = +probe.streams[0].nb_read_frames;
   if (nb !== sc.frames) throw new Error(`сегмент содержит ${nb} кадров вместо ${sc.frames}`);
   fs.renameSync(tmp, outFile);
-  return qa;
+  return { qa, firstFrame };
 }
 
 export function sceneHash(data, i) {
@@ -127,7 +129,9 @@ export async function renderVideo(data, { buildDir, settings, force = [] }) {
           for (let attempt = 0; attempt <= settings.render.retries && !ok; attempt++) {
             try {
               if (attempt > 0) { log(`Повторная сборка сцены ${i + 1} (попытка ${attempt + 1})`); await comp.page.close(); comp = await openComposition(browser, data); }
-              qa[path.basename(segFiles[i])] = await renderScene(comp, data, i, segFiles[i], settings);
+              const r = await renderScene(comp, data, i, segFiles[i], settings);
+              qa[path.basename(segFiles[i])] = r.qa;
+              if (r.firstFrame) qa[path.basename(segFiles[i]) + '#first'] = r.firstFrame;
               ok = true;
               log(`  сцена ${i + 1}/${data.scenes.length} готова (${data.scenes[i].frames} кадров)`);
             } catch (e) {
@@ -150,7 +154,7 @@ export async function renderVideo(data, { buildDir, settings, force = [] }) {
   const videoFile = path.join(buildDir, 'video.mp4');
   runSync('ffmpeg', ['-v', 'error', '-y', '-f', 'concat', '-safe', '0', '-i', list, '-c', 'copy', videoFile]);
   const sceneQa = Object.fromEntries(segFiles.map((f, i) => [i, qa[path.basename(f)] || []]));
-  return { videoFile, qa: sceneQa, rendered: jobs.length };
+  return { videoFile, qa: sceneQa, rendered: jobs.length, firstFrame: qa[path.basename(segFiles[0]) + '#first'] || null };
 }
 
 export async function renderCover(data, cover, outFile) {

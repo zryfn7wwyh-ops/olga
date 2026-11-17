@@ -4,7 +4,7 @@ import path from 'node:path';
 import { p, readJSON } from './util.js';
 import { loadMascotManifest, resolvePose } from './asset-manager.js';
 
-export const LAYOUTS = ['hook', 'title', 'browser', 'cards', 'checklist', 'mistake', 'myth', 'truth', 'qa', 'news', 'fact', 'cta'];
+export const LAYOUTS = ['hook', 'title', 'browser', 'registry', 'cards', 'checklist', 'mistake', 'myth', 'truth', 'qa', 'news', 'fact', 'cta'];
 export const TRANSITIONS = ['none', 'wipe', 'slide', 'zoom', 'fade', 'circle'];
 export const CAMERAS = [undefined, null, 'none', 'zoom-in', 'zoom-out', 'pan-left', 'pan-right', 'punch', 'drift'];
 export const ACTIONS = [undefined, null, 'jump', 'shake', 'nod', 'tilt', 'zoom', 'wiggle', 'lean'];
@@ -51,6 +51,24 @@ export function validateStoryboard(sb) {
     if (['cards', 'checklist'].includes(s.layout) && (s.items || []).length > 5) warnings.push(`${n}: больше 5 пунктов — будет мелко`);
   });
   if ((sb.scenes || []).length && sb.scenes[sb.scenes.length - 1].layout !== 'cta') warnings.push('Последняя сцена — не CTA');
+  // Первые три секунды: сразу визуал хука, движение маскота, выделенные слова, без заставки
+  const s0 = (sb.scenes || [])[0];
+  if (s0) {
+    const first = [];
+    if (s0.transition && s0.transition !== 'none') first.push('первая сцена не должна начинаться с перехода/заставки (transition: "none")');
+    if (!s0.mascot) first.push('в первой сцене нужен маскот в движении');
+    else if (s0.mascot.enter === 'none' || (s0.mascot.enterAt ?? 0.05) > 0.3) first.push('маскот первой сцены должен появляться сразу (enterAt ≤ 0.3 с, enter ≠ none)');
+    if (!(s0.highlight || []).length) first.push('в первой сцене нужно выделить ключевые слова хука (highlight)');
+    if (['hook', 'title'].includes(s0.layout) && !s0.icon && !s0.kicker) first.push('хук-сцена без визуального элемента: добавьте icon или kicker, либо используйте browser / registry / cards / mistake / myth');
+    if (!s0.visual) first.push('опишите визуал первой сцены (visual): что зритель видит в первые 3 секунды и как это связано с хуком');
+    if (s0.layout === 'cta') first.push('ролик не может начинаться с CTA/рекламы');
+    (sb.scriptVersion ? errors : warnings).push(...first.map((x) => 'Первые 3 секунды: ' + x));
+  }
+  // Соседние сцены не должны повторять композицию
+  (sb.scenes || []).forEach((s, i) => {
+    const prev = sb.scenes[i - 1];
+    if (prev && prev.layout === s.layout && prev.layout !== 'mistake' && (prev.mascot?.position === s.mascot?.position)) warnings.push(`Сцены ${i} и ${i + 1}: одинаковая композиция (${s.layout}, маскот ${s.mascot?.position}) — смените шаблон или положение маскота`);
+  });
   if (layoutsUsed.size < 3) warnings.push('Мало разнообразия: используется меньше трёх визуальных шаблонов');
   if (!sb.legal) warnings.push('Нет блока legal — юридическая проверка не отражена');
   return { errors, warnings };
@@ -60,7 +78,7 @@ function itemCount(s) {
   switch (s.layout) {
     case 'cards': case 'checklist': return (s.items || []).length;
     case 'truth': return (s.items || []).length || (s.text ? 1 : 0);
-    case 'browser': return (s.badges || (s.badge ? [s.badge] : [])).length;
+    case 'browser': case 'registry': return (s.badges || (s.badge ? [s.badge] : [])).length;
     case 'hook': case 'title': return s.icon ? 1 : 0;
     case 'myth': case 'qa': case 'mistake': case 'news': case 'cta': return 1;
     default: return 0;
@@ -100,7 +118,7 @@ export function computeSfx(storyboard, scenes) {
     if (s.layout === 'mistake') ev.push({ t: base + 0.1, name: 'alert', volume: 0.6 });
     if (s.layout === 'myth') ev.push({ t: base + s.itemTimes[0] + 0.15, name: 'alert', volume: 0.7 });
     if (s.layout === 'cta') ev.push({ t: base + s.itemTimes[0], name: 'ding', volume: 0.7 });
-    if (['cards', 'checklist', 'truth', 'browser'].includes(s.layout)) s.itemTimes.forEach((t) => ev.push({ t: base + t, name: s.layout === 'checklist' ? 'tick' : 'pop', volume: 0.7 }));
+    if (['cards', 'checklist', 'truth', 'browser', 'registry'].includes(s.layout)) s.itemTimes.forEach((t) => ev.push({ t: base + t, name: s.layout === 'checklist' ? 'tick' : 'pop', volume: 0.7 }));
     if (s.layout === 'qa') ev.push({ t: base + s.itemTimes[0], name: 'pop', volume: 0.8 });
     for (const x of s.sfxExtra || []) ev.push({ t: base + x.at, name: x.name, volume: x.volume ?? 1 });
   });

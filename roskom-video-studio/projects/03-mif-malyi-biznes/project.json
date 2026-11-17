@@ -1,0 +1,32 @@
+{
+  "id": "03-mif-malyi-biznes",
+  "topic": "Миф: маленькому бизнесу и ИП закон о персональных данных не нужен",
+  "type": "myth-truth",
+  "duration": "short",
+  "format": "vertical",
+  "createdAt": "2026-11-17T07:23:21.052Z",
+  "status": "COMPLETED",
+  "currentVersion": 1,
+  "approvedVersion": 1,
+  "approvedHash": "eb45ac9836e38e0d8ffc5cbd22a116bd370eea9f5b57ef01220bdef70c72d927",
+  "approvals": [
+    {
+      "version": 1,
+      "at": "2026-11-17T07:23:21.052Z",
+      "by": "legacy",
+      "message": "Ролик создан до внедрения этапа согласования сценария"
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-11-17T07:23:21.052Z",
+      "status": "DRAFT",
+      "note": "Проект создан"
+    },
+    {
+      "at": "2026-11-17T07:23:21.052Z",
+      "status": "COMPLETED",
+      "note": "Перенесён в схему согласования (ролик создан до её внедрения)"
+    }
+  ]
+}

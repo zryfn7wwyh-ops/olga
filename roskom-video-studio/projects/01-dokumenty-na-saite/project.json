@@ -1,0 +1,32 @@
+{
+  "id": "01-dokumenty-na-saite",
+  "topic": "Какие документы по персональным данным должны быть на сайте компании в 2026 году",
+  "type": "explainer",
+  "duration": "short",
+  "format": "vertical",
+  "createdAt": "2026-11-17T07:23:21.041Z",
+  "status": "COMPLETED",
+  "currentVersion": 1,
+  "approvedVersion": 1,
+  "approvedHash": "4aeefa0772fc2a58f86cd83a6f192bd1c23167e1f73157191dda4082354a7885",
+  "approvals": [
+    {
+      "version": 1,
+      "at": "2026-11-17T07:23:21.043Z",
+      "by": "legacy",
+      "message": "Ролик создан до внедрения этапа согласования сценария"
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-11-17T07:23:21.043Z",
+      "status": "DRAFT",
+      "note": "Проект создан"
+    },
+    {
+      "at": "2026-11-17T07:23:21.043Z",
+      "status": "COMPLETED",
+      "note": "Перенесён в схему согласования (ролик создан до её внедрения)"
+    }
+  ]
+}

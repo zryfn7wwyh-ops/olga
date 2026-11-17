@@ -25,13 +25,21 @@ export function prepareSpeechText(text, settings) {
   const dict = settings.pronunciation || {};
   const keys = Object.keys(dict).sort((a, b) => b.length - a.length);
   for (const k of keys) t = t.split(k).join(dict[k]);
-  t = t.replace(/[«»"“”]/g, '').replace(/\*/g, '').replace(/—/g, ', ').replace(/\s+/g, ' ').trim();
+  t = t.replace(/[«»"“”]/g, '').replace(/—/g, ', ').replace(/\s+/g, ' ').trim();
+  // **слово** — логическое ударение: SpeechKit понимает разметку, остальным движкам она не нужна
+  if (settings.provider !== 'yandex') t = t.replace(/\*/g, '');
   return t;
 }
 
+/** Ключ кеша озвучки — только параметры, влияющие на звук (комментарии и прочие поля конфига не вызывают повторный синтез). */
 function voiceKey(settings) {
   const prov = settings.provider;
-  return { prov, cfg: settings[prov] };
+  const c = settings[prov] || {};
+  const pick = (keys) => Object.fromEntries(keys.filter((k) => c[k] !== undefined && c[k] !== null).map((k) => [k, c[k]]));
+  if (prov === 'rhvoice') return { prov, voice: c.voice, rate: rhvoiceRate(c), ...pick(['pitch', 'volume']) };
+  if (prov === 'yandex') return { prov, ...pick(['voice', 'role', 'speed', 'pitchShift', 'volume']) };
+  if (prov === 'elevenlabs') return { prov, ...pick(['voiceId', 'modelId', 'stability', 'similarityBoost', 'style', 'speed']) };
+  return { prov, cfg: c };
 }
 
 /** Скорость голоса: индивидуальная калибровка голоса × общий множитель. */
@@ -126,6 +134,8 @@ async function synthYandex(text, settings, outFile) {
   const hints = [{ voice: c.voice }];
   if (c.role) hints.push({ role: c.role });
   if (c.speed && c.speed !== 1) hints.push({ speed: String(c.speed) });
+  if (c.pitchShift) hints.push({ pitchShift: String(c.pitchShift) });
+  if (c.volume) hints.push({ volume: String(c.volume) });
   const body = {
     text,
     outputAudioSpec: { rawAudio: { audioEncoding: 'LINEAR16_PCM', sampleRateHertz: '48000' } },
@@ -223,11 +233,15 @@ export async function generateVoice(storyboard, { buildDir, fps, range }) {
 
   // 1. Синтез фраз
   const raw = [];
-  for (const scene of storyboard.scenes) {
+  for (const [si, scene] of storyboard.scenes.entries()) {
     const list = [];
+    // Подача сцены: scene.voiceStyle, а для хука (первой сцены) — стиль hookStyle из настроек провайдера
+    const prov = settings.provider;
+    const style = scene.voiceStyle ?? (si === 0 && settings[prov]?.hookStyle?.enabled ? settings[prov].hookStyle : null);
+    const sceneSettings = style ? deepMerge(settings, { [prov]: Object.fromEntries(Object.entries(style).filter(([k]) => !['enabled', 'note'].includes(k))) }) : settings;
     for (const ph of scene.voice || []) {
       const phrase = normPhrase(ph);
-      const file = await synthesize(phrase.say || phrase.text, settings, cacheDir);
+      const file = await synthesize(phrase.say || phrase.text, sceneSettings, cacheDir);
       list.push({ phrase, file });
     }
     raw.push(list);

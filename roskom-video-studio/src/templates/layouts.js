@@ -104,6 +104,7 @@
     });
     root.style.position = 'absolute';
     const fieldEls = [...card.querySelectorAll('.field')];
+    const hlField = scene.highlightField != null ? fieldEls[scene.highlightField] : null;
     return {
       root,
       mount() { badges.forEach((b, i) => (b.style.top = card.offsetTop + card.offsetHeight - 40 + i * 120 + 'px')); },
@@ -120,6 +121,56 @@
           }
         });
         badges.forEach((b, i) => appear(b, t, ctx.itemTimes[i] ?? 1.2 + i * 0.6, 'pop', 0.45, `rotate(${-3 + Math.sin(t * 3 + i) * 1.5}deg)`));
+        if (hlField) {
+          // подсветка поля (например, «Телефон») — пульсирующая рамка
+          const at = scene.highlightFieldAt ?? 0.6;
+          const k = prog(t, at, 0.3);
+          const pulse = 0.5 + 0.5 * Math.sin((t - at) * 6);
+          hlField.style.borderColor = k > 0 ? 'var(--danger)' : '';
+          hlField.style.boxShadow = k > 0 ? `0 0 0 ${6 + pulse * 8}px color-mix(in srgb, var(--danger) ${Math.round(18 + pulse * 14)}%, transparent)` : '';
+          hlField.style.transform = `scale(${1 + 0.03 * ease.outBack(k)})`;
+        }
+      },
+    };
+  };
+
+  // Реестр операторов персональных данных (стилизованное изображение, не копия сайта РКН)
+  L.registry = function (scene, ctx) {
+    const root = box(ctx, scene);
+    const card = h('div', 'card');
+    Object.assign(card.style, { position: 'relative', overflow: 'hidden' });
+    const rows = scene.rows || [{ label: 'Оператор', value: scene.company || 'ООО «Ваша компания»' }, { label: 'Статус', value: 'Внесён в реестр' }, { label: 'Цели обработки', value: 'указаны при подаче' }];
+    card.innerHTML = `
+      <div style="background:var(--deep);color:#fff;padding:30px 40px;display:flex;align-items:center;gap:20px">
+        <div class="ico" style="width:72px;height:72px;background:rgba(255,255,255,.14);color:#fff;border-radius:20px">${icon('list')}</div>
+        <div style="font-weight:900;font-size:38px;letter-spacing:-.5px">${esc(scene.title || 'Реестр операторов ПД')}</div>
+      </div>
+      <div style="padding:26px 40px 34px">
+        <div class="field" style="margin-bottom:26px">${icon('search').replace('<svg', '<svg style="width:36px;height:36px;margin-right:16px;stroke:#8a90ad;fill:none;stroke-width:2.4"')}${esc(scene.query || scene.company || 'ООО «Ваша компания»')}</div>
+        ${rows.map((r) => `<div class="reg-row" style="display:flex;justify-content:space-between;gap:20px;padding:18px 0;border-bottom:2px solid #eef0f8;font-size:32px">
+          <span style="color:#6a7091;font-weight:600">${esc(r.label)}</span><span style="color:var(--card-ink);font-weight:800;text-align:right">${esc(r.value)}</span></div>`).join('')}
+      </div>`;
+    root.appendChild(card);
+    const check = h('div', 'status ok', icon('check'));
+    Object.assign(check.style, { position: 'absolute', right: '34px', top: '120px', width: '86px', height: '86px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' });
+    card.appendChild(check);
+    const rowEls = [...card.querySelectorAll('.reg-row')];
+    const badges = (scene.badges || (scene.badge ? [scene.badge] : [])).map((b, i) => {
+      const el = h('div', `badge ${b.type || 'warning'}`, `${icon(b.icon || (b.type === 'ok' ? 'check' : 'alert'))}<span>${esc(b.text)}</span>`);
+      el.style.left = 30 + i * 40 + 'px';
+      root.appendChild(el);
+      return el;
+    });
+    root.style.position = 'absolute';
+    return {
+      root,
+      mount() { badges.forEach((b, i) => (b.style.top = card.offsetTop + card.offsetHeight - 30 + i * 120 + 'px')); },
+      pointTarget: () => card,
+      update(t) {
+        appear(card, t, 0.0, 'zoom', 0.45);
+        rowEls.forEach((r, i) => appear(r, t, 0.25 + i * 0.18, 'left', 0.35));
+        appear(check, t, 0.6, 'stamp', 0.4);
+        badges.forEach((b, i) => appear(b, t, ctx.itemTimes[i] ?? 1.4 + i * 0.6, 'pop', 0.45, `rotate(${-3 + Math.sin(t * 3 + i) * 1.5}deg)`));
       },
     };
   };

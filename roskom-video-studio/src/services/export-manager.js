@@ -8,6 +8,9 @@ const phraseText = (v) => (typeof v === 'string' ? v : v.text);
 
 export function writeScriptIfMissing(dir, sb) {
   const f = path.join(dir, 'script.md');
+  // script.md = утверждённая версия сценария (scripts/script_approved.md)
+  const ap = path.join(dir, 'scripts', 'script_approved.md');
+  if (fs.existsSync(ap)) { fs.copyFileSync(ap, f); return; }
   if (fs.existsSync(f)) return;
   const lines = [`# ${sb.title}`, '', `Тема: ${sb.topic}`, `Тип: ${sb.type}`, `Аудитория: ${sb.audience || '—'}`, ''];
   sb.scenes.forEach((s, i) => {

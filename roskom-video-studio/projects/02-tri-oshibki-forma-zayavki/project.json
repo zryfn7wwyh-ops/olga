@@ -1,0 +1,32 @@
+{
+  "id": "02-tri-oshibki-forma-zayavki",
+  "topic": "Три ошибки с формой заявки на сайте, из-за которых бизнес нарушает закон о персональных данных",
+  "type": "three-mistakes",
+  "duration": "short",
+  "format": "vertical",
+  "createdAt": "2026-11-17T07:23:21.050Z",
+  "status": "COMPLETED",
+  "currentVersion": 1,
+  "approvedVersion": 1,
+  "approvedHash": "07deceaf0c68e3f9e345cc13b508e9558fe13c461a692a2b2a2b7ca78cac2c0c",
+  "approvals": [
+    {
+      "version": 1,
+      "at": "2026-11-17T07:23:21.050Z",
+      "by": "legacy",
+      "message": "Ролик создан до внедрения этапа согласования сценария"
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-11-17T07:23:21.050Z",
+      "status": "DRAFT",
+      "note": "Проект создан"
+    },
+    {
+      "at": "2026-11-17T07:23:21.050Z",
+      "status": "COMPLETED",
+      "note": "Перенесён в схему согласования (ролик создан до её внедрения)"
+    }
+  ]
+}

@@ -11,6 +11,7 @@ import { mixAudio } from './audio-mixer.js';
 import { renderVideo, renderCover, captionCheck } from './render-service.js';
 import { runQuality } from './quality.js';
 import { writePublication, writeScriptIfMissing, writeSourcesIfMissing, exportToOutput } from './export-manager.js';
+import { assertProductionAllowed, setStatus, voiceMatch, loadApproved } from './script-manager.js';
 
 export function loadVideoSettings() {
   return readJSON(p('config', 'video-settings.json'));
@@ -35,6 +36,8 @@ export async function prepare(projectDir, opts = {}) {
   const { errors, warnings } = validateStoryboard(sb);
   warnings.forEach((w) => log('⚠ ' + w));
   if (errors.length) throw new Error('Ошибки в storyboard.json:\n- ' + errors.join('\n- '));
+  // Озвучка (в т.ч. платная) — только по утверждённому сценарию и только его текстом
+  assertProductionAllowed(projectDir, sb);
   const vs = loadVideoSettings();
   const fmt = vs.formats[sb.format || opts.format || vs.defaultFormat];
   const range = sb.durationRange || vs.durations[sb.duration || vs.defaultDuration];
@@ -77,6 +80,20 @@ export async function build(projectDir, opts = {}) {
   projectDir = path.resolve(projectDir);
   const t0 = Date.now();
   log(`Проект: ${path.relative(ROOT, projectDir)}`);
+  assertProductionAllowed(projectDir, readJSON(path.join(projectDir, 'storyboard.json')));
+  setStatus(projectDir, 'PRODUCTION', 'Запущено производство: озвучка, анимация, монтаж');
+  try {
+    const report = await buildInner(projectDir, opts, t0);
+    setStatus(projectDir, report.status === 'ready' ? 'COMPLETED' : report.status === 'awaiting-approval' ? 'PRODUCTION' : 'FAILED',
+      report.status === 'ready' ? `Видео готово: ${report.duration} с, ${report.summary}` : report.status === 'awaiting-approval' ? 'Превью готово, финал ждёт юридического согласования' : 'Контроль качества не пройден: ' + report.checks.filter((c) => !c.ok && c.level === 'error').map((c) => c.name).join('; '));
+    return report;
+  } catch (e) {
+    setStatus(projectDir, 'FAILED', e.message.slice(0, 500));
+    throw e;
+  }
+}
+
+async function buildInner(projectDir, opts, t0) {
   const { sb, data, tl, vs, range, buildDir, type } = await prepare(projectDir, opts);
 
   // Звук
@@ -96,7 +113,8 @@ export async function build(projectDir, opts = {}) {
     const master = path.join(buildDir, 'master.mp4');
     runSync('ffmpeg', ['-v', 'error', '-y', '-i', result.videoFile, '-i', mixFile, '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-ar', '48000', '-movflags', '+faststart', master]);
     const legal = legalState(sb, projectDir);
-    report = runQuality({ finalFile: master, mixFile, storyboard: sb, data, range, sceneQa: result.qa, captionIssues, legalState: legal, projectDir });
+    report = runQuality({ finalFile: master, mixFile, storyboard: sb, data, range, sceneQa: result.qa, captionIssues, legalState: legal, projectDir,
+      approvedMatch: voiceMatch(sb, loadApproved(projectDir)), firstFrame: result.firstFrame });
     const broken = report.checks.filter((c) => !c.ok && ['black-frames', 'blank-frames', 'integrity'].includes(c.id));
     if (!broken.length || attempt === 1) break;
     // определяем сцены с проблемными кадрами и пересобираем их

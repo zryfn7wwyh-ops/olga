@@ -6,6 +6,12 @@ import { p, readJSON, writeJSON, slugify, hasCommand, log, ROOT, loadEnv } from 
 import { buildMascotManifest } from './services/asset-manager.js';
 import { listVideoTypes, loadVideoType, validateStoryboard } from './services/storyboard.js';
 import { renderVoiceSamples } from './services/voice-generator.js';
+import { createProject, loadProject, checkScript, submitScript, approveScript, renderScript, loadVersion, storyboardFromApproved, migrateLegacy } from './services/script-manager.js';
+
+function assertApprovedOnly(dir) {
+  const pr = loadProject(dir);
+  if (!pr?.approvedVersion || pr.currentVersion !== pr.approvedVersion) throw new Error(`Сценарий не утверждён (статус ${pr?.status ?? 'нет project.json'}) — раскадровка и производство запрещены`);
+}
 
 loadEnv();
 const [, , cmd, ...rest] = process.argv;
@@ -19,15 +25,17 @@ for (let i = 0; i < rest.length; i++) {
 }
 
 function projectPath(x) {
+  const isProj = (d) => fs.existsSync(path.join(d, 'project.json')) || fs.existsSync(path.join(d, 'storyboard.json'));
   if (!x) {
     // последний изменённый проект
-    const dirs = fs.readdirSync(p('projects')).filter((d) => fs.existsSync(p('projects', d, 'storyboard.json')));
+    const dirs = fs.readdirSync(p('projects')).map((d) => p('projects', d)).filter(isProj);
     if (!dirs.length) throw new Error('Нет проектов в projects/');
-    dirs.sort((a, b) => fs.statSync(p('projects', b, 'storyboard.json')).mtimeMs - fs.statSync(p('projects', a, 'storyboard.json')).mtimeMs);
-    return p('projects', dirs[0]);
+    const mt = (d) => Math.max(...['project.json', 'storyboard.json'].map((f) => (fs.existsSync(path.join(d, f)) ? fs.statSync(path.join(d, f)).mtimeMs : 0)));
+    dirs.sort((a, b) => mt(b) - mt(a));
+    return dirs[0];
   }
   const d = fs.existsSync(x) ? path.resolve(x) : p('projects', x);
-  if (!fs.existsSync(path.join(d, 'storyboard.json'))) throw new Error(`Не найден storyboard.json в ${d}`);
+  if (!isProj(d)) throw new Error(`Не найден проект ${x} (нет project.json / storyboard.json)`);
   return d;
 }
 
@@ -84,39 +92,96 @@ const commands = {
   },
 
   new() {
+    // Этап 1: создаётся проект в статусе DRAFT. Раскадровки нет — она появится только после утверждения сценария.
     const topic = args.join(' ').trim();
-    if (!topic) throw new Error('Укажите тему: npm run new -- "Тема ролика" [--type explainer] [--duration short]');
+    if (!topic) throw new Error('Укажите тему: npm run new -- "Тема ролика" [--type explainer] [--duration short|medium|long]');
     const type = loadVideoType(flags.type || 'explainer');
     const date = new Date().toISOString().slice(0, 10);
     const name = flags.name || `${date}-${slugify(topic)}`;
     const dir = p('projects', name);
     if (fs.existsSync(dir)) throw new Error(`Проект уже существует: ${dir}`);
     fs.mkdirSync(dir, { recursive: true });
-    const sb = {
-      version: 1,
-      topic,
-      title: topic,
-      type: type.id,
-      format: flags.format || 'vertical',
-      duration: flags.duration || 'short',
-      audience: 'Собственники бизнеса, руководители, бухгалтеры, кадровики, юристы, маркетологи, ИП',
-      service: 'consulting',
-      highlight: [],
-      scenes: type.structure.map((s, i) => ({
-        role: s.role,
-        layout: s.layouts[0],
-        transition: s.transition,
-        voice: [`TODO: текст диктора для «${s.role}»`],
-        title: 'TODO',
-        highlight: [],
-        mascot: { pose: s.mascot, position: i % 2 ? 'left' : 'right', action: null },
-        _hint: s.note || '',
-      })),
-      legal: { checkedAt: null, actualAt: null, claims: [] },
-      publication: { titles: [], description: '', telegram: '', vk: '', youtube: '', hashtags: [] },
-    };
-    writeJSON(path.join(dir, 'storyboard.json'), sb);
+    createProject(dir, { topic, type: type.id, duration: flags.duration, format: flags.format });
     console.log(path.relative(ROOT, dir));
+    console.log('Статус: DRAFT. Черновик сценария → scripts/draft.json, затем: npm run script-submit -- ' + name);
+  },
+
+  'script-check'() {
+    const dir = projectPath(args[0]);
+    const draft = readJSON(flags.file || path.join(dir, 'scripts', 'draft.json'));
+    const r = checkScript(draft, { dir, proj: loadProject(dir) });
+    r.warnings.forEach((w) => console.log('⚠', w));
+    r.errors.forEach((e) => console.log('✗', e));
+    console.log(`Оценки хуков: ${r.hookTotals.join(' / ')} из 25; ориентировочно ${r.estimate.seconds} с (${r.estimate.words} слов), хук ~${r.estimate.hookSeconds} с; цель ${r.range.min}–${r.range.max} с`);
+    if (!r.errors.length) console.log('✓ Сценарий готов к отправке на согласование');
+    process.exitCode = r.errors.length ? 1 : 0;
+  },
+
+  'script-submit'() {
+    const dir = projectPath(args[0]);
+    const r = submitScript(dir, flags.file);
+    r.check.warnings.forEach((w) => console.error('⚠ ' + w));
+    console.error(`✓ Сохранено: scripts/script_v${r.version}.md — статус AWAITING_APPROVAL. Ниже — текст для показа пользователю ЦЕЛИКОМ, без сокращений:\n`);
+    console.log(r.text);
+    console.log('\nУтверждаем сценарий или внесём правки?');
+  },
+
+  'script-show'() {
+    const dir = projectPath(args[0]);
+    const proj = loadProject(dir);
+    const n = +(flags.version || proj.currentVersion);
+    const v = loadVersion(dir, n);
+    if (!v) throw new Error('Нет версии ' + n);
+    console.log(renderScript(v, v.meta));
+    if (v.meta.status !== 'APPROVED') console.log('\nУтверждаем сценарий или внесём правки?');
+  },
+
+  'approve-script'() {
+    const dir = projectPath(args[0]);
+    const v = approveScript(dir, { version: flags.version, by: flags.by, message: flags.message });
+    console.log(`✓ Сценарий v${v.meta.version} утверждён (${v.meta.approval.at}). Статус APPROVED. Сохранено: scripts/script_approved.md`);
+    console.log('Дальше: npm run storyboard-init -- ' + path.basename(dir) + ' → раскадровка → npm run build');
+  },
+
+  'storyboard-init'() {
+    const dir = projectPath(args[0]);
+    const f = path.join(dir, 'storyboard.json');
+    if (fs.existsSync(f) && !flags.force) throw new Error('storyboard.json уже есть (--force для пересоздания)');
+    assertApprovedOnly(dir);
+    writeJSON(f, storyboardFromApproved(dir));
+    console.log('✓ Каркас раскадровки создан из утверждённого сценария: ' + path.relative(ROOT, f));
+    console.log('Тексты фраз (voice) менять нельзя — только визуал, шаблоны, маскот, переходы.');
+  },
+
+  status() {
+    const dirs = args.length ? args.map(projectPath) : fs.readdirSync(p('projects')).map((d) => p('projects', d)).filter((d) => fs.existsSync(path.join(d, 'project.json')));
+    const next = {
+      DRAFT: 'написать сценарий (3 хука, полный текст) и отправить: script-submit',
+      AWAITING_APPROVAL: 'ждёт утверждения пользователя («Утверждаю» / «Согласовано» / «Запускай производство»)',
+      APPROVED: 'можно запускать производство: storyboard-init → build',
+      PRODUCTION: 'идёт производство (или прервано) — можно перезапустить build',
+      COMPLETED: 'видео готово',
+      FAILED: 'ошибка производства — смотрите history и quality-report.json',
+    };
+    for (const d of dirs) {
+      const pr = loadProject(d);
+      if (!pr) continue;
+      const last = pr.history.at(-1);
+      console.log(`${path.basename(d).padEnd(52)} ${pr.status.padEnd(18)} v${pr.currentVersion}${pr.approvedVersion ? ` (утв. v${pr.approvedVersion})` : ''}`);
+      if (args.length) {
+        console.log(`  Дальше: ${next[pr.status]}`);
+        console.log(`  Последнее событие: ${last.at} — ${last.note}`);
+      }
+    }
+  },
+
+  migrate() {
+    for (const d of fs.readdirSync(p('projects'))) {
+      const dir = p('projects', d);
+      if (!fs.existsSync(path.join(dir, 'storyboard.json'))) continue;
+      const r = migrateLegacy(dir);
+      if (r) console.log(`✓ ${d}: перенесён в схему согласования (${r.status}, отметка «создан до внедрения согласования»)`);
+    }
   },
 
   validate() {
@@ -222,7 +287,14 @@ if (!fn) {
   validate [проект]        проверить storyboard.json
   build [проект…] [--scenes 2,3] [--mode approval]   собрать ролик(и)
   build-all                собрать все проекты
-  approve [проект] [--by "ФИО"]                      согласовать и выпустить финал
+  status [проект]          статусы проектов (DRAFT → AWAITING_APPROVAL → APPROVED → PRODUCTION → COMPLETED/FAILED)
+  script-check [проект]    проверить черновик сценария scripts/draft.json (хуки, текст, длительность, редактура)
+  script-submit [проект]   новая версия сценария на согласование; печатает ПОЛНЫЙ текст для чата
+  script-show [проект] [--version N]   показать версию сценария целиком
+  approve-script <проект> --version N --message "дословно слова пользователя" [--by "ФИО"]   утвердить сценарий
+  storyboard-init <проект> каркас раскадровки из утверждённого сценария
+  migrate                  перевести старые ролики в схему согласования
+  approve [проект] [--by "ФИО"]                      юридическое согласование и выпуск финала
   still [проект] [секунды…]                          кадры для визуальной проверки
   voices ["текст"]         образцы голосов RHVoice
   voices --provider yandex [--voices alena,filipp] ["текст"]   образцы голосов Yandex SpeechKit

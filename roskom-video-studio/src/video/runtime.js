@@ -214,8 +214,10 @@
     const t = (frame - sc.startFrame) / D.fps;
     const time = frame / D.fps;
     bgUpdate(time);
-    b.layout.update(t);
-    if (b.mascot) b.mascot.update(t, D.envelope[frame] || 0);
+    // Первая сцена стартует «в движении»: элементы хука и маскот видны уже на первом кадре (без пустого фона)
+    const ta = i === 0 ? t + (sc.introOffset ?? 0.45) : t;
+    b.layout.update(ta);
+    if (b.mascot) b.mascot.update(ta, D.envelope[frame] || 0);
     const { sceneTr, sceneOp } = applyTransitions(i, t, sc.duration, b.el);
     b.el.style.transform = `${sceneTr} ${cameraTransform(sc.camera, t, sc.duration)}`.trim();
     b.el.style.opacity = sceneOp;
@@ -249,6 +251,22 @@
       if (r.bottom - s.top > 1430) issues.push({ type: 'content-under-captions' });
     }
     return issues;
+  };
+
+  /** Что видно на первом кадре: маскот, элементы хука, выделение ключевых слов. */
+  RV.firstFrameCheck = function () {
+    const b = built[0];
+    const s = stage.getBoundingClientRect();
+    const visible = (el) => {
+      let o = 1;
+      for (let e = el; e && e !== stage; e = e.parentElement) o *= parseFloat(getComputedStyle(e).opacity);
+      const r = el.getBoundingClientRect();
+      return o > 0.35 && r.width > 4 && r.right > s.left && r.left < s.right && r.bottom > s.top && r.top < s.bottom;
+    };
+    const mascotImg = b.mascot ? [...b.mascot.el.querySelectorAll('img')].find((im) => parseFloat(im.style.opacity) > 0.5) : null;
+    const els = [...b.el.querySelectorAll('.title .w, .card, .kicker, .badge, .ico, .bubble, .label-pill, .date-badge, .mistake-head, .big-value')].filter(visible);
+    const hl = [...b.el.querySelectorAll('.hl')].some((x) => visible(x) && parseFloat(x.style.getPropertyValue('--hlp') || 0) > 0.3);
+    return { mascot: !!(mascotImg && visible(b.mascot.el)), elements: els.length, highlight: hl };
   };
 
   RV.captionCheck = function () {
