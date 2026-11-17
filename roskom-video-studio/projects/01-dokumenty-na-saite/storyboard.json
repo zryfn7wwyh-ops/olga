@@ -45,16 +45,23 @@
         "персональные"
       ],
       "mascot": {
-        "pose": "surprised",
+        "pose": "greeting",
         "position": "right",
+        "enter": "slide",
+        "poses": [
+          {
+            "at": 1.7,
+            "pose": "surprise"
+          }
+        ],
         "action": "jump",
-        "actionAt": 1.6
+        "actionAt": 1.8
       },
       "camera": "zoom-in",
       "transition": "none",
       "timing": {
         "start": 0,
-        "end": 5.03
+        "end": 5.47
       }
     },
     {
@@ -75,23 +82,17 @@
         "Поэтому на сайте должны быть правильные документы."
       ],
       "mascot": {
-        "pose": "thinking",
+        "pose": "warning",
         "position": "left",
         "enter": "rise",
-        "action": "tilt",
-        "actionAt": 1.2,
-        "poses": [
-          {
-            "at": 3.4,
-            "pose": "reading"
-          }
-        ]
+        "action": "nod",
+        "actionAt": 1.2
       },
       "camera": "drift",
       "transition": "wipe",
       "timing": {
-        "start": 5.03,
-        "end": 11.83
+        "start": 5.47,
+        "end": 13.97
       }
     },
     {
@@ -125,15 +126,15 @@
         }
       ],
       "mascot": {
-        "pose": "documents",
-        "position": "small",
-        "enter": "drop"
+        "pose": "pointing",
+        "position": "small-left",
+        "enter": "pop"
       },
       "camera": "zoom-in",
       "transition": "slide",
       "timing": {
-        "start": 11.83,
-        "end": 24
+        "start": 13.97,
+        "end": 28.37
       }
     },
     {
@@ -159,18 +160,19 @@
         "сайт"
       ],
       "mascot": {
-        "pose": "cool",
-        "position": "small-left",
+        "pose": "joy",
+        "position": "small",
         "enter": "pop",
-        "action": "nod",
-        "actionAt": 2.5
+        "action": "jump",
+        "actionAt": 2.5,
+        "size": 360
       },
       "contentBottom": 1080,
       "camera": "none",
       "transition": "zoom",
       "timing": {
-        "start": 24,
-        "end": 34.47
+        "start": 28.37,
+        "end": 40.2
       }
     },
     {
@@ -187,7 +189,7 @@
         }
       ],
       "mascot": {
-        "pose": "love",
+        "pose": "goodbye",
         "position": "center",
         "enter": "rise"
       },
@@ -195,8 +197,8 @@
       "camera": "zoom-out",
       "transition": "circle",
       "timing": {
-        "start": 34.47,
-        "end": 40.87
+        "start": 40.2,
+        "end": 47.57
       }
     }
   ],
@@ -206,7 +208,7 @@
       "документы",
       "сайту"
     ],
-    "pose": "documents"
+    "pose": "surprise"
   },
   "legal": {
     "checkedAt": "2026-11-10",
@@ -316,10 +318,5 @@
       "#РоскомОнлайн"
     ]
   },
-  "totalDuration": 40.87,
-  "voiceSettings": {
-    "rhvoice": {
-      "voice": "aleksandr"
-    }
-  }
+  "totalDuration": 47.57
 }

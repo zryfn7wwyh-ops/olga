@@ -1,5 +1,5 @@
 {
-  "provider": "rhvoice",
+  "provider": "yandex",
   "providerNote": "rhvoice — бесплатный локальный синтез (без ключей). elevenlabs / yandex — внешние API, ключи в .env.",
   "rhvoice": {
     "voice": "aleksandr-hq",
@@ -53,8 +53,8 @@
     "note": "voiceId — из `npm run voices -- --provider elevenlabs`. speed 0.7–1.2. modelId: eleven_multilingual_v2 (качество) или eleven_flash_v2_5 (дешевле и быстрее)."
   },
   "yandex": {
-    "voice": "filipp",
-    "role": null,
+    "voice": "kirill",
+    "role": "good",
     "speed": 1.35,
     "note": "API v3. Голоса: мужские filipp, ermil, zahar, madirus, alexander, kirill, anton; женские alena, jane, omazh, dasha, julia, lera, masha, marina. role — амплуа (neutral, good, friendly, strict…), если голос его поддерживает. speed 0.1–3.0. Образцы: npm run voices -- --provider yandex"
   },

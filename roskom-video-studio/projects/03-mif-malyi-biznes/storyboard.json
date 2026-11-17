@@ -41,7 +41,7 @@
       "transition": "none",
       "timing": {
         "start": 0,
-        "end": 7
+        "end": 5.33
       }
     },
     {
@@ -67,8 +67,8 @@
       "camera": "zoom-in",
       "transition": "zoom",
       "timing": {
-        "start": 7,
-        "end": 13.07
+        "start": 5.33,
+        "end": 10.23
       }
     },
     {
@@ -114,8 +114,8 @@
       "camera": "none",
       "transition": "wipe",
       "timing": {
-        "start": 13.07,
-        "end": 25.53
+        "start": 10.23,
+        "end": 20.63
       }
     },
     {
@@ -146,8 +146,8 @@
       "camera": "zoom-in",
       "transition": "slide",
       "timing": {
-        "start": 25.53,
-        "end": 40.6
+        "start": 20.63,
+        "end": 32.1
       }
     },
     {
@@ -174,8 +174,8 @@
       "camera": "zoom-out",
       "transition": "circle",
       "timing": {
-        "start": 40.6,
-        "end": 49.4
+        "start": 32.1,
+        "end": 39.2
       }
     }
   ],
@@ -273,5 +273,5 @@
       "#РоскомОнлайн"
     ]
   },
-  "totalDuration": 49.4
+  "totalDuration": 39.2
 }

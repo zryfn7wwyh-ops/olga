@@ -1,7 +1,7 @@
 {
   "ok": true,
   "status": "ready",
-  "summary": "18/18 проверок пройдено; ошибок 0, на согласовании 0, предупреждений 0",
+  "summary": "17/18 проверок пройдено; ошибок 0, на согласовании 0, предупреждений 1",
   "checks": [
     {
       "id": "format",
@@ -29,14 +29,14 @@
       "name": "Длительность видео = длительность таймлайна",
       "ok": true,
       "level": "ok",
-      "details": "видео 59.83 с, таймлайн 59.83 с"
+      "details": "видео 48.47 с, таймлайн 48.47 с"
     },
     {
       "id": "audio-complete",
       "name": "Звук без обрыва (длина аудио = длине видео)",
       "ok": true,
       "level": "ok",
-      "details": "аудио 59.83 с, видео 59.83 с"
+      "details": "аудио 48.47 с, видео 48.47 с"
     },
     {
       "id": "black-frames",
@@ -76,9 +76,9 @@
     {
       "id": "captions-readable",
       "name": "Читаемость субтитров на мобильном (≤2 строк, ≥48 px, ≥0.45 с)",
-      "ok": true,
-      "level": "ok",
-      "details": "шрифт 54 px"
+      "ok": false,
+      "level": "warning",
+      "details": "caption-too-fast: «сайт.»"
     },
     {
       "id": "text-clipping",
@@ -113,7 +113,7 @@
       "name": "Длительность в диапазоне 30–60 с",
       "ok": true,
       "level": "ok",
-      "details": "59.8 с"
+      "details": "48.5 с"
     },
     {
       "id": "sources",
@@ -130,14 +130,14 @@
       "details": "Все 3 утверждений подтверждены источниками"
     }
   ],
-  "generatedAt": "2026-11-10T08:40:58.687Z",
+  "generatedAt": "2026-11-17T07:06:45.394Z",
   "project": "02-tri-oshibki-forma-zayavki",
-  "duration": 59.83,
+  "duration": 48.47,
   "format": "1080x1920@30",
   "voice": {
-    "provider": "rhvoice",
-    "voice": "aleksandr-hq",
-    "tempo": 1.021
+    "provider": "yandex",
+    "voice": "kirill",
+    "tempo": 1
   },
   "music": {
     "source": "generated",
@@ -146,7 +146,7 @@
   "render": {
     "scenes": 6,
     "rerendered": 6,
-    "seconds": 226
+    "seconds": 216
   },
   "files": [
     {
