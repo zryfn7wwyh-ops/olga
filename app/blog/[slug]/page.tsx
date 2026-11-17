@@ -12,7 +12,7 @@ import { ArticleCommercialCta } from "@/components/blog/ArticleCommercialCta";
 import { ArticleFinalCta } from "@/components/blog/ArticleFinalCta";
 import { AuthorBlock } from "@/components/blog/AuthorBlock";
 import { RelatedArticles } from "@/components/blog/RelatedArticles";
-import { ArticleViewTracker } from "@/components/blog/ArticleViewTracker";
+import { ViewCounter } from "@/components/blog/ViewCounter";
 import { CalendarIcon } from "@/components/ui/icons";
 import { getAllPosts, getPostBySlug, getRelatedPosts, extractHeadings, formatPostDate } from "@/lib/blog";
 import { getCategoryLabel } from "@/data/blog/categories";
@@ -72,7 +72,6 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      <ArticleViewTracker slug={post.slug} />
       <Header />
       <main className="flex-1 bg-paper pb-16 pt-28 lg:pb-24">
         <Container>
@@ -96,6 +95,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               ) : null}
               <span aria-hidden="true">·</span>
               <span>{getCategoryLabel(post.category)}</span>
+              <span aria-hidden="true">·</span>
+              <ViewCounter slug={post.slug} />
             </div>
           </div>
 

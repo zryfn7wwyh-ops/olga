@@ -7,6 +7,7 @@ import { semeynyyAdvokatKrasnodar } from "@/data/blog/articles/semeynyy-advokat-
 import { grazhdanskiyAdvokatKrasnodar } from "@/data/blog/articles/grazhdanskiy-advokat-krasnodar";
 import { advokatVKrasnodareAksyonova } from "@/data/blog/articles/advokat-v-krasnodare-aksyonova";
 import { advokatPoUgolovnymDelamKrasnodar } from "@/data/blog/articles/advokat-po-ugolovnym-delam-krasnodar";
+import { kakVybratAdvokataPoUgolovnymDelam } from "@/data/blog/articles/kak-vybrat-advokata-po-ugolovnym-delam";
 
 /**
  * Чтобы добавить новую статью: создайте файл в data/blog/articles/,
@@ -21,4 +22,5 @@ export const posts: BlogPost[] = [
   grazhdanskiyAdvokatKrasnodar,
   advokatVKrasnodareAksyonova,
   advokatPoUgolovnymDelamKrasnodar,
+  kakVybratAdvokataPoUgolovnymDelam,
 ];
