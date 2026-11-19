@@ -1,0 +1,261 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+
+@theme {
+  --color-navy: #14232d;
+  --color-navy-deep: #0f1b24;
+  --color-ivory: #f5f2ec;
+  --color-paper: #fcfbf8;
+  --color-gold: #b49a6c;
+  --color-gold-ink: #7a6440;
+  --color-gold-soft: #cdb98f;
+  --color-ink: #1a2a33;
+  --color-muted: #65727a;
+  --color-muted-text: #56626a;
+  --color-stroke: #d9dcd9;
+  --color-danger: #a3362b;
+  --color-success: #2f6a4f;
+
+  --font-serif: "Cormorant Garamond", "Cormorant", Georgia, "Times New Roman", serif;
+  --font-sans: "Manrope Variable", Manrope, "Segoe UI", Roboto, Arial, sans-serif;
+
+  --breakpoint-xs: 400px;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: calc(var(--header-h-compact) + 16px);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+  ::selection {
+    background: rgba(180, 154, 108, 0.35);
+  }
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  .on-light :focus-visible {
+    outline-color: var(--navy);
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  /* Cormorant по умолчанию использует старостильные цифры — для данных нужны выровненные. */
+  .font-serif,
+  .h1,
+  .h2,
+  .h3 {
+    font-variant-numeric: lining-nums;
+  }
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer components {
+  .container-lp {
+    width: 100%;
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+  @media (min-width: 768px) {
+    .container-lp {
+      padding-inline: 32px;
+    }
+  }
+  @media (min-width: 1280px) {
+    .container-lp {
+      padding-inline: 40px;
+    }
+  }
+
+  .section {
+    padding-block: 72px;
+  }
+  @media (min-width: 768px) {
+    .section {
+      padding-block: 104px;
+    }
+  }
+  @media (min-width: 1280px) {
+    .section {
+      padding-block: 128px;
+    }
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: var(--gold-ink);
+  }
+  .eyebrow::before {
+    content: "";
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: currentColor;
+    flex-shrink: 0;
+  }
+  .on-dark .eyebrow {
+    color: var(--gold-soft);
+  }
+
+  .h1 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: clamp(38px, 2.1rem + 2.4vw, 72px);
+    line-height: 1.02;
+    letter-spacing: -0.012em;
+  }
+  .h2 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: clamp(31px, 1.6rem + 1.8vw, 54px);
+    line-height: 1.06;
+    letter-spacing: -0.01em;
+  }
+  .h3 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: clamp(23px, 1.3rem + 0.4vw, 28px);
+    line-height: 1.15;
+  }
+  .lead {
+    font-size: clamp(17px, 1rem + 0.2vw, 19px);
+    line-height: 1.65;
+  }
+  .num {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-variant-numeric: lining-nums tabular-nums;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+  }
+  .gold-rule {
+    display: block;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold), rgba(180, 154, 108, 0));
+  }
+  .link-underline {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    text-decoration-color: rgba(180, 154, 108, 0.7);
+    transition: text-decoration-color var(--dur-fast);
+  }
+  .link-underline:hover {
+    text-decoration-color: currentColor;
+  }
+}
+
+/* ---------- Появление секций ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  html.js [data-reveal] {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+    transition:
+      opacity var(--dur-slow) var(--ease-out),
+      transform var(--dur-slow) var(--ease-out);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  html.js [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Модальное окно ---------- */
+dialog.lead-dialog {
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  max-width: min(560px, calc(100vw - 24px));
+  width: 100%;
+  max-height: calc(100dvh - 24px);
+  overflow: visible;
+}
+dialog.lead-dialog::backdrop {
+  background: rgba(15, 27, 36, 0.72);
+  backdrop-filter: blur(2px);
+}
+@media (prefers-reduced-motion: no-preference) {
+  dialog.lead-dialog[open] > .dialog-panel {
+    animation: dialog-in var(--dur) var(--ease-out);
+  }
+  dialog.lead-dialog[open]::backdrop {
+    animation: fade-in var(--dur) var(--ease-out);
+  }
+}
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---------- Аккордеон ---------- */
+.accordion-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--dur) var(--ease-out);
+}
+.accordion-panel[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+.accordion-panel > div {
+  overflow: hidden;
+}
+@media (prefers-reduced-motion: reduce) {
+  .accordion-panel {
+    transition: none;
+  }
+}
+
+/* Скрыть поле-ловушку от людей и скринридеров */
+.hp-field {
+  position: absolute !important;
+  left: -10000px !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
