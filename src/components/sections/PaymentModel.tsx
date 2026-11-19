@@ -13,7 +13,7 @@ export function PaymentModel() {
           <h2 id="payment-title" className="h2">
             {payment.title}
           </h2>
-          <p className="mt-4 text-[16.5px] text-muted-text">{payment.text}</p>
+          <p className="mt-4 text-[17.5px] text-muted-text">{payment.text}</p>
         </div>
 
         <div className="mt-10 grid gap-10 lg:mt-12 lg:grid-cols-12 lg:gap-12">
@@ -22,7 +22,7 @@ export function PaymentModel() {
             {payment.rows.map((row) => (
               <div key={row.label} className="grid gap-2 border-t border-navy/15 py-5 sm:grid-cols-[200px_1fr] sm:gap-6">
                 <dt className="font-serif text-[20px] leading-[1.25] font-semibold text-ink">{row.label}</dt>
-                <dd className="text-[15.5px] text-ink">
+                <dd className="text-[16.5px] text-ink">
                   {row.lead && <p className="mb-1.5">{row.lead}</p>}
                   <ul className={row.lead ? "space-y-0.5 text-muted-text" : "space-y-2"}>
                     {row.items.map((it) => (
@@ -44,10 +44,10 @@ export function PaymentModel() {
                 {ex.title}
               </h3>
               <Disclosure label={ex.toggle} closeLabel={ex.toggleClose} collapseBelow={1024} event="payment_example_expand" className="mt-2">
-                <p className="mt-2 text-[14.5px] text-muted-text">
+                <p className="mt-2 text-[15.5px] text-muted-text">
                   Задача: <span className="text-ink">«{ex.task}»</span>
                 </p>
-                <dl className="mt-4 text-[15px]">
+                <dl className="mt-4 text-[16px]">
                   {ex.lines.map((l) => (
                     <div key={l.label} className="flex flex-wrap items-baseline gap-x-2 py-1.5">
                       <dt className="min-w-0 text-ink">{l.label}</dt>
@@ -56,7 +56,7 @@ export function PaymentModel() {
                     </div>
                   ))}
                 </dl>
-                <p className="mt-4 text-[14px] text-muted-text">{ex.text}</p>
+                <p className="mt-4 text-[15px] text-muted-text">{ex.text}</p>
               </Disclosure>
             </div>
           </aside>

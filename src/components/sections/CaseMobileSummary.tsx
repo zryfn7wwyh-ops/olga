@@ -41,10 +41,10 @@ export function CaseMobileSummary() {
       </ol>
 
       <div className="on-dark relative mt-2 overflow-hidden rounded-[12px] bg-navy-deep text-ivory">
-        <span className="absolute top-0 left-5 h-px w-12 bg-gold" aria-hidden="true" />
-        <div className="px-5 pt-4 pb-4">
-          <p className="num text-[40px] whitespace-nowrap">{formatRub(finance.revenue)}</p>
-          <p className="mt-1 text-[14px] text-ivory/85">{caseSection.mobileRevenueLabel}</p>
+        <div className="bg-gold px-5 pt-4 pb-4 text-navy-deep">
+          <p className="text-[12.5px] font-bold tracking-[0.12em] uppercase">Выручка за месяц</p>
+          <p className="num mt-1.5 text-[50px] whitespace-nowrap xs:text-[54px]">{formatRub(finance.revenue)}</p>
+          <p className="mt-1 text-[15px] font-semibold">{caseSection.mobileRevenueLabel}</p>
         </div>
         <dl className="grid grid-cols-2 border-t border-[var(--on-dark-stroke)]">
           <div className="flex flex-col gap-0.5 border-r border-[var(--on-dark-stroke)] px-5 py-3">
@@ -63,14 +63,14 @@ export function CaseMobileSummary() {
       </div>
 
       <Disclosure label={caseSection.conversionToggle} className="mt-2" buttonClassName="w-full justify-between rounded-[10px] border border-stroke bg-paper px-4">
-        <ul className="mt-2 space-y-2 rounded-[10px] border border-stroke bg-paper px-4 py-3.5 text-[14px] text-ink">
+        <ul className="mt-2 space-y-2 rounded-[10px] border border-stroke bg-paper px-4 py-3.5 text-[15px] text-ink">
           {conversions.map((c) => (
             <li key={c} className="flex gap-2.5">
               <span className="mt-[9px] h-px w-3 shrink-0 bg-gold" aria-hidden="true" />
               {c}
             </li>
           ))}
-          <li className="pt-1 text-[13px] text-muted-text">{caseSection.conversionNote}</li>
+          <li className="pt-1 text-[14px] text-muted-text">{caseSection.conversionNote}</li>
         </ul>
       </Disclosure>
     </div>

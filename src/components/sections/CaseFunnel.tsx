@@ -16,7 +16,7 @@ export function CaseResults() {
   return (
     <div className="mt-12 grid gap-10 border-t border-navy/15 pt-10 lg:grid-cols-12 lg:gap-12">
       <div className="lg:col-span-8">
-        <h3 className="text-[13px] font-semibold text-muted-text">Воронка за месяц</h3>
+        <h3 className="text-[14px] font-semibold text-muted-text">Воронка за месяц</h3>
         <ol className="mt-4 flex items-start gap-4 lg:gap-6">
           {steps.map((s, i) => (
             <li key={s.label} className="flex items-start gap-4 lg:gap-6">
@@ -27,19 +27,21 @@ export function CaseResults() {
               )}
               <div>
                 <p className="num text-[72px] lg:text-[88px]">{formatNumber(s.value)}</p>
-                <p className="mt-2 text-[16px] font-semibold text-ink">{s.label}</p>
-                {s.conv && <p className="mt-0.5 text-[13.5px] text-muted-text">{s.conv}</p>}
+                <p className="mt-2 text-[17px] font-semibold text-ink">{s.label}</p>
+                {s.conv && <p className="mt-0.5 text-[14.5px] text-muted-text">{s.conv}</p>}
               </div>
             </li>
           ))}
         </ol>
-        <p className="mt-4 text-[13.5px] text-muted-text">{caseSection.funnelNote}.</p>
+        <p className="mt-4 text-[14.5px] text-muted-text">{caseSection.funnelNote}.</p>
       </div>
-      <div className="lg:col-span-4 lg:border-l lg:border-navy/15 lg:pl-10">
-        <h3 className="text-[13px] font-semibold text-muted-text">Финансовый итог</h3>
-        <p className="num mt-4 text-[60px] whitespace-nowrap text-gold-ink lg:text-[64px]">{formatRub(finance.revenue)}</p>
-        <p className="mt-2 text-[16px] text-ink">{caseSection.revenueLabel}</p>
-        <ul className="mt-5 space-y-1.5 text-[14.5px] text-ink">
+      <div className="lg:col-span-4">
+        <div className="rounded-[6px] bg-gold px-7 py-7 text-navy-deep lg:-mt-2">
+          <h3 className="text-[14px] font-bold tracking-[0.12em] uppercase">Выручка за месяц</h3>
+          <p className="num mt-3 text-[64px] whitespace-nowrap lg:text-[60px] xl:text-[72px]">{formatRub(finance.revenue)}</p>
+          <p className="mt-2 text-[17px] font-semibold">{caseSection.revenueLabel}</p>
+        </div>
+        <ul className="mt-5 space-y-1.5 text-[16px] text-ink">
           <li>{caseSection.criminalNote}</li>
           <li>{caseSection.adSpendNote}</li>
         </ul>

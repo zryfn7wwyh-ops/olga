@@ -278,7 +278,7 @@ export function LeadForm({ source, submitLabel, onSuccess }: Props) {
               aria-hidden="true"
             />
           </span>
-          <span className="text-[13.5px] leading-[1.55] text-muted-text">
+          <span className="text-[14.5px] leading-[1.55] text-muted-text">
             Даю{" "}
             <a href={docHref(site.legal.consentHref)} target="_blank" rel="noopener" className="link-underline text-ink">
               согласие на обработку персональных данных
@@ -291,14 +291,14 @@ export function LeadForm({ source, submitLabel, onSuccess }: Props) {
           </span>
         </label>
         {touched.consent && errors.consent && (
-          <p id={`${id("consent")}-error`} className="mt-2 pl-[38px] text-[14px] text-danger">
+          <p id={`${id("consent")}-error`} className="mt-2 pl-[38px] text-[15px] text-danger">
             {errors.consent}
           </p>
         )}
       </div>
 
       {status === "error" && serverMessage && (
-        <div role="alert" className="mt-5 flex gap-3 rounded-[10px] border border-danger/30 bg-danger/[0.05] px-4 py-3 text-[15px] text-ink">
+        <div role="alert" className="mt-5 flex gap-3 rounded-[10px] border border-danger/30 bg-danger/[0.05] px-4 py-3 text-[16px] text-ink">
           <AlertCircle className="mt-0.5 size-5 shrink-0 text-danger" strokeWidth={1.75} aria-hidden="true" />
           <div>
             <p>{serverMessage}</p>
@@ -321,7 +321,7 @@ export function LeadForm({ source, submitLabel, onSuccess }: Props) {
           submitLabel
         )}
       </Button>
-      <p className="mt-3 flex items-start justify-center gap-2 text-center text-[13px] text-muted-text">
+      <p className="mt-3 flex items-start justify-center gap-2 text-center text-[14px] text-muted-text">
         <ShieldCheck className="mt-0.5 size-4 shrink-0 text-gold-ink" strokeWidth={1.75} aria-hidden="true" />
         {leadPrivacyHint}
       </p>
@@ -344,7 +344,7 @@ function a11y(fieldId: string, error: string | undefined) {
 
 function inputClass(invalid: unknown) {
   return cn(
-    "block w-full min-h-[52px] rounded-[10px] border bg-white px-4 text-[16px] text-ink placeholder:text-[#8a949a] transition-[border-color,box-shadow] duration-150",
+    "block w-full min-h-[52px] rounded-[10px] border bg-white px-4 text-[17px] text-ink placeholder:text-[#8a949a] transition-[border-color,box-shadow] duration-150",
     "focus:outline-none focus-visible:outline-none focus:border-navy focus:shadow-[0_0_0_3px_rgba(20,35,45,0.12)]",
     invalid ? "border-danger" : "border-stroke hover:border-[#b9bfbd]",
   );
@@ -369,7 +369,7 @@ function Field({
 }) {
   return (
     <div className={className}>
-      <label htmlFor={id} className="mb-1.5 flex items-baseline justify-between gap-3 text-[14px] font-semibold text-ink">
+      <label htmlFor={id} className="mb-1.5 flex items-baseline justify-between gap-3 text-[15px] font-semibold text-ink">
         <span>
           {label}
           {required && (
@@ -383,7 +383,7 @@ function Field({
       </label>
       {children}
       {error && (
-        <p id={`${id}-error`} className="mt-1.5 text-[14px] text-danger">
+        <p id={`${id}-error`} className="mt-1.5 text-[15px] text-danger">
           {error}
         </p>
       )}

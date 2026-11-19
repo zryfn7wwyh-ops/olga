@@ -18,7 +18,7 @@ export function Logo({ className }: { className?: string }) {
         <>
           <span
             aria-hidden="true"
-            className="grid size-9 place-items-center rounded-[8px] border border-gold/60 font-serif text-[17px] font-semibold tracking-tight text-gold-soft"
+            className="grid size-9 place-items-center rounded-[8px] border border-gold/60 font-serif text-[18px] font-semibold tracking-tight text-gold-soft"
           >
             {initials}
           </span>

@@ -8,8 +8,8 @@ const base =
   "group/btn relative inline-flex select-none items-center justify-center gap-3 rounded-[10px] font-sans font-semibold tracking-[0.005em] transition-[background-color,color,border-color,box-shadow,transform] duration-200 ease-out active:translate-y-px disabled:cursor-not-allowed disabled:opacity-55 aria-disabled:cursor-not-allowed aria-disabled:opacity-55 text-center";
 
 const sizes: Record<ButtonSize, string> = {
-  md: "min-h-12 px-5 text-[15px]",
-  lg: "min-h-14 px-7 text-[16px]",
+  md: "min-h-12 px-5 text-[16px]",
+  lg: "min-h-14 px-7 text-[17px]",
 };
 
 /**

@@ -53,7 +53,7 @@ export function Disclosure({
           if (!open && event) track(event);
         }}
         className={cn(
-          "group inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold transition-colors",
+          "group inline-flex min-h-11 items-center gap-2 text-[16px] font-semibold transition-colors",
           tone === "dark" ? "text-ivory hover:text-gold-soft" : "text-ink hover:text-gold-ink",
           buttonClassName,
         )}

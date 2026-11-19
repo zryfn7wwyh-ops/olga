@@ -15,7 +15,7 @@ export function FinalLead() {
             {finalLead.title}
           </h2>
           <p className="lead mt-5 text-[var(--on-dark-muted)]">{finalLead.text}</p>
-          <p className="mt-8 border-t border-[var(--on-dark-stroke)] pt-5 text-[15px] text-ivory/80">{finalLead.after}</p>
+          <p className="mt-8 border-t border-[var(--on-dark-stroke)] pt-5 text-[16px] text-ivory/80">{finalLead.after}</p>
         </div>
         <div className="lg:col-span-6">
           <div className="relative rounded-[8px] bg-paper p-6 text-ink shadow-[0_40px_80px_-40px_rgba(0,0,0,0.7)] sm:p-9">

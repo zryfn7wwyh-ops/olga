@@ -103,7 +103,7 @@ export function LeadModalProvider({ children }: { children: ReactNode }) {
           <h2 id="lead-modal-title" className="h3 pr-10 text-[28px]! sm:text-[32px]!">
             {modalTitle}
           </h2>
-          <p id="lead-modal-desc" className="mt-3 mb-7 text-[15px] text-muted-text">
+          <p id="lead-modal-desc" className="mt-3 mb-7 text-[16px] text-muted-text">
             {leadNextStep}
           </p>
           {/* Форма остаётся смонтированной: введённые данные не теряются при случайном закрытии. */}

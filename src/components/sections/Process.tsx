@@ -14,9 +14,9 @@ export function Process() {
               key={step.title}
               className="grid grid-cols-[32px_1fr] gap-x-3 border-t border-stroke py-4 first:border-t-0 first:pt-0 sm:grid-cols-[48px_200px_1fr] sm:gap-x-6 sm:py-5"
             >
-              <span className="text-[15px] font-semibold text-muted-text tabular-nums">{i + 1}.</span>
-              <h3 className="text-[17px] font-semibold text-ink">{step.title}</h3>
-              <p className="col-start-2 mt-1 text-[15.5px] text-muted-text sm:col-start-3 sm:mt-0">{step.text}</p>
+              <span className="text-[16px] font-semibold text-muted-text tabular-nums">{i + 1}.</span>
+              <h3 className="text-[18px] font-semibold text-ink">{step.title}</h3>
+              <p className="col-start-2 mt-1 text-[16.5px] text-muted-text sm:col-start-3 sm:mt-0">{step.text}</p>
             </li>
           ))}
         </ol>

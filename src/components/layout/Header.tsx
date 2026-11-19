@@ -72,7 +72,7 @@ export function Header() {
               <li key={item.href}>
                 <a
                   href={item.href}
-                  className="relative py-2 text-[15px] font-medium text-[var(--on-dark-muted)] transition-colors hover:text-ivory after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-gold after:transition-transform after:duration-300 hover:after:scale-x-100"
+                  className="relative py-2 text-[16px] font-medium text-[var(--on-dark-muted)] transition-colors hover:text-ivory after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-gold after:transition-transform after:duration-300 hover:after:scale-x-100"
                 >
                   {item.label}
                 </a>

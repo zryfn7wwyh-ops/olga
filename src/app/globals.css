@@ -36,7 +36,7 @@
     background: var(--paper);
     color: var(--ink);
     font-family: var(--font-sans);
-    font-size: 17px;
+    font-size: 18px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -163,18 +163,18 @@
   .h2 {
     font-family: var(--font-serif);
     font-weight: 500;
-    font-size: clamp(31px, 1.6rem + 1.8vw, 54px);
+    font-size: clamp(33px, 1.7rem + 2vw, 60px);
     line-height: 1.06;
     letter-spacing: -0.01em;
   }
   .h3 {
     font-family: var(--font-serif);
     font-weight: 600;
-    font-size: clamp(23px, 1.3rem + 0.4vw, 28px);
+    font-size: clamp(24px, 1.35rem + 0.5vw, 30px);
     line-height: 1.15;
   }
   .lead {
-    font-size: clamp(17px, 1rem + 0.2vw, 19px);
+    font-size: clamp(18px, 1.05rem + 0.25vw, 20px);
     line-height: 1.65;
   }
   .num {

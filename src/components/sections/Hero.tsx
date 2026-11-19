@@ -21,14 +21,14 @@ export function Hero() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(70%_60%_at_85%_20%,rgba(180,154,108,0.07),transparent_60%)]"
       />
-      <div className="container-lp relative grid gap-10 pt-7 pb-14 sm:pt-12 md:pb-20 lg:grid-cols-12 lg:gap-14 lg:pt-16 lg:pb-20">
+      <div className="container-lp relative grid gap-10 pt-7 pb-14 sm:pt-12 md:pb-20 lg:grid-cols-12 lg:gap-14 lg:pt-10 lg:pb-20">
         {/* Оффер */}
-        <div className="lg:col-span-7 lg:pt-4 xl:col-span-6">
+        <div className="lg:col-span-7 xl:col-span-6">
           <p className="eyebrow mb-4 sm:mb-6">{hero.eyebrow}</p>
           <h1 id="hero-title" className="h1 hero-title max-w-[20ch]">
             {hero.titleLead} <span className="text-gold-soft italic">{hero.titleAccent}</span>
           </h1>
-          <p className="mt-4 max-w-[54ch] text-[16px] leading-[1.6] text-[var(--on-dark-muted)] sm:mt-6 sm:text-[17.5px]">
+          <p className="mt-4 max-w-[54ch] text-[17px] leading-[1.6] text-[var(--on-dark-muted)] sm:mt-6 sm:text-[17.5px]">
             <span className="sm:hidden">{hero.subtitleShort}</span>
             <span className="hidden sm:inline">{hero.subtitle}</span>
           </p>
@@ -39,34 +39,38 @@ export function Hero() {
             </CtaButton>
             <a
               href="#payment"
-              className="inline-flex min-h-11 items-center gap-1.5 self-center text-[15px] text-ivory/85 underline decoration-ivory/30 underline-offset-4 transition-colors hover:text-ivory hover:decoration-ivory sm:self-auto"
+              className="inline-flex min-h-11 items-center gap-1.5 self-center text-[16px] text-ivory/85 underline decoration-ivory/30 underline-offset-4 transition-colors hover:text-ivory hover:decoration-ivory sm:self-auto"
             >
               {hero.paymentLink}
             </a>
           </div>
-          <p className="mt-2 text-[13.5px] leading-snug text-ivory/70 sm:mt-3 sm:text-[14px]">{hero.valueLine.join(" · ")}</p>
+          <p className="mt-2 text-[14.5px] leading-snug text-ivory/70 sm:mt-3 sm:text-[15px]">{hero.valueLine.join(" · ")}</p>
 
           {/* Доказательство: одна строка цифр без карточек */}
-          <figure className="mt-7 border-t border-[var(--on-dark-stroke)] pt-5 sm:mt-10">
-            <figcaption className="text-[12.5px] text-ivory/70">{hero.statsCaption}</figcaption>
-            <dl className="mt-3 grid grid-cols-3 gap-3 sm:gap-6">
-              {stats.map((s, i) => (
-                <div key={s.label} className="flex flex-col gap-1">
-                  <dt className="order-2 text-[12.5px] leading-snug text-ivory/75 sm:text-[14px]">{s.label}</dt>
-                  <dd
-                    className={
-                      "num order-1 text-[28px] whitespace-nowrap xs:text-[32px] sm:text-[44px] " +
-                      (i === 2 ? "text-gold-soft" : "text-ivory")
-                    }
-                  >
-                    {s.value}
-                  </dd>
-                </div>
-              ))}
+          <figure className="mt-7 border-t border-[var(--on-dark-stroke)] pt-5 sm:mt-8">
+            <figcaption className="text-[14px] text-ivory/75">{hero.statsCaption}</figcaption>
+            <dl className="mt-3">
+              {/* Главный результат — выручка за месяц */}
+              <div className="flex flex-wrap items-end gap-x-4 gap-y-1">
+                <dt className="order-2 pb-2 text-[16px] leading-snug font-semibold text-ivory sm:pb-3 sm:text-[18px]">
+                  {stats[2].label}
+                </dt>
+                <dd className="num order-1 text-[52px] whitespace-nowrap text-gold-soft xs:text-[58px] sm:text-[76px]">
+                  {stats[2].value}
+                </dd>
+              </div>
+              <div className="mt-4 grid grid-cols-2 gap-4 border-t border-[var(--on-dark-stroke)] pt-4 sm:max-w-[420px]">
+                {stats.slice(0, 2).map((s) => (
+                  <div key={s.label} className="flex items-baseline gap-2.5">
+                    <dd className="num text-[36px] text-ivory sm:text-[44px]">{s.value}</dd>
+                    <dt className="text-[14.5px] leading-snug text-ivory/80 sm:text-[16px]">{s.label}</dt>
+                  </div>
+                ))}
+              </div>
             </dl>
-            <p className="mt-4 text-[13px] leading-snug text-ivory/70">{hero.caseLine}</p>
+            <p className="mt-4 text-[14px] leading-snug text-ivory/70">{hero.caseLine}</p>
           </figure>
-          <a href="#case" className="mt-3 inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold text-ivory sm:mt-4">
+          <a href="#case" className="mt-3 inline-flex min-h-11 items-center gap-2 text-[16px] font-semibold text-ivory sm:mt-4">
             {hero.secondaryCta}
             <ArrowDown className="size-4" strokeWidth={1.75} aria-hidden="true" />
           </a>
@@ -75,7 +79,7 @@ export function Hero() {
         {/* Визуал: сайт проекта */}
         <figure className="relative lg:col-span-5 lg:self-center xl:col-span-6">
           <HeroVisual />
-          <figcaption className="mt-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 text-[13px] text-ivory/70">
+          <figcaption className="mt-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 text-[14px] text-ivory/70">
             <span>Сайт адвоката Аксёновой. {hero.footnote}</span>
             <ExternalSiteLink place="hero" className="inline-flex min-h-11 items-center gap-1.5 font-semibold text-ivory hover:text-gold-soft">
               {caseAksenova.siteLabel}

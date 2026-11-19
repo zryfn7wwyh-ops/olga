@@ -81,7 +81,7 @@ export function CaseGallery({ aside, results }: { aside: ReactNode; results: Rea
             {featureVisible ? (
               <MediaButton item={feature} onOpen={show} sizes="(min-width: 1280px) 800px, (min-width: 1024px) 66vw, 100vw" ratio="16 / 9" />
             ) : null}
-            <figcaption className="mt-3 text-[14px] text-muted-text">
+            <figcaption className="mt-3 text-[15px] text-muted-text">
               <span className="font-semibold text-ink">{feature.title}.</span> {feature.text}
             </figcaption>
           </figure>
@@ -94,8 +94,8 @@ export function CaseGallery({ aside, results }: { aside: ReactNode; results: Rea
           {rest.map((it) => (
             <li key={it.id}>
               {visible.includes(it) && <MediaButton item={it} onOpen={show} sizes="(min-width: 1024px) 380px, 33vw" ratio="4 / 3" />}
-              <h4 className="mt-3 text-[16px] font-semibold text-ink">{it.title}</h4>
-              <p className="mt-1 text-[14.5px] text-muted-text">{it.text}</p>
+              <h4 className="mt-3 text-[17px] font-semibold text-ink">{it.title}</h4>
+              <p className="mt-1 text-[15.5px] text-muted-text">{it.text}</p>
             </li>
           ))}
         </ul>
@@ -103,7 +103,7 @@ export function CaseGallery({ aside, results }: { aside: ReactNode; results: Rea
 
       {/* ───── Mobile: слайдер ───── */}
       <div className="md:hidden">
-        <p className="mb-3 text-[15px] font-semibold text-ink">{caseSection.galleryTitle}</p>
+        <p className="mb-3 text-[16px] font-semibold text-ink">{caseSection.galleryTitle}</p>
         <ul
           ref={sliderRef}
           onScroll={onSliderScroll}
@@ -115,8 +115,8 @@ export function CaseGallery({ aside, results }: { aside: ReactNode; results: Rea
           {items.map((it) => (
             <li key={it.id} className="w-[80%] shrink-0 snap-start">
               {visible.includes(it) && <MediaButton item={it} onOpen={show} sizes="80vw" ratio="16 / 10" />}
-              <h4 className="mt-2.5 text-[15px] font-semibold text-ink">{it.title}</h4>
-              <p className="mt-0.5 text-[14px] leading-snug text-muted-text">{it.text}</p>
+              <h4 className="mt-2.5 text-[16px] font-semibold text-ink">{it.title}</h4>
+              <p className="mt-0.5 text-[15px] leading-snug text-muted-text">{it.text}</p>
             </li>
           ))}
         </ul>
@@ -157,7 +157,7 @@ export function CaseGallery({ aside, results }: { aside: ReactNode; results: Rea
               {current.asset.isPlaceholder && <DemoBadge />}
             </div>
             <div className="mt-4 flex items-center justify-between gap-4 text-ivory">
-              <p className="text-[15px]">
+              <p className="text-[16px]">
                 <span className="mr-2 text-ivory/60">
                   {open! + 1} / {visible.length}
                 </span>

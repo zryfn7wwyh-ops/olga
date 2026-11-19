@@ -27,29 +27,29 @@ export function Team() {
               <h2 id="team-title" className="h2 text-[30px]! sm:text-[40px]!">
                 {team.title}
               </h2>
-              <p className="mt-4 max-w-[60ch] text-[16.5px] text-muted-text">{team.text}</p>
+              <p className="mt-4 max-w-[60ch] text-[17.5px] text-muted-text">{team.text}</p>
 
               <div className="mt-8 border-t border-navy pt-6">
                 <Field placeholder={teamName.isPlaceholder}>
                   <p className="font-serif text-[28px] leading-tight font-semibold">{teamName.value}</p>
                 </Field>
                 <Field placeholder={teamRole.isPlaceholder} className="mt-2">
-                  <p className="text-[15.5px] text-muted-text">{teamRole.value}</p>
+                  <p className="text-[16.5px] text-muted-text">{teamRole.value}</p>
                 </Field>
                 <ul className="mt-5 space-y-2">
                   {experience.map((f, i) => (
                     <li key={i}>
                       <Field placeholder={teamFacts.isPlaceholder}>
-                        <p className="text-[15.5px] text-ink">{f}</p>
+                        <p className="text-[16.5px] text-ink">{f}</p>
                       </Field>
                     </li>
                   ))}
                 </ul>
                 {caseRole && (
                   <div className="mt-6">
-                    <p className="text-[13px] font-semibold text-muted-text">{team.roleInCaseLabel}</p>
+                    <p className="text-[14px] font-semibold text-muted-text">{team.roleInCaseLabel}</p>
                     <Field placeholder={teamFacts.isPlaceholder} className="mt-1.5">
-                      <p className="text-[15.5px] text-ink">{caseRole}</p>
+                      <p className="text-[16.5px] text-ink">{caseRole}</p>
                     </Field>
                   </div>
                 )}
@@ -61,7 +61,7 @@ export function Team() {
                   <MediaFrame item={clientReview} rounded={false} />
                 </div>
               ) : isPreview ? (
-                <p className="mt-8 max-w-[520px] rounded-[4px] border border-dashed border-gold-ink/50 px-4 py-3 text-[13.5px] text-muted-text">
+                <p className="mt-8 max-w-[520px] rounded-[4px] border border-dashed border-gold-ink/50 px-4 py-3 text-[14.5px] text-muted-text">
                   {team.videoPlaceholder}
                 </p>
               ) : null}
@@ -72,7 +72,7 @@ export function Team() {
             <h2 id="team-title" className="h2 text-[30px]! sm:text-[40px]!">
               {team.title}
             </h2>
-            <p className="mt-4 text-[17px] text-ink">{team.productionFallback}</p>
+            <p className="mt-4 text-[18px] text-ink">{team.productionFallback}</p>
           </div>
         )}
       </div>

@@ -63,7 +63,7 @@ export function FAQ() {
                 </h3>
                 <div id={panelId} role="region" aria-labelledby={btnId} className="accordion-panel" data-open={open} inert={!open}>
                   <div>
-                    <p className="max-w-[68ch] pr-14 pb-7 text-[16.5px] text-muted-text">{item.answer}</p>
+                    <p className="max-w-[68ch] pr-14 pb-7 text-[17.5px] text-muted-text">{item.answer}</p>
                   </div>
                 </div>
               </div>
