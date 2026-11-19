@@ -77,7 +77,7 @@ export function Hero() {
         </div>
 
         {/* Визуал: сайт проекта */}
-        <figure className="relative lg:col-span-5 lg:self-center xl:col-span-6">
+        <figure className="relative lg:col-span-5 lg:self-start lg:mt-[54px] xl:col-span-6">
           <HeroVisual />
           <figcaption className="mt-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 text-[14px] text-ivory/70">
             <span>Сайт адвоката Аксёновой. {hero.footnote}</span>
