@@ -33,12 +33,9 @@ export function Hero() {
             <span className="hidden sm:inline">{hero.subtitle}</span>
           </p>
 
-          <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-3">
-            <CtaButton source="hero_primary" event="hero_cta_click" size="md" className="w-full sm:w-auto">
+          <div className="mt-6 sm:mt-8">
+            <CtaButton source="hero_primary" event="hero_cta_click" className="w-full sm:w-auto">
               {hero.primaryCta}
-            </CtaButton>
-            <CtaButton source="hero_secondary" variant="outline-light" size="md" arrow={false} className="w-full sm:w-auto">
-              {hero.secondaryCtaSell}
             </CtaButton>
           </div>
           <p className="mt-2 text-[14.5px] leading-snug text-ivory/70 sm:mt-3 sm:text-[15px]">{hero.valueLine.join(" · ")}</p>

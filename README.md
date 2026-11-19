@@ -84,7 +84,7 @@ npm run dev            # http://localhost:3000 — режим preview
 по телефону и `submission_id` в течение 10 минут). Доставка — `src/lib/lead-delivery.ts` (webhook, Битрикс24,
 Telegram). Ключи — только в серверных переменных окружения.
 
-Источники форм: `hero_primary`, `hero_secondary` («Разобрать мою практику»), `header_cta`, `sticky_cta`, `case_cta`, `system_cta`, `payment_cta`, `lead_section`.
+Источники форм: `hero_primary` («Разобрать мою практику»), `header_cta`, `sticky_cta`, `case_cta`, `system_cta`, `payment_cta`, `lead_section`.
 
 События Метрики: `lead_modal_open` (открытие окна — не конверсия), `lead_submit_success` (только при реальной
 доставке в CRM), `case_gallery_open`, `payment_example_expand`, `mobile_sticky_cta_click`, а также `hero_cta_click`,
