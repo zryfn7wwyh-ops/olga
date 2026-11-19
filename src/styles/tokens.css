@@ -9,6 +9,9 @@
   --muted: #65727a;
   --stroke: #d9dcd9;
   --white: #ffffff;
+  --burgundy: #6b1e2b; /* второй фирменный акцент */
+  --burgundy-deep: #4a1420;
+  --burgundy-soft: #c98b95; /* бургунди для текста на тёмном фоне */
 
   /* Производные для доступности (WCAG AA) */
   --muted-text: #56626a; /* второстепенный текст на ivory/paper: ≥ 5:1 */

@@ -268,7 +268,7 @@ export function LeadForm({ source, submitLabel, onSuccess }: Props) {
               }}
               {...a11y(id("consent"), touched.consent ? errors.consent : undefined)}
               className={cn(
-                "peer absolute inset-0 m-0 size-6 cursor-pointer appearance-none rounded-[6px] border bg-white transition-colors checked:border-navy checked:bg-navy",
+                "peer absolute inset-0 m-0 size-6 cursor-pointer appearance-none rounded-[6px] border bg-white transition-colors checked:border-burgundy checked:bg-burgundy",
                 touched.consent && errors.consent ? "border-danger" : "border-[#9aa3a8]",
               )}
             />

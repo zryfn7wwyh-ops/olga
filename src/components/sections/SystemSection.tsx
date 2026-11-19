@@ -32,7 +32,7 @@ export function SystemSection() {
         </div>
 
         {/* 04: расширенный тёмный фрагмент */}
-        <div className="on-dark mt-10 grid overflow-hidden rounded-[6px] bg-navy-deep text-ivory lg:mt-14 lg:grid-cols-12">
+        <div className="on-dark mt-10 grid overflow-hidden rounded-[6px] bg-burgundy-deep text-ivory lg:mt-14 lg:grid-cols-12">
           <div className="p-6 sm:p-10 lg:col-span-7 lg:p-12">
             <p className="text-[15px] font-semibold text-ivory/60 tabular-nums">{s4.n}</p>
             <h3 className="mt-2 font-serif text-[28px] leading-[1.12] font-semibold sm:text-[36px]">{s4.title}</h3>
@@ -41,7 +41,7 @@ export function SystemSection() {
             <StageDetails items={s4.details} openLabel={system.detailsOpen} closeLabel={system.detailsClose} title={s4.title} tone="dark" />
           </div>
           {s4.objection && (
-            <figure className="border-t border-[var(--on-dark-stroke)] bg-navy p-6 sm:p-10 lg:col-span-5 lg:border-t-0 lg:border-l lg:p-12">
+            <figure className="border-t border-[var(--on-dark-stroke)] bg-burgundy p-6 sm:p-10 lg:col-span-5 lg:border-t-0 lg:border-l lg:p-12">
               <figcaption className="text-[14px] font-semibold text-ivory/60">{s4.objection.title}</figcaption>
               <blockquote className="mt-3 font-serif text-[26px] leading-[1.2] text-ivory italic sm:text-[30px]">
                 «{s4.objection.client}»

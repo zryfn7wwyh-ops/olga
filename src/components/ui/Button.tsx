@@ -20,7 +20,7 @@ const sizes: Record<ButtonSize, string> = {
 const variants: Record<ButtonVariant, string> = {
   primary:
     "bg-gold text-navy-deep hover:bg-[#c4ab7d] shadow-[0_1px_0_rgba(255,255,255,0.25)_inset] focus-visible:outline-gold-soft",
-  "primary-dark": "bg-navy text-ivory hover:bg-navy-deep focus-visible:outline-navy",
+  "primary-dark": "bg-burgundy text-ivory hover:bg-burgundy-deep focus-visible:outline-burgundy",
   "outline-light":
     "border border-[rgba(245,242,236,0.32)] text-ivory hover:border-gold hover:bg-[rgba(245,242,236,0.04)]",
   "outline-dark": "border border-navy/30 text-ink hover:border-navy hover:bg-navy/[0.03]",

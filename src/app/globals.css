@@ -13,6 +13,9 @@
   --color-muted: #65727a;
   --color-muted-text: #56626a;
   --color-stroke: #d9dcd9;
+  --color-burgundy: #6b1e2b;
+  --color-burgundy-deep: #4a1420;
+  --color-burgundy-soft: #c98b95;
   --color-danger: #a3362b;
   --color-success: #2f6a4f;
 
@@ -127,7 +130,7 @@
     letter-spacing: 0.18em;
     text-transform: uppercase;
     line-height: 1.4;
-    color: var(--gold-ink);
+    color: var(--burgundy);
   }
   .eyebrow::before {
     content: "";

@@ -23,7 +23,7 @@ export function Problems() {
               </li>
             ))}
           </ol>
-          <p className="mt-6 border-t border-navy pt-5 text-[18px] font-semibold text-ink sm:mt-8">{problems.conclusion}</p>
+          <p className="mt-6 border-t-2 border-burgundy pt-5 text-[18px] font-semibold text-ink sm:mt-8">{problems.conclusion}</p>
         </div>
       </div>
     </section>
