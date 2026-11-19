@@ -90,7 +90,7 @@ export function LeadModalProvider({ children }: { children: ReactNode }) {
           if (e.target === e.currentTarget && downOnBackdrop.current) close();
         }}
       >
-        <div className="dialog-panel relative max-h-[calc(100dvh-24px)] overflow-y-auto rounded-[16px] bg-paper px-5 pt-7 pb-7 shadow-[0_30px_80px_-20px_rgba(15,27,36,0.55)] sm:px-9 sm:pt-9 sm:pb-9">
+        <div className="dialog-panel relative max-h-[calc(100dvh-24px)] overflow-y-auto rounded-[8px] bg-paper px-5 pt-7 pb-7 shadow-[0_30px_80px_-20px_rgba(15,27,36,0.55)] sm:px-9 sm:pt-9 sm:pb-9">
           <span className="absolute top-0 left-9 h-px w-16 bg-gold" aria-hidden="true" />
           <button
             type="button"
@@ -100,7 +100,6 @@ export function LeadModalProvider({ children }: { children: ReactNode }) {
           >
             <X className="size-5" strokeWidth={1.5} />
           </button>
-          <p className="eyebrow mb-4">План продвижения</p>
           <h2 id="lead-modal-title" className="h3 pr-10 text-[28px]! sm:text-[32px]!">
             {modalTitle}
           </h2>

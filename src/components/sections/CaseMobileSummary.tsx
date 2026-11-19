@@ -49,7 +49,7 @@ export function CaseMobileSummary() {
         <dl className="grid grid-cols-2 border-t border-[var(--on-dark-stroke)]">
           <div className="flex flex-col gap-0.5 border-r border-[var(--on-dark-stroke)] px-5 py-3">
             <dt className="order-2 text-[12.5px] leading-snug text-ivory/80">договоров — уголовные дела</dt>
-            <dd className="order-1 font-serif text-[24px] leading-none text-gold-soft lining-nums">
+            <dd className="order-1 font-serif text-[24px] leading-none lining-nums">
               {funnel.criminalContracts} из {funnel.contracts}
             </dd>
           </div>

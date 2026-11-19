@@ -247,14 +247,14 @@ def case_social():
 
 
 def team_portrait():
-    b = [f'<rect width="900" height="1200" fill="url(#navyGrad)"/>']
-    for i in range(4):
-        b.append(f'<circle cx="760" cy="180" r="{140 + i*70}" fill="none" stroke="{GOLD}" stroke-opacity="{0.22 - i*0.04}"/>')
-    # нейтральный силуэт без лица
-    b.append('<circle cx="450" cy="470" r="150" fill="#2A3F4D"/>')
-    b.append('<path d="M150 1200 C150 900 290 720 450 720 C610 720 750 900 750 1200 Z" fill="#2A3F4D"/>')
-    b.append(f'<path d="M150 1200 C150 900 290 720 450 720 C610 720 750 900 750 1200" fill="none" stroke="{GOLD}" stroke-opacity="0.45" stroke-width="2"/>')
-    b.append(f'<circle cx="450" cy="470" r="150" fill="none" stroke="{GOLD}" stroke-opacity="0.45" stroke-width="2"/>')
+    """Нейтральный текстовый плейсхолдер фото — без изображения человека."""
+    b = [f'<rect width="900" height="1200" fill="#EFEAE0"/>']
+    b.append(f'<rect x="40" y="40" width="820" height="1120" fill="none" stroke="{NAVY}" stroke-opacity="0.18"/>')
+    for x, y, dx, dy in [(40, 40, 1, 1), (860, 40, -1, 1), (40, 1160, 1, -1), (860, 1160, -1, -1)]:
+        b.append(f'<path d="M{x} {y + 60*dy} V{y} H{x + 60*dx}" fill="none" stroke="{NAVY}" stroke-opacity="0.55" stroke-width="2"/>')
+    b.append(text(450, 560, "Фотография", 46, INK, SERIF, anchor="middle"))
+    b.append(text(450, 616, "руководителя проекта", 46, INK, SERIF, anchor="middle"))
+    b.append(text(450, 690, "3 : 4 · нейтральный фон · естественный свет", 22, "#5A666E", anchor="middle"))
     return svg(900, 1200, "".join(b), GRAD)
 
 

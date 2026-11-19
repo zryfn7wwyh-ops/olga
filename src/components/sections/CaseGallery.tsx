@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { caseAksenova } from "@/content/case-aksenova";
 import { caseSection } from "@/content/landing";
 import { isVisible, siteContent, type Replaceable } from "@/content/siteContent";
@@ -11,46 +11,38 @@ import { track } from "@/lib/analytics";
 import { cn } from "@/lib/cn";
 
 type Work = (typeof caseAksenova.works)[number];
-type Item = Work & { media: keyof typeof siteContent; asset: Replaceable<unknown> };
+type Item = Work & { asset: Replaceable<unknown> };
 
 const items: Item[] = caseAksenova.works.map((w) => ({
   ...w,
   asset: siteContent[w.media as keyof typeof siteContent] as Replaceable<unknown>,
-})) as Item[];
-
-
+}));
 
 /**
- * «Что сделали» + «Посмотреть, как это выглядело»: 4 карточки работ с миниатюрами,
- * клик открывает лайтбокс. В production заглушки скрыты — карточки остаются текстовыми.
+ * Материалы кейса.
+ * Desktop/tablet: сайт — главный визуал (с колонкой `aside`), под ним `results`, затем ряд из трёх меньших материалов.
+ * Mobile: горизонтальный слайдер из всех материалов (scroll-snap, индикатор).
+ * Клик по любому материалу открывает лайтбокс (Esc, стрелки, возврат фокуса).
  */
-export function CaseGallery() {
+export function CaseGallery({ aside, results }: { aside: ReactNode; results: ReactNode }) {
   const visible = items.filter((it) => it.asset.asset && isVisible(it.asset));
   const [open, setOpen] = useState<number | null>(null);
   const [slide, setSlide] = useState(0);
-  const sliderRef = useRef<HTMLUListElement>(null);
-
-  // Индикатор положения мобильного слайдера.
-  const onSliderScroll = () => {
-    const el = sliderRef.current;
-    if (!el || !el.firstElementChild) return;
-    const w = (el.firstElementChild as HTMLElement).offsetWidth + 12;
-    setSlide(Math.min(items.length - 1, Math.round(el.scrollLeft / w)));
-  };
   const dialogRef = useRef<HTMLDialogElement>(null);
   const openerRef = useRef<HTMLElement | null>(null);
+  const sliderRef = useRef<HTMLUListElement>(null);
 
-  const show = useCallback((idx: number) => {
+  const show = (item: Item) => {
+    const idx = visible.indexOf(item);
+    if (idx === -1) return;
     openerRef.current = document.activeElement as HTMLElement;
     setOpen(idx);
-    track("case_gallery_open", { item: visible[idx]?.id ?? "" });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    track("case_gallery_open", { item: item.id });
+  };
 
   useEffect(() => {
     const d = dialogRef.current;
-    if (!d) return;
-    if (open !== null && !d.open) {
+    if (d && open !== null && !d.open) {
       d.showModal();
       document.documentElement.style.overflow = "hidden";
     }
@@ -68,78 +60,79 @@ export function CaseGallery() {
     return () => d.removeEventListener("close", onClose);
   }, []);
 
-  const step = (dir: 1 | -1) =>
-    setOpen((cur) => (cur === null ? cur : (cur + dir + visible.length) % visible.length));
-
+  const step = (dir: 1 | -1) => setOpen((cur) => (cur === null ? cur : (cur + dir + visible.length) % visible.length));
   const current = open !== null ? visible[open] : null;
+  const [feature, ...rest] = items;
+  const featureVisible = visible.includes(feature);
+
+  const onSliderScroll = () => {
+    const el = sliderRef.current;
+    if (!el?.firstElementChild) return;
+    const w = (el.firstElementChild as HTMLElement).offsetWidth + 12;
+    setSlide(Math.min(items.length - 1, Math.round(el.scrollLeft / w)));
+  };
 
   return (
     <>
-      <ul
-        ref={sliderRef}
-        onScroll={onSliderScroll}
-        data-slider
-        tabIndex={0}
-        aria-label={caseSection.galleryLabel}
-        className="no-scrollbar -mx-5 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto px-5 pb-1 focus-visible:outline-offset-[-2px] md:mx-0 md:grid md:snap-none md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0"
-      >
-        {items.map((it, i) => {
-          const vIndex = visible.indexOf(it);
-          const hasMedia = vIndex !== -1;
-          return (
-            <li
-              key={it.id}
-              data-reveal
-              style={{ ["--reveal-delay" as string]: `${(i % 2) * 80}ms` }}
-              className="flex w-[82%] shrink-0 snap-start flex-col overflow-hidden rounded-[14px] border border-stroke bg-paper xs:w-[78%] md:w-auto"
-            >
-              {hasMedia && (
-                <button
-                  type="button"
-                  onClick={() => show(vIndex)}
-                  className="group relative block w-full overflow-hidden border-b border-stroke bg-ivory text-left"
-                  style={{ aspectRatio: "16 / 10" }}
-                  aria-label={`Открыть изображение: ${it.title}`}
-                >
-                  <Image
-                    src={it.asset.asset!}
-                    alt={it.asset.alt ?? it.title}
-                    fill
-                    sizes="(min-width: 1280px) 600px, (min-width: 768px) 50vw, 100vw"
-                    className={cn(
-                      "transition-transform duration-500 ease-out group-hover:scale-[1.02] motion-reduce:transition-none",
-                      it.asset.fit === "contain" ? "object-contain p-2" : "object-cover object-top",
-                    )}
-                  />
-                  {it.asset.isPlaceholder && <DemoBadge />}
-                  <span className="absolute right-3 bottom-3 grid size-10 place-items-center rounded-full bg-navy-deep/80 text-ivory opacity-90 transition-opacity group-hover:opacity-100">
-                    <Maximize2 className="size-4" strokeWidth={1.75} aria-hidden="true" />
-                  </span>
-                </button>
-              )}
-              <div className="flex flex-1 items-start gap-3 p-4 sm:gap-4 sm:p-7">
-                <span className="font-serif text-[22px] leading-none text-gold-ink">0{i + 1}</span>
-                <div>
-                  <h4 className="h3 text-[20px]! sm:text-[22px]!">{it.title}</h4>
-                  <p className="mt-1.5 text-[14.5px] text-muted-text sm:mt-2 sm:text-[15.5px]">{it.text}</p>
-                </div>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
-      <div className="mt-3 flex items-center justify-between md:hidden" aria-hidden="true">
-        <div className="flex gap-1.5" data-slider-dots>
-          {items.map((it, i) => (
-            <span
-              key={it.id}
-              className={cn("h-1.5 rounded-full transition-[width,background-color] duration-300", i === slide ? "w-6 bg-gold" : "w-1.5 bg-navy/25")}
-            />
-          ))}
+      {/* ───── Desktop / tablet ───── */}
+      <div className="hidden md:block">
+        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
+          <figure className="lg:col-span-8">
+            {featureVisible ? (
+              <MediaButton item={feature} onOpen={show} sizes="(min-width: 1280px) 800px, (min-width: 1024px) 66vw, 100vw" ratio="16 / 9" />
+            ) : null}
+            <figcaption className="mt-3 text-[14px] text-muted-text">
+              <span className="font-semibold text-ink">{feature.title}.</span> {feature.text}
+            </figcaption>
+          </figure>
+          <div className="lg:col-span-4">{aside}</div>
         </div>
-        <span className="text-[12.5px] text-muted-text" data-slider-count>
-          {slide + 1} / {items.length} · листайте
-        </span>
+
+        {results}
+
+        <ul className="mt-12 grid grid-cols-3 gap-6 border-t border-navy/15 pt-8 lg:gap-10">
+          {rest.map((it) => (
+            <li key={it.id}>
+              {visible.includes(it) && <MediaButton item={it} onOpen={show} sizes="(min-width: 1024px) 380px, 33vw" ratio="4 / 3" />}
+              <h4 className="mt-3 text-[16px] font-semibold text-ink">{it.title}</h4>
+              <p className="mt-1 text-[14.5px] text-muted-text">{it.text}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* ───── Mobile: слайдер ───── */}
+      <div className="md:hidden">
+        <p className="mb-3 text-[15px] font-semibold text-ink">{caseSection.galleryTitle}</p>
+        <ul
+          ref={sliderRef}
+          onScroll={onSliderScroll}
+          data-slider
+          tabIndex={0}
+          aria-label={caseSection.galleryLabel}
+          className="no-scrollbar -mx-5 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto px-5 pb-1 focus-visible:outline-offset-[-2px]"
+        >
+          {items.map((it) => (
+            <li key={it.id} className="w-[80%] shrink-0 snap-start">
+              {visible.includes(it) && <MediaButton item={it} onOpen={show} sizes="80vw" ratio="16 / 10" />}
+              <h4 className="mt-2.5 text-[15px] font-semibold text-ink">{it.title}</h4>
+              <p className="mt-0.5 text-[14px] leading-snug text-muted-text">{it.text}</p>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-3 flex items-center justify-between" aria-hidden="true">
+          <div className="flex gap-1.5" data-slider-dots>
+            {items.map((it, i) => (
+              <span
+                key={it.id}
+                className={cn("h-1.5 rounded-full transition-[width,background-color] duration-300", i === slide ? "w-6 bg-navy" : "w-1.5 bg-navy/25")}
+              />
+            ))}
+          </div>
+          <span className="text-[12.5px] text-muted-text" data-slider-count>
+            {slide + 1} / {items.length} · листайте
+          </span>
+        </div>
       </div>
 
       <dialog
@@ -155,28 +148,22 @@ export function CaseGallery() {
         }}
       >
         {current && (
-          <div className="relative flex max-h-[calc(100dvh-32px)] w-full flex-col">
+          <div className="relative flex w-full flex-col">
             <div
-              className="relative max-h-[calc(100dvh-110px)] overflow-hidden rounded-[12px] bg-ivory"
+              className="relative max-h-[calc(100dvh-110px)] overflow-hidden rounded-[6px] bg-ivory"
               style={{ aspectRatio: current.asset.ratio?.replace("/", " / ") }}
             >
-              <Image
-                src={current.asset.asset!}
-                alt={current.asset.alt ?? current.title}
-                fill
-                sizes="(min-width: 1280px) 1200px, 100vw"
-                className="object-contain"
-              />
+              <Image src={current.asset.asset!} alt={current.asset.alt ?? current.title} fill sizes="(min-width: 1280px) 1200px, 100vw" className="object-contain" />
               {current.asset.isPlaceholder && <DemoBadge />}
             </div>
             <div className="mt-4 flex items-center justify-between gap-4 text-ivory">
               <p className="text-[15px]">
-                <span className="mr-2 font-serif text-gold-soft">
+                <span className="mr-2 text-ivory/60">
                   {open! + 1} / {visible.length}
                 </span>
-                {current.title}
+                {current.title}. <span className="text-ivory/75">{current.text}</span>
               </p>
-              <div className="flex gap-2">
+              <div className="flex shrink-0 gap-2">
                 <LightboxButton label="Предыдущее изображение" onClick={() => step(-1)}>
                   <ChevronLeft className="size-5" strokeWidth={1.75} />
                 </LightboxButton>
@@ -195,7 +182,31 @@ export function CaseGallery() {
   );
 }
 
-function LightboxButton({ label, onClick, children }: { label: string; onClick: () => void; children: React.ReactNode }) {
+function MediaButton({ item, onOpen, sizes, ratio }: { item: Item; onOpen: (it: Item) => void; sizes: string; ratio: string }) {
+  return (
+    <button
+      type="button"
+      onClick={() => onOpen(item)}
+      className="group relative block w-full overflow-hidden rounded-[4px] border border-navy/10 bg-ivory text-left"
+      style={{ aspectRatio: ratio }}
+      aria-label={`Открыть изображение: ${item.title}`}
+    >
+      <Image
+        src={item.asset.asset!}
+        alt={item.asset.alt ?? item.title}
+        fill
+        sizes={sizes}
+        className={cn(
+          "transition-transform duration-500 ease-out group-hover:scale-[1.015] motion-reduce:transition-none",
+          item.asset.fit === "contain" ? "object-contain p-2" : "object-cover object-top",
+        )}
+      />
+      {item.asset.isPlaceholder && <DemoBadge />}
+    </button>
+  );
+}
+
+function LightboxButton({ label, onClick, children }: { label: string; onClick: () => void; children: ReactNode }) {
   return (
     <button
       type="button"

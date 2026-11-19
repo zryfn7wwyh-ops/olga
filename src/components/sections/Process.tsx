@@ -1,22 +1,22 @@
 import { processSection } from "@/content/landing";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 
+/** Компактный нумерованный список: строгий набор без карточек и таймлайна. */
 export function Process() {
   return (
-    <section id="process" aria-labelledby="process-title" className="section-tight on-light bg-ivory">
-      <div className="container-lp">
-        <SectionHeading id="process-title" eyebrow={processSection.eyebrow} title={processSection.title} />
-        <ol className="relative mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-6 lg:mt-14 lg:grid-cols-4 lg:gap-8">
-          <span aria-hidden="true" className="absolute top-[27px] right-[25%] left-[28px] hidden h-px bg-gold/50 lg:block" />
+    <section id="process" aria-labelledby="process-title" className="on-light bg-paper py-14 md:py-20">
+      <div className="container-lp grid gap-6 lg:grid-cols-12 lg:gap-12">
+        <h2 id="process-title" className="h2 text-[30px]! sm:text-[40px]! lg:col-span-4 lg:self-start" data-reveal>
+          {processSection.title}
+        </h2>
+        <ol className="lg:col-span-8">
           {processSection.steps.map((step, i) => (
-            <li key={step.title} data-reveal style={{ ["--reveal-delay" as string]: `${i * 80}ms` }} className="relative flex gap-4 sm:block">
-              <span className="relative z-10 grid size-11 shrink-0 place-items-center rounded-full border border-gold/70 bg-ivory font-serif text-[18px] text-navy lining-nums sm:size-14 sm:text-[22px]">
-                0{i + 1}
-              </span>
-              <div>
-                <h3 className="h3 text-[21px]! sm:mt-5 sm:text-[26px]!">{step.title}</h3>
-                <p className="mt-1 text-[15px] text-muted-text sm:mt-2 sm:text-[15.5px]">{step.text}</p>
-              </div>
+            <li
+              key={step.title}
+              className="grid grid-cols-[32px_1fr] gap-x-3 border-t border-stroke py-4 first:border-t-0 first:pt-0 sm:grid-cols-[48px_200px_1fr] sm:gap-x-6 sm:py-5"
+            >
+              <span className="text-[15px] font-semibold text-muted-text tabular-nums">{i + 1}.</span>
+              <h3 className="text-[17px] font-semibold text-ink">{step.title}</h3>
+              <p className="col-start-2 mt-1 text-[15.5px] text-muted-text sm:col-start-3 sm:mt-0">{step.text}</p>
             </li>
           ))}
         </ol>

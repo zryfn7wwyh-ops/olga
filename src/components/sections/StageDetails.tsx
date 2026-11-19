@@ -9,22 +9,24 @@ export function StageDetails({
   openLabel,
   closeLabel,
   title,
+  tone = "dark",
 }: {
   items: readonly string[];
   openLabel: string;
   closeLabel: string;
   title: string;
+  tone?: "light" | "dark";
 }) {
   const [open, setOpen] = useState(false);
   const id = useId();
   return (
-    <div className="mt-auto pt-5">
+    <div className="pt-4">
       <div id={id} className="accordion-panel" data-open={open} inert={!open}>
         <div>
-          <ul className="mb-4 space-y-2.5 border-t border-[var(--on-dark-stroke)] pt-4 text-[15px] text-ivory/85">
+          <ul className={cn("mb-3 space-y-2 text-[15px]", tone === "dark" ? "text-ivory/85" : "text-ink")}>
             {items.map((d) => (
               <li key={d} className="flex gap-3">
-                <span className="mt-[11px] h-px w-3 shrink-0 bg-gold" aria-hidden="true" />
+                <span className={cn("mt-[11px] h-px w-3 shrink-0", tone === "dark" ? "bg-ivory/40" : "bg-navy/40")} aria-hidden="true" />
                 {d}
               </li>
             ))}
@@ -36,7 +38,10 @@ export function StageDetails({
         aria-expanded={open}
         aria-controls={id}
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold text-ivory transition-colors hover:text-gold-soft"
+        className={cn(
+          "inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold underline-offset-4 transition-colors hover:underline",
+          tone === "dark" ? "text-ivory" : "text-ink",
+        )}
       >
         <Plus
           className={cn("size-4 transition-transform duration-300 motion-reduce:transition-none", open && "rotate-45")}

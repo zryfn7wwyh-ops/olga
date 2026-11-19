@@ -24,11 +24,10 @@ export function FAQ() {
   }
 
   return (
-    <section id="faq" aria-labelledby="faq-title" className="section on-light bg-paper">
+    <section id="faq" aria-labelledby="faq-title" className="on-light bg-ivory py-14 md:py-20 xl:py-24">
       <div className="container-lp grid gap-10 lg:grid-cols-12 lg:gap-12">
         <div className="lg:col-span-4">
           <div className="lg:sticky lg:top-28" data-reveal>
-            <p className="eyebrow mb-5">{faqSection.eyebrow}</p>
             <h2 id="faq-title" className="h2">
               {faqSection.title}
             </h2>

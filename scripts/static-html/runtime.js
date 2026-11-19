@@ -150,7 +150,10 @@
 
   /* ---------- Лайтбокс галереи кейса ---------- */
   var lightbox = $("dialog.lightbox-dialog");
-  var galleryBtns = $$('#case button[aria-label^="Открыть изображение"]');
+  var allGalleryBtns = $$('#case button[aria-label^="Открыть изображение"]');
+  // Кнопки есть и в десктопной раскладке, и в мобильном слайдере — листаем только видимые.
+  var galleryBtns = allGalleryBtns;
+  function visibleGalleryBtns() { return allGalleryBtns.filter(function (b) { return b.offsetParent !== null; }); }
   var lbIndex = 0;
   var lbOpener = null;
   function renderLightbox() {
@@ -181,10 +184,11 @@
       '" class="grid size-11 place-items-center rounded-full border border-white/25 text-[22px] leading-none text-ivory transition-colors hover:border-gold hover:text-gold-soft">' + glyph + "</button>";
   }
   function step(dir) { lbIndex = (lbIndex + dir + galleryBtns.length) % galleryBtns.length; renderLightbox(); }
-  if (lightbox && galleryBtns.length) {
-    galleryBtns.forEach(function (btn, i) {
+  if (lightbox && allGalleryBtns.length) {
+    allGalleryBtns.forEach(function (btn) {
       btn.addEventListener("click", function () {
-        lbOpener = btn; lbIndex = i; renderLightbox(); lightbox.showModal(); lockScroll(true);
+        galleryBtns = visibleGalleryBtns();
+        lbOpener = btn; lbIndex = Math.max(0, galleryBtns.indexOf(btn)); renderLightbox(); lightbox.showModal(); lockScroll(true);
       });
     });
     wireDialog(lightbox, function () { if (lbOpener) lbOpener.focus({ preventScroll: true }); });

@@ -1,63 +1,67 @@
 import { ArrowUpRight } from "lucide-react";
 import { caseSection } from "@/content/landing";
 import { caseAksenova } from "@/content/case-aksenova";
-import { CaseFacts, CaseFunnel } from "./CaseFunnel";
+import { CaseResults } from "./CaseFunnel";
 import { CaseGallery } from "./CaseGallery";
 import { CaseMobileSummary } from "./CaseMobileSummary";
 import { CaseViewTracker } from "./CaseViewTracker";
 import { CtaButton } from "@/components/forms/CtaButton";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ExternalSiteLink } from "@/components/ui/ExternalSiteLink";
 
+/** Кейс в формате editorial case study: проект → цифры → материалы. */
 export function CaseStudy() {
+  const aside = (
+    <div className="flex h-full flex-col">
+      <dl className="divide-y divide-navy/12 border-y border-navy/12">
+        {caseSection.meta.map((m) => (
+          <div key={m.label} className="grid grid-cols-[110px_1fr] gap-4 py-3.5 lg:grid-cols-1 lg:gap-1">
+            <dt className="text-[13px] font-semibold text-muted-text">{m.label}</dt>
+            <dd className="text-[15.5px] text-ink">{m.value}</dd>
+          </div>
+        ))}
+      </dl>
+      <ExternalSiteLink place="case" className="mt-5 inline-flex min-h-11 items-center gap-2 text-[15.5px] font-semibold text-ink link-underline">
+        {caseSection.siteLinkLabel}
+        <ArrowUpRight className="size-4" strokeWidth={1.75} aria-hidden="true" />
+      </ExternalSiteLink>
+      <p className="text-[13px] text-muted-text">{caseAksenova.siteLabel}</p>
+    </div>
+  );
+
   return (
-    <section id="case" aria-labelledby="case-title" className="on-light bg-ivory py-11 md:py-24 xl:py-28">
+    <section id="case" aria-labelledby="case-title" className="on-light bg-ivory py-11 md:py-20 xl:py-24">
       <CaseViewTracker />
       <div className="container-lp">
-        <SectionHeading
-          id="case-title"
-          eyebrow={caseSection.eyebrow}
-          title={caseSection.title}
-          intro={caseSection.subtitle}
-          align="split"
-        />
+        <div className="max-w-[920px]" data-reveal>
+          <p className="eyebrow mb-4">{caseSection.eyebrow}</p>
+          <h2 id="case-title" className="h2">
+            {caseSection.title}
+          </h2>
+          <p className="mt-4 max-w-[68ch] text-[16px] text-muted-text md:mt-5 md:text-[17.5px] md:leading-[1.65]">
+            <span className="md:hidden">{caseSection.subtitleShort}</span>
+            <span className="hidden md:inline">{caseSection.subtitle}</span>
+          </p>
+        </div>
 
-        <h3 className="sr-only">Воронка за отчётный месяц</h3>
         <div className="mt-6 md:hidden">
           <CaseMobileSummary />
         </div>
-        <div className="mt-10 hidden md:block lg:mt-14">
-          <CaseFunnel />
-          <div className="mt-4" data-reveal>
-            <CaseFacts />
-          </div>
-        </div>
-        <p className="mt-3 max-w-[860px] text-[13px] text-muted-text md:mt-4 md:text-[13.5px]">{caseSection.disclaimer}</p>
 
-        <div className="mt-10 md:mt-14 lg:mt-20">
-          <div className="mb-4 flex flex-wrap items-end justify-between gap-x-4 gap-y-1 md:mb-6">
-            <div>
-              <p className="eyebrow mb-3">{caseSection.worksTitle}</p>
-              <h3 className="h3 text-[28px]! sm:text-[34px]!">{caseSection.galleryTitle}</h3>
-            </div>
-            <ExternalSiteLink
-              place="case"
-              className="inline-flex min-h-11 items-center gap-2 text-[15.5px] font-semibold text-ink link-underline"
-            >
-              {caseSection.siteLinkLabel}: {caseAksenova.siteLabel}
-              <ArrowUpRight className="size-4" strokeWidth={1.75} aria-hidden="true" />
-            </ExternalSiteLink>
-          </div>
-          <CaseGallery />
+        <div className="mt-6 md:mt-12">
+          <CaseGallery aside={aside} results={<CaseResults />} />
+          <ExternalSiteLink place="case_mobile" className="mt-4 inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold text-ink link-underline md:hidden">
+            {caseSection.siteLinkLabel}: {caseAksenova.siteLabel}
+            <ArrowUpRight className="size-4" strokeWidth={1.75} aria-hidden="true" />
+          </ExternalSiteLink>
         </div>
 
-        <div className="mt-6 flex flex-col gap-4 border-t border-navy/15 pt-6 sm:flex-row sm:items-center sm:justify-between md:mt-10 md:pt-8">
-          <p className="max-w-[52ch] text-[16px] text-muted-text">
-            Разберём вашу практику так же: источники обращений, сайт и путь клиента до договора.
-          </p>
-          <CtaButton source="case_cta" event="case_cta_click" variant="primary-dark" className="w-full shrink-0 sm:w-auto">
+        <p className="mt-6 max-w-[860px] text-[13px] text-muted-text md:mt-8">{caseSection.disclaimer}</p>
+
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6 md:mt-8">
+          <CtaButton source="case_cta" event="case_cta_click" variant="primary-dark" className="w-full sm:w-auto">
             {caseSection.cta}
           </CtaButton>
+          <p className="text-[14.5px] text-muted-text">Посмотрим источники обращений, сайт и путь клиента до договора.</p>
         </div>
       </div>
     </section>

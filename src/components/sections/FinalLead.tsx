@@ -1,5 +1,4 @@
-import { Check } from "lucide-react";
-import { finalLead, hero } from "@/content/landing";
+import { finalLead } from "@/content/landing";
 import { LeadForm } from "@/components/forms/LeadForm";
 
 /** Финальный захват заявки: та же короткая форма, что и в модальном окне. */
@@ -12,22 +11,14 @@ export function FinalLead() {
       />
       <div className="container-lp relative grid gap-10 py-16 md:py-24 lg:grid-cols-12 lg:items-center lg:gap-14 lg:py-28">
         <div className="lg:col-span-6" data-reveal>
-          <p className="eyebrow mb-5">{finalLead.eyebrow}</p>
           <h2 id="lead-title" className="h2">
             {finalLead.title}
           </h2>
           <p className="lead mt-5 text-[var(--on-dark-muted)]">{finalLead.text}</p>
-          <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-[14.5px] text-ivory/90">
-            {hero.valueLine.map((v) => (
-              <li key={v} className="flex items-center gap-2">
-                <Check className="size-4 text-gold-soft" strokeWidth={2} aria-hidden="true" />
-                {v}
-              </li>
-            ))}
-          </ul>
+          <p className="mt-8 border-t border-[var(--on-dark-stroke)] pt-5 text-[15px] text-ivory/80">{finalLead.after}</p>
         </div>
-        <div className="lg:col-span-6" data-reveal>
-          <div className="relative rounded-[16px] bg-paper p-6 text-ink shadow-[0_40px_80px_-40px_rgba(0,0,0,0.7)] sm:p-9">
+        <div className="lg:col-span-6">
+          <div className="relative rounded-[8px] bg-paper p-6 text-ink shadow-[0_40px_80px_-40px_rgba(0,0,0,0.7)] sm:p-9">
             <span className="absolute top-0 left-9 h-px w-20 bg-gold" aria-hidden="true" />
             <LeadForm source="lead_section" submitLabel={finalLead.cta} />
           </div>
