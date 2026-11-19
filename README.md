@@ -95,3 +95,17 @@ src/
 
 ## Скриншоты
 `docs/screenshots/` — desktop (1440), tablet (768), mobile (390), модальное окно.
+
+## Автономная HTML-версия
+
+`static-html/index.html` — один файл без зависимостей (стили, шрифты и скрипты встроены), открывается
+двойным кликом. Интерактив повторён на чистом JS (`scripts/static-html/runtime.js`). Отправка заявок в ней
+по умолчанию отключена: форма честно сообщает, что заявка не отправлена. Чтобы включить, задайте
+`window.LP_LEAD_ENDPOINT` (например, адрес развёрнутого `/api/leads`).
+
+Пересборка после изменения контента:
+
+```bash
+npm run build && npx next start -p 3200 &
+python3 scripts/static-html/build.py http://localhost:3200/ static-html/index.html
+```
