@@ -1,7 +1,8 @@
 "use client";
 
 import { useId, useRef, useState, type FormEvent, type ReactNode } from "react";
-import { AlertCircle, Check, ChevronDown, Info } from "lucide-react";
+import { AlertCircle, Check, ChevronDown, Info, ShieldCheck } from "lucide-react";
+import { leadPrivacyHint } from "@/content/landing";
 import { SPECIALIZATIONS, formatPhoneInput, leadFieldsSchema, type FormSource } from "@/lib/lead-schema";
 import { submitLead } from "@/lib/submit-lead";
 import { track } from "@/lib/analytics";
@@ -125,7 +126,7 @@ export function LeadForm({ source, submitLabel, onSuccess }: Props) {
       setDemo(result.mode === "demo");
       setStatus("success");
       // Событие успеха — только при реальной доставке.
-      if (result.mode === "live") track("lead_form_success", { form_source: source });
+      if (result.mode === "live") track("lead_submit_success", { form_source: source });
       onSuccess?.();
       requestAnimationFrame(() => successRef.current?.focus());
       return;
@@ -320,8 +321,12 @@ export function LeadForm({ source, submitLabel, onSuccess }: Props) {
           submitLabel
         )}
       </Button>
+      <p className="mt-3 flex items-start justify-center gap-2 text-center text-[13px] text-muted-text">
+        <ShieldCheck className="mt-0.5 size-4 shrink-0 text-gold-ink" strokeWidth={1.75} aria-hidden="true" />
+        {leadPrivacyHint}
+      </p>
       {site.mode === "preview" && (
-        <p className="mt-3 text-center text-[12.5px] text-muted-text">Предпросмотр: если CRM не подключена, заявка не отправляется.</p>
+        <p className="mt-1 text-center text-[12.5px] text-muted-text">Предпросмотр: пока CRM не подключена, заявка не отправляется.</p>
       )}
       <p className="sr-only" aria-live="polite">
         {submitting ? "Отправляем заявку" : ""}

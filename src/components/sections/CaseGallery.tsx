@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
 import { caseAksenova } from "@/content/case-aksenova";
+import { caseSection } from "@/content/landing";
 import { isVisible, siteContent, type Replaceable } from "@/content/siteContent";
 import { DemoBadge } from "@/components/ui/MediaFrame";
 import { track } from "@/lib/analytics";
@@ -26,13 +27,23 @@ const items: Item[] = caseAksenova.works.map((w) => ({
 export function CaseGallery() {
   const visible = items.filter((it) => it.asset.asset && isVisible(it.asset));
   const [open, setOpen] = useState<number | null>(null);
+  const [slide, setSlide] = useState(0);
+  const sliderRef = useRef<HTMLUListElement>(null);
+
+  // Индикатор положения мобильного слайдера.
+  const onSliderScroll = () => {
+    const el = sliderRef.current;
+    if (!el || !el.firstElementChild) return;
+    const w = (el.firstElementChild as HTMLElement).offsetWidth + 12;
+    setSlide(Math.min(items.length - 1, Math.round(el.scrollLeft / w)));
+  };
   const dialogRef = useRef<HTMLDialogElement>(null);
   const openerRef = useRef<HTMLElement | null>(null);
 
   const show = useCallback((idx: number) => {
     openerRef.current = document.activeElement as HTMLElement;
     setOpen(idx);
-    track("gallery_open", { item: visible[idx]?.id ?? "" });
+    track("case_gallery_open", { item: visible[idx]?.id ?? "" });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -64,7 +75,14 @@ export function CaseGallery() {
 
   return (
     <>
-      <ul className="grid gap-4 md:grid-cols-2 md:gap-5">
+      <ul
+        ref={sliderRef}
+        onScroll={onSliderScroll}
+        data-slider
+        tabIndex={0}
+        aria-label={caseSection.galleryLabel}
+        className="no-scrollbar -mx-5 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto px-5 pb-1 focus-visible:outline-offset-[-2px] md:mx-0 md:grid md:snap-none md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0"
+      >
         {items.map((it, i) => {
           const vIndex = visible.indexOf(it);
           const hasMedia = vIndex !== -1;
@@ -73,7 +91,7 @@ export function CaseGallery() {
               key={it.id}
               data-reveal
               style={{ ["--reveal-delay" as string]: `${(i % 2) * 80}ms` }}
-              className="flex flex-col overflow-hidden rounded-[14px] border border-stroke bg-paper"
+              className="flex w-[82%] shrink-0 snap-start flex-col overflow-hidden rounded-[14px] border border-stroke bg-paper xs:w-[78%] md:w-auto"
             >
               {hasMedia && (
                 <button
@@ -99,17 +117,30 @@ export function CaseGallery() {
                   </span>
                 </button>
               )}
-              <div className="flex flex-1 items-start gap-4 p-6 sm:p-7">
+              <div className="flex flex-1 items-start gap-3 p-4 sm:gap-4 sm:p-7">
                 <span className="font-serif text-[22px] leading-none text-gold-ink">0{i + 1}</span>
                 <div>
-                  <h4 className="h3 text-[22px]!">{it.title}</h4>
-                  <p className="mt-2 text-[15.5px] text-muted-text">{it.text}</p>
+                  <h4 className="h3 text-[20px]! sm:text-[22px]!">{it.title}</h4>
+                  <p className="mt-1.5 text-[14.5px] text-muted-text sm:mt-2 sm:text-[15.5px]">{it.text}</p>
                 </div>
               </div>
             </li>
           );
         })}
       </ul>
+      <div className="mt-3 flex items-center justify-between md:hidden" aria-hidden="true">
+        <div className="flex gap-1.5" data-slider-dots>
+          {items.map((it, i) => (
+            <span
+              key={it.id}
+              className={cn("h-1.5 rounded-full transition-[width,background-color] duration-300", i === slide ? "w-6 bg-gold" : "w-1.5 bg-navy/25")}
+            />
+          ))}
+        </div>
+        <span className="text-[12.5px] text-muted-text" data-slider-count>
+          {slide + 1} / {items.length} · листайте
+        </span>
+      </div>
 
       <dialog
         ref={dialogRef}

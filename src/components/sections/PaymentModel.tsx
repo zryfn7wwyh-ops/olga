@@ -2,6 +2,7 @@ import { Check, Info } from "lucide-react";
 import { payment } from "@/content/landing";
 import { site } from "@/content/site";
 import { CtaButton } from "@/components/forms/CtaButton";
+import { Disclosure } from "@/components/ui/Disclosure";
 
 export function PaymentModel() {
   return (
@@ -52,6 +53,8 @@ export function PaymentModel() {
           </div>
         </div>
 
+        <PaymentExample />
+
         <div className="mt-8 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <p className="flex max-w-[640px] gap-3 text-[14.5px] text-muted-text">
             <Info className="mt-0.5 size-5 shrink-0 text-gold-ink" strokeWidth={1.5} aria-hidden="true" />
@@ -63,5 +66,44 @@ export function PaymentModel() {
         </div>
       </div>
     </section>
+  );
+}
+
+/** «Как понимаем, за какой результат платите» — пример механики без цен и тарифов. */
+function PaymentExample() {
+  const ex = payment.example;
+  return (
+    <div data-reveal className="mt-4 rounded-[14px] border border-stroke bg-paper p-5 sm:p-8 lg:mt-5">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h3 className="h3 text-[23px]! sm:text-[27px]!">{ex.title}</h3>
+        <p className="rounded-full border border-dashed border-gold-ink/60 px-3 py-1 text-[11.5px] font-bold tracking-[0.12em] text-gold-ink uppercase">
+          {ex.badge}
+        </p>
+      </div>
+      <Disclosure
+        label={ex.toggle}
+        closeLabel={ex.toggleClose}
+        collapseBelow={1024}
+        event="payment_example_expand"
+        className="mt-3"
+      >
+        <ol className="mt-3 grid gap-px overflow-hidden rounded-[12px] border border-stroke bg-stroke md:grid-cols-2 lg:grid-cols-4">
+          {ex.steps.map((step, i) => (
+            <li key={step.title} className="flex flex-col bg-ivory p-5">
+              <span className="font-serif text-[26px] leading-none text-gold-ink lining-nums">{i + 1}</span>
+              <p className="mt-3 text-[16px] font-semibold text-ink">{step.title}</p>
+              <p className="mt-1 text-[14.5px] text-muted-text">{step.text}</p>
+              {"note" in step && step.note && <p className="mt-2 text-[12.5px] text-gold-ink italic">{step.note}</p>}
+              {"value" in step && step.value && (
+                <p className="mt-auto pt-3">
+                  <span className="inline-flex rounded-[8px] bg-navy px-3 py-1.5 text-[13px] font-semibold text-ivory">{step.value}</span>
+                </p>
+              )}
+            </li>
+          ))}
+        </ol>
+        <p className="mt-4 max-w-[860px] text-[15px] text-ink">{ex.text}</p>
+      </Disclosure>
+    </div>
   );
 }

@@ -19,7 +19,7 @@ export function SystemSection() {
       <div className="container-lp relative">
         <SectionHeading id="system-title" eyebrow={system.eyebrow} title={system.title} titleClassName="max-w-[24ch]" />
 
-        <ol className="relative mt-10 grid gap-4 lg:mt-16 lg:grid-cols-3 lg:gap-6">
+        <ol className="relative mt-10 grid gap-4 lg:mt-16 lg:grid-cols-3 lg:items-start lg:gap-6">
           <span aria-hidden="true" className="absolute top-[27px] right-[16%] left-[16%] hidden h-px bg-gold/45 lg:block" />
           {system.stages.map((stage, i) => {
             const last = "included" in stage;
@@ -61,6 +61,7 @@ export function SystemSection() {
                       {stage.included}
                     </p>
                   )}
+                  {"objection" in stage && stage.objection && <ObjectionExample data={stage.objection} />}
                   <StageDetails
                     items={stage.details}
                     openLabel={system.detailsOpen}
@@ -73,6 +74,8 @@ export function SystemSection() {
           })}
         </ol>
 
+        <Specifics />
+
         <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between lg:mt-12">
           <p className="max-w-[56ch] text-[15.5px] text-[var(--on-dark-muted)]">
             Один подрядчик отвечает за весь путь клиента: от первого запроса до разговора о договоре.
@@ -83,5 +86,50 @@ export function SystemSection() {
         </div>
       </div>
     </section>
+  );
+}
+
+type Objection = NonNullable<(typeof system.stages)[2]["objection"]>;
+
+/** Мини-диалог «Как работаем с возражениями» — пример разговора внутри третьего этапа, не отдельная услуга. */
+function ObjectionExample({ data }: { data: Objection }) {
+  return (
+    <figure className="mt-5" aria-label={data.title}>
+      <figcaption className="flex items-center justify-between gap-3 text-[12px] font-bold tracking-[0.14em] uppercase">
+        <span className="text-gold-soft">{data.title}</span>
+        <span className="font-semibold tracking-normal text-ivory/60 normal-case">{data.label}</span>
+      </figcaption>
+      <div className="mt-3 space-y-2">
+        <div className="mr-6 rounded-[14px] rounded-tl-[4px] bg-ivory px-4 py-3 text-navy-deep">
+          <p className="text-[11.5px] font-bold tracking-[0.1em] text-gold-ink uppercase">{data.clientLabel}</p>
+          <p className="mt-1 text-[14.5px] leading-snug font-medium">«{data.client}»</p>
+        </div>
+        <div className="ml-6 rounded-[14px] rounded-tr-[4px] border border-gold/40 bg-navy px-4 py-3">
+          <p className="text-[11.5px] font-bold tracking-[0.1em] text-gold-soft uppercase">{data.answerLabel}</p>
+          <p className="mt-1 text-[14px] leading-snug text-ivory/90">{data.answer}</p>
+        </div>
+      </div>
+    </figure>
+  );
+}
+
+/** Короткий блок о специфике юридического маркетинга — в подвале раздела, без отдельного экрана. */
+function Specifics() {
+  const sp = system.specifics;
+  return (
+    <div data-reveal className="mt-12 grid gap-6 border-t border-[var(--on-dark-stroke)] pt-10 lg:mt-16 lg:grid-cols-12 lg:gap-10">
+      <div className="lg:col-span-5">
+        <h3 className="font-serif text-[26px] leading-[1.15] font-semibold sm:text-[30px]">{sp.title}</h3>
+        <p className="mt-3 text-[15.5px] text-[var(--on-dark-muted)]">{sp.text}</p>
+      </div>
+      <ul className="grid gap-5 sm:grid-cols-3 lg:col-span-7 lg:gap-6">
+        {sp.points.map((pt) => (
+          <li key={pt.title} className="border-t border-gold/60 pt-4">
+            <p className="text-[16px] font-semibold">{pt.title}</p>
+            <p className="mt-1.5 text-[14.5px] text-[var(--on-dark-muted)]">{pt.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

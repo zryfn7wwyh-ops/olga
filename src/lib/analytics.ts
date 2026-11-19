@@ -10,17 +10,18 @@ export type AnalyticsEvent =
   | "hero_cta_click"
   | "case_view"
   | "case_cta_click"
-  | "lead_form_open"
+  | "lead_modal_open"
   | "lead_form_start"
   | "lead_form_submit_attempt"
-  | "lead_form_success"
+  | "lead_submit_success"
   | "lead_form_error"
   | "phone_click"
   | "messenger_click"
   | "faq_open"
   | "external_site_click"
-  | "sticky_cta_click"
-  | "gallery_open";
+  | "mobile_sticky_cta_click"
+  | "case_gallery_open"
+  | "payment_example_expand";
 
 type SafeParams = Record<string, string | number | boolean>;
 

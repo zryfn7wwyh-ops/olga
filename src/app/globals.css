@@ -277,6 +277,13 @@ dialog.lead-dialog::backdrop {
   }
 }
 
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 /* Скрыть поле-ловушку от людей и скринридеров */
 .hp-field {
   position: absolute !important;

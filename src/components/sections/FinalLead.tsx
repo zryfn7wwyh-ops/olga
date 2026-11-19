@@ -1,5 +1,5 @@
-import { ShieldCheck } from "lucide-react";
-import { finalLead } from "@/content/landing";
+import { Check } from "lucide-react";
+import { finalLead, hero } from "@/content/landing";
 import { LeadForm } from "@/components/forms/LeadForm";
 
 /** Финальный захват заявки: та же короткая форма, что и в модальном окне. */
@@ -17,10 +17,14 @@ export function FinalLead() {
             {finalLead.title}
           </h2>
           <p className="lead mt-5 text-[var(--on-dark-muted)]">{finalLead.text}</p>
-          <p className="mt-8 flex gap-3 text-[14px] text-[var(--on-dark-muted)]">
-            <ShieldCheck className="size-5 shrink-0 text-gold-soft" strokeWidth={1.5} aria-hidden="true" />
-            {finalLead.privacyNote}
-          </p>
+          <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-[14.5px] text-ivory/90">
+            {hero.valueLine.map((v) => (
+              <li key={v} className="flex items-center gap-2">
+                <Check className="size-4 text-gold-soft" strokeWidth={2} aria-hidden="true" />
+                {v}
+              </li>
+            ))}
+          </ul>
         </div>
         <div className="lg:col-span-6" data-reveal>
           <div className="relative rounded-[16px] bg-paper p-6 text-ink shadow-[0_40px_80px_-40px_rgba(0,0,0,0.7)] sm:p-9">

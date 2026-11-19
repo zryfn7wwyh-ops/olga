@@ -86,9 +86,21 @@ Telegram). Ключи — только в серверных переменны�
 
 Источники форм: `hero_primary`, `header_cta`, `sticky_cta`, `case_cta`, `system_cta`, `payment_cta`, `lead_section`.
 
-События Метрики: `hero_cta_click`, `case_view`, `case_cta_click`, `lead_form_open`, `lead_form_start`,
-`lead_form_submit_attempt`, `lead_form_success` (только при реальной доставке), `lead_form_error`,
-`external_site_click`, `gallery_open`, `sticky_cta_click`, `faq_open`, `phone_click`, `messenger_click`.
+События Метрики: `lead_modal_open` (открытие окна — не конверсия), `lead_submit_success` (только при реальной
+доставке в CRM), `case_gallery_open`, `payment_example_expand`, `mobile_sticky_cta_click`, а также `hero_cta_click`,
+`case_view`, `case_cta_click`, `lead_form_start`, `lead_form_submit_attempt`, `lead_form_error`, `external_site_click`,
+`faq_open`, `phone_click`, `messenger_click`. Персональные данные в события не передаются.
+
+## История изменений
+
+**v3** — мобильный кейс: цепочка 317 → 27 → 5, финансовая карточка, «Подробнее о конверсии», галерея-слайдер
+со scroll-snap и индикатором (кейс на телефоне стал примерно в 2,5 раза короче); единая кнопка «Получить план
+продвижения» и строка ценности заявки; пояснение следующего шага и подсказка о конфиденциальности в обеих формах;
+пример механики «Как понимаем, за какой результат платите» (без цен); мини-диалог о работе с возражениями
+внутри третьего этапа; блок «Юридический маркетинг нельзя строить по шаблону»; компактные этапы на мобильном;
+липкая кнопка скрывается при открытом окне; canonical — только в production.
+
+**v2** — новая структура, кейс с галереей и лайтбоксом, объединённая система продвижения, режимы preview/production.
 
 ## Автономная HTML-версия
 

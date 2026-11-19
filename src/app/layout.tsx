@@ -14,7 +14,8 @@ export const metadata: Metadata = {
   title: site.seo.title,
   description: site.seo.description,
   applicationName: site.name,
-  ...(site.url ? { alternates: { canonical: "./" } } : {}),
+  // canonical — только в production и при подтверждённом домене.
+  ...(site.url && site.mode === "production" ? { alternates: { canonical: "./" } } : {}),
   robots: site.indexing ? { index: true, follow: true } : { index: false, follow: false },
   openGraph: {
     type: "website",

@@ -4,6 +4,7 @@ import { createContext, useCallback, useContext, useEffect, useRef, useState, ty
 import { X } from "lucide-react";
 import { LeadForm } from "./LeadForm";
 import { track } from "@/lib/analytics";
+import { finalLead, leadNextStep, modalTitle } from "@/content/landing";
 import type { FormSource } from "@/lib/lead-schema";
 
 type LeadModalContextValue = { open: (source: FormSource) => void };
@@ -40,7 +41,7 @@ export function LeadModalProvider({ children }: { children: ReactNode }) {
         setFormKey((k) => k + 1);
       }
       setIsOpen(true);
-      track("lead_form_open", { form_source: src });
+      track("lead_modal_open", { form_source: src });
     },
     [submitted],
   );
@@ -101,16 +102,16 @@ export function LeadModalProvider({ children }: { children: ReactNode }) {
           </button>
           <p className="eyebrow mb-4">План продвижения</p>
           <h2 id="lead-modal-title" className="h3 pr-10 text-[28px]! sm:text-[32px]!">
-            Получить план привлечения клиентов
+            {modalTitle}
           </h2>
           <p id="lead-modal-desc" className="mt-3 mb-7 text-[15px] text-muted-text">
-            Оставьте имя и телефон — обсудим специализацию, регион и текущие источники обращений.
+            {leadNextStep}
           </p>
           {/* Форма остаётся смонтированной: введённые данные не теряются при случайном закрытии. */}
           <LeadForm
             key={formKey}
             source={source}
-            submitLabel="Получить персональный план"
+            submitLabel={finalLead.cta}
             onSuccess={() => setSubmitted(true)}
           />
         </div>

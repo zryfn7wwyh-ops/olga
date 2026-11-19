@@ -44,6 +44,15 @@ export function Hero() {
             </div>
           </div>
 
+          <ul className="mt-4 flex flex-wrap gap-x-2 gap-y-1 text-[13.5px] leading-snug text-ivory/85 sm:text-[14.5px]" aria-label="Что вы получите">
+            {hero.valueLine.map((v, i) => (
+              <li key={v} className="flex items-center gap-2">
+                {i > 0 && <span className="text-gold-soft" aria-hidden="true">·</span>}
+                {v}
+              </li>
+            ))}
+          </ul>
+
           {/* Цифры: на мобильном и планшете — строкой; на десктопе — поверх визуала */}
           <dl className="mt-7 grid grid-cols-3 gap-2 border-t border-[var(--on-dark-stroke)] pt-5 lg:hidden">
             {stats.map((s) => (

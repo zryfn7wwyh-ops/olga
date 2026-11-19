@@ -3,6 +3,7 @@ import { caseSection } from "@/content/landing";
 import { caseAksenova } from "@/content/case-aksenova";
 import { CaseFacts, CaseFunnel } from "./CaseFunnel";
 import { CaseGallery } from "./CaseGallery";
+import { CaseMobileSummary } from "./CaseMobileSummary";
 import { CaseViewTracker } from "./CaseViewTracker";
 import { CtaButton } from "@/components/forms/CtaButton";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -10,7 +11,7 @@ import { ExternalSiteLink } from "@/components/ui/ExternalSiteLink";
 
 export function CaseStudy() {
   return (
-    <section id="case" aria-labelledby="case-title" className="section on-light bg-ivory">
+    <section id="case" aria-labelledby="case-title" className="on-light bg-ivory py-11 md:py-24 xl:py-28">
       <CaseViewTracker />
       <div className="container-lp">
         <SectionHeading
@@ -21,17 +22,20 @@ export function CaseStudy() {
           align="split"
         />
 
-        <div className="mt-10 lg:mt-14">
-          <h3 className="sr-only">Воронка за отчётный месяц</h3>
+        <h3 className="sr-only">Воронка за отчётный месяц</h3>
+        <div className="mt-6 md:hidden">
+          <CaseMobileSummary />
+        </div>
+        <div className="mt-10 hidden md:block lg:mt-14">
           <CaseFunnel />
+          <div className="mt-4" data-reveal>
+            <CaseFacts />
+          </div>
         </div>
-        <div className="mt-4" data-reveal>
-          <CaseFacts />
-          <p className="mt-4 max-w-[860px] text-[13.5px] text-muted-text">{caseSection.disclaimer}</p>
-        </div>
+        <p className="mt-3 max-w-[860px] text-[13px] text-muted-text md:mt-4 md:text-[13.5px]">{caseSection.disclaimer}</p>
 
-        <div className="mt-14 lg:mt-20">
-          <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+        <div className="mt-10 md:mt-14 lg:mt-20">
+          <div className="mb-4 flex flex-wrap items-end justify-between gap-x-4 gap-y-1 md:mb-6">
             <div>
               <p className="eyebrow mb-3">{caseSection.worksTitle}</p>
               <h3 className="h3 text-[28px]! sm:text-[34px]!">{caseSection.galleryTitle}</h3>
@@ -47,7 +51,7 @@ export function CaseStudy() {
           <CaseGallery />
         </div>
 
-        <div className="mt-10 flex flex-col gap-4 border-t border-navy/15 pt-8 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-6 flex flex-col gap-4 border-t border-navy/15 pt-6 sm:flex-row sm:items-center sm:justify-between md:mt-10 md:pt-8">
           <p className="max-w-[52ch] text-[16px] text-muted-text">
             Разберём вашу практику так же: источники обращений, сайт и путь клиента до договора.
           </p>

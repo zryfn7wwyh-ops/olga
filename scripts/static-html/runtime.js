@@ -102,26 +102,51 @@
   }
 
   /* ---------- Аккордеоны: этапы продвижения и FAQ ---------- */
+  function setAccordion(btn, panel, open) {
+    var faqIcon = btn.closest("#faq") ? btn.querySelector("span[aria-hidden]") : null;
+    var label = btn.querySelector("[data-label]");
+    var icon = btn.querySelector("svg");
+    var isDisclosure = btn.hasAttribute("data-label-open");
+    btn.setAttribute("aria-expanded", String(open));
+    panel.setAttribute("data-open", String(open));
+    if (open) panel.removeAttribute("inert"); else panel.setAttribute("inert", "");
+    if (faqIcon) {
+      if (open) swap(faqIcon, "border-stroke text-ink group-hover:border-navy/40", "rotate-45 border-navy bg-navy text-ivory");
+      else swap(faqIcon, "rotate-45 border-navy bg-navy text-ivory", "border-stroke text-ink group-hover:border-navy/40");
+    } else if (icon) {
+      icon.classList.toggle(isDisclosure ? "rotate-180" : "rotate-45", open);
+    }
+    if (label) {
+      label.textContent = isDisclosure
+        ? btn.getAttribute(open ? "data-label-open" : "data-label-closed")
+        : open ? "Свернуть" : "Что входит";
+    }
+  }
   $$("button[aria-controls]").forEach(function (btn) {
     var panel = document.getElementById(btn.getAttribute("aria-controls"));
     if (!panel || !panel.classList.contains("accordion-panel")) return;
-    var faqIcon = btn.closest("#faq") ? btn.querySelector("span[aria-hidden]") : null;
-    var label = btn.querySelector("[data-label]");
-    var plus = btn.querySelector("svg");
+    var wrap = btn.closest("[data-collapse-below]");
+    if (wrap && window.innerWidth < Number(wrap.getAttribute("data-collapse-below"))) setAccordion(btn, panel, false);
     btn.addEventListener("click", function () {
-      var open = btn.getAttribute("aria-expanded") !== "true";
-      btn.setAttribute("aria-expanded", String(open));
-      panel.setAttribute("data-open", String(open));
-      if (open) panel.removeAttribute("inert"); else panel.setAttribute("inert", "");
-      if (faqIcon) {
-        if (open) swap(faqIcon, "border-stroke text-ink group-hover:border-navy/40", "rotate-45 border-navy bg-navy text-ivory");
-        else swap(faqIcon, "rotate-45 border-navy bg-navy text-ivory", "border-stroke text-ink group-hover:border-navy/40");
-      } else if (plus) {
-        plus.classList.toggle("rotate-45", open);
-      }
-      if (label) label.textContent = open ? "Свернуть" : "Что входит";
+      setAccordion(btn, panel, btn.getAttribute("aria-expanded") !== "true");
     });
   });
+
+  /* ---------- Мобильный слайдер галереи ---------- */
+  var slider = $("[data-slider]");
+  if (slider) {
+    var dots = $$("[data-slider-dots] > span");
+    var count = $("[data-slider-count]");
+    slider.addEventListener("scroll", function () {
+      var first = slider.firstElementChild;
+      if (!first) return;
+      var i = Math.min(dots.length - 1, Math.round(slider.scrollLeft / (first.offsetWidth + 12)));
+      dots.forEach(function (d, j) {
+        if (j === i) swap(d, "w-1.5 bg-navy/25", "w-6 bg-gold"); else swap(d, "w-6 bg-gold", "w-1.5 bg-navy/25");
+      });
+      if (count) count.textContent = i + 1 + " / " + dots.length + " · листайте";
+    }, { passive: true });
+  }
 
   /* ---------- Лайтбокс галереи кейса ---------- */
   var lightbox = $("dialog.lightbox-dialog");
@@ -176,7 +201,7 @@
   if (sticky && heroEl && "IntersectionObserver" in window) {
     var pastHero = false, nearForm = new Set();
     var apply = function () {
-      var shown = pastHero && nearForm.size === 0;
+      var shown = pastHero && nearForm.size === 0 && !document.querySelector("dialog[open]");
       swap(sticky, "translate-y-0 pointer-events-none translate-y-full", shown ? "translate-y-0" : "pointer-events-none translate-y-full");
       sticky.setAttribute("aria-hidden", String(!shown));
       if (shown) sticky.removeAttribute("inert"); else sticky.setAttribute("inert", "");
@@ -187,6 +212,8 @@
       apply();
     });
     [$("#lead"), $("footer")].forEach(function (t) { if (t) fio.observe(t); });
+    var dmo = new MutationObserver(apply);
+    $$("dialog").forEach(function (d) { dmo.observe(d, { attributes: true, attributeFilter: ["open"] }); });
   }
 
   /* ---------- Формы ---------- */

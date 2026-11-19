@@ -15,6 +15,14 @@ export function StickyCta() {
   const { open } = useLeadModal();
   const [pastHero, setPastHero] = useState(false);
   const [nearForm, setNearForm] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  useEffect(() => {
+    const check = () => setDialogOpen(Boolean(document.querySelector("dialog[open]")));
+    const mo = new MutationObserver(check);
+    document.querySelectorAll("dialog").forEach((d) => mo.observe(d, { attributes: true, attributeFilter: ["open"] }));
+    return () => mo.disconnect();
+  }, []);
 
   useEffect(() => {
     const hero = document.getElementById("top");
@@ -34,7 +42,7 @@ export function StickyCta() {
     };
   }, []);
 
-  const shown = pastHero && !nearForm;
+  const shown = pastHero && !nearForm && !dialogOpen;
 
   return (
     <div
@@ -50,7 +58,7 @@ export function StickyCta() {
         aria-haspopup="dialog"
         data-form-source="sticky_cta"
         onClick={() => {
-          track("sticky_cta_click");
+          track("mobile_sticky_cta_click");
           open("sticky_cta");
         }}
         className="flex min-h-12 w-full items-center justify-center gap-2 rounded-[10px] bg-gold font-semibold text-navy-deep"
