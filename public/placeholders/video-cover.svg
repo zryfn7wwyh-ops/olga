@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900"><defs>
+<linearGradient id="navyGrad" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#1D3240"/><stop offset="1" stop-color="#0F1B24"/>
+</linearGradient>
+<linearGradient id="goldFade" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#B49A6C"/><stop offset="1" stop-color="#B49A6C" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="ivoryGrad" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#F5F2EC"/><stop offset="1" stop-color="#EDE8DE"/>
+</linearGradient>
+<filter id="shadow" x="-20%" y="-20%" width="140%" height="160%">
+  <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#0F1B24" flood-opacity="0.28"/>
+</filter>
+</defs><rect width="1600" height="900" fill="url(#navyGrad)"/><line x1="200" y1="0" x2="200" y2="900" stroke="#F5F2EC" stroke-opacity="0.035"/><line x1="400" y1="0" x2="400" y2="900" stroke="#F5F2EC" stroke-opacity="0.035"/><line x1="600" y1="0" x2="600" y2="900" stroke="#F5F2EC" stroke-opacity="0.035"/><line x1="800" y1="0" x2="800" y2="900" stroke="#F5F2EC" stroke-opacity="0.035"/><line x1="1000" y1="0" x2="1000" y2="900" stroke="#F5F2EC" stroke-opacity="0.035"/><line x1="1200" y1="0" x2="1200" y2="900" stroke="#F5F2EC" stroke-opacity="0.035"/><line x1="1400" y1="0" x2="1400" y2="900" stroke="#F5F2EC" stroke-opacity="0.035"/><path d="M80 150 V80 H150" stroke="#B49A6C" stroke-width="2" fill="none" stroke-opacity="0.8"/><path d="M1520 150 V80 H1450" stroke="#B49A6C" stroke-width="2" fill="none" stroke-opacity="0.8"/><path d="M80 750 V820 H150" stroke="#B49A6C" stroke-width="2" fill="none" stroke-opacity="0.8"/><path d="M1520 750 V820 H1450" stroke="#B49A6C" stroke-width="2" fill="none" stroke-opacity="0.8"/></svg>

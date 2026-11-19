@@ -4,6 +4,7 @@ import { CurrentYear } from "./CurrentYear";
 
 export function Footer() {
   const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+  const doc = (href: string) => (href.startsWith("/") ? `${base}${href}` : href);
   return (
     <footer className="on-dark border-t border-[var(--on-dark-stroke)] bg-navy-deep text-ivory">
       <div className="container-lp grid gap-10 py-12 md:grid-cols-12 md:py-14">
@@ -26,12 +27,12 @@ export function Footer() {
         <div className="space-y-3 text-[15px] md:col-span-4">
           <ContactLinks />
           <p>
-            <a href={`${base}${site.legal.privacyHref}`} className="link-underline text-ivory/80 hover:text-ivory">
+            <a href={doc(site.legal.privacyHref)} className="link-underline text-ivory/80 hover:text-ivory">
               Политика обработки персональных данных
             </a>
           </p>
           <p>
-            <a href={`${base}${site.legal.consentHref}`} className="link-underline text-ivory/80 hover:text-ivory">
+            <a href={doc(site.legal.consentHref)} className="link-underline text-ivory/80 hover:text-ivory">
               Согласие на обработку персональных данных
             </a>
           </p>
@@ -42,7 +43,7 @@ export function Footer() {
           <p>
             © <CurrentYear /> {site.name}
           </p>
-          <p>Результаты кейса относятся к конкретному проекту и не являются гарантией.</p>
+          <p>Результаты кейса относятся к конкретному проекту и не являются гарантией.{site.mode === "preview" ? " · Предпросмотр" : ""}</p>
         </div>
       </div>
     </footer>

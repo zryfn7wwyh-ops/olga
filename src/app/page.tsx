@@ -1,18 +1,17 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { StickyCta } from "@/components/layout/StickyCta";
+import { FaqJsonLd } from "@/components/layout/FaqJsonLd";
 import { Hero } from "@/components/sections/Hero";
 import { CaseStudy } from "@/components/sections/CaseStudy";
 import { Problems } from "@/components/sections/Problems";
-import { Approach } from "@/components/sections/Approach";
-import { Services } from "@/components/sections/Services";
-import { PaymentModel } from "@/components/sections/PaymentModel";
+import { SystemSection } from "@/components/sections/SystemSection";
 import { Audiences } from "@/components/sections/Audiences";
+import { PaymentModel } from "@/components/sections/PaymentModel";
+import { Team } from "@/components/sections/Team";
 import { Process } from "@/components/sections/Process";
-import { Proof } from "@/components/sections/Proof";
-import { LeadSection } from "@/components/sections/LeadSection";
 import { FAQ } from "@/components/sections/FAQ";
-import { FinalCTA } from "@/components/sections/FinalCTA";
-import { FaqJsonLd } from "@/components/layout/FaqJsonLd";
+import { FinalLead } from "@/components/sections/FinalLead";
 
 export default function HomePage() {
   return (
@@ -22,17 +21,16 @@ export default function HomePage() {
         <Hero />
         <CaseStudy />
         <Problems />
-        <Approach />
-        <Services />
-        <PaymentModel />
+        <SystemSection />
         <Audiences />
+        <PaymentModel />
+        <Team />
         <Process />
-        <Proof />
-        <LeadSection />
         <FAQ />
-        <FinalCTA />
+        <FinalLead />
       </main>
       <Footer />
+      <StickyCta />
       <FaqJsonLd />
     </>
   );

@@ -1,6 +1,7 @@
 import "server-only";
 import type { LeadPayload } from "./lead-schema";
 import { site } from "@/content/site";
+import { SITE_MODE } from "@/content/siteContent";
 
 /**
  * Настраиваемая доставка заявок.
@@ -9,9 +10,12 @@ import { site } from "@/content/site";
  *   - "webhook"  — POST JSON на LEAD_WEBHOOK_URL (n8n, Make, собственный сервер, amoCRM через посредника и т. п.);
  *   - "bitrix24" — создание лида через входящий вебхук Битрикс24 (BITRIX24_WEBHOOK_URL);
  *   - "telegram" — уведомление в Telegram-чат (TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID);
- *   - "test"     — локальный тестовый режим: заявка НИКУДА не отправляется.
- *                  Разрешён только вне production.
- *   - не задано  — в development работает как "test", в production — отправка недоступна (503).
+ *   - "demo"     — демонстрационный режим: заявка НИКУДА не отправляется,
+ *                  пользователь видит «Демо: заявка не отправлена». Только при NEXT_PUBLIC_SITE_MODE=preview.
+ *   - не задано  — в preview работает как "demo", в production — отправка недоступна (503).
+ *
+ * В production (NEXT_PUBLIC_SITE_MODE=production) заявки принимаются только при настроенной доставке
+ * и утверждённых документах (LEGAL_DOCUMENTS_APPROVED=true).
  *
  * Можно указать несколько адаптеров через запятую: "bitrix24,telegram".
  * Заявка считается принятой, только если ВСЕ указанные адаптеры ответили успешно.
@@ -19,13 +23,13 @@ import { site } from "@/content/site";
  * Персональные данные (имя, телефон, комментарий) не пишутся в серверные логи.
  */
 
-export type DeliveryMode = "webhook" | "bitrix24" | "telegram" | "test";
+export type DeliveryMode = "webhook" | "bitrix24" | "telegram" | "demo";
 export type DeliveryStatus =
-  | { kind: "ready"; modes: Exclude<DeliveryMode, "test">[] }
-  | { kind: "test" }
+  | { kind: "ready"; modes: Exclude<DeliveryMode, "demo">[] }
+  | { kind: "demo" }
   | { kind: "unavailable"; reason: string };
 
-const isProduction = () => process.env.NODE_ENV === "production";
+const isProduction = () => SITE_MODE === "production";
 
 export function getDeliveryStatus(): DeliveryStatus {
   const raw = (process.env.LEAD_DELIVERY_MODE ?? "").trim().toLowerCase();
@@ -39,14 +43,14 @@ export function getDeliveryStatus(): DeliveryStatus {
     return { kind: "unavailable", reason: "Privacy policy / consent are not approved (site.legal.documentsApproved)" };
   }
 
-  if (modes.length === 0 || modes.includes("test")) {
+  if (modes.length === 0 || modes.includes("demo")) {
     if (isProduction()) {
       return { kind: "unavailable", reason: "Lead delivery is not configured for production" };
     }
-    return { kind: "test" };
+    return { kind: "demo" };
   }
 
-  const live: Exclude<DeliveryMode, "test">[] = [];
+  const live: Exclude<DeliveryMode, "demo">[] = [];
   for (const mode of modes) {
     switch (mode) {
       case "webhook":
@@ -96,10 +100,8 @@ async function deliverBitrix24(lead: LeadPayload) {
   const base = process.env.BITRIX24_WEBHOOK_URL!.replace(/\/$/, "");
   const comments = [
     `Источник формы: ${lead.formSource}`,
-    `Специализация: ${lead.specializationLabel}`,
+    lead.specializationLabel && `Специализация: ${lead.specializationLabel}`,
     lead.city && `Город/регион: ${lead.city}`,
-    lead.website && `Сайт: ${lead.website}`,
-    lead.comment && `Комментарий: ${lead.comment}`,
     lead.pageUrl && `Страница: ${lead.pageUrl}`,
     `Согласие на обработку ПДн: да, ${lead.consentAt}`,
   ]
@@ -108,11 +110,10 @@ async function deliverBitrix24(lead: LeadPayload) {
 
   const res = await postJson(`${base}/crm.lead.add.json`, {
     fields: {
-      TITLE: `Заявка с лендинга: ${lead.specializationLabel}`,
+      TITLE: `Заявка с лендинга${lead.specializationLabel ? `: ${lead.specializationLabel}` : ""}`,
       NAME: lead.name,
       PHONE: [{ VALUE: `+${lead.phone}`, VALUE_TYPE: "WORK" }],
       ADDRESS_CITY: lead.city,
-      WEB: lead.website ? [{ VALUE: lead.website, VALUE_TYPE: "WORK" }] : undefined,
       COMMENTS: comments,
       SOURCE_ID: process.env.BITRIX24_SOURCE_ID || "WEB",
       SOURCE_DESCRIPTION: lead.formSource,
@@ -135,10 +136,8 @@ async function deliverTelegram(lead: LeadPayload) {
     "<b>Новая заявка с лендинга</b>",
     `Имя: ${escapeHtml(lead.name)}`,
     `Телефон: +${lead.phone}`,
-    `Специализация: ${escapeHtml(lead.specializationLabel)}`,
+    lead.specializationLabel && `Специализация: ${escapeHtml(lead.specializationLabel)}`,
     lead.city && `Город/регион: ${escapeHtml(lead.city)}`,
-    lead.website && `Сайт: ${escapeHtml(lead.website)}`,
-    lead.comment && `Комментарий: ${escapeHtml(lead.comment)}`,
     `Источник формы: ${lead.formSource}`,
     Object.keys(lead.utm).length > 0 &&
       `UTM: ${escapeHtml(Object.entries(lead.utm).map(([k, v]) => `${k}=${v}`).join(", "))}`,
@@ -154,13 +153,13 @@ async function deliverTelegram(lead: LeadPayload) {
   if (!data?.ok) throw new Error("Telegram returned an error");
 }
 
-const adapters: Record<Exclude<DeliveryMode, "test">, (lead: LeadPayload) => Promise<void>> = {
+const adapters: Record<Exclude<DeliveryMode, "demo">, (lead: LeadPayload) => Promise<void>> = {
   webhook: deliverWebhook,
   bitrix24: deliverBitrix24,
   telegram: deliverTelegram,
 };
 
-export type DeliveryResult = { ok: true; mode: "live" | "test" } | { ok: false; reason: "unavailable" | "failed" };
+export type DeliveryResult = { ok: true; mode: "live" | "demo" } | { ok: false; reason: "unavailable" | "failed" };
 
 export async function deliverLead(lead: LeadPayload): Promise<DeliveryResult> {
   const status = getDeliveryStatus();
@@ -170,12 +169,10 @@ export async function deliverLead(lead: LeadPayload): Promise<DeliveryResult> {
     return { ok: false, reason: "unavailable" };
   }
 
-  if (status.kind === "test") {
-    // Только служебные поля — без имени, телефона и комментария.
-    console.info(
-      `[leads] TEST MODE — lead NOT delivered (source=${lead.formSource}, variant=${lead.variant}, specialization=${lead.specialization})`,
-    );
-    return { ok: true, mode: "test" };
+  if (status.kind === "demo") {
+    // Только служебные поля — без имени и телефона.
+    console.info(`[leads] DEMO MODE — lead NOT delivered (source=${lead.formSource})`);
+    return { ok: true, mode: "demo" };
   }
 
   try {

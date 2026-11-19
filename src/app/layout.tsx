@@ -23,7 +23,8 @@ export const metadata: Metadata = {
     description: site.seo.description,
     siteName: site.name,
     ...(site.url ? { url: site.url } : {}),
-    ...(site.seo.ogImage ? { images: [{ url: site.seo.ogImage, width: 1200, height: 630 }] } : {}),
+    // Абсолютный адрес обложки возможен только при известном домене (NEXT_PUBLIC_SITE_URL).
+    ...(site.seo.ogImage && site.url ? { images: [{ url: site.seo.ogImage, width: 1200, height: 630 }] } : {}),
   },
   formatDetection: { telephone: false },
 };

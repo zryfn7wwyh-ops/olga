@@ -1,8 +1,8 @@
 # Legal Performance — лендинг «Маркетинг для юристов и адвокатов»
 
-Одностраничный адаптивный сайт по ТЗ «Legal Performance»: оффер, интерактивный кейс адвоката Аксёновой
-(317 → 27 → 5, 545 000 ₽ выручки, 57 000 ₽ на рекламу), услуги с блоком «консультации по продажам — уже входят
-в пакет», условия, FAQ, формы заявок с серверным обработчиком.
+Адаптивный продающий лендинг: оффер, кейс адвоката Аксёновой (317 → 27 → 5 → 545 000 ₽), система
+комплексного продвижения (консультации по продажам — внутри пакета), оплата за результат, команда, этапы,
+FAQ и единая форма заявки.
 
 **Стек:** Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS 4 · Zod · lucide-react.
 Шрифты Cormorant Garamond и Manrope подключены локально (`@fontsource`), без внешних CDN.
@@ -11,101 +11,94 @@
 
 ```bash
 npm install
-cp .env.example .env.local   # при необходимости
-npm run dev                  # http://localhost:3000
+cp .env.example .env.local
+npm run dev            # http://localhost:3000 — режим preview
 ```
 
-Проверки:
+Проверки: `npm run lint`, `npm run typecheck`, `npm run build && npm start`.
 
-```bash
-npm run lint
-npm run typecheck
-npm run build && npm start
-```
+## Два режима
 
-В development без настроек форма работает в **тестовом режиме**: заявка проходит валидацию, но никуда не
-отправляется, а в интерфейсе показывается пометка «Тестовый режим». В production без подключённой доставки
-и без утверждённых юридических документов API отвечает `503`, и пользователь видит честное сообщение
-«Заявка не отправлена» — ложного «Спасибо» не бывает.
+| | `NEXT_PUBLIC_SITE_MODE=preview` (по умолчанию) | `NEXT_PUBLIC_SITE_MODE=production` |
+| --- | --- | --- |
+| Заглушки (макеты, портрет, видео, поля команды) | видны с пометкой «ДЕМО / ЗАМЕНИТЬ» | скрыты; показывается нейтральная версия |
+| Форма без CRM | «Демо: заявка не отправлена» | 503, «Заявка не отправлена» |
+| Индексация | `noindex, nofollow` | `index, follow` (при заданном домене) |
+| Сборка | всегда | **останавливается**, если нет `LEAD_DELIVERY_MODE`, `LEGAL_DOCUMENTS_APPROVED=true`, `NEXT_PUBLIC_SITE_URL` |
 
-## Развёртывание
+### Как включить production
+1. Подключить доставку заявок: `LEAD_DELIVERY_MODE=bitrix24|webhook|telegram` и реквизиты (см. `.env.example`).
+2. Разместить утверждённые политику ПДн и согласие (`src/content/legal.ts` или `NEXT_PUBLIC_PRIVACY_URL` /
+   `NEXT_PUBLIC_CONSENT_URL`) и задать `LEGAL_DOCUMENTS_APPROVED=true`.
+3. Задать `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_SITE_MODE=production`, затем `npm run build && npm start`.
 
-Нужен Node.js ≥ 20.9. Подходит любой хостинг с Node.js (VPS, Docker, Vercel, Яндекс Cloud и т. п.):
+## Замена временных материалов — один файл
 
-```bash
-npm ci && npm run build && npm start   # порт задаётся через PORT
-```
+Все заменяемые изображения и данные — в **`src/content/siteContent.ts`**. У каждого элемента есть
+`value`, `asset`, `isPlaceholder`, `note` (и `ratio`/`fit` для изображений). Комментарии `TODO REPLACE` отмечают,
+что нужно заменить. Порядок замены изображения: положить файл в `public/case-aksenova/` (или `public/team/`),
+указать путь в `asset`, поставить `isPlaceholder: false`. Пропорции области заданы в `ratio`, поэтому сетка
+не меняется.
 
-Перед публикацией пройдите [TODO_BEFORE_LAUNCH.md](TODO_BEFORE_LAUNCH.md). Минимум:
-1. Задать `LEAD_DELIVERY_MODE` и реквизиты CRM/вебхука.
-2. Внести утверждённые тексты в `src/content/legal.ts` и поставить `documentsApproved: true` в `src/content/site.ts`.
-3. Задать `NEXT_PUBLIC_SITE_URL` и `NEXT_PUBLIC_SITE_INDEXING=true` на боевом домене.
+Демонстрационные макеты лежат в `public/placeholders/` и генерируются скриптом
+`python3 scripts/placeholders/generate.py` — это нейтральные интерфейсы без статистики, не скриншоты проекта.
 
-Rate limit заявок хранится в памяти процесса — при нескольких инстансах замените на Redis или лимит на прокси.
+### Что нужно предоставить
 
-## Где менять контент
+| Ключ | Что прислать | Формат |
+| --- | --- | --- |
+| `heroCaseImage` | Скриншот первого экрана сайта адвокат-аксенова.рф | 16:10, ≥ 1600 px, desktop |
+| `caseWebsiteDesktop` | Сайт на компьютере + телефоне (или 2 скриншота) | 16:9 |
+| `caseWebsiteMobile` | Скриншот мобильной версии | ~390×844 |
+| `caseAdsImage` | Обезличенная структура кампаний Директа (показатели — только с согласия) | 4:3 |
+| `caseArticlesImage` | Скриншот 1–2 опубликованных статей | 4:3 |
+| `caseSocialImage` | 3–6 публикаций из соцсетей в сетке | 4:3 |
+| `teamPortrait` | Фото руководителя проекта (с согласием на публикацию) | 3:4, ≥ 900×1200 |
+| `teamName`, `teamRole` | Имя и фамилия, должность | текст |
+| `teamFacts` | 2 факта опыта + роль в проекте Аксёновой | текст |
+| `clientReview` | Видеоотзыв адвоката о работе подрядчика + обложка | 16:9, ссылка на видео |
+| `casePeriod` | Название отчётного месяца | текст, например «март 2026» |
+| `contactPhone`, `contactEmail` | Контакты | через `.env` |
+| `legalEntityDetails` | Наименование, ИНН/ОГРН оператора ПДн | через `.env` |
+| `crmEndpoint` | Выбранная CRM и реквизиты вебхука | через `.env`, только сервер |
+| `privacyPolicyUrl`, `consentUrl` | Утверждённые документы | ссылка или текст в `legal.ts` |
+| `analyticsId` | ID Яндекс Метрики | через `.env` |
+| — | Название бренда / логотип, домен, OG-обложка 1200×630 | — |
+
+## Где менять остальной контент
 
 | Что | Файл |
 | --- | --- |
-| Название, контакты, навигация, SEO, текст модели оплаты, флаг юр. документов | `src/content/site.ts` (+ переменные окружения) |
-| Цифры кейса, ссылка на сайт, выполненные работы, пути к скриншотам | `src/content/case-aksenova.ts` |
-| Тексты всех секций (hero, услуги, консультации по продажам, условия, этапы…) | `src/content/landing.ts` |
-| Вопросы и ответы FAQ | `src/content/faq.ts` |
-| Политика ПДн и согласие | `src/content/legal.ts` |
-| Специализации в форме, источники форм, правила валидации | `src/lib/lead-schema.ts` |
-| Доставка заявок (webhook / Битрикс24 / Telegram) | `src/lib/lead-delivery.ts` |
-| Цвета и токены | `src/styles/tokens.css`, `src/app/globals.css` (`@theme`) |
-| Изображения (только разрешённые) | `public/images/…` и пути в `case-aksenova.ts` → `assets` |
+| Тексты секций | `src/content/landing.ts` |
+| Цифры кейса и список работ | `src/content/case-aksenova.ts` (конверсии считаются автоматически) |
+| FAQ (8 вопросов) | `src/content/faq.ts` |
+| Бренд, навигация, SEO | `src/content/site.ts` |
+| Политика и согласие | `src/content/legal.ts` |
+| Цвета и токены | `src/styles/tokens.css`, `src/app/globals.css` |
 
-Производные конверсии (8,5% / 18,5% / 1,6%) считаются автоматически из чисел кейса.
+## Формы и заявки
 
-### Как добавить скриншот кейса
-Положите файл в `public/images/case/`, например `site-desktop.webp`, и укажите в `case-aksenova.ts`:
-```ts
-siteDesktop: { src: "/images/case/site-desktop.webp", alt: "…", width: 1600, height: 1000 },
-```
-Скриншот появится в браузерной рамке секции «Показываем работу» и в карточке «Разработали сайт».
+Одна короткая форма везде (секция и модальное окно): **имя и телефон** обязательны, специализация и город —
+по желанию, согласие на ПДн — отдельный неотмеченный чекбокс. Все формы отправляют через единый адаптер
+`src/lib/submit-lead.ts` → `POST /api/leads` (серверная валидация Zod, honeypot, rate limit, защита от дублей
+по телефону и `submission_id` в течение 10 минут). Доставка — `src/lib/lead-delivery.ts` (webhook, Битрикс24,
+Telegram). Ключи — только в серверных переменных окружения.
 
-## Архитектура
-
-```
-src/
-  app/            layout, page, privacy, api/leads (POST), robots, sitemap
-  components/
-    layout/       Header, Footer, Logo, Analytics (Метрика), ContactLinks
-    sections/     Hero, CaseStudy, CaseFunnel, Problems, Approach/SystemFlow, Services,
-                  SalesConsulting, PaymentModel, Audiences, Process, Proof, LeadSection, FAQ, FinalCTA
-    forms/        LeadForm (полная/короткая), LeadModal (нативный <dialog>), CtaButton
-    ui/           Button, SectionHeading, AnimatedNumber, RevealObserver, AssetImage
-  content/        все тексты и данные
-  lib/            lead-schema (Zod), lead-delivery, rate-limit, analytics, utm
-```
-
-Расширение: новые кейсы — по образцу `case-aksenova.ts`; страницы услуг/блог — новые маршруты в `src/app/`
-с переиспользованием `components/ui` и секций.
-
-### Формы и аналитика
-Все CTA открывают одну модальную форму (имя, телефон, специализация, согласие) с собственным `form_source`:
-`hero_primary`, `header_cta`, `case_cta`, `sales_consulting_cta`, `payment_cta`, `audience_cta`,
-`lead_section` (полная форма), `footer_cta` (`services_cta` зарезервирован для будущих CTA в карточках услуг). В обработчик передаются UTM, URL страницы, referrer, время и согласие.
+Источники форм: `hero_primary`, `header_cta`, `sticky_cta`, `case_cta`, `system_cta`, `payment_cta`, `lead_section`.
 
 События Метрики: `hero_cta_click`, `case_view`, `case_cta_click`, `lead_form_open`, `lead_form_start`,
-`lead_form_submit_attempt`, `lead_form_success`, `lead_form_error`, `phone_click`, `messenger_click`, `faq_open`.
-Персональные данные в события не передаются; Вебвизор выключен.
-
-## Скриншоты
-`docs/screenshots/` — desktop (1440), tablet (768), mobile (390), модальное окно.
+`lead_form_submit_attempt`, `lead_form_success` (только при реальной доставке), `lead_form_error`,
+`external_site_click`, `gallery_open`, `sticky_cta_click`, `faq_open`, `phone_click`, `messenger_click`.
 
 ## Автономная HTML-версия
 
-`static-html/index.html` — один файл без зависимостей (стили, шрифты и скрипты встроены), открывается
-двойным кликом. Интерактив повторён на чистом JS (`scripts/static-html/runtime.js`). Отправка заявок в ней
-по умолчанию отключена: форма честно сообщает, что заявка не отправлена. Чтобы включить, задайте
-`window.LP_LEAD_ENDPOINT` (например, адрес развёрнутого `/api/leads`).
-
-Пересборка после изменения контента:
+`static-html/index.html` — один файл (стили, шрифты, изображения и скрипты встроены). Форма в нём работает в
+демо-режиме; для реальной отправки задайте `window.LP_LEAD_ENDPOINT`. Пересборка:
 
 ```bash
 npm run build && npx next start -p 3200 &
 python3 scripts/static-html/build.py http://localhost:3200/ static-html/index.html
 ```
+
+## Скриншоты
+`docs/screenshots/` — desktop 1440, tablet 768, mobile 390 и 360.

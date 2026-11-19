@@ -90,16 +90,30 @@
   }
 
   .section {
-    padding-block: 72px;
+    padding-block: 64px;
   }
   @media (min-width: 768px) {
     .section {
-      padding-block: 104px;
+      padding-block: 96px;
     }
   }
   @media (min-width: 1280px) {
     .section {
-      padding-block: 128px;
+      padding-block: 112px;
+    }
+  }
+
+  .section-tight {
+    padding-block: 64px;
+  }
+  @media (min-width: 768px) {
+    .section-tight {
+      padding-block: 88px;
+    }
+  }
+  @media (min-width: 1280px) {
+    .section-tight {
+      padding-block: 104px;
     }
   }
 
@@ -133,6 +147,18 @@
     font-size: clamp(38px, 2.1rem + 2.4vw, 72px);
     line-height: 1.02;
     letter-spacing: -0.012em;
+  }
+  @media (min-width: 1024px) {
+    .hero-title {
+      font-size: clamp(52px, 1.6rem + 2.6vw, 66px);
+      line-height: 1.03;
+    }
+  }
+  @media (max-width: 639px) {
+    .hero-title {
+      font-size: clamp(32px, 8.6vw, 38px);
+      line-height: 1.04;
+    }
   }
   .h2 {
     font-family: var(--font-serif);
@@ -258,4 +284,23 @@ dialog.lead-dialog::backdrop {
   width: 1px;
   height: 1px;
   overflow: hidden;
+}
+
+/* ---------- Лайтбокс ---------- */
+dialog.lightbox-dialog {
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  width: min(1200px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+  overflow: visible;
+}
+dialog.lightbox-dialog::backdrop {
+  background: rgba(10, 18, 24, 0.9);
+}
+@media (prefers-reduced-motion: no-preference) {
+  dialog.lightbox-dialog[open] {
+    animation: fade-in var(--dur) var(--ease-out);
+  }
 }

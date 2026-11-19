@@ -8,6 +8,23 @@ import type { NextConfig } from "next";
  */
 const basePath = (process.env.BASE_PATH ?? "").replace(/\/$/, "");
 
+/**
+ * Защита production-запуска: сборка в режиме production невозможна без рабочей доставки заявок
+ * и утверждённых юридических документов. Preview собирается всегда.
+ */
+if (process.env.NEXT_PUBLIC_SITE_MODE === "production") {
+  const problems: string[] = [];
+  const delivery = (process.env.LEAD_DELIVERY_MODE ?? "").trim();
+  if (!delivery || delivery.includes("demo")) problems.push("LEAD_DELIVERY_MODE не задан или равен demo");
+  if (process.env.LEGAL_DOCUMENTS_APPROVED !== "true") problems.push("LEGAL_DOCUMENTS_APPROVED не равен true");
+  if (!process.env.NEXT_PUBLIC_SITE_URL) problems.push("NEXT_PUBLIC_SITE_URL не задан");
+  if (problems.length > 0) {
+    throw new Error(
+      `Production-сборка остановлена: ${problems.join("; ")}. См. TODO_BEFORE_LAUNCH.md или соберите preview (NEXT_PUBLIC_SITE_MODE=preview).`,
+    );
+  }
+}
+
 const nextConfig: NextConfig = {
   basePath: basePath || undefined,
   trailingSlash: Boolean(basePath),

@@ -13,7 +13,6 @@
   - ссылки на /privacy заменяет на встроенный блок с тем же текстом.
 """
 import base64
-import json
 import pathlib
 import re
 import sys
@@ -93,13 +92,13 @@ def main(url: str, out: str) -> None:
 """
     html = html.replace("</main>", docs + "</main>", 1)
 
-    # Тексты этапов для схемы «путь до договора»
-    landing = (ROOT / "src/content/landing.ts").read_text("utf-8")
-    approach = landing.split("export const approach")[1].split("principles:")[0]
-    steps = [
-        {"title": t, "text": x}
-        for t, x in re.findall(r'title: "([^"]+)",\s*text:\s*"([^"]+)"', approach)
-    ]
+    # Изображения из /public → data URI (файл остаётся автономным)
+    def inline_img(m: re.Match) -> str:
+        path = ROOT / "public" / m.group(1).lstrip("/")
+        mime = "image/svg+xml" if path.suffix == ".svg" else "image/png"
+        return f'src="data:{mime};base64,{base64.b64encode(path.read_bytes()).decode()}"'
+
+    html = re.sub(r'src="(/(?:placeholders|case-aksenova|team|images)/[^"]+)"', inline_img, html)
 
     runtime = (pathlib.Path(__file__).parent / "runtime.js").read_text("utf-8")
     head_extra = (
@@ -107,8 +106,7 @@ def main(url: str, out: str) -> None:
         "<script>document.documentElement.classList.add('js')</script>"
     )
     body_extra = (
-        "<script>window.LP_LEAD_ENDPOINT='';"
-        f"window.LP_STEPS={json.dumps(steps, ensure_ascii=False)};</script>"
+        "<script>window.LP_LEAD_ENDPOINT='';</script>"
         f"<script>{runtime}</script>"
     )
     html = html.replace("</head>", head_extra + "</head>", 1)
@@ -117,7 +115,7 @@ def main(url: str, out: str) -> None:
     out_path = pathlib.Path(out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(html, "utf-8")
-    print(f"{out_path} — {out_path.stat().st_size // 1024} KB, steps: {len(steps)}")
+    print(f"{out_path} — {out_path.stat().st_size // 1024} KB")
 
 
 if __name__ == "__main__":

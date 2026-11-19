@@ -25,3 +25,25 @@ export function isRateLimited(key: string, now = Date.now()): boolean {
   }
   return false;
 }
+
+/**
+ * Защита от дублей: успешно доставленная заявка с тем же телефоном (или тем же submission_id)
+ * в течение 10 минут не доставляется повторно — пользователь получает тот же успешный ответ.
+ */
+const DEDUPE_MS = 10 * 60 * 1000;
+const delivered = new Map<string, { at: number; mode: "live" | "demo" }>();
+
+export function findDuplicate(keys: string[], now = Date.now()) {
+  for (const key of keys) {
+    const hit = delivered.get(key);
+    if (hit && now - hit.at < DEDUPE_MS) return hit;
+  }
+  return null;
+}
+
+export function rememberDelivered(keys: string[], mode: "live" | "demo", now = Date.now()) {
+  for (const key of keys) delivered.set(key, { at: now, mode });
+  if (delivered.size > 5000) {
+    for (const [k, v] of delivered) if (now - v.at >= DEDUPE_MS) delivered.delete(k);
+  }
+}

@@ -38,10 +38,17 @@ function DocumentBlock({ id, doc, level }: { id: string; doc: LegalDocument; lev
           ))}
         </div>
       ) : (
-        <p className="mt-6 max-w-[62ch] text-[16px] text-muted-text">
-          Документ проходит юридическое согласование и будет опубликован оператором персональных данных до начала
-          приёма заявок.
-        </p>
+        <div className="mt-6 max-w-[62ch]">
+          {site.mode === "preview" && (
+            <p className="mb-3 inline-flex rounded-full border border-dashed border-gold-ink/60 px-3 py-1 text-[12px] font-bold tracking-[0.12em] text-gold-ink uppercase">
+              Заглушка · заменить утверждённым текстом
+            </p>
+          )}
+          <p className="text-[16px] text-muted-text">
+            Документ проходит юридическое согласование и будет опубликован оператором персональных данных до начала
+            приёма заявок.
+          </p>
+        </div>
       )}
     </section>
   );

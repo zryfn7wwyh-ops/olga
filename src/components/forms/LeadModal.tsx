@@ -104,12 +104,11 @@ export function LeadModalProvider({ children }: { children: ReactNode }) {
             Получить план привлечения клиентов
           </h2>
           <p id="lead-modal-desc" className="mt-3 mb-7 text-[15px] text-muted-text">
-            Оставьте контакты — обсудим специализацию, регион и текущие каналы. Город и сайт уточним при разговоре.
+            Оставьте имя и телефон — обсудим специализацию, регион и текущие источники обращений.
           </p>
           {/* Форма остаётся смонтированной: введённые данные не теряются при случайном закрытии. */}
           <LeadForm
             key={formKey}
-            variant="short"
             source={source}
             submitLabel="Получить персональный план"
             onSuccess={() => setSubmitted(true)}

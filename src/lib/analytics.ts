@@ -17,7 +17,10 @@ export type AnalyticsEvent =
   | "lead_form_error"
   | "phone_click"
   | "messenger_click"
-  | "faq_open";
+  | "faq_open"
+  | "external_site_click"
+  | "sticky_cta_click"
+  | "gallery_open";
 
 type SafeParams = Record<string, string | number | boolean>;
 

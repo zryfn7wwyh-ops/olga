@@ -4,13 +4,11 @@ import { z } from "zod";
 export const FORM_SOURCES = [
   "hero_primary",
   "header_cta",
+  "sticky_cta",
   "case_cta",
-  "services_cta",
-  "sales_consulting_cta",
+  "system_cta",
   "payment_cta",
-  "audience_cta",
   "lead_section",
-  "footer_cta",
 ] as const;
 export type FormSource = (typeof FORM_SOURCES)[number];
 
@@ -74,6 +72,7 @@ export function formatPhoneInput(raw: string): string {
 const trimmed = (max: number, requiredMessage = "Заполните поле") =>
   z.string({ message: requiredMessage }).trim().max(max, `Не более ${max} символов`);
 
+/** Единая короткая форма: обязательны только имя и телефон (+ согласие). */
 export const leadFieldsSchema = z.object({
   name: trimmed(80, "Укажите имя").min(2, "Укажите имя"),
   phone: z
@@ -81,20 +80,10 @@ export const leadFieldsSchema = z.object({
     .trim()
     .min(1, "Укажите телефон")
     .refine(isValidPhone, "Проверьте номер: например, +7 (999) 123-45-67"),
+  specialization: z.enum(SPECIALIZATION_VALUES).optional(),
   city: trimmed(120).optional(),
-  specialization: z.enum(SPECIALIZATION_VALUES, { message: "Выберите специализацию" }),
-  website: trimmed(300).optional(),
-  comment: trimmed(1500).optional(),
   consent: z.literal(true, { message: "Необходимо согласие на обработку персональных данных" }),
 });
-
-/** Полная форма (секция #lead): город обязателен. */
-export const fullLeadSchema = leadFieldsSchema.extend({
-  city: trimmed(120, "Укажите город или регион").min(2, "Укажите город или регион"),
-});
-
-/** Короткая форма (модальное окно): имя, телефон, специализация, согласие. */
-export const shortLeadSchema = leadFieldsSchema;
 
 const utmSchema = z
   .object(Object.fromEntries(UTM_KEYS.map((k) => [k, trimmed(200).optional()])) as Record<
@@ -105,13 +94,14 @@ const utmSchema = z
 
 /** Тело запроса POST /api/leads. */
 export const leadRequestSchema = z.object({
-  variant: z.enum(["full", "short"]),
   form_source: z.enum(FORM_SOURCES),
-  /** Поля проверяются отдельно (full/short), чтобы вернуть ошибки по каждому полю. */
+  /** Поля проверяются отдельно, чтобы вернуть ошибки по каждому полю. */
   fields: z.record(z.string(), z.unknown()),
   utm: utmSchema.default({}),
   page_url: trimmed(1000).optional(),
   referrer: trimmed(1000).optional(),
+  /** Идентификатор попытки отправки — защита от повторной доставки при двойном клике/ретраях. */
+  submission_id: z.string().max(64).optional(),
   /** Honeypot: реальный пользователь это поле не видит и не заполняет. */
   company_url: z.string().max(500).optional(),
 });
@@ -120,15 +110,12 @@ export type LeadFields = z.infer<typeof leadFieldsSchema>;
 export type LeadRequest = z.infer<typeof leadRequestSchema>;
 
 export type LeadPayload = {
-  variant: "full" | "short";
   formSource: FormSource;
   name: string;
   phone: string;
   city?: string;
-  specialization: Specialization;
-  specializationLabel: string;
-  website?: string;
-  comment?: string;
+  specialization?: Specialization;
+  specializationLabel?: string;
   consent: true;
   consentAt: string;
   utm: Partial<Record<(typeof UTM_KEYS)[number], string>>;
@@ -138,7 +125,7 @@ export type LeadPayload = {
 };
 
 export type LeadApiResponse =
-  | { ok: true; mode: "live" | "test" }
+  | { ok: true; mode: "live" | "demo"; duplicate?: boolean }
   | {
       ok: false;
       code: "validation" | "rate_limited" | "delivery_unavailable" | "delivery_failed" | "bad_request";
