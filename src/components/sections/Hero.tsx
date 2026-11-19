@@ -33,16 +33,13 @@ export function Hero() {
             <span className="hidden sm:inline">{hero.subtitle}</span>
           </p>
 
-          <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6">
-            <CtaButton source="hero_primary" event="hero_cta_click" className="w-full sm:w-auto">
+          <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-3">
+            <CtaButton source="hero_primary" event="hero_cta_click" size="md" className="w-full sm:w-auto">
               {hero.primaryCta}
             </CtaButton>
-            <a
-              href="#payment"
-              className="inline-flex min-h-11 items-center gap-1.5 self-center text-[16px] text-ivory/85 underline decoration-ivory/30 underline-offset-4 transition-colors hover:text-ivory hover:decoration-ivory sm:self-auto"
-            >
-              {hero.paymentLink}
-            </a>
+            <CtaButton source="hero_secondary" variant="outline-light" size="md" arrow={false} className="w-full sm:w-auto">
+              {hero.secondaryCtaSell}
+            </CtaButton>
           </div>
           <p className="mt-2 text-[14.5px] leading-snug text-ivory/70 sm:mt-3 sm:text-[15px]">{hero.valueLine.join(" · ")}</p>
 

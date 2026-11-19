@@ -3,6 +3,7 @@ import { z } from "zod";
 /** Источники формы — для аналитики и CRM. Каждой кнопке — свой источник. */
 export const FORM_SOURCES = [
   "hero_primary",
+  "hero_secondary",
   "header_cta",
   "sticky_cta",
   "case_cta",
